@@ -338,4 +338,8 @@
         const dataSimilar = await resSimilarPosts.json()
         similarPosts.value = dataSimilar
     });
+
+    useHead({
+        titleTemplate: `%s-${route.params.slug}`
+    });
 </script>

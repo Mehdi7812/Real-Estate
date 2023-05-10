@@ -187,7 +187,16 @@
                 <div style="background-color: var(--primaryColor-20)" class="absolute top-0 bottom-0 right-0 left-0"></div>
                 <div class="relative h-56 md:h-[448px] rounded-[20px] md:rounded-[63px] overflow-hidden">
                     <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${dataRes.lat},${dataRes.lng}`" class="block h-full overflow-hidden relative rounded-[20px] md:rounded-[63px]">
-                        <div class="h-full z-0 rounded-[20px] md:rounded-[63px]" id="map"></div>
+                        <div class="h-full z-0 rounded-[20px] md:rounded-[63px]" id="map">
+                            <div id="map-wrap" style="height: 100vh">
+                                <client-only>
+                                <l-map :zoom=13 :center="[`${dataRes.lat},${dataRes.lng}`]">
+                                    <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+                                    <l-marker :lat-lng="[`${dataRes.lat},${dataRes.lng}`]"></l-marker>
+                                </l-map>
+                                </client-only>
+                            </div>
+                        </div>
                         
                         <div class="flex gap-5 justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-[20px] md:rounded-[63px] backdrop-brightness-[.38]">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

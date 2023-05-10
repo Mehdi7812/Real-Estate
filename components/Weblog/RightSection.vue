@@ -1,5 +1,5 @@
 <template>
-    <div x-data="apiWeblog" class="flex flex-col lg:w-4/6">
+    <div class="flex flex-col lg:w-4/6">
         <!-- <template x-if="!posts.results">
             <main class="mostSearch" style="margin-top: 0;">
                 <ul class="o-vertical-spacing o-vertical-spacing--l">
@@ -169,9 +169,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-
 const posts = ref("")
+const route = useRoute()
 
 const seeMore = (nextPage) => {
     // btn.style.pointerEvents = 'none'
@@ -207,7 +206,8 @@ const dateCalc = (prevDate) => {
 }
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/weblog/?search=&weblog_type=`)
+    // alert("Mounted")
+    const response = await fetch(`https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
     const data = await response.json()
     posts.value = data
 });

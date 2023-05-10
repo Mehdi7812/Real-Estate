@@ -3,7 +3,10 @@ export default defineNuxtConfig({
     alias: {
         assets: "/<rootDir>/assets"
     },
-    modules: ['nuxt-swiper'],
+    modules: [
+        'nuxt-swiper',
+    //  'nuxt-leaflet',
+    ],
 	css: ["~/assets/css/main.css"],
 	postcss: {
 		plugins: {

@@ -21,7 +21,7 @@
                 <div class=" w-full h-[117px] lg:h-[223px]">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
 
-                    <div class="bg-cover bg-right h-full w-3/5" style="background-image: url(src/assets/Images/weblog2Img6.webp);"></div>
+                    <div class="bg-cover bg-right h-full w-3/5" style="background-image: url(weblog2Img6.webp);"></div>
                     <div class="flex items-center gap-4 absolute left-[10%] top-0 bottom-0 z-20 cursor-pointer">
                         <h3 class="w-20 text-center text-sm font-extrabold lg:text-3xl lg:w-48">خرید ویلاهای لوکس و لاکچری</h3>
 
