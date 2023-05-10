@@ -1,3 +1,103 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rtl {
+  direction: rtl;
+}
+.bg-primary {
+  background-color: #363333;
+}
+.bg-secondary {
+  background-color: #272121;
+}
+.bg-primaryOrange {
+  background-color: #E16428;
+}
+.bg-sec222831 {
+  background-color: #222831;
+}
+.bg-hoverPrimaryOrange {
+  background-color: #A74A1E;
+}
+.bg-black50 {
+  background-color: rgba(0, 0, 0, 50%);
+}
+.bg-graytext {
+  background-color: #9B9B9B;
+}
+
+.text-graytext {
+  color: #9B9B9B;
+}
+.text-primary {
+  color: #363333;
+}
+.text-secondary {
+  color: #272121;
+}
+.text-primaryOrange {
+  color: #E16428;
+}
+
+.btn {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.inputNumber::-webkit-outer-spin-button, .inputNumber::-webkit-inner-spin-button { display: none; }
+
+.swiper-button-disabled { opacity: .3!important; }
+
+.swiper-paginationPersons .swiper-pagination-bullet-active {
+  width: 25px;
+}
+
+.swiper-paginationPersons span { 
+  background-color: #7d7878;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+}
+
+.navMain {
+  top: 20px;
+  width: 95%;
+  border-radius: 16px;
+  margin: auto;
+}
+
+.postCard:hover h3{
+  color: var(--primaryColor)!important;
+}
+
+.inputVila::after {
+  background-color: var(--primaryColor)!important;
+}
+
+.contactInput input:focus-within{
+  border-bottom-color: var(--primaryColor)!important;
+}
+
+.contactInput input:focus-within + label{
+  color: var(--primaryColor)!important;
+}
+
+.toggleBtn:checked + div {
+  background-color: var(--primaryColor)!important;
+}
+
+.formCommentInput:focus-within {
+  border-color: var(--primaryColor)!important;
+}
+
+.formCommentInput:focus-within + label {
+  color: var(--primaryColor)!important;
+}
+
+.crisp-client .cc-1m7s .cc-qvio {
+  background-color: var(--primaryColor)!important;
+}

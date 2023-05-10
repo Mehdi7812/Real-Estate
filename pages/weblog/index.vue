@@ -1,0 +1,3 @@
+<template>
+    <WeblogRightSection />
+</template>
