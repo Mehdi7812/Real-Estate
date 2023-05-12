@@ -130,7 +130,7 @@
                         <p class="text-[11px] lg:text-sm lg:max-w-[530px] lg:text-right">{{ homePage_headText }}</p>
                         <form class="-bottom-6 w-4/5 text-center h-12 relative lg:w-1/2 lg:h-16">
                             <input id="searchInput" v-model="estateCode" class="placeholder:text-sm lg:placeholder:text-base w-full h-full rounded-3xl border-0 outline-none bg-primary/80 dark:bg-[#f0f3f7]/30 dark:backdrop-blur-sm text-right p-4 placeholder:text-white dark:placeholder:text-white placeholder:font-bold lg:rounded-[33px] inputNumber" type="text" placeholder="جستجوی کد ملکی">
-                            <a style="background-color: var(--primaryColor);" :href="`propertyCode.html?estate_code=${estateCode}`" class="absolute bottom-1 left-1 hover:opacity-80 rounded-full w-10 h-10 flex justify-center items-center cursor-pointer transition duration-300 lg:w-[55px] lg:h-[55px]">
+                            <NuxtLink :to="`propertyCode?estate_code=${estateCode}`" style="background-color: var(--primaryColor);" class="absolute bottom-1 left-1 hover:opacity-80 rounded-full w-10 h-10 flex justify-center items-center cursor-pointer transition duration-300 lg:w-[55px] lg:h-[55px]">
                                 <svg class="w-6 h-6 lg:w-8 lg:h-8" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_d_422_694)">
                                         <path d="M18 5H24" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -151,7 +151,7 @@
                                         </filter>
                                     </defs>
                                 </svg>
-                            </a>
+                            </NuxtLink>
                         </form>
                         <div class="h-5">
                             <p id="searchErr" class="text-red-500 h-0 overflow-hidden transition-all duration-300">لطفا مقدار صحیح وارد کنید :)</p>

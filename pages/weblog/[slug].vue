@@ -29,7 +29,7 @@
 
                 <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`https://api.hypomelk.ir${weblogItem.cover}`">
 
-                <div v-html="weblogItem.text" x-init="$store.nextAndPrevPost.postSlug = weblogItem.slug" class="text-xs md:text-base"></div>
+                <div v-html="weblogItem.text" class="text-xs md:text-base"></div>
             
                 <div class="flex justify-between">
 
@@ -208,94 +208,90 @@
                 </div>
 
                 <!-- similar Posts -->
-                <template x-if="weblogItem && weblogItem.detail == undefined">
-                    <div class="flex flex-col">
-                        <h4 class="text-center text-lg font-semibold md:text-xl my-20">پست های مرتبط</h4>
+                <div x-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col">
+                    <h4 class="text-center text-lg font-semibold md:text-xl my-20">پست های مرتبط</h4>
 
-                        <div class="flex flex-col md:flex-row gap-2">
+                    <div class="flex flex-col md:flex-row gap-2">
 
-                            <div v-if="similarPosts.length == 0" class="flex flex-col justify-center w-full items-center mt-4 py-[40px] gap-7">
-                                <svg class="dark:hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M30.7575 0.0100708C14.1997 0.0100708 0.707031 13.5027 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5027 47.3154 0.0100708 30.7575 0.0100708ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0656C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0656V18.0404ZM33.5222 43.2227C33.3719 43.6133 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8454C31.5388 44.9957 31.1482 45.0858 30.7575 45.0858C30.3669 45.0858 29.9762 44.9957 29.6156 44.8454C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6133 27.9929 43.2227C27.8426 42.8621 27.7525 42.4714 27.7525 42.0808C27.7525 41.6901 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6767 29.255 39.4664 29.6156 39.3161C30.3368 39.0156 31.1782 39.0156 31.8995 39.3161C32.2601 39.4664 32.5906 39.6767 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6901 33.7626 42.0808C33.7626 42.4714 33.6724 42.8621 33.5222 43.2227Z" fill="#EDEDED"/>
-                                </svg>
-                                <svg class="dark:inline-block hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M30.7575 0.0100708C14.1997 0.0100708 0.707031 13.5027 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5027 47.3154 0.0100708 30.7575 0.0100708ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0656C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0656V18.0404ZM33.5222 43.2227C33.3719 43.6133 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8454C31.5388 44.9957 31.1482 45.0858 30.7575 45.0858C30.3669 45.0858 29.9762 44.9957 29.6156 44.8454C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6133 27.9929 43.2227C27.8426 42.8621 27.7525 42.4714 27.7525 42.0808C27.7525 41.6901 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6767 29.255 39.4664 29.6156 39.3161C30.3368 39.0156 31.1782 39.0156 31.8995 39.3161C32.2601 39.4664 32.5906 39.6767 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6901 33.7626 42.0808C33.7626 42.4714 33.6724 42.8621 33.5222 43.2227Z" fill="black"/>
-                                </svg>
+                        <div v-if="similarPosts.length == 0" class="flex flex-col justify-center w-full items-center mt-4 py-[40px] gap-7">
+                            <svg class="dark:hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30.7575 0.0100708C14.1997 0.0100708 0.707031 13.5027 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5027 47.3154 0.0100708 30.7575 0.0100708ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0656C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0656V18.0404ZM33.5222 43.2227C33.3719 43.6133 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8454C31.5388 44.9957 31.1482 45.0858 30.7575 45.0858C30.3669 45.0858 29.9762 44.9957 29.6156 44.8454C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6133 27.9929 43.2227C27.8426 42.8621 27.7525 42.4714 27.7525 42.0808C27.7525 41.6901 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6767 29.255 39.4664 29.6156 39.3161C30.3368 39.0156 31.1782 39.0156 31.8995 39.3161C32.2601 39.4664 32.5906 39.6767 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6901 33.7626 42.0808C33.7626 42.4714 33.6724 42.8621 33.5222 43.2227Z" fill="#EDEDED"/>
+                            </svg>
+                            <svg class="dark:inline-block hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30.7575 0.0100708C14.1997 0.0100708 0.707031 13.5027 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5027 47.3154 0.0100708 30.7575 0.0100708ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0656C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0656V18.0404ZM33.5222 43.2227C33.3719 43.6133 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8454C31.5388 44.9957 31.1482 45.0858 30.7575 45.0858C30.3669 45.0858 29.9762 44.9957 29.6156 44.8454C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6133 27.9929 43.2227C27.8426 42.8621 27.7525 42.4714 27.7525 42.0808C27.7525 41.6901 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6767 29.255 39.4664 29.6156 39.3161C30.3368 39.0156 31.1782 39.0156 31.8995 39.3161C32.2601 39.4664 32.5906 39.6767 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6901 33.7626 42.0808C33.7626 42.4714 33.6724 42.8621 33.5222 43.2227Z" fill="black"/>
+                            </svg>
 
-                                <p class="text-2xl text-center">پست مشابهی یافت نشد!</p>
-                            </div>
-                            
-                            <NuxtLink :to="`weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="(post, index) in similarPosts" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
-                                <div class="relative h-60">
-                                    <img :src="`https://api.hypomelk.ir${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
-            
-                                    <div class="absolute top-3 left-3 right-3 flex justify-between">
-                                        <div class="flex gap-2 items-center">
-                                            <div class="bg-[#6DC175] p-1 rounded-md flex items-center relative w-24 md:w-7 overflow-hidden group-hover:w-24 transition-all duration-300">
-                                                <span>
-                                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M16.4269 10.4896C16.4269 14.3133 13.3236 17.4167 9.49984 17.4167C5.67609 17.4167 2.57275 14.3133 2.57275 10.4896C2.57275 6.66583 5.67609 3.5625 9.49984 3.5625C13.3236 3.5625 16.4269 6.66583 16.4269 10.4896Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M9.5 6.33337V10.2917" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M7.125 1.58337H11.875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>   
-                                                </span>
-                                                <p class="text-[10px] whitespace-nowrap absolute right-7"><span x-text="post.time"></span> دقیقه مطالعه</p>
-                                            </div>
-                                        </div>
-            
-                                                <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
-                                    </div>
-            
-                                    <div class="absolute bottom-3 right-3 left-3 flex justify-end items-end gap-2">
-                                        <div>
-                                            <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 md:h-6 relative group-hover:h-11 overflow-hidden transition-all duration-300">
-                                                <span x-text="Number(post.view).toLocaleString('fa-ir')" class="absolute bottom-5"></span>
-                                                <span>
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M10.3866 8.00007C10.3866 9.32007 9.31995 10.3867 7.99995 10.3867C6.67995 10.3867 5.61328 9.32007 5.61328 8.00007C5.61328 6.68007 6.67995 5.6134 7.99995 5.6134C9.31995 5.6134 10.3866 6.68007 10.3866 8.00007Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M7.9999 13.5133C10.3532 13.5133 12.5466 12.1266 14.0732 9.72665C14.6732 8.78665 14.6732 7.20665 14.0732 6.26665C12.5466 3.86665 10.3532 2.47998 7.9999 2.47998C5.64656 2.47998 3.45323 3.86665 1.92656 6.26665C1.32656 7.20665 1.32656 8.78665 1.92656 9.72665C3.45323 12.1266 5.64656 13.5133 7.9999 13.5133Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>                                                                                                                                                                    
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-            
-                                <div class="py-3 flex gap-4 flex-col md:justify-between">
-                                    <h3 x-text="post.title" class="text-[15px] font-bold md:text-xl dark:text-black dark:group-hover:text-bluePrimary group-hover:text-primaryOrange transition-all duration-300"></h3>
-    
-                                    <p x-text="post.introduction" class="text-[10px] text-right md:text-[14px] h-11 text-[#9EA1AC]"></p>
-                                </div>
-
-                                <div class="flex-row-reverse justify-between">
-                                    <div @click="location.href=`propertyUser.html?user=${weblogItem.user_id}`" class="flex gap-3">
-                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${weblogItem.user_picture}`">
-                                        <div class="flex flex-col justify-around">
-                                            <span x-text="weblogItem.username" class="text-[10px] dark:text-black md:text-base"></span>
-                                            <span x-text="weblogItem.user_activity" class="text-[8px] text-[#B1B1B1] dark:text-black md:text-[11px]"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </NuxtLink>
+                            <p class="text-2xl text-center">پست مشابهی یافت نشد!</p>
                         </div>
+                        
+                        <NuxtLink :to="`weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
+                            <div class="relative h-60">
+                                <img :src="`https://api.hypomelk.ir${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
+        
+                                <div class="absolute top-3 left-3 right-3 flex justify-between">
+                                    <div class="flex gap-2 items-center">
+                                        <div class="bg-[#6DC175] p-1 rounded-md flex items-center relative w-24 md:w-7 overflow-hidden group-hover:w-24 transition-all duration-300">
+                                            <span>
+                                                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M16.4269 10.4896C16.4269 14.3133 13.3236 17.4167 9.49984 17.4167C5.67609 17.4167 2.57275 14.3133 2.57275 10.4896C2.57275 6.66583 5.67609 3.5625 9.49984 3.5625C13.3236 3.5625 16.4269 6.66583 16.4269 10.4896Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M9.5 6.33337V10.2917" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M7.125 1.58337H11.875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>   
+                                            </span>
+                                            <p class="text-[10px] whitespace-nowrap absolute right-7"><span>{{ post.time }}</span> دقیقه مطالعه</p>
+                                        </div>
+                                    </div>
+        
+                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
+                                </div>
+        
+                                <div class="absolute bottom-3 right-3 left-3 flex justify-end items-end gap-2">
+                                    <div>
+                                        <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 md:h-6 relative group-hover:h-11 overflow-hidden transition-all duration-300">
+                                            <span class="absolute bottom-5">{{ Number(post.view).toLocaleString('fa-ir') }}</span>
+                                            <span>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10.3866 8.00007C10.3866 9.32007 9.31995 10.3867 7.99995 10.3867C6.67995 10.3867 5.61328 9.32007 5.61328 8.00007C5.61328 6.68007 6.67995 5.6134 7.99995 5.6134C9.31995 5.6134 10.3866 6.68007 10.3866 8.00007Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M7.9999 13.5133C10.3532 13.5133 12.5466 12.1266 14.0732 9.72665C14.6732 8.78665 14.6732 7.20665 14.0732 6.26665C12.5466 3.86665 10.3532 2.47998 7.9999 2.47998C5.64656 2.47998 3.45323 3.86665 1.92656 6.26665C1.32656 7.20665 1.32656 8.78665 1.92656 9.72665C3.45323 12.1266 5.64656 13.5133 7.9999 13.5133Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>                                                                                                                                                                    
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="py-3 flex gap-4 flex-col md:justify-between">
+                                <h3 class="text-[15px] font-bold md:text-xl dark:text-black dark:group-hover:text-bluePrimary group-hover:text-primaryOrange transition-all duration-300">{{ post.title }}</h3>
+
+                                <p class="text-[10px] text-right md:text-[14px] h-11 text-[#9EA1AC]">{{ post.introduction }}</p>
+                            </div>
+
+                            <div class="flex-row-reverse justify-between">
+                                <NuxtLink :to="`propertyCode?user=${weblogItem.user_id}`" class="flex gap-3">
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${weblogItem.user_picture}`">
+                                    <div class="flex flex-col justify-around">
+                                        <span class="text-[10px] dark:text-black md:text-base">{{ weblogItem.username }}</span>
+                                        <span class="text-[8px] text-[#B1B1B1] dark:text-black md:text-[11px]">{{ weblogItem.user_activity }}</span>
+                                    </div>
+                                </NuxtLink>
+                            </div>
+                        </NuxtLink>
                     </div>
-                </template>
+                </div>
             </div>
 
             <!-- اگر پیدا نشد -->
-            <template x-if="weblogItem && weblogItem.detail">
-                <div class="my-10 m-auto flex flex-col gap-5 md:gap-7 p-4 lg:w-4/5 md:p-11 items-center">
-                    <svg class="dark:hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M30.7575 0.0101013C14.1997 0.0101013 0.707031 13.5028 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5028 47.3154 0.0101013 30.7575 0.0101013ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0657C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0657V18.0404ZM33.5222 43.2227C33.3719 43.6134 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8455C31.5388 44.9957 31.1482 45.0859 30.7575 45.0859C30.3669 45.0859 29.9762 44.9957 29.6156 44.8455C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6134 27.9929 43.2227C27.8426 42.8621 27.7525 42.4715 27.7525 42.0808C27.7525 41.6902 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6768 29.255 39.4664 29.6156 39.3162C30.3368 39.0157 31.1782 39.0157 31.8995 39.3162C32.2601 39.4664 32.5906 39.6768 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6902 33.7626 42.0808C33.7626 42.4715 33.6724 42.8621 33.5222 43.2227Z" fill="#EDEDED"/>
-                    </svg>
+            <div v-if="weblogItem && weblogItem.detail" class="my-10 m-auto flex flex-col gap-5 md:gap-7 p-4 lg:w-4/5 md:p-11 items-center">
+                <svg class="dark:hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.7575 0.0101013C14.1997 0.0101013 0.707031 13.5028 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5028 47.3154 0.0101013 30.7575 0.0101013ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0657C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0657V18.0404ZM33.5222 43.2227C33.3719 43.6134 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8455C31.5388 44.9957 31.1482 45.0859 30.7575 45.0859C30.3669 45.0859 29.9762 44.9957 29.6156 44.8455C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6134 27.9929 43.2227C27.8426 42.8621 27.7525 42.4715 27.7525 42.0808C27.7525 41.6902 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6768 29.255 39.4664 29.6156 39.3162C30.3368 39.0157 31.1782 39.0157 31.8995 39.3162C32.2601 39.4664 32.5906 39.6768 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6902 33.7626 42.0808C33.7626 42.4715 33.6724 42.8621 33.5222 43.2227Z" fill="#EDEDED"/>
+                </svg>
 
-                    <svg class="dark:inline-block hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M30.7575 0.0101013C14.1997 0.0101013 0.707031 13.5028 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5028 47.3154 0.0101013 30.7575 0.0101013ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0657C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0657V18.0404ZM33.5222 43.2227C33.3719 43.6134 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8455C31.5388 44.9957 31.1482 45.0859 30.7575 45.0859C30.3669 45.0859 29.9762 44.9957 29.6156 44.8455C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6134 27.9929 43.2227C27.8426 42.8621 27.7525 42.4715 27.7525 42.0808C27.7525 41.6902 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6768 29.255 39.4664 29.6156 39.3162C30.3368 39.0157 31.1782 39.0157 31.8995 39.3162C32.2601 39.4664 32.5906 39.6768 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6902 33.7626 42.0808C33.7626 42.4715 33.6724 42.8621 33.5222 43.2227Z" fill="black"/>
-                    </svg>
+                <svg class="dark:inline-block hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.7575 0.0101013C14.1997 0.0101013 0.707031 13.5028 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5028 47.3154 0.0101013 30.7575 0.0101013ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0657C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0657V18.0404ZM33.5222 43.2227C33.3719 43.6134 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8455C31.5388 44.9957 31.1482 45.0859 30.7575 45.0859C30.3669 45.0859 29.9762 44.9957 29.6156 44.8455C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6134 27.9929 43.2227C27.8426 42.8621 27.7525 42.4715 27.7525 42.0808C27.7525 41.6902 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6768 29.255 39.4664 29.6156 39.3162C30.3368 39.0157 31.1782 39.0157 31.8995 39.3162C32.2601 39.4664 32.5906 39.6768 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6902 33.7626 42.0808C33.7626 42.4715 33.6724 42.8621 33.5222 43.2227Z" fill="black"/>
+                </svg>
 
-                    <p>همچین پستی یافت نشد!</p>
-                </div>
-            </template>
+                <p>همچین پستی یافت نشد!</p>
+            </div>
         </div>
     </section>
 </template>

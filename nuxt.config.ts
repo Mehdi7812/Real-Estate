@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     alias: {
-        assets: "/<rootDir>/assets"
+        assets: "/<rootDir>/assets",
     },
     modules: [
         'nuxt-swiper',
@@ -21,7 +21,8 @@ export default defineNuxtConfig({
                 class: "rtl bg-secondary dark:bg-[#fcfcfc] dark:text-black text-white",
             },
             link: [
-                { rel: 'stylesheet', href: 'Swiper.css' },
+                { rel: 'stylesheet', href: '/Swiper.css' },
+                { rel: 'stylesheet', href: '/Skelton.css' },
               ],
             script: [
                 { innerHTML: `
@@ -57,7 +58,7 @@ export default defineNuxtConfig({
                 }
                 
                 ` },
-                { src: "Swiper.js", body: true }
+                { src: "/Swiper.js" }
             ],
         }
     },

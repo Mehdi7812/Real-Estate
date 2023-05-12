@@ -7,6 +7,32 @@
                 <div class="relative bg-secondary dark:bg-[#f0f3f7] shadow-md p-4 rounded-3xl flex flex-col gap-10 md:rounded-[20px] overflow-hidden">
                     <div style="background-color: var(--primaryColor-20)" class="absolute top-0 bottom-0 right-0 left-0"></div>
                     
+                    <main v-if="!data" class="mostSearch">
+                        <ul class="o-vertical-spacing o-vertical-spacing--l">
+                            <li class="blog-post o-media">
+                                <div class="o-media__figure w-1/3 h-80 rounded-lg overflow-hidden">
+                                <span class="skeleton-box" style="width:100%;height:320px;"></span>
+                                </div>
+                                <div class="o-media__body mr-11">
+                                <div class="o-vertical-spacing">
+                                    <h3 class="blog-post__headline">
+                                    <span class="skeleton-box" style="width:55%;"></span>
+                                    </h3>
+                                    <p>
+                                    <span class="skeleton-box" style="width:80%;"></span>
+                                    <span class="skeleton-box" style="width:90%;"></span>
+                                    <span class="skeleton-box" style="width:83%;"></span>
+                                    <span class="skeleton-box" style="width:80%;"></span>
+                                    </p>
+                                    <div class="blog-post__meta">
+                                    <span class="skeleton-box" style="width:70px;"></span>
+                                    </div>
+                                </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </main>
+
                     <div v-if="data" class="z-[1] flex flex-col lg:flex-row items-center lg:items-stretch w-full gap-4 lg:gap-14">
                         <div class="w-full lg:w-1/2 rounded-[20px] lg:rounded-l-none">
                             <img class="w-full h-full rounded-[20px] lg:rounded-l-none object-cover" :src="homePagePic">

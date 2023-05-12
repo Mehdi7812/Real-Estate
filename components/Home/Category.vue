@@ -207,7 +207,7 @@
 
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-9 pb-8 lg:grid-cols-3">
-                <NuxtLink to="propertyCode.html?estate_type=A" x-data="categoryType('A')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=A" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/Aparteman.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http:/www.w3.org/2000/svg">
@@ -235,7 +235,7 @@
                     </div>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode.html?estate_type=V" x-data="categoryType('V')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=V" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/khaneVilayi.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http:/www.w3.org/2000/svg">
@@ -263,7 +263,7 @@
                     </div>
                 </NuxtLink>
                 
-                <NuxtLink to="propertyCode.html?estate_type=G" x-data="categoryType('G')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=G" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/bagh.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http:/www.w3.org/2000/svg">
@@ -287,7 +287,7 @@
                     </div>
                 </NuxtLink>
                 
-                <NuxtLink to="propertyCode.html?estate_type=L" x-data="categoryType('L')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=L" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/zamin.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http:/www.w3.org/2000/svg">
@@ -309,7 +309,7 @@
                     </div>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode.html?estate_type=B" x-data="categoryType('B')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=B" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/maghaze.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http:/www.w3.org/2000/svg">
@@ -335,7 +335,7 @@
                     </div>
                 </NuxtLink>
                 
-                <NuxtLink to="propertyCode.html?estate_type=H" x-data="categoryType('H')" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
+                <NuxtLink to="propertyCode?estate_type=H" class="relative rounded-xl h-48 lg:h-full overflow-hidden cursor-pointer hover:-translate-y-4 hover:shadow-lg transition-all duration-300">
                     <img src="/vilabagh.webp" class="w-full h-full object-cover">
                     <span class="absolute top-4 right-4 p-3 rounded-full bg-secondary dark:bg-whiteSecondary opacity-90">
                         <svg class="dark:hidden" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http:/www.w3.org/2000/svg">

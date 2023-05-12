@@ -1,77 +1,75 @@
 <template>
     <div class="flex flex-col lg:w-4/6">
-        <!-- <template x-if="!posts.results">
-            <main class="mostSearch" style="margin-top: 0;">
-                <ul class="o-vertical-spacing o-vertical-spacing--l">
-                <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
-                    <div class="o-media__figure md:w-5/12">
-                    <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
+        <main v-if="!posts.results" class="mostSearch" style="margin-top: 0;">
+            <ul class="o-vertical-spacing o-vertical-spacing--l">
+            <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
+                <div class="o-media__figure md:w-5/12">
+                <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
+                </div>
+                <div class="o-media__body mr-4">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                    <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    <span class="skeleton-box" style="width:90%;"></span>
+                    <span class="skeleton-box" style="width:83%;"></span>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                    <span class="skeleton-box" style="width:70px;"></span>
                     </div>
-                    <div class="o-media__body mr-4">
-                    <div class="o-vertical-spacing">
-                        <h3 class="blog-post__headline">
-                        <span class="skeleton-box" style="width:55%;"></span>
-                        </h3>
-                        <p>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        <span class="skeleton-box" style="width:90%;"></span>
-                        <span class="skeleton-box" style="width:83%;"></span>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        </p>
-                        <div class="blog-post__meta">
-                        <span class="skeleton-box" style="width:70px;"></span>
-                        </div>
+                </div>
+                </div>
+            </li>
+            <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
+                <div class="o-media__figure md:w-5/12">
+                <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
+                </div>
+                <div class="o-media__body mr-4">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                    <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    <span class="skeleton-box" style="width:90%;"></span>
+                    <span class="skeleton-box" style="width:83%;"></span>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                    <span class="skeleton-box" style="width:70px;"></span>
                     </div>
+                </div>
+                </div>
+            </li>
+            <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
+                <div class="o-media__figure md:w-5/12">
+                <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
+                </div>
+                <div class="o-media__body mr-4">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                    <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    <span class="skeleton-box" style="width:90%;"></span>
+                    <span class="skeleton-box" style="width:83%;"></span>
+                    <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                    <span class="skeleton-box" style="width:70px;"></span>
                     </div>
-                </li>
-                <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
-                    <div class="o-media__figure md:w-5/12">
-                    <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
-                    </div>
-                    <div class="o-media__body mr-4">
-                    <div class="o-vertical-spacing">
-                        <h3 class="blog-post__headline">
-                        <span class="skeleton-box" style="width:55%;"></span>
-                        </h3>
-                        <p>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        <span class="skeleton-box" style="width:90%;"></span>
-                        <span class="skeleton-box" style="width:83%;"></span>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        </p>
-                        <div class="blog-post__meta">
-                        <span class="skeleton-box" style="width:70px;"></span>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
-                    <div class="o-media__figure md:w-5/12">
-                    <span class="skeleton-box md:rounded-[31px] rounded-lg overflow-hidden" style="width:100%;height:12rem;"></span>
-                    </div>
-                    <div class="o-media__body mr-4">
-                    <div class="o-vertical-spacing">
-                        <h3 class="blog-post__headline">
-                        <span class="skeleton-box" style="width:55%;"></span>
-                        </h3>
-                        <p>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        <span class="skeleton-box" style="width:90%;"></span>
-                        <span class="skeleton-box" style="width:83%;"></span>
-                        <span class="skeleton-box" style="width:80%;"></span>
-                        </p>
-                        <div class="blog-post__meta">
-                        <span class="skeleton-box" style="width:70px;"></span>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                </ul>
-            </main>
-        </template> -->
+                </div>
+                </div>
+            </li>
+            </ul>
+        </main>
 
         <div class="flex flex-col gap-6">
-            <NuxtLink :to="`weblog/${data.slug}`" v-if="posts.results" v-for="data in posts.results" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
+            <NuxtLink :to="`/weblog/${data.slug}`" v-if="posts.results" v-for="data in posts.results" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
                 <div class="relative md:w-5/12">
                     <img :src="`https://api.hypomelk.ir/${data.cover}`" class="w-full h-48 object-cover rounded-2xl md:rounded-[31px] overflow-hidden">
 
@@ -169,7 +167,7 @@
 </template>
 
 <script setup>
-const posts = ref("")
+// const posts = ref("")
 const route = useRoute()
 
 const seeMore = (nextPage) => {
@@ -205,10 +203,12 @@ const dateCalc = (prevDate) => {
     }
 }
 
-onMounted(async () => {
-    // alert("Mounted")
-    const response = await fetch(`https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
-    const data = await response.json()
-    posts.value = data
-});
+const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
+
+// onMounted(async () => {
+//     // alert("Mounted")
+//     const response = await fetch(`https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
+//     const data = await response.json()
+//     posts.value = data
+// });
 </script>

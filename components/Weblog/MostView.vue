@@ -2,71 +2,69 @@
     <div class="flex flex-col gap-7 md:p-8">
         <h4 class="mb-2 md:text-xl">جستجوهای اخیر</h4>
 
-        <!-- <template x-if="!dataRes">
-            <main class="mostSearch">
-                <ul class="o-vertical-spacing o-vertical-spacing--l">
-                    <li class="blog-post o-media">
-                        <div class="o-media__figure md:w-5/12">
-                        <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
+        <main v-if="!dataRes" class="mostSearch">
+            <ul class="o-vertical-spacing o-vertical-spacing--l">
+                <li class="blog-post o-media">
+                    <div class="o-media__figure md:w-5/12">
+                    <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
+                    </div>
+                    <div class="o-media__body mr-4">
+                    <div class="o-vertical-spacing">
+                        <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                        </h3>
+                        <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        </p>
+                        <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
                         </div>
-                        <div class="o-media__body mr-4">
-                        <div class="o-vertical-spacing">
-                            <h3 class="blog-post__headline">
-                            <span class="skeleton-box" style="width:55%;"></span>
-                            </h3>
-                            <p>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                            <span class="skeleton-box" style="width:90%;"></span>
-                            </p>
-                            <div class="blog-post__meta">
-                            <span class="skeleton-box" style="width:70px;"></span>
-                            </div>
+                    </div>
+                    </div>
+                </li>
+                <li class="blog-post o-media">
+                    <div class="o-media__figure md:w-5/12">
+                    <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
+                    </div>
+                    <div class="o-media__body mr-4">
+                    <div class="o-vertical-spacing">
+                        <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                        </h3>
+                        <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        </p>
+                        <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
                         </div>
+                    </div>
+                    </div>
+                </li>
+                <li class="blog-post o-media">
+                    <div class="o-media__figure md:w-5/12">
+                    <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
+                    </div>
+                    <div class="o-media__body mr-4">
+                    <div class="o-vertical-spacing">
+                        <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                        </h3>
+                        <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        </p>
+                        <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
                         </div>
-                    </li>
-                    <li class="blog-post o-media">
-                        <div class="o-media__figure md:w-5/12">
-                        <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
-                        </div>
-                        <div class="o-media__body mr-4">
-                        <div class="o-vertical-spacing">
-                            <h3 class="blog-post__headline">
-                            <span class="skeleton-box" style="width:55%;"></span>
-                            </h3>
-                            <p>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                            <span class="skeleton-box" style="width:90%;"></span>
-                            </p>
-                            <div class="blog-post__meta">
-                            <span class="skeleton-box" style="width:70px;"></span>
-                            </div>
-                        </div>
-                        </div>
-                    </li>
-                    <li class="blog-post o-media">
-                        <div class="o-media__figure md:w-5/12">
-                        <span class="skeleton-box rounded-lg overflow-hidden" style="width:100%;height:8rem;"></span>
-                        </div>
-                        <div class="o-media__body mr-4">
-                        <div class="o-vertical-spacing">
-                            <h3 class="blog-post__headline">
-                            <span class="skeleton-box" style="width:55%;"></span>
-                            </h3>
-                            <p>
-                            <span class="skeleton-box" style="width:80%;"></span>
-                            <span class="skeleton-box" style="width:90%;"></span>
-                            </p>
-                            <div class="blog-post__meta">
-                            <span class="skeleton-box" style="width:70px;"></span>
-                            </div>
-                        </div>
-                        </div>
-                    </li>
-                </ul>
-            </main>
-        </template> -->
+                    </div>
+                    </div>
+                </li>
+            </ul>
+        </main>
 
-        <NuxtLink :to="`weblog/${item.slug}`" v-for="item in dataRes" :key="item.id" style="background-color: var(--primaryColor-20);" class="flex gap-2 rounded-xl hover:shadow-lg md:rounded-[21px] overflow-hidden hover:-translate-y-4 transition-all duration-300">
+        <NuxtLink :to="`/weblog/${item.slug}`" v-for="item in dataRes" :key="item.id" style="background-color: var(--primaryColor-20);" class="flex gap-2 rounded-xl hover:shadow-lg md:rounded-[21px] overflow-hidden hover:-translate-y-4 transition-all duration-300">
             <div class="rounded-xl h-32 w-52 object-cover overflow-hidden md:rounded-[21px]">
                 <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir/${item.cover}`">
             </div>

@@ -222,20 +222,20 @@
                     <div class="flex flex-col gap-5 justify-center text-center items-center md:items-end w-32 lg:w-[9rem]">
                         <h3 style="color: var(--primaryColor)" class="font-extrabold lg:text-xl">دسته بندی</h3>
                         <ul class="flex flex-col text-center gap-3 md:text-right">
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?estate_type=V"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">ویلا</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?estate_type=A"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">آپارتمان</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?estate_type=G"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">باغ</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?estate_type=L"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">زمین</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?estate_type=B"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">مغازه و تجاری</li></a>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?estate_type=V"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">ویلا</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?estate_type=A"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">آپارتمان</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?estate_type=G"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">باغ</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?estate_type=L"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">زمین</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?estate_type=B"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">مغازه و تجاری</li></NuxtLink>
                         </ul>
                     </div>
     
                     <div class="flex flex-col gap-5 justify-center text-center items-center md:items-end w-32">
                         <h3 style="color: var(--primaryColor)" class="font-extrabold lg:text-xl">موقعیت</h3>
                         <ul class="flex flex-col text-center gap-3 md:text-right">
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?town=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">شهری</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?jungle=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">جنگلی</li></a>
-                            <a onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" href="propertyCode.html?beach=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">ساحلی</li></a>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?town=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">شهری</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?jungle=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">جنگلی</li></NuxtLink>
+                            <NuxtLink onmouseenter="this.style.color= 'var(--primaryColor)'" onmouseout="this.style.color = ''" to="propertyCode?beach=true"><li class="cursor-pointer relative text-[13px] hover:opacity-80 hover:pr-4  hover:after:content-['<'] whitespace-nowrap transition-all duration-300 after:absolute after:right-0 lg:text-base">ساحلی</li></NuxtLink>
                         </ul>
                     </div>
     
@@ -264,46 +264,50 @@
     </footer>
 
     <div id="modal" class="opacity-0 transition-all duration-300">
-        <div v-show="isOpenModalSearch" class="fixed flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
-            <div v-click-outside="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-whiteSecondary rounded-[46px] p-8 pt-5">
-                <div class="flex justify-between items-start">
-                    <span class="w-[65px]"></span>
+        <Transition>
+            <div v-show="isOpenModalSearch" class="fixed flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
+                <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-whiteSecondary rounded-[46px] p-8 pt-5">
+                    <div class="flex justify-between items-start">
+                        <span class="w-[65px]"></span>
+                        
+                        <NuxtLink to="/">
+                            <img class="inline-block dark:hidden h-[65px] object-cover" :src="logo_dark">
+                            <!-- <img class="dark:inline-block hidden h-[65px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                        </NuxtLink>
+                        
+                        <span id="exitModalBtn" @click ="isOpenModalSearch = false">
+                            <svg class="dark:inline-block hidden cursor-pointer transition-all duration-300 hover:bg-whiteSecSection rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="black"/>
+                                <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="black"/>
+                            </svg>
+                            <svg class="dark:hidden cursor-pointer transition-all duration-300 hover:bg-graytext/[.2] rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="#EBEBEB"/>
+                                <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="#EBEBEB"/>
+                            </svg>
+                        </span>
+                    </div>
+    
+                    <div class="flex flex-col">
+                        <p class="text-sm md:text-2xl md:font-semibold py-7">جستجوی کد ملکی</p>
+                        <input type="text" v-model="estateType" class="bg-primary dark:bg-whiteSecondary p-4 md:p-6 outline-none border-graytext border rounded-[21px] inputNumber" placeholder="کد ملکی رو جستجو کنید...">
+                        <p v-if="estateType && estateType.length >= 1 && isNaN(Number(estateType))" class="p-3 text-red-500 transition-all duration-300">لطفا مقدار صحیح وارد کنید :)</p>
+                    </div>
                     
-                    <NuxtLink to="/">
-                        <img class="inline-block dark:hidden h-[65px] object-cover" :src="logo_dark">
-                        <!-- <img class="dark:inline-block hidden h-[65px] object-cover" :src="$store.darkMode.lightLogo"> -->
-                    </NuxtLink>
-                    
-                    <span id="exitModalBtn" @click ="isOpenModalSearch = false">
-                        <svg class="dark:inline-block hidden cursor-pointer transition-all duration-300 hover:bg-whiteSecSection rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="black"/>
-                            <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="black"/>
-                        </svg>
-                        <svg class="dark:hidden cursor-pointer transition-all duration-300 hover:bg-graytext/[.2] rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="#EBEBEB"/>
-                            <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="#EBEBEB"/>
-                        </svg>
-                    </span>
+                    <div class="flex">
+                        <p class="text-xs md:text-lg pb-8">کد ملکی موردنظر خود را برای جستجوی سریع تر وارد کنید .</p>
+                    </div>
+    
+                    <NuxtLink v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
+                    <p v-if="isNaN(Number(estateType)) || estateType.length == 0" style="background-color: var(--primaryColor)" class="opacity-70 btn dark:bg-bluePrimary/80 bg-primaryOrange/80 md:text-2xl !cursor-not-allowed md:p-5">جستجو</p>
                 </div>
-
-                <div class="flex flex-col">
-                    <p class="text-sm md:text-2xl md:font-semibold py-7">جستجوی کد ملکی</p>
-                    <input type="text" v-model="estateType" class="bg-primary dark:bg-whiteSecondary p-4 md:p-6 outline-none border-graytext border rounded-[21px] inputNumber" placeholder="کد ملکی رو جستجو کنید...">
-                    <p v-if="estateType && estateType.length >= 1 && isNaN(Number(estateType))" class="p-3 text-red-500 transition-all duration-300">لطفا مقدار صحیح وارد کنید :)</p>
-                </div>
-                
-                <div class="flex">
-                    <p class="text-xs md:text-lg pb-8">کد ملکی موردنظر خود را برای جستجوی سریع تر وارد کنید .</p>
-                </div>
-
-                <a v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :href="`propertyCode.html?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</a>
-                <p v-if="isNaN(Number(estateType)) || estateType.length == 0" style="background-color: var(--primaryColor)" class="opacity-70 btn dark:bg-bluePrimary/80 bg-primaryOrange/80 md:text-2xl cursor-not-allowed md:p-5">جستجو</p>
             </div>
-        </div>
+        </Transition>
     </div>
 </template>
 
 <script setup>
+import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
+
 const route = useRoute()
 
 const estateType = ref()
