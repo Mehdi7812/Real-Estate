@@ -185,13 +185,13 @@
         <HomePersons />
     </main>
 
+    <Footer />
 </template>
+
 <script setup>
-
 definePageMeta({
-  layout: "customHome",
-});
-
+    layout: false
+})
 const logo_dark = ref("");
 const homePage_headline = ref("");
 const homePage_headText = ref("");

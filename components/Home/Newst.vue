@@ -10,7 +10,7 @@
                 <!-- Arrow Navigation -->
                 <div class="flex gap-2">
                     <div>
-                        <a to="propertyCode.html" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg transition-all duration-300">
+                        <NuxtLink to="propertyCode" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg transition-all duration-300">
                             <span class="w-0 max-h-5 dark:text-white lg:group-hover:w-[90px] whitespace-nowrap overflow-hidden transition-all duration-300">مشاهده همه</span>
                             <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.84317 2.16666H5.78484C3.41234 2.16666 2.1665 3.41249 2.1665 5.77416V7.83249C2.1665 10.1942 3.41234 11.44 5.774 11.44H7.83234C10.194 11.44 11.4398 10.1942 11.4398 7.83249V5.77416C11.4507 3.41249 10.2048 2.16666 7.84317 2.16666Z" fill="white"/>
@@ -18,7 +18,7 @@
                                 <path d="M20.2259 14.5492H18.1676C15.8059 14.5492 14.5601 15.795 14.5601 18.1567V20.215C14.5601 22.5767 15.8059 23.8225 18.1676 23.8225H20.2259C22.5876 23.8225 23.8334 22.5767 23.8334 20.215V18.1567C23.8334 15.795 22.5876 14.5492 20.2259 14.5492Z" fill="white"/>
                                 <path d="M7.84317 14.5492H5.78484C3.41234 14.5492 2.1665 15.795 2.1665 18.1567V20.215C2.1665 22.5875 3.41234 23.8333 5.774 23.8333H7.83234C10.194 23.8333 11.4398 22.5875 11.4398 20.2258V18.1675C11.4507 15.795 10.2048 14.5492 7.84317 14.5492Z" fill="white"/>
                             </svg>                                
-                        </a>
+                        </NuxtLink>
                     </div>
 
                     <div class="hidden lg:block">
@@ -41,57 +41,49 @@
                 </div>
             </div>
 
-            <div x-data="newst" class="swiper swiperNewst"> 
+            <div class="swiper swiperNewst"> 
                 <div class="swiper-wrapper">
-                    <!-- <template x-if="!dataRes">
-                        <template x-for="_ in Array.from({ length: 4 })">
-                            <div class="swiper-slide">
-                                    <div class="loadingCard">
-                                    <a class="card w-full" id="card-link" target="_blank">
-                                        <div class="card__body h-64">
-                                            <div class="card__body body__img h-full">
-                                                <img class="skeleton" alt="" id="cover-img" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="card__header">
-                                            <h3 class="card__header header__title" id="card-title">
-                                                <div class="skeleton skeleton-text"></div>
-                                                <div class="skeleton skeleton-text"></div>
-                                            </h3>
-                                            <div class="card__footer" id="card-footer">
-                                                <div class="skeleton skeleton-text skeleton-footer"></div>
-                                            </div>
-                                            <h3 class="card__header header__title" id="card-title">
-                                                <div class="skeleton skeleton-text"></div>
-                                            </h3>
-                                            <div>
-                                                <img class="header__img skeleton m-auto" id="logo-img" alt="" />
-                                            </div>
-                                        </div>
-                                    </a>
+                    <div v-if="!dataRes" v-for="_ in Array.from({ length: 4 })" class="swiper-slide">
+                            <div class="loadingCard">
+                            <a class="card w-full" id="card-link" target="_blank">
+                                <div class="card__body h-64">
+                                    <div class="card__body body__img h-full">
+                                        <img class="skeleton" alt="" id="cover-img" />
+                                    </div>
                                 </div>
-                            </div>
-                        </template>
-                    </template> -->
+                                
+                                <div class="card__header">
+                                    <h3 class="card__header header__title" id="card-title">
+                                        <div class="skeleton skeleton-text"></div>
+                                        <div class="skeleton skeleton-text"></div>
+                                    </h3>
+                                    <div class="card__footer" id="card-footer">
+                                        <div class="skeleton skeleton-text skeleton-footer"></div>
+                                    </div>
+                                    <h3 class="card__header header__title" id="card-title">
+                                        <div class="skeleton skeleton-text"></div>
+                                    </h3>
+                                    <div>
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-                    <div x-data="calcNumAndDate" v-for="data in dataRes" :key="data.id" class="swiper-slide">
-                        <div style="background-color: var(--primaryColor-20)" class="postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
+                    <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
+                        <NuxtLink :to="`estateDetail/${data.id}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
                             <div class="swiper h-64 swiperNewsImg1 rounded-2xl overflow-hidden">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <a :href="`propertyDetails.html?id=${data.id}`">
-                                                <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
-                                            </a>
+                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
                                         </div>
                                     </div>
 
                                     <div v-if="data.media.length" v-for="media in data.media" class="swiper-slide h-64">
                                         <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <a :href="`propertyDetails.html?id=${data.id}`">
-                                                <img :src="`https://api.hypomelk.ir/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
-                                            </a>
+                                            <img :src="`https://api.hypomelk.ir/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
                                         </div>
                                     </div>
                                 </div>
@@ -166,12 +158,12 @@
         
                                 <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
                                     <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 md:h-7 relative group-hover:h-11 overflow-hidden transition-all duration-300">
-                                        <span class="absolute bottom-6">{{ Number(data.media.length).toLocaleString('fa-ir') }}</span>
+                                        <span class="absolute bottom-5">{{ Number(data.media.length).toLocaleString('fa-ir') }}</span>
                                         <span>
                                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M4.82349 17.4167H14.1762C16.6393 17.4167 17.621 16.0788 17.737 14.4479L18.201 7.90875C18.326 6.19875 16.791 4.75 14.8544 4.75C14.31 4.75 13.8103 4.47292 13.5604 4.04542L12.9179 2.8975C12.5073 2.17708 11.4364 1.58333 10.5261 1.58333H8.48246C7.56326 1.58333 6.49234 2.17708 6.08182 2.8975L5.43927 4.04542C5.18939 4.47292 4.68963 4.75 4.14525 4.75C2.20867 4.75 0.673685 6.19875 0.798626 7.90875L1.26269 14.4479C1.36978 16.0788 2.36038 17.4167 4.82349 17.4167Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                 <path d="M9.50016 14.25C11.2443 14.25 12.6668 12.8274 12.6668 11.0833C12.6668 9.33923 11.2443 7.91667 9.50016 7.91667C7.75606 7.91667 6.3335 9.33923 6.3335 11.0833C6.3335 12.8274 7.75606 14.25 9.50016 14.25Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>                                        
+                                            </svg>                                        
                                         </span>
                                     </div>
         
@@ -219,7 +211,7 @@
                                 </div>
                             </div>
         
-                            <a :href="`propertyDetails.html?id=${data.id}`" class="py-3 flex gap-4 flex-col overflow-hidden">
+                            <div class="py-3 flex gap-4 flex-col overflow-hidden">
                                 <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
         
                                 <!-- types -->
@@ -246,18 +238,18 @@
                                     <!-- پیش پرداخت -->
                                     <p v-if="data.pre_payment_status" class="flex items-center justify-center flex-wrap gap-1 text-xs lg:text-base text-graytext">پیش پرداخت : <span><span v-html="getNumber(data.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"> </span> تومان</span></p>
                                 </div>
-                            </a>
+                            </div>
 
                             <!-- Person info -->
                             <div class="text-right -mb-[38px]">
-                                <RouterLink :to="`propertyUser.html?user=${data.user_id}`">
+                                <NuxtLink :to="`propertyCode?user=${data.user_id}`">
                                     <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`https://api.hypomelk.ir/${data.userPicture}`">
-                                </RouterLink>
+                                </NuxtLink>
                                 <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
-                                    <RouterLink :to="`propertyUser.html?user=${data.user_id}`" class="flex px-7 flex-col">
+                                    <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">
                                         <span class="text-[15px] font-bold whitespace-nowrap">{{ data.username }}</span> 
                                         <span class="text-xs whitespace-nowrap">{{ data.user_activity }}</span>
-                                    </RouterLink>
+                                    </NuxtLink>
     
                                     <div class="flex px-7 gap-5">
                                         <a @click.prevent="isOpenModalMessage = true">
@@ -277,7 +269,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </NuxtLink>
                     </div>
                 </div>
             </div>
@@ -484,6 +476,22 @@ const dateCalc = (prevDate) => {
 }
 
 onMounted(async () => {
+    const swiperNewst1 = new Swiper(".swiperNewst", {
+        direction: "horizontal",
+        // loop: true,
+        spaceBetween: 10,
+
+        breakpoints: {
+            768: {slidesPerView: 2},
+            1024: {slidesPerView: 3}
+        },
+
+        navigation: {
+            nextEl: ".swiperNewst-next",
+            prevEl: ".swiperNewst-prev",
+        },
+    });
+
     const navMenu = document.getElementById('navMenu')
 
     document.addEventListener('scroll', function () {

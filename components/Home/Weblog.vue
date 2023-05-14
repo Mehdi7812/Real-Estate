@@ -42,40 +42,36 @@
 
             <div class="swiper swiperWeblog"> 
                 <div class="swiper-wrapper">
-                    <!-- <template x-if="dataRes == null">
-                        <template x-for="_ in Array.from({ length: 4 })">
-                            <div class="swiper-slide">
-                                    <div class="loadingCard">
-                                    <a class="card w-full" id="card-link" target="_blank">
-                                        <div class="card__body h-64">
-                                            <div class="card__body body__img h-full">
-                                                <img class="skeleton" alt="" id="cover-img" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="card__header">
-                                            <h3 class="card__header header__title" id="card-title">
-                                                <div class="skeleton skeleton-text"></div>
-                                                <div class="skeleton skeleton-text"></div>
-                                            </h3>
-                                            <div class="card__footer" id="card-footer">
-                                                <div class="skeleton skeleton-text skeleton-footer"></div>
-                                            </div>
-                                            <h3 class="card__header header__title" id="card-title">
-                                                <div class="skeleton skeleton-text"></div>
-                                            </h3>
-                                            <div>
-                                                <img class="header__img skeleton m-auto" id="logo-img" alt="" />
-                                            </div>
-                                        </div>
-                                    </a>
+                    <div v-if="!dataRes" v-for="_ in Array.from({ length: 4 })" class="swiper-slide">
+                        <div class="loadingCard">
+                            <a class="card w-full" id="card-link" target="_blank">
+                                <div class="card__body h-64">
+                                    <div class="card__body body__img h-full">
+                                        <img class="skeleton" alt="" id="cover-img" />
+                                    </div>
                                 </div>
-                            </div>
-                        </template>
-                    </template> -->
+                                
+                                <div class="card__header">
+                                    <h3 class="card__header header__title" id="card-title">
+                                        <div class="skeleton skeleton-text"></div>
+                                        <div class="skeleton skeleton-text"></div>
+                                    </h3>
+                                    <div class="card__footer" id="card-footer">
+                                        <div class="skeleton skeleton-text skeleton-footer"></div>
+                                    </div>
+                                    <h3 class="card__header header__title" id="card-title">
+                                        <div class="skeleton skeleton-text"></div>
+                                    </h3>
+                                    <div>
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
                     <div v-for="data in dataRes" class="swiper-slide">
-                        <NuxtLink :to="`weblog/${data.slug}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer">
+                        <NuxtLink :to="`/weblog/${data.slug}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer">
                             <div class="swiper swiperWeblogImg1">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
@@ -136,13 +132,13 @@
                                 <p class="text-right h-12 overflow-hidden text-[#F6E9E9] dark:text-graytext">{{ data.introduction }}</p>
                                 
                                 <div class="flex-row-reverse justify-between">
-                                    <a :href="`propertyUser.html?user=${data.user_id}`" class="flex gap-3">
+                                    <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
                                         <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${data.user_picture}`">
                                         <div class="flex flex-col justify-around">
                                             <span class="text-[10px] md:text-base">{{ data.username }}</span>
                                             <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
                                         </div>
-                                    </a>
+                                    </NuxtLink>
                                 </div>
                             </div>
                         </NuxtLink>
@@ -174,8 +170,6 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-
 const dataRes = ref()
 
 const dateCalc = (prevDate) => {
@@ -193,11 +187,28 @@ const dateCalc = (prevDate) => {
 }
 
 onMounted(async () => {
+    const swiperWeblog1 = new Swiper(".swiperWeblog", {
+        direction: "horizontal",
+        // loop: true,
+        slidesPerView: 1,
+        spaceBetween: 10,
+
+        breakpoints: {
+            768: {slidesPerView: 2, spaceBetween: 10},
+            1024: {slidesPerView: 3, spaceBetween: 10}
+        },
+        
+        navigation: {
+            nextEl: ".swiperWeblog-next",
+            prevEl: ".swiperWeblog-prev",
+        },
+    });
+
     const response = await fetch(`https://api.hypomelk.ir/real/weblog/`)
     const data = await response.json()
     dataRes.value = data.results
 
-    const swiperWeblog = new Swiper(".swiperWeblog", {
+    const swiperWeblog = await new Swiper(".swiperWeblog", {
         direction: "horizontal",
         // loop: true,
         slidesPerView: 1,

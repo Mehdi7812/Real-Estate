@@ -1,115 +1,72 @@
 <template>
     <section class="container -mt-[90px] lg:mt-0 m-auto p-5 mb-15 md:py-10 lg:px-12 lg:relative">
-            <div x-data="searchMelk" class="py-10 flex flex-col gap-5 lg:flex-row lg:bg-primary lg:dark:bg-[#E6E6E6] lg:-top-[120px] lg:p-1 lg:rounded-2xl lg:justify-between lg:absolute lg:left-0 lg:right-0 lg:w-11/12 lg:m-auto">
+            <div class="py-10 flex flex-col gap-5 lg:flex-row lg:bg-primary lg:dark:bg-[#E6E6E6] lg:-top-[120px] lg:p-1 lg:rounded-2xl lg:justify-between lg:absolute lg:left-0 lg:right-0 lg:w-11/12 lg:m-auto">
                 <div class="relative w-full flex flex-col gap-5 lg:flex-row lg:gap-0 lg:w-4/6 before:-rotate-[35deg] after:rotate-[35deg]">
-                    <div @click="openRegionList = !openRegionList"
-                        x-data="{
-                            selectRegion (e) {
-                                region = e.target.getAttribute('value')
-                                url = `propertyCode.html?region=${region == 'انتخاب کنید' ? '' : region}&estate_type=${estate_type == 'انتخاب کنید' ? '' : estate_type}&unit_price__lte=${price_lte == 'انتخاب کنید' ? '' : price_lte}&unit_price__gte=${price_gte == 'انتخاب کنید' ? '' : price_gte}`
-                            }
-                        }" 
-                        id="mantaghe" class="bg-primary dark:bg-[#E6E6E6] w-full group cursor-pointer rounded-xl relative h-16 flex justify-between items-center px-5 lg:justify-around lg:p-0 lg:relative lg:after:absolute lg:after:left-0  lg:after:w-[1px] lg:after:h-7 lg:after:bg-graytext lg:dark:after:bg-[#cbcbcb]">
+                    <!-- Region -->
+                    <div @click="openListRegion" v-click-out-side="closeListRegion" class="bg-primary dark:bg-[#E6E6E6] w-full group cursor-pointer rounded-xl relative h-16 flex justify-between items-center px-5 lg:justify-around lg:p-0 lg:relative lg:after:absolute lg:after:left-0  lg:after:w-[1px] lg:after:h-7 lg:after:bg-graytext lg:dark:after:bg-[#cbcbcb]">
                         <span id="selectName">منطقه شما:</span>
                         
                         <div class="flex items-center gap-2">
-                            <span dir="ltr" class="w-5 whitespace-nowrap" x-text="region">انتخاب کنید</span>
+                            <span dir="ltr" class="w-5 whitespace-nowrap">{{ region ? region : 'انتخاب کنید' }}</span>
                             
                             <span class="searchListSvg w-6 relative after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                         </div>
 
                         <div v-show="openRegionList" class="searchLists absolute z-10 top-[69px] left-0 right-0 shadow-lg bg-[#525050] dark:bg-[#dfdfdf] rounded-md h-[220px] overflow-y-scroll overflow-x-hidden transition-all duration-300">
-                            <ul @click.outside="openRegionList = false" class="flex flex-col gap-2 p-5 py-2">
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="انتخاب کنید" class="hover:opacity-80 transition-all duration-300 py-2">مهم نیست</li>
+                            <ul class="flex flex-col gap-2 p-5 py-2">
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="" class="hover:opacity-80 transition-all duration-300 py-2">مهم نیست</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="آمل" class="hover:opacity-80 transition-all duration-300 py-2">آمل</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="آمل" class="hover:opacity-80 transition-all duration-300 py-2">آمل</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="واز" class="hover:opacity-80 transition-all duration-300 py-2">واز</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="واز" class="hover:opacity-80 transition-all duration-300 py-2">واز</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="جاده نور" class="hover:opacity-80 transition-all duration-300 py-2">جاده نور</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="جاده نور" class="hover:opacity-80 transition-all duration-300 py-2">جاده نور</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="امام رضا" class="hover:opacity-80 transition-all duration-300 py-2">امام رضا</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="امام رضا" class="hover:opacity-80 transition-all duration-300 py-2">امام رضا</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="هراز" class="hover:opacity-80 transition-all duration-300 py-2">هراز</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="هراز" class="hover:opacity-80 transition-all duration-300 py-2">هراز</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" value="گزناسرا" class="hover:opacity-80 transition-all duration-300 py-2 pb-0">گزناسرا</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectRegion" valueItem="گزناسرا" class="hover:opacity-80 transition-all duration-300 py-2 pb-0">گزناسرا</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div @click="openEstateTypeList = !openEstateTypeList" 
-                        x-data="{
-                            selectEstate_type (e) {
-                                estate_type = e.target.getAttribute('value')
-                                url = `propertyCode.html?region=${region == 'انتخاب کنید' ? '' : region}&estate_type=${estate_type == 'انتخاب کنید' ? '' : estate_type}&unit_price__lte=${price_lte == 'انتخاب کنید' ? '' : price_lte}&unit_price__gte=${price_gte == 'انتخاب کنید' ? '' : price_gte}`
-                            }
-                        }"
-                        id="melk" class="bg-primary dark:bg-[#E6E6E6] w-full group cursor-pointer rounded-xl relative h-16 flex justify-between items-center px-5 lg:justify-around lg:p-0 lg:relative lg:after:absolute lg:after:left-0  lg:after:w-[1px] lg:after:h-7 lg:after:bg-graytext lg:dark:after:bg-[#cbcbcb]">
+                    <!-- Estate_type -->
+                    <div @click="openListEstateType" v-click-out-side="closeListEstate" class="bg-primary dark:bg-[#E6E6E6] w-full group cursor-pointer rounded-xl relative h-16 flex justify-between items-center px-5 lg:justify-around lg:p-0 lg:relative lg:after:absolute lg:after:left-0  lg:after:w-[1px] lg:after:h-7 lg:after:bg-graytext lg:dark:after:bg-[#cbcbcb]">
                         <span id="selectName">نوع ملک</span>
 
                         <div class="flex gap-2 items-center">
-                            <span dir="ltr" class="whitespace-nowrap w-5" x-text="estateChange(estate_type)"></span>
+                            <span dir="ltr" class="whitespace-nowrap w-5">{{ estateChange(estate_type) }}</span>
 
                             <span class="searchListSvg w-6 relative after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                         </div>
 
                         <div v-show="openEstateTypeList" class="searchLists absolute z-10 top-[69px] left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] rounded-lg h-[220px]  overflow-y-scroll overflow-x-hidden transition-all duration-300">
-                            <ul @click.outside="openEstateTypeList = false" class="flex flex-col gap-2 p-5 py-2">
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="" class="hover:opacity-80 transition-all duration-300 py-2">مهم نیست</li>
+                            <ul class="flex flex-col gap-2 p-5 py-2">
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="" class="hover:opacity-80 transition-all duration-300 py-2">مهم نیست</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="V" class="hover:opacity-80 transition-all duration-300 py-2">خانه ویلایی</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="V" class="hover:opacity-80 transition-all duration-300 py-2">خانه ویلایی</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="B" class="hover:opacity-80 transition-all duration-300 py-2">مغازه و واحد تجاری</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="B" class="hover:opacity-80 transition-all duration-300 py-2">مغازه و واحد تجاری</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="L" class="hover:opacity-80 transition-all duration-300 py-2">زمین</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="L" class="hover:opacity-80 transition-all duration-300 py-2">زمین</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="A" class="hover:opacity-80 transition-all duration-300 py-2">آپارتمان</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="A" class="hover:opacity-80 transition-all duration-300 py-2">آپارتمان</li>
                                 <hr class="border-[#c5c5c5]" />
-                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" value="H" class="hover:opacity-80 transition-all duration-300 py-2 pb-0">ویلا باغ</li>
+                                <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectEstate_type" valueItem="H" class="hover:opacity-80 transition-all duration-300 py-2 pb-0">ویلا باغ</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div 
-                        x-data="{
-                            selectPriceGte (e) {
-                                price_gte = e.target.getAttribute('value');
-
-                                if(price_gte != 'انتخاب کنید') {
-                                    $refs.unitGte.classList.add('opacity-100')
-                                    $refs.unitGte.classList.add('z-0')
-                                    $refs.unitLte.classList.add('opacity-0')
-                                    $refs.unitLte.classList.add('-z-10')
-                                    $refs.unitGte.classList.remove('opacity-0')
-                                    $refs.unitGte.classList.remove('-z-10')
-                                } else {
-                                    price_lte = 'انتخاب کنید'
-                                    $refs.unitGte.classList.add('opacity-0')
-                                    $refs.unitGte.classList.add('-z-10')
-                                    $refs.unitLte.classList.remove('opacity-0')
-                                    $refs.unitLte.classList.remove('-z-10')
-                                    $refs.unitGte.classList.remove('opacity-100')
-                                    $refs.unitGte.classList.remove('z-0')
-                                }
-                                url = `propertyCode.html?region=${region == 'انتخاب کنید' ? '' : region}&estate_type=${estate_type == 'انتخاب کنید' ? '' : estate_type}&unit_price__lte=${price_lte == 'انتخاب کنید' ? '' : price_lte}&unit_price__gte=${price_gte == 'انتخاب کنید' ? '' : price_gte}`
-                            },
-                            selectPriceLte (e) {
-                                isOpenList = false;
-                                price_lte = e.target.getAttribute('value')
-                                url = `propertyCode.html?region=${region == 'انتخاب کنید' ? '' : region}&estate_type=${estate_type == 'انتخاب کنید' ? '' : estate_type}&unit_price__lte=${price_lte == 'انتخاب کنید' ? '' : price_lte}&unit_price__gte=${price_gte == 'انتخاب کنید' ? '' : price_gte}`
-                            }
-                        }" id="price" class="bg-primary dark:bg-[#E6E6E6] group w-full cursor-pointer rounded-xl relative h-16">
+                    <!-- Price__Lte&gte -->
+                    <div class="bg-primary dark:bg-[#E6E6E6] group w-full cursor-pointer rounded-xl relative h-16">
                         
-                        <div class="w-full h-full flex justify-between items-center px-5 lg:justify-around lg:p-0" @click="openListPrice($refs.unitLte)">
+                        <div @click="openListPrice($refs.unitLte)" v-click-out-side="closeListPrice" class="w-full h-full flex justify-between items-center px-5 lg:justify-around lg:p-0">
                             <span id="selectName">بازه قیمتی</span>
 
                             <div class="flex gap-2 items-center">
-                                <template x-if="price_gte == 'انتخاب کنید' && price_lte == 'انتخاب کنید'">
-                                    <span class="whitespace-nowrap">انتخاب کنید</span>
-                                </template>
-                                <template x-if="price_gte !== 'انتخاب کنید' || price_lte !== 'انتخاب کنید'">
-                                    <p class="whitespace-nowrap"><span x-text="price_lte == 'انتخاب کنید' ? '' : convertToPersianNumber(getNumber(price_lte))">lte</span> ~ <span x-text="price_gte == 'انتخاب کنید' ? '' : convertToPersianNumber(getNumber(price_gte))">gte</span></p>
-                                </template>
+                                <span v-if="unit_price__gte == '' && unit_price__lte == ''" class="whitespace-nowrap">انتخاب کنید</span>
+                                <p v-if="unit_price__gte !== '' || unit_price__lte !== ''" class="whitespace-nowrap"><span>{{ unit_price__lte == '' ? 'انتخاب کنید' : unit_price__lte }}</span> ~ <span>{{ unit_price__gte == '' ? 'انتخاب کنید' : unit_price__gte }}</span></p>
     
                                 <span class="relative w-6 after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                             </div>
@@ -118,86 +75,86 @@
 
                         <div v-show="isOpenList" :style="isOpenList ? 'height: 220px' : ''" class="searchLists absolute flex flex-col z-10 top-[69px] left-0 lg:left-auto right-0 bg-[#525050] dark:bg-[#dfdfdf] rounded-lg h-0 overflow-y-scroll overflow-x-hidden transition-all duration-300">
                             <div class="flex p-5 pb-0">
-                                <p class="flex justify-between items-center w-full"><span class="w-1/2 bg-primary py-2 px-[25px] rounded-[6px] whitespace-nowrap dark:text-white" x-text="convertToPersianNumber(price_gte)"></span><span class="px-3"> تا </span><span class="w-1/2 bg-primary py-2 px-[25px] rounded-[6px] whitespace-nowrap dark:text-white" x-text="convertToPersianNumber(price_lte)"></span></p>
+                                <p class="flex justify-between items-center w-full"><span class="w-1/2 bg-primary py-2 px-[25px] rounded-[6px] whitespace-nowrap dark:text-white">{{ unit_price__gte ? PN.convertEnToPe(unit_price__gte) : 'انتخاب کنید' }}</span><span class="px-3"> تا </span><span class="w-1/2 bg-primary py-2 px-[25px] rounded-[6px] whitespace-nowrap dark:text-white">{{ unit_price__lte ? PN.convertEnToPe(unit_price__lte) : 'انتخاب کنید' }}</span></p>
                             </div>
                             <div class="flex justify-between w-full">
-                                <ul x-ref="unitLte" class="flex p-5 flex-col gap-2 py-2 w-1/2">
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="انتخاب کنید" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">مهم نیست</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="50000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">50 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="100000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">100 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="150000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">150 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="200000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">200 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">250 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="300000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">300 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="350000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">350 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="400000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">400 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="450000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">450 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">500 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="600000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">600 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="700000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">700 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="800000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">800 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="900000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">900 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="1000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="1250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫250 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="1500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="1750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫750 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="2000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="2250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫250 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="2500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="2750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫750 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="3000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="3500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="4000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="4500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="5000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">5 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="6000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">6 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="7000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">7 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="8000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">8 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="9000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">9 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" value="10000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">10 میلیارد</li>
+                                <ul ref="unitLte" id="unitLte" class="flex p-5 flex-col gap-2 py-2 w-1/2">
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">مهم نیست</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="50000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">50 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="100000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">100 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="150000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">150 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="200000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">200 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">250 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="300000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">300 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="350000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">350 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="400000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">400 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="450000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">450 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">500 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="600000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">600 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="700000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">700 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="800000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">800 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="900000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">900 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="1000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="1250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫250 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="1500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="1750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫750 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="2000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="2250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫250 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="2500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="2750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫750 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="3000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="3500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="4000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="4500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="5000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">5 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="6000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">6 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="7000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">7 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="8000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">8 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="9000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">9 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceGte" valueItem="10000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">10 میلیارد</li>
                                 </ul>
                                 
-                                <ul x-ref="unitGte" class="unitGte flex p-5 flex-col gap-2 py-2 transition-all duration-300 opacity-0 -z-10 w-1/2">
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="انتخاب کنید" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">مهم نیست</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="50000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">50 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="100000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">100 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="150000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">150 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="200000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">200 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">250 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="300000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">300 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="350000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">350 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="400000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">400 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="450000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">450 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">500 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="600000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">600 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="700000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">700 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="800000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">800 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="900000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">900 میلیون</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="1000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="1250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫250 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="1500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="1750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫750 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="2000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="2250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫250 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="2500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="2750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫750 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="3000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="3500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="4000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="4500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4٫500 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="5000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">5 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="6000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">6 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="7000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">7 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="8000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">8 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="9000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">9 میلیارد</li>
-                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" value="10000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">10 میلیارد</li>
+                                <ul ref="unitGte" id="unitGte" class="unitGte flex p-5 flex-col gap-2 py-2 transition-all duration-300 opacity-0 -z-10 w-1/2">
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">مهم نیست</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="50000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">50 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="100000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">100 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="150000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">150 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="200000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">200 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">250 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="300000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">300 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="350000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">350 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="400000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">400 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="450000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">450 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">500 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="600000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">600 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="700000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">700 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="800000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">800 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="900000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">900 میلیون</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="1000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="1250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫250 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="1500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="1750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">1٫750 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="2000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="2250000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫250 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="2500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="2750000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">2٫750 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="3000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="3500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">3٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="4000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="4500000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">4٫500 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="5000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">5 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="6000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">6 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="7000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">7 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="8000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">8 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="9000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">9 میلیارد</li>
+                                    <li onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" @click="selectPriceLte" valueItem="10000000000" class="hover:bg-[#474747] hover:rounded-[6px] pr-2 transition-all duration-300 py-2">10 میلیارد</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a style="background-color: var(--primaryColor)" :href="url" class="btn hover:opacity-80 w-full text-[17px] lg:w-1/6 py-8">جستجوی ملک</a>
+                <NuxtLink :to="`propertyCode?region=${region}&estate_type=${estate_type}&unit_price__lte=${unit_price__lte}&unit_price__gte=${unit_price__gte}`" style="background-color: var(--primaryColor)" class="btn hover:opacity-80 w-full text-[17px] lg:w-1/6 py-8">جستجوی ملک</NuxtLink>
             </div>
 
             <div class="py-4">
@@ -367,9 +324,245 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import PN from "persian-number";
+import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 
 const openRegionList = ref(false);
 const openEstateTypeList = ref(false);
 const isOpenList = ref(false);
+
+const region = ref("")
+const estate_type = ref("")
+const unit_price__gte = ref("")
+const unit_price__lte = ref("")
+
+const getNumber = (n) => {
+        var string = n.toString(), units, tens, scales, start, end, chunks, chunksLen, chunk, ints, i, word, words, and = ' ';
+
+        /* Remove spaces and commas */
+        string = string.replace(/[, ]/g,"");
+
+        /* Is number zero? */
+        if( parseInt( string ) === 0 ) {
+            return 'صفر';
+        }
+        
+        /* Array of units as words */
+        units = [ '', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۱۰', '۱۱', '۱۲', '۱۳', '۱۴', '۱۵', '۱۶', '۱۷', '۱۸', '۱۹' ];
+        
+        /* Array of tens as words */
+        tens = [ '', '', '۲۰', '۳۰', '۴۰', '۵۰', '۶۰', '۷۰', '۸۰', '۹۰' ];
+        
+        /* Array of scales as words */
+        scales = [ '', 'هزار', 'میلیون', 'میلیارد', 'تریلیارد', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion', 'decillion', 'undecillion', 'duodecillion', 'tredecillion', 'quatttuor-decillion', 'quindecillion', 'sexdecillion', 'septen-decillion', 'octodecillion', 'novemdecillion', 'vigintillion', 'centillion' ];
+        
+        /* Split user argument into 3 digit chunks from right to left */
+        start = string.length;
+        chunks = [];
+        while( start > 0 ) {
+            end = start;
+            chunks.push( string.slice( ( start = Math.max( 0, start - 3 ) ), end ) );
+        }
+        
+        /* Check if function has enough scale words to be able to stringify the user argument */
+        chunksLen = chunks.length;
+        if( chunksLen > scales.length ) {
+            return '';
+        }
+        
+        /* Stringify each integer in each chunk */
+        words = [];
+        for( i = 0; i < chunksLen; i++ ) {
+            
+            chunk = parseInt( chunks[i] );
+            
+            if( chunk ) {
+                /* Split chunk into array of individual integers */
+                ints = chunks[i].split( '' ).reverse().map( parseFloat );
+            
+                /* If tens integer is 1, i.e. 10, then add 10 to units integer */
+                if( ints[1] === 1 ) {
+                    ints[0] += 10;
+                }
+                
+                /* Add scale word if chunk is not zero and array item exists */
+                if( ( word = scales[i] ) ) {
+                    words.push( word );
+                }
+                
+                /* Add unit word if array item exists */
+                if( ( word = units[ ints[0] ] ) ) {
+                    words.push( word );
+                }
+                
+                /* Add tens word if array item exists */
+                if( ( word = tens[ ints[1] ] ) ) {
+                    words.push( word );
+                }
+                
+                /* Add 'and' string after units or tens integer if: */
+                if( ints[0] || ints[1] ) {
+                    
+                    /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
+                    if( ints[2] || ! i && chunksLen ) {
+                        words.push( and );
+                    }
+                
+                }
+                
+                if( ( word = units[ ints[2] ] ) ) {
+                    if(word == '۱') {
+                        words.push('۱۰۰')
+                    } else if (word == '۲'){
+                        words.push('۲۰۰')
+                    } else if (word == '۳'){
+                        words.push('۳۰۰')
+                    } else if (word == '۴'){
+                        words.push('۴۰۰')
+                    } else if (word == '۵'){
+                        words.push('۵۰۰')
+                    } else if (word == '۶'){
+                        words.push('۶۰۰')
+                    } else if (word == '۷'){
+                        words.push('۷۰۰')
+                    } else if (word == '۸'){
+                        words.push('۸۰۰')
+                    } else if (word == '۹'){
+                        words.push('۹۰۰')
+                    }
+                }
+            }
+        }
+
+        words = words.reverse()
+
+        if(words.slice(2, 3)[0]) {
+            if(words.slice(2, 3)[0] == '۱۰۰') {
+                words[2] = '۱'
+            } else if (words.slice(2, 3)[0] == '۲۰۰'){
+                words[2] = '۲'
+            } else if (words.slice(2, 3)[0] == '۳۰۰'){
+                words[2] = '۳'
+            } else if (words.slice(2, 3)[0] == '۴۰۰'){
+                words[2] = '۴'
+            } else if (words.slice(2, 3)[0] == '۵۰۰'){
+                words[2] = '۵'
+            } else if (words.slice(2, 3)[0] == '۶۰۰'){
+                words[2] = '۶'
+            } else if (words.slice(2, 3)[0] == '۷۰۰'){
+                words[2] = '۷'
+            } else if (words.slice(2, 3)[0] == '۸۰۰'){
+                words[2] = '۸'
+            } else if (words.slice(2, 3)[0] == '۹۰۰'){
+                words[2] = '۹'
+            }
+        }
+
+        let priceStrong = ""
+        let priceLite = ""
+
+        if(words.slice(2, 3)[0]) {
+            priceStrong = `<span>${words.slice(0, 1)},${words.slice(2, 3)} ${words.slice(1, 2)}</span>`
+        } else {
+            priceStrong = `<span>${words.slice(0, 1)}${words.slice(2, 3)} ${words.slice(1, 2)}</span>`
+        }
+
+        if(words.slice(3).length == 0) {
+            priceLite = ''
+        } else if(words.slice(3) == 'میلیون') {
+            priceLite = ''
+        } else {
+            priceLite = ` <span class='text-xl' style='margin-right: 10px'>${words.slice(3).join(' ')}</span>`
+        }
+
+        words = priceStrong + priceLite
+    
+        return words;
+}
+
+const estateChange = (estate_type) => {
+    if(estate_type == 'V'){
+        return 'خانه ویلایی'
+    } else if (estate_type == 'G') {
+        return 'باغ'
+    } else if (estate_type == 'L') {
+        return 'زمین'
+    } else if (estate_type == 'A') {
+        return 'آپارتمان'
+    } else if (estate_type == 'B') {
+        return 'مغازه و واحد تجاری'
+    } else if (estate_type == 'H') {
+        return 'ویلا باغ'
+    } else{
+        return 'انتخاب کنید'
+    }
+}
+
+const openListRegion = () => {
+    setTimeout(() => {
+        openRegionList.value = !openRegionList.value
+    },1)
+}
+const selectRegion = (e) => {
+    region.value = e.target.getAttribute("valueItem")
+    setTimeout(() => {
+        openRegionList.value = false
+    }, 5);
+}
+const openListEstateType = () => {
+    setTimeout(() => {
+        openEstateTypeList.value = !openEstateTypeList.value
+    },1)
+}
+const selectEstate_type = (e) => {
+    estate_type.value = e.target.getAttribute("valueItem")
+    setTimeout(() => {
+        openEstateTypeList.value = false
+    }, 10);
+}
+const openListPrice = (priceLte) => {
+    setTimeout(() => {
+        isOpenList.value = !isOpenList.value;
+        priceLte.classList.remove('opacity-0')
+        priceLte.classList.remove('-z-10')
+    }, 1)
+}
+
+const selectPriceGte = (e) => {
+    unit_price__gte.value = e.target.getAttribute('valueItem');
+    const unitGteElem = document.getElementById("unitGte");
+    const unitLteElem = document.getElementById("unitLte");
+
+    if(unit_price__gte.value != 'انتخاب کنید') {
+        unitGteElem.classList.add('opacity-100')
+        unitGteElem.classList.add('z-0')
+        unitLteElem.classList.add('opacity-0')
+        unitLteElem.classList.add('-z-10')
+        unitGteElem.classList.remove('opacity-0')
+        unitGteElem.classList.remove('-z-10')
+    } else {
+        unit_price__lte = 'انتخاب کنید'
+        unitGteElem.classList.add('opacity-0')
+        unitGteElem.classList.add('-z-10')
+        unitLteElem.classList.remove('opacity-0')
+        unitLteElem.classList.remove('-z-10')
+        unitGteElem.classList.remove('opacity-100')
+        unitGteElem.classList.remove('z-0')
+    }
+};
+
+const selectPriceLte = (e) => {
+    isOpenList.value = false;
+    unit_price__lte.value = e.target.getAttribute('valueItem')
+};
+
+const closeListRegion = () => {
+    openRegionList.value = false;
+}
+const closeListEstate = () => {
+    openEstateTypeList.value = false;
+}
+const closeListPrice = () => {
+    isOpenList.value = false;
+}
 </script>

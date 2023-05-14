@@ -82,7 +82,7 @@
         </p>
 
         <p v-if="route.query.unit_price__lte" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>قیمت تا <span v-html="getNumber(route.query.unit_price__gte)"></span></span>
+            <span>قیمت تا <span v-html="getNumber(route.query.unit_price__lte)"></span></span>
 
             <svg @click="removeTag('unit_price__lte', route.query.unit_price__lte)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>

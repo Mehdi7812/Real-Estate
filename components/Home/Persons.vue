@@ -1,8 +1,8 @@
 <template>
     <section class="lg:px-12">
         <div class="container m-auto p-5 lg:py-12">
-            <a href="propertyCode.html?jungle=true" class="relative rounded-xl flex my-8 overflow-hidden lg:hidden">
-                <div class=" w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(src/assets/Images/favImg1.webp);">
+            <NuxtLink to="propertyCode?jungle=true" class="relative rounded-xl flex my-8 overflow-hidden lg:hidden">
+                <div class=" w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg1.webp);">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="flex items-center absolute left-[10%] top-0 bottom-0 z-20 cursor-pointer">
                         <h3 class="w-20 text-center dark:text-white text-sm font-extrabold">خرید ویلاهای جنگلی</h3>
@@ -12,20 +12,20 @@
                         </svg>     
                     </div>
                 </div>
-            </a>
+            </NuxtLink>
 
             <p style="color: var(--primaryColor)" class="lg:text-xl">نمایندگان با پشتکار ما</p>
             <h2 class="text-xl dark:text-black font-extrabold mt-2 mb-10 lg:text-4xl">بانمایندگان ما آشنا شوید</h2>
 
-            <div x-data="persons" class="swiper swiperPersons text-center lg:px-4 pt-3">
+            <div class="swiper swiperPersons text-center lg:px-4 !pt-3">
                 <div class="swiper-wrapper">
                     <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
-                        <a style="background-color: var(--primaryColor-20)" :href="`propertyUser.html?user=${data.id}`" class="bg-primary dark:bg-whiteSecondary rounded-2xl flex flex-col cursor-pointer hover:-translate-y-3 justify-center items-center p-5 gap-3 transition-all duration-300">
+                        <NuxtLink style="background-color: var(--primaryColor-20)" :to="`propertyCode?user=${data.id}`" class="bg-primary dark:bg-whiteSecondary rounded-2xl flex flex-col cursor-pointer hover:-translate-y-3 justify-center items-center p-5 gap-3 transition-all duration-300">
                             <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture">
                             <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
                             
                             <div :id="`demo_${data.id}`" x-init="generateStar(data.rate_avg, data.id)"></div>
-                        </a>
+                        </NuxtLink>
                     </div>
                 </div>
 

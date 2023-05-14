@@ -1,6 +1,4 @@
 <template>
-    <slot />
-
     <footer style="background-color: var(--primaryColor-20)" dir="ltr" class="bg-[#1D2228] dark:bg-[#f0f3f7]">
         <div class=" lg:px-12">
             <div class="container m-auto p-5 lg:p-6 ">

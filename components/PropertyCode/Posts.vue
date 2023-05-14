@@ -170,29 +170,15 @@
                             </div>
     
                             <div class="flex justify-between">
-                                <!-- <template x-if="dataPerson === null">
-                                    <div class="flex justify-center lg:justify-between gap-5 dark:text-white md:items-start headerInfo box !p-0">
-                                        <div class="skeleton !p-0">
-                                            <div class="skeleton-left" dir="rtl">
-                                                <div class="line !w-14"></div>
-                                                <div class="line !w-11"></div>
-                                            </div>
-                                            <div class="skeleton-right p-0">
-                                            <div class="square circle p-0 !w-11 !h-11" style="height: 44px !important"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template> -->
-
-                                <div class="flex gap-3">
-                                    <a x-init="rateAvg = person.rate_avg" :href="`propertyUser.html?user=`">
+                                <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
+                                    <div x-init="rateAvg = person.rate_avg">
                                         <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${data.userPicture}`" />
-                                    </a>
-                                    <a :href="`propertyUser.html?user=`" class="flex flex-col justify-around">
+                                    </div>
+                                    <div class="flex flex-col justify-around">
                                         <span class="text-[10px] md:text-base">{{ data.username }}</span>
                                         <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
-                                    </a>
-                                </div>
+                                    </div>
+                                </NuxtLink>
                                 
                                 <div class="flex gap-3 items-center">
                                     <img  @click.prevent="isOpenModalMessage = true" class="md:w-11 md:h-11 cursor-pointer" src="Group 34.svg" />
@@ -443,5 +429,5 @@ const dateCalc = (prevDate) => {
     }
 };
 
-const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=`);
+const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=${route.query.user ? route.query.user : ""}`);
 </script>
