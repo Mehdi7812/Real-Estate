@@ -11,10 +11,11 @@
                     <!-- Estates Search -->
                     <div class="lg:w-4/6 py-5">
                         <!-- tags -->
-                        <!-- <TagsSearch /> -->
+                        <PropertyCodeTagsSearch />
 
                         <!-- Posts -->
-                        <PropertyCodePosts />
+                        <NuxtPage />
+                        <!-- <PropertyCodePosts /> -->
 
                     </div>
                 </div>

@@ -203,7 +203,7 @@ const dateCalc = (prevDate) => {
     }
 }
 
-const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
+const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : ''}&weblog_type=${route.query.weblog_type ? route.query.weblog_type : ''}`)
 
 // onMounted(async () => {
 //     // alert("Mounted")

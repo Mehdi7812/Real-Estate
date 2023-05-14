@@ -248,7 +248,6 @@
 <script setup>
 const route = useRoute()
 
-// const posts = ref("")
 const seeMoreBtn = ref(null)
 
 const seeMore = (nextPage, btn) => {
@@ -428,7 +427,7 @@ const getNumber = (n) => {
     words = priceStrong + priceLite
 
     return words;
-}
+};
 
 const dateCalc = (prevDate) => {
     let now = new Date().toJSON()
@@ -442,35 +441,7 @@ const dateCalc = (prevDate) => {
     } else {
         return `${Math.round(days/31)} ماه پیش`
     }
-}
+};
 
-const estate_code = route.query.estate_code ? route.query.estate_code : ""
-const estate_type = route.query.estate_type ? route.query.estate_type : ""
-const document_type = route.query.document_type ? route.query.document_type : ""
-const unit_types = route.query.unit_types ? route.query.unit_types : ""
-const rooms__lte = route.query.rooms__lte ? route.query.rooms__lte : ""
-const unit_price__gte = route.query.unit_price__gte ? route.query.unit_price__gte : ""
-const unit_price__lte = route.query.unit_price__lte ? route.query.unit_price__lte : ""
-const land_size__gte = route.query.land_size__gte ? route.query.land_size__gte : ""
-const land_size__lte = route.query.land_size__lte ? route.query.land_size__lte : ""
-const building_size__gte = route.query.building_size__gte ? route.query.building_size__gte : ""
-const building_size__lte = route.query.building_size__lte ? route.query.building_size__lte : ""
-const building_age = route.query.building_age ? route.query.building_age : ""
-const province = route.query.province ? route.query.province : ""
-const city = route.query.city ? route.query.city : ""
-const region = route.query.region ? route.query.region : ""
-const pre_payment_status = route.query.pre_payment_status ? route.query.pre_payment_status : ""
-const special = route.query.special ? route.query.special : ""
-const jungle = route.query.jungle ? route.query.jungle : ""
-const town = route.query.town ? route.query.town : ""
-const beach = route.query.beach ? route.query.beach : ""
-const image_status = route.query.image_status ? route.query.image_status : ""
-
-const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${estate_code}&estate_type=${estate_type}&unit_types=${unit_types}&document_type=${document_type}&rooms__lte=${rooms__lte}&unit_price__gte=${unit_price__gte}&unit_price__lte=${unit_price__lte}&land_size__gte=${land_size__gte}&land_size__lte=${land_size__lte}&building_size__gte=${building_size__gte}&building_size__lte=${building_size__lte}&building_age=${building_age}&province=${province}&city=${city}&region=${region}&pre_payment_status=${pre_payment_status}&special=${special}&jungle=${jungle}&town=${town}&image_status=${image_status}&beach=${beach}&user=`)
-
-// onMounted(async () => {
-//     const response = await fetch(`https://api.hypomelk.ir/real/cases/?estate_code=${estate_code}&estate_type=${estate_type}&unit_types=${unit_types}&document_type=${document_type}&rooms__lte=${rooms__lte}&unit_price__gte=${unit_price__gte}&unit_price__lte=${unit_price__lte}&land_size__gte=${land_size__gte}&land_size__lte=${land_size__lte}&building_size__gte=${building_size__gte}&building_size__lte=${building_size__lte}&building_age=${building_age}&province=${province}&city=${city}&region=${region}&pre_payment_status=${pre_payment_status}&special=${special}&jungle=${jungle}&town=${town}&image_status=${image_status}&beach=${beach}&user=`)
-//     const data = await response.json()
-//     posts.value = data
-// });
+const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=`);
 </script>

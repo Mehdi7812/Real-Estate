@@ -15,8 +15,6 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-
 const dataRes = ref()
 
 onMounted(async () => {
