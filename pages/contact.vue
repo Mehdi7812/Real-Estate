@@ -14,7 +14,7 @@
 
 <script setup>
 useHead({
-    titleTemplate: '%s - Contact Title',
+    titleTemplate: '%s-ارتباط با ما',
 })
 const bannerImg = ref()
 

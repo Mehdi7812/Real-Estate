@@ -25,5 +25,7 @@
 </template>
 
 <script setup>
-
+useHead({
+    titleTemplate: '%s-فیلتر ملک ها',
+})
 </script>

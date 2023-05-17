@@ -211,7 +211,7 @@
                 </form>
 
                 <div class="hidden md:block md:w-1/3 pl-4">
-                    <img src="contactFinder.webp" class="block bg-cover bg-center w-full h-full rounded-[50px]" />
+                    <img src="/contactFinder.webp" class="block bg-cover bg-center w-full h-full rounded-[50px]" />
                 </div>
             </div>
 

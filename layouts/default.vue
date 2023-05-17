@@ -307,6 +307,7 @@
 
 <script setup>
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
+import { toast } from 'vue3-toastify';
 
 const route = useRoute()
 
@@ -315,22 +316,32 @@ const estateType = ref()
 const phoneNumber = ref("")
 
 const sendPhoneNumber = () => {
-    fetch(`https://api.hypomelk.ir/real/footer/`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						phone: phoneNumber.value,
-					})
-				}).then(res => {
-					res.json();
-                    console.log(res);
-					if(res.status >= 200 && res.status < 400) {
-						phoneNumber.value = '';
-					}
-				})
-					.catch(err => console.log(err, 'Error'))
+    validateFooterP()
+
+    if(validateFooterP()) {
+        fetch(`https://api.hypomelk.ir/real/footer/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phone: phoneNumber.value,
+            })
+        }).then(res => {
+            res.json();
+            console.log(res);
+            if(res.status >= 200 && res.status < 400) {
+                phoneNumber.value = '';
+                toast.success('شماره همراه شما ثبت شد :D', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+            }
+        })
+        .catch(err => {
+            console.log(err, 'Error')
+            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+        })
+    } else {
+        toast.warning('لطفا شماره کنید', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+    }
 }
 
 const isOpenModalSearch = ref(false)
@@ -361,11 +372,41 @@ const toggleModal = () => {
         modalElem.value.querySelector('input').focus()
         modalElem.value.querySelector('div').className = 'fixed top-0 left-0 right-0 bottom-0 flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300'
         isOpenModalSearch.value = true
-    }, 10);
+    }, 5);
 }
 
 const closeModal = () => {
     isOpenModalSearch.value = false;
 };
 
+// Validate Footer Phone Number
+function validateFooterPhoneNumber (phone) {
+	const re = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+	return re.test(phone);
+};
+  
+function validateFooterP () {
+	const result = document.getElementById('resultFooterPhone')
+	const phone = document.getElementById('footerInputNumber').value;
+
+	if (validateFooterPhoneNumber(phone)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
 </script>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

@@ -16,9 +16,8 @@ export default defineNuxtConfig({
 	},
     app: {
         head: {
-            title: "Site Title",
             bodyAttrs: {
-                class: "rtl bg-secondary dark:bg-[#fcfcfc] dark:text-black text-white",
+                class: "rtl bg-secondary dark:bg-[#fcfcfc] dark:text-black text-white overflow-x-hidden",
             },
             link: [
                 { rel: 'stylesheet', href: '/Swiper.css' },

@@ -112,7 +112,7 @@ onMounted(async () => {
 });
 
 useHead({
-    titleTemplate: '%s - About Title',
+    titleTemplate: '%s-درباره ما',
 })
 
 onUpdated(() => {

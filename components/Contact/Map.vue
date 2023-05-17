@@ -3,7 +3,7 @@
         <div class="container m-auto">
             <main v-if="!dataRes" class="bg-primary mostSearch flex flex-col rounded-[20px] overflow-hidden md:z-10 md:rounded-[63px]">
                 <div class="relative h-40 sm:h-48 md:h-[448px]">
-                    <img src="images/contactMap.webp" class="block w-full h-full">
+                    <img src="/contactMap.webp" class="block w-full h-full">
                     <span class="rounded-full bg-primaryOrange w-3 h-3 absolute top-1/3 left-1/2 shadow-[0_0_0_4px_rgba(225,100,40,0.4)] md:w-10 md:h-10 md:shadow-[0_0_0_10px_rgba(225,100,40,0.4)] md:top-[45%] md:left-[45%]"></span>
                 </div>
 

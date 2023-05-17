@@ -38,4 +38,8 @@
 
 <script setup>
 const route = useRoute();
+
+useHead({
+    titleTemplate: '%s-وبلاگ',
+})
 </script>

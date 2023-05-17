@@ -1355,6 +1355,9 @@
 
 <script setup>
 import PN from "persian-number";
+useHead({
+    titleTemplate: `%s-${postItem.title}`,
+})
 
 const route = useRoute();
 

@@ -66,7 +66,7 @@
 
                             <div class="flex gap-2 items-center">
                                 <span v-if="unit_price__gte == '' && unit_price__lte == ''" class="whitespace-nowrap">انتخاب کنید</span>
-                                <p v-if="unit_price__gte !== '' || unit_price__lte !== ''" class="whitespace-nowrap"><span>{{ unit_price__lte == '' ? 'انتخاب کنید' : unit_price__lte }}</span> ~ <span>{{ unit_price__gte == '' ? 'انتخاب کنید' : unit_price__gte }}</span></p>
+                                <p v-if="unit_price__gte !== '' || unit_price__lte !== ''" class="whitespace-nowrap"><span v-html="unit_price__lte == '' ? 'انتخاب کنید' : getNumber(unit_price__lte)"></span> ~ <span v-html="unit_price__gte == '' ? 'انتخاب کنید' : getNumber(unit_price__gte)"></span></p>
     
                                 <span class="relative w-6 after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                             </div>
@@ -188,7 +188,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">آپارتمان</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countA) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
 
@@ -216,7 +216,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">خانه ویلایی</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countV) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
                 
@@ -240,7 +240,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">باغ</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countG) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
                 
@@ -262,7 +262,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">زمین</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countL) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
 
@@ -288,7 +288,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">مغازه و واحد تجاری</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countB) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
                 
@@ -316,7 +316,7 @@
                     </span>
                     <div class="absolute bottom-2 left-2 right-2 bg-secondary dark:bg-whiteSecondary opacity-90 flex justify-between p-4 rounded-xl text-white dark:text-black items-center">
                         <span class="text-sm font-bold lg:text-2xl">ویلا باغ</span>
-                        <span class="text-graytext font-normal text-xs lg:text-sm"><span x-text="countType.toLocaleString('fa-ir')"></span> ملک</span>
+                        <span class="text-graytext font-normal text-xs lg:text-sm"><span>{{ PN.convertEnToPe(countH) }}</span> ملک</span>
                     </div>
                 </NuxtLink>
             </div>
@@ -565,4 +565,25 @@ const closeListEstate = () => {
 const closeListPrice = () => {
     isOpenList.value = false;
 }
+
+// Count Estate_type
+const countType = async (estateType) => {
+    const response = await fetch(`https://api.hypomelk.ir/real/cases/?estate_type=${estateType}`)
+    const data = await response.json()
+    return data.count
+};
+
+let countV = ref(0)
+let countA = ref(0)
+let countG = ref(0)
+let countL = ref(0)
+let countB = ref(0)
+let countH = ref(0)
+
+countV.value = await countType('V');
+countA.value = await countType('A');
+countG.value = await countType('G');
+countL.value = await countType('L');
+countB.value = await countType('B');
+countH.value = await countType('H');
 </script>

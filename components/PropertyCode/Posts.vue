@@ -181,10 +181,10 @@
                                 </NuxtLink>
                                 
                                 <div class="flex gap-3 items-center">
-                                    <img  @click.prevent="isOpenModalMessage = true" class="md:w-11 md:h-11 cursor-pointer" src="Group 34.svg" />
+                                    <img  @click.prevent="showModalMessage" class="md:w-11 md:h-11 cursor-pointer" src="/Group 34.svg" />
                                     
                                     <a @click.prevent="idPostCase = data.id; findCase(data.id); isOpenModal = true; generateStars(data.id, data.user_id)">
-                                        <img class="md:w-11 md:h-11 cursor-pointer" src="Group 33.svg" />
+                                        <img class="md:w-11 md:h-11 cursor-pointer" src="/Group 33.svg" />
                                     </a>
                                 </div>
                             </div>
@@ -223,16 +223,15 @@
         <!-- Modal Call -->
         
         <!-- Modal Send Message -->
-        <!-- Modal Send Message -->
-        <!-- Modal Send Message -->
-        <!-- Modal Send Message -->
-        <!-- Modal Send Message -->
-        <!-- Modal Send Message -->
+        <!-- <SendMessageModal v-show="isOpenModalMessage" @CloseModalMessage="close_modal_message" /> -->
     </div>
 </template>
 
 <script setup>
-const route = useRoute()
+const route = useRoute();
+
+const idPostCase = ref(0)
+const isOpenModalMessage = ref(false)
 
 const seeMoreBtn = ref(null)
 
@@ -428,6 +427,17 @@ const dateCalc = (prevDate) => {
         return `${Math.round(days/31)} ماه پیش`
     }
 };
+
+// const showModalMessage = () => {
+//     setTimeout(() => {
+//         isOpenModalMessage.value = true;
+//         //  idPostCase.value =data.id
+//     }, 5);
+// }
+
+// const close_modal_message = () => {
+//     isOpenModalMessage.value = false
+// }
 
 const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=${route.query.user ? route.query.user : ""}`);
 </script>
