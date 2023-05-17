@@ -172,7 +172,7 @@
                             <div class="flex justify-between">
                                 <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
                                     <div x-init="rateAvg = person.rate_avg">
-                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${data.userPicture}`" />
+                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.userPicture}`" />
                                     </div>
                                     <div class="flex flex-col justify-around">
                                         <span class="text-[10px] md:text-base">{{ data.username }}</span>
@@ -228,6 +228,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const route = useRoute();
 
 const idPostCase = ref(0)
@@ -428,16 +431,5 @@ const dateCalc = (prevDate) => {
     }
 };
 
-// const showModalMessage = () => {
-//     setTimeout(() => {
-//         isOpenModalMessage.value = true;
-//         //  idPostCase.value =data.id
-//     }, 5);
-// }
-
-// const close_modal_message = () => {
-//     isOpenModalMessage.value = false
-// }
-
-const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=${route.query.user ? route.query.user : ""}`);
+const { data: posts, pending, refresh, error } = await useFetch(() => `${apiRootStore.api}/real/cases/?estate_code=${route.query.estate_code ? route.query.estate_code : ""}&estate_type=${route.query.estate_type ? route.query.estate_type : ""}&unit_types=${route.query.unit_types ? route.query.unit_types : ""}&document_type=${route.query.document_type ? route.query.document_type : ""}&rooms__lte=${route.query.rooms__lte ? route.query.rooms__lte : ""}&unit_price__gte=${route.query.unit_price__gte ? route.query.unit_price__gte : ""}&unit_price__lte=${route.query.unit_price__lte ? route.query.unit_price__lte : ""}&land_size__gte=${route.query.land_size__gte ? route.query.land_size__gte : ""}&land_size__lte=${route.query.land_size__lte ? route.query.land_size__lte : ""}&building_size__gte=${route.query.building_size__gte ? route.query.building_size__gte : ""}&building_size__lte=${route.query.building_size__lte ? route.query.building_size__lte : ""}&building_age=${route.query.building_age ? route.query.building_age : ""}&province=${route.query.province ? route.query.province : ""}&city=${route.query.city ? route.query.city : ""}&region=${route.query.region ? route.query.region : ""}&pre_payment_status=${route.query.pre_payment_status ? route.query.pre_payment_status : ""}&special=${route.query.special ? route.query.special : ""}&jungle=${route.query.jungle ? route.query.jungle : ""}&town=${route.query.town ? route.query.town : ""}&image_status=${route.query.image_status ? route.query.image_status : ""}&beach=${route.query.beach ? route.query.beach : ""}&user=${route.query.user ? route.query.user : ""}`);
 </script>

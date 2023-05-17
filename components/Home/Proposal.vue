@@ -84,7 +84,7 @@
 
                                     <div v-if="data.media.length >= 1" v-for="media in data.media" class="swiper-slide">
                                         <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
-                                            <img :src="`https://api.hypomelk.ir/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
+                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +242,7 @@
         
                                 <div class="text-right -mb-[48px]">
                                     <NuxtLink :to="`propertyCode?user=${data.user_id}`">
-                                        <img class="relative z-10 rounded-full object-cover w-[43px] h-[43px]" :src="`https://api.hypomelk.ir/${data.userPicture}`" />
+                                        <img class="relative z-10 rounded-full object-cover w-[43px] h-[43px]" :src="`${apiRootStore.api}/${data.userPicture}`" />
                                     </NuxtLink>
                                     <div style="background-color: var(--primaryColor-20)" class="flex justify-between items-center relative -top-[43px] right-5 bg-primary dark:bg-whiteSecondary w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden">
                                         <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex px-10 whitespace-nowrap flex-col">
@@ -251,20 +251,20 @@
                                         </NuxtLink>
         
                                         <div class="flex pl-3 gap-5">
-                                            <a @click.prevent="isOpenModalMessage = true">
+                                            <NuxtLink to="/" @click="showMessageModal(data.id)">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M14.1401 0.959997L5.11012 3.96C-0.959883 5.99 -0.959883 9.3 5.11012 11.32L7.79012 12.21L8.68012 14.89C10.7001 20.96 14.0201 20.96 16.0401 14.89L19.0501 5.87C20.3901 1.82 18.1901 -0.390003 14.1401 0.959997ZM14.4601 6.34L10.6601 10.16C10.5101 10.31 10.3201 10.38 10.1301 10.38C9.94012 10.38 9.75012 10.31 9.60012 10.16C9.31012 9.87 9.31012 9.39 9.60012 9.1L13.4001 5.28C13.6901 4.99 14.1701 4.99 14.4601 5.28C14.7501 5.57 14.7501 6.05 14.4601 6.34Z" fill="#FFA80A"/>
                                                 </svg>
-                                            </a>
+                                            </NuxtLink>
         
-                                            <a @click.prevent="idPostCase = data.id; findCase(data.id); isOpenModal = true; generateStars(data.id)">
+                                            <NuxtLink to="/" @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
-                                                <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>
-                                                <path d="M11.05 14.95L9.2 16.8C8.81 17.19 8.19 17.19 7.79 16.81C7.68 16.7 7.57 16.6 7.46 16.49C6.43 15.45 5.5 14.36 4.67 13.22C3.85 12.08 3.19 10.94 2.71 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C10.83 13.32 10.94 13.42 11.04 13.52C11.44 13.91 11.45 14.55 11.05 14.95Z" fill="#0DA049"/>
-                                                <path d="M21.97 18.33C21.97 18.61 21.92 18.9 21.82 19.18C21.79 19.26 21.76 19.34 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C19.39 21.62 19.38 21.63 19.37 21.63C18.78 21.87 18.14 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C10.36 19 8.09999 17.08 7.72999 16.77L11 13.5C11.28 13.71 13.4 15.5 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" fill="#0DA049"/>
-                                            </svg>
-                                            </a>     
+                                                    <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
+                                                    <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>
+                                                    <path d="M11.05 14.95L9.2 16.8C8.81 17.19 8.19 17.19 7.79 16.81C7.68 16.7 7.57 16.6 7.46 16.49C6.43 15.45 5.5 14.36 4.67 13.22C3.85 12.08 3.19 10.94 2.71 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C10.83 13.32 10.94 13.42 11.04 13.52C11.44 13.91 11.45 14.55 11.05 14.95Z" fill="#0DA049"/>
+                                                    <path d="M21.97 18.33C21.97 18.61 21.92 18.9 21.82 19.18C21.79 19.26 21.76 19.34 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C19.39 21.62 19.38 21.63 19.37 21.63C18.78 21.87 18.14 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C10.36 19 8.09999 17.08 7.72999 16.77L11 13.5C11.28 13.71 13.4 15.5 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" fill="#0DA049"/>
+                                                </svg>
+                                            </NuxtLink>     
                                         </div>
                                     </div>
                                 </div>
@@ -298,7 +298,38 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const dataRes = ref("")
+import { useModalMessage } from "~/stores/SendMessage";
+import { storeToRefs } from "pinia";
+const modalMessageStore = useModalMessage();
+let {isOpenModalMessage, idPost} = storeToRefs(modalMessageStore);
+
+import { useModalCall } from "~/stores/CallModal"
+const modalCallStore = useModalCall();
+let {isOpenModalCall, idCase, userId, userName, userActivity, userNumber, userImg} = storeToRefs(modalCallStore);
+
+
+const showCallModal = (idPost, idUser, user_name, activity, user_number, userPicture) => {
+    idCase.value = idPost
+    userId.value = idUser
+    userName.value = user_name
+    userActivity.value = activity
+    userNumber.value = user_number
+    userImg.value = userPicture
+    setTimeout(() => {
+        isOpenModalCall.value = true
+    }, 5);
+}
+
+const showMessageModal = (idCase) => {
+    idPost.value = idCase
+    setTimeout(() => {
+        isOpenModalMessage.value = true
+    }, 5);
+}
 
 const estateTypeRender = (type) => {
     if(type== 'G') {
@@ -489,7 +520,7 @@ onMounted(async () => {
         },
     });
 
-    const response = await fetch(`https://api.hypomelk.ir/real/cases/?special=true`) 
+    const response = await fetch(`${apiRootStore.api}/real/cases/?special=true`) 
     const data = await response.json()
     dataRes.value = data.results
 

@@ -382,6 +382,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const dataRes = ref("");
 
 const convertToPersianNumber = (input = '0') => {
@@ -389,7 +392,7 @@ const convertToPersianNumber = (input = '0') => {
 };
 
 onMounted(async () => {
-    const response = await fetch("https://api.hypomelk.ir/real/ContactUs/")
+    const response = await fetch(`${apiRootStore.api}/real/ContactUs/`)
     const data = await response.json()
     dataRes.value = data[0]
 });

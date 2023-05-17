@@ -66,7 +66,7 @@
 
         <NuxtLink :to="`/weblog/${item.slug}`" v-for="item in dataRes" :key="item.id" style="background-color: var(--primaryColor-20);" class="flex gap-2 rounded-xl hover:shadow-lg md:rounded-[21px] overflow-hidden hover:-translate-y-4 transition-all duration-300">
             <div class="rounded-xl h-32 w-52 object-cover overflow-hidden md:rounded-[21px]">
-                <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir/${item.cover}`">
+                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}/${item.cover}`">
             </div>
             <div class="flex flex-col justify-around w-full">
                 <h5 class="text-base md:text-lg">{{ item.title }}</h5>
@@ -97,7 +97,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
 
 const dataRes = ref()
 
@@ -116,7 +117,7 @@ const dateCalc = (prevDate) => {
 }
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/MostViewWeblogs/`)
+    const response = await fetch(`${apiRootStore.api}/real/MostViewWeblogs/`)
     const data = await response.json()
     dataRes.value = data
 });

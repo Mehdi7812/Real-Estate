@@ -17,9 +17,14 @@
   },
   "dependencies": {
     "@mahdikhashan/vue3-click-outside": "^0.1.2",
+    "@pinia/nuxt": "^0.4.11",
     "nuxt-swiper": "^1.1.0",
     "persian-number": "^1.5.1",
+    "pinia": "^2.1.3",
     "vue-star-rating": "^2.1.0",
     "vue3-toastify": "^0.1.9"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

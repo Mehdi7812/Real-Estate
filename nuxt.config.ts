@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     },
     modules: [
         'nuxt-swiper',
+        '@pinia/nuxt',
     //  'nuxt-leaflet',
     ],
 	css: ["~/assets/css/main.css"],
@@ -61,5 +62,5 @@ export default defineNuxtConfig({
             ],
         }
     },
-    ssr: false
+    // ssr: false
 });

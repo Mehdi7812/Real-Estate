@@ -91,22 +91,25 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const homePagePic = ref("")
 const homePage_header = ref("")
 const data = ref("")
 const dataConsultants = ref("")
 
 onMounted(async () => {
-    const resAbout = await fetch(`https://api.hypomelk.ir/real/AboutUs/`)
+    const resAbout = await fetch(`${apiRootStore.api}/real/AboutUs/`)
     const dataAbout = await resAbout.json()
     data.value = dataAbout[0]
     homePagePic.value = dataAbout[0].estate_picture
 
-    const resConsultants = await fetch('https://api.hypomelk.ir/real/consultants/')
+    const resConsultants = await fetch(`${apiRootStore.api}/real/consultants/`)
     const dataCon = await resConsultants.json()
     dataConsultants.value = dataCon;
 
-    const response = await fetch("https://api.hypomelk.ir/real/HomePage/")
+    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
     const dataHomePage = await response.json()
     homePage_header.value = dataHomePage[0].homePage_header
 });

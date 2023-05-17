@@ -85,12 +85,15 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const route = useRoute()
 
 const phoneNumber = ref("")
 
 const sendPhoneNumber = () => {
-    fetch(`https://api.hypomelk.ir/real/footer/`, {
+    fetch(`${apiRootStore.api}/real/footer/`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -114,7 +117,7 @@ const logo_dark = ref()
 const pageDescription = ref()
 
 onMounted(async () => {
-    const response = await fetch("https://api.hypomelk.ir/real/HomePage/")
+    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
     const data = await response.json()
     logo_dark.value = data[0].logo_dark
     title.value = data[0].homePage_title

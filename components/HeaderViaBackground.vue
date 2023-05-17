@@ -86,6 +86,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import PN from "persian-number";
 import StarRating from "vue-star-rating";
 
@@ -100,13 +103,13 @@ const { pageName, customImage } = defineProps({ pageName: String, customImage: {
 
 
 onMounted(async () => {
-    const response = await fetch("https://api.hypomelk.ir/real/HomePage/")
+    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
     const dataHomePage = await response.json()
     homePage_header.value = dataHomePage[0].homePage_header
     homePage_Pic.value = dataHomePage[0].homePage_pic
    
     if(route.query.user) {
-        const response = await fetch(`https://api.hypomelk.ir/real/usersinfo/${route.query.user}`)
+        const response = await fetch(`${apiRootStore.api}/real/usersinfo/${route.query.user}`)
         const dataUser = await response.json()
         userDatas.value = dataUser
     }

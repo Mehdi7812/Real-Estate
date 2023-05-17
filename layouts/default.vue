@@ -25,7 +25,7 @@
                 <!-- <img class="dark:inline-block hidden h-[50px] object-cover" :src="$store.darkMode.lightLogo"> -->
             </NuxtLink>
     
-            <a style="color: var(--primaryColor)" @click="$store.modalSearch.isOpenModalSearch = true" id="resSearchMelkBtn" class="text-primaryOrange dark:text-bluePrimary hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/80 flex items-center justify-end gap-2" href="#">کدملکی
+            <a style="color: var(--primaryColor)" @click="isOpenModalSearch = true" id="resSearchMelkBtn" class="text-primaryOrange dark:text-bluePrimary hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/80 flex items-center justify-end gap-2" href="#">کدملکی
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path style="stroke: var(--primaryColor)" d="M9.3335 3.33337H13.3335" stroke="#E16428" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path style="stroke: var(--primaryColor)" d="M9.3335 5.33337H11.3335" stroke="#E16428" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -309,6 +309,9 @@
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 import { toast } from 'vue3-toastify';
 
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const route = useRoute()
 
 const estateType = ref()
@@ -319,7 +322,7 @@ const sendPhoneNumber = () => {
     validateFooterP()
 
     if(validateFooterP()) {
-        fetch(`https://api.hypomelk.ir/real/footer/`, {
+        fetch(`${apiRootStore.api}/real/footer/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -355,7 +358,7 @@ const logo_dark = ref()
 const pageDescription = ref()
 
 onMounted(async () => {
-    const response = await fetch("https://api.hypomelk.ir/real/HomePage/")
+    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
     const data = await response.json()
     logo_dark.value = data[0].logo_dark
     title.value = data[0].homePage_title
@@ -364,6 +367,20 @@ onMounted(async () => {
     searchMelkBtn.value = document.getElementById('searchMelkBtn')
     modalElem.value = document.getElementById('modal')
     exitModalBtn.value = document.getElementById('exitModalBtn')
+
+    const hamburger = document.getElementById("hamburger");
+    const menuMobile = document.getElementById("menu_mobile");
+    const exitBtn = document.getElementById("exitBtn");
+
+    hamburger.addEventListener("click", () => {
+        menuMobile.classList.remove("w-0");
+        menuMobile.classList.add("w-full");
+    }); 
+
+    exitBtn.addEventListener("click", () => {
+        menuMobile.classList.remove("w-full");
+        menuMobile.classList.add("w-0");
+    });
 });
 
 const toggleModal = () => {
@@ -396,7 +413,7 @@ function validateFooterP () {
 		result.style.height = '30px';
 	}
 	return false;
-}
+};
 </script>
 
 <style>

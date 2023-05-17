@@ -142,10 +142,13 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import PN from "persian-number";
 
 const favouritePlaceCount = async (city) => {
-    const response = await fetch(`https://api.hypomelk.ir/real/cases/?city=${city}`)
+    const response = await fetch(`${apiRootStore}/real/cases/?city=${city}`)
     const data = await response.json()
     return data.count
 };

@@ -24,9 +24,9 @@
                             <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture">
                             <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
                             
-                            <client-only>
+                            <!-- <client-only>
                                 <star-rating style="direction: ltr;" :read-only="true" :rtl="true" :show-rating="false" :rating="data.rate_avg" :star-size="18" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
-                            </client-only>
+                            </client-only> -->
                         </NuxtLink>
                     </div>
                 </div>
@@ -50,12 +50,15 @@
 </template>
 
 <script setup>
-import StarRating from "vue-star-rating";
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
+// import StarRating from "vue-star-rating";
 
 const dataRes = ref()
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/usersinfo/`)
+    const response = await fetch(`${apiRootStore.api}/real/usersinfo/`)
     const data = await response.json()
     dataRes.value = data
 

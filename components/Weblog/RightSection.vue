@@ -71,7 +71,7 @@
         <div class="flex flex-col gap-6">
             <NuxtLink :to="`/weblog/${data.slug}`" v-if="posts.results" v-for="data in posts.results" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
                 <div class="relative md:w-5/12">
-                    <img :src="`https://api.hypomelk.ir/${data.cover}`" class="w-full h-48 object-cover rounded-2xl md:rounded-[31px] overflow-hidden">
+                    <img :src="`${apiRootStore.api}/${data.cover}`" class="w-full h-48 object-cover rounded-2xl md:rounded-[31px] overflow-hidden">
 
                     <div class="absolute top-3 left-3 right-3 flex justify-between">
                         <div class="flex gap-2 items-center">
@@ -125,13 +125,13 @@
                     <p class="text-[10px] text-right md:text-[14px] text-[#9EA1AC]">{{ data.introduction }}</p>
                     
                     <div class="flex justify-between">
-                        <a :href="`propertyUser.html?user=${data.user_id}`" class="flex gap-3">
-                            <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${data.user_picture}`" alt="">
+                        <NuxtLink :to="`propertyUser?user=${data.user_id}`" class="flex gap-3">
+                            <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`" alt="">
                             <div class="flex flex-col justify-around">
                                 <span class="text-[10px] md:text-base">{{ data.username }}</span>
                                 <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
                             </div>
-                        </a>
+                        </NuxtLink>
                     </div>
                 </div>
             </NuxtLink>
@@ -167,7 +167,9 @@
 </template>
 
 <script setup>
-// const posts = ref("")
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const route = useRoute()
 
 const seeMore = (nextPage) => {
@@ -203,12 +205,5 @@ const dateCalc = (prevDate) => {
     }
 }
 
-const { data: posts, pending, refresh, error } = await useFetch(() => `https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : ''}&weblog_type=${route.query.weblog_type ? route.query.weblog_type : ''}`)
-
-// onMounted(async () => {
-//     // alert("Mounted")
-//     const response = await fetch(`https://api.hypomelk.ir/real/weblog/?search=${route.query.search ? route.query.search : '' }&weblog_type=${route.query.weblog_type ? route.query.weblog_type : '' }`)
-//     const data = await response.json()
-//     posts.value = data
-// });
+const { data: posts, pending, refresh, error } = await useFetch(() => `${apiRootStore.api}/real/weblog/?search=${route.query.search ? route.query.search : ''}&weblog_type=${route.query.weblog_type ? route.query.weblog_type : ''}`);
 </script>

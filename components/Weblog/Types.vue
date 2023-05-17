@@ -15,10 +15,13 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const dataRes = ref()
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/weblogTypes/`)
+    const response = await fetch(`${apiRootStore.api}/real/weblogTypes/`)
     const data = await response.json()
     dataRes.value = data
 });

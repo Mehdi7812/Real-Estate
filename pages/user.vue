@@ -1,4 +1,7 @@
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import { toast } from 'vue3-toastify';
 
 const username = ref("")
@@ -9,7 +12,7 @@ const fetchData = () => {
     document.getElementById("loadingPuls").style.display = 'block'
     document.getElementById("loginBtn").style.display = 'none'
 
-    fetch(`https://api.hypomelk.ir/admin/jwt/create`, {
+    fetch(`${apiRootStore.api}/admin/jwt/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

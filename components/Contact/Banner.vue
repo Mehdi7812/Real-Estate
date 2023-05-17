@@ -32,11 +32,13 @@
 
 <script setup>
 const dataRes = ref("")
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
 
 const emit = defineEmits(['banner'])
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/ContactUsBanner/`)
+    const response = await fetch(`${apiRootStore.api}/real/ContactUsBanner/`)
     const data = await response.json()
     dataRes.value = data[0]
 

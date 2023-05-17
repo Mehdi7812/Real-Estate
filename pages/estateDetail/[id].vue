@@ -70,17 +70,17 @@
                     <!-- Images -->
                     <div class="grid grid-cols-3 col-span-full gap-3">
                         <div v-for="(img, index) in postItem.media" :class="index >= 3 ? 'hidden' : ''">
-                            <div v-if="index <= 1" data-fancybox="demo" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
-                                <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir${img.image}`">
+                            <div v-if="index <= 1" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                             </div>
 
-                            <div v-if="index == 2" data-fancybox="demo" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
-                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`https://api.hypomelk.ir${img.image}`">
+                            <div v-if="index == 2" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
+                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${img.image}`">
                                 <p dir="rtl" class="text-xs flex justify-center items-center text-white flex-col backdrop-blur-[2px] rounded-[10px] overflow-hidden backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
 
-                            <div v-if="index > 2" data-fancybox="demo" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden hidden">
-                                <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir${img.image}`">
+                            <div v-if="index > 2" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                                 <p dir="rtl" class="text-xs flex justify-center text-white items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
                         </div>
@@ -92,18 +92,18 @@
                     <div dir="rtl" class="grid grid-cols-2 grid-rows-2 gap-4">
                         <div v-for="(img, index) in postItem.media" :class="index >= 4 ? 'hidden' : ''">
                             <div v-if="index < 4" class="h-full">
-                                <div v-if="index <= 2" data-fancybox="demoLg" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px]">
-                                    <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir${img.image}`">
+                                <div v-if="index <= 2" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px]">
+                                    <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                                 </div>
 
-                                <div v-if="index == 3" data-fancybox="demoLg" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
-                                    <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir${img.image}`">
+                                <div v-if="index == 3" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
+                                    <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                                     <p v-if="postItem.media.length - 4 > 0" dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                                 </div>
                             </div>
 
-                            <div v-if="index >= 4" data-fancybox="demoLg" :data-src="`https://api.hypomelk.ir${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
-                                <img class="object-cover w-full h-full" :src="`https://api.hypomelk.ir${img.image}`">
+                            <div v-if="index >= 4" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                                 <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
                         </div>
@@ -938,7 +938,7 @@
                                 </div>
                                 
                                 <div v-show="activeItem == plans.id" class="bg-primary dark:bg-white transition-all duration-300">
-                                    <img :style="activeItem == plans.id ? 'height: 300px' : 'height: 0px'" :src="`https://api.hypomelk.ir${plans.plan}`" class="m-auto transition-all duration-300">
+                                    <img :style="activeItem == plans.id ? 'height: 300px' : 'height: 0px'" :src="`${apiRootStore.api}${plans.plan}`" class="m-auto transition-all duration-300">
                                 </div>
                             </div>
                         </div>
@@ -976,9 +976,7 @@
                         <!-- Contact DIV -->
                         <div x-data="contactUs">
                             <div class="flex">
-                                <template x-for="tab in tabs">
-                                    <a class="bg-primary dark:bg-whiteSecondary p-3 pb-7 2xl:p-4 2xl:pb-8 rounded-t-[21px] w-36 text-center cursor-pointer transition-all duration-300" :class="{'bg-[#525050] dark:bg-[#dfdfdf]' : activeTab == tab}" @click="activeTab = tab" x-text="tab"></a>
-                                </template>
+                                <a v-for="tab in tabs" class="p-3 pb-7 2xl:p-4 2xl:pb-8 rounded-t-[21px] w-36 text-center cursor-pointer transition-all duration-300" :class="activeTab == tab ? 'bg-[#525050] dark:bg-[#dfdfdf]' : 'bg-primary dark:bg-whiteSecondary'" @click="activeTab = tab">{{ tab }}</a>
                             </div>
 
                             <div class="w-full overflow-hidden flex relative 2xl:-top-4 -top-5">
@@ -986,15 +984,15 @@
                                 <div :class="{'!w-full !h-auto' : activeTab == 'درخواست تماس'}" class="w-0 h-0 overflow-hidden transition-all duration-300">
                                     <div class="flex flex-col items-center gap-5 rounded-[21px] p-4 2xl:p-5 bg-[#525050] dark:bg-[#DFDFDF] whitespace-nowrap">
                                         <!-- person info(image name ...) -->
-                                                <a :href="`propertyUser.html?user=${postItem.user_id}`" class="flex flex-col items-center pt-10 2xl:pt-12 pb-3 2xl:pb-4 gap-2">
-                                                    <img class="w-16 h-16 rounded-xl object-cover" :src="postItem.userPicture">
-                                                    <p class="text-xl font-bold">{{ postItem.username }}</p>
-                                                    <p class="text-graytext">{{ postItem.user_activity }}</p>
-                                                </a>
+                                        <NuxtLink :to="`propertyUser?user=${postItem.user_id}`" class="flex flex-col items-center pt-10 2xl:pt-12 pb-3 2xl:pb-4 gap-2">
+                                            <img class="w-16 h-16 rounded-xl object-cover" :src="`${apiRootStore.api}/${postItem.userPicture}`">
+                                            <p class="text-xl font-bold">{{ postItem.username }}</p>
+                                            <p class="text-graytext">{{ postItem.user_activity }}</p>
+                                        </NuxtLink>
 
                                         <!-- Call Btn -->
                                         <a class="flex justify-center gap-3 bg-[#0DA049] dark:bg-bluePrimary dark:hover:bg-bluePrimary/80 dark:text-white tracking-widest text-xl items-center p-3 2xl:p-4 rounded-2xl w-full transition-all duration-300 hover:bg-[#0DA049]/50" :href="`tel:${postItem.user_number}`">
-                                            <span x-text="convertToPersianNumber(postItem.user_number)"></span>
+                                            <span>{{ PN.convertEnToPe(postItem.user_number) }}</span>
                                             
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M20.1398 16.8028C20.1398 17.1328 20.0665 17.472 19.9106 17.802C19.7548 18.132 19.5532 18.4437 19.2873 18.737C18.8382 19.232 18.3431 19.5895 17.784 19.8187C17.234 20.0478 16.6382 20.167 15.9965 20.167C15.0615 20.167 14.0623 19.947 13.0082 19.4978C11.954 19.0487 10.8998 18.4437 9.85482 17.6828C8.80065 16.9128 7.80148 16.0603 6.84815 15.1162C5.90398 14.1628 5.05148 13.1637 4.29065 12.1187C3.53898 11.0737 2.93398 10.0287 2.49398 8.99285C2.05398 7.94785 1.83398 6.94868 1.83398 5.99535C1.83398 5.37201 1.94398 4.77618 2.16398 4.22618C2.38398 3.66701 2.73232 3.15368 3.21815 2.69535C3.80482 2.11785 4.44648 1.83368 5.12482 1.83368C5.38148 1.83368 5.63815 1.88868 5.86732 1.99868C6.10565 2.10868 6.31648 2.27368 6.48148 2.51201L8.60815 5.50951C8.77315 5.73868 8.89232 5.94951 8.97482 6.15118C9.05732 6.34368 9.10315 6.53618 9.10315 6.71035C9.10315 6.93035 9.03898 7.15035 8.91065 7.36118C8.79148 7.57201 8.61732 7.79201 8.39732 8.01201L7.70065 8.73618C7.59982 8.83701 7.55398 8.95618 7.55398 9.10285C7.55398 9.17618 7.56315 9.24035 7.58148 9.31368C7.60898 9.38701 7.63648 9.44201 7.65482 9.49701C7.81982 9.79951 8.10398 10.1937 8.50732 10.6703C8.91982 11.147 9.35982 11.6328 9.83648 12.1187C10.3315 12.6045 10.8082 13.0537 11.294 13.4662C11.7707 13.8695 12.1648 14.1445 12.4765 14.3095C12.5223 14.3278 12.5773 14.3553 12.6415 14.3828C12.7148 14.4103 12.7882 14.4195 12.8707 14.4195C13.0265 14.4195 13.1457 14.3645 13.2465 14.2637L13.9432 13.5762C14.1723 13.347 14.3923 13.1728 14.6032 13.0628C14.814 12.9345 15.0248 12.8703 15.254 12.8703C15.4281 12.8703 15.6115 12.907 15.8132 12.9895C16.0148 13.072 16.2257 13.1912 16.4548 13.347L19.489 15.5012C19.7273 15.6662 19.8923 15.8587 19.9931 16.0878C20.0848 16.317 20.1398 16.5462 20.1398 16.8028Z" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
@@ -1005,7 +1003,7 @@
 
                                         <!-- Star Person -->
                                         <div x-init="genStarsAvg(postItem.id)" class="flex flex-col items-center justify-center p-3 2xl:p-6 w-full rounded-2xl bg-[#F8C623]/80 dark:bg-[#ed9d02]/70 gap-3 2xl:gap-5">
-                                            <p class="text-black font-bold">چه امتیازی به <span x-text="postItem.username"></span> میدین؟</p>
+                                            <p class="text-black font-bold">چه امتیازی به <span>{{ postItem.username }}</span> میدین؟</p>
                                             
                                             <div id="loadingPuls" style="display: none" class="loading-pulse"></div>
                                             <div id="demo"></div>
@@ -1043,7 +1041,7 @@
 
                         <!-- Code Melki -->
                         <div class="p-3 2xl:p-5 bg-[#525050] dark:bg-whiteSecondary rounded-[21px] text-center">
-                            <p class="text-lg text-graytext mb-3">کد ملکی : <span class="text-white dark:text-black text-[19px] font-bold" x-text="convertToPersianNumber(postItem.estate_code)"></span></p>
+                            <p class="text-lg text-graytext mb-3">کد ملکی : <span class="text-white dark:text-black text-[19px] font-bold">{{ PN.convertEnToPe(postItem.estate_code) }}</span></p>
                             <p class="text-sm">هنگام تماس یا ارسال پیام به کد آگهی اشاره فرمایید.</p>
                         </div>
 
@@ -1354,18 +1352,23 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import PN from "persian-number";
-useHead({
-    titleTemplate: `%s-${postItem.title}`,
-})
 
 const route = useRoute();
 
 const postItem = ref("");
+const titleHead = ref("")
 const activeItem = ref(null);
 const isOpen = ref(true);
 const casePlan = ref();
 const postsSimilar = ref(null);
+
+const tabs = ["درخواست تماس","ارسال پیام"]
+
+const activeTab = ref("درخواست تماس")
 
 const selectItem = (item) => {
     if (activeItem.value == item) {
@@ -1568,18 +1571,19 @@ const documentTypeChange = (document_type) => {
 };
 
 onMounted(async () => {
-    const response = await fetch(`https://api.hypomelk.ir/real/cases/${route.params.id}`)
+    const response = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}`)
     const data = await response.json()
     postItem.value = data
+    titleHead.value = postItem.value.title
 
-    const planMelkRes = await fetch(`https://api.hypomelk.ir/real/cases/${route.params.id}/caseplan`)
+    const planMelkRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/caseplan`)
     const dataPlanMelk = await planMelkRes.json()
     casePlan.value = dataPlanMelk
     if(casePlan.value.length >= 1) {
         activeItem.value = dataPlanMelk[0].id
     }
 
-    const similarPostRes = await fetch(`https://api.hypomelk.ir/real/cases/${route.params.id}/similarcases`)
+    const similarPostRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/similarcases`)
     const dataSimilar = await similarPostRes.json()
     postsSimilar.value = dataSimilar;
 
@@ -1605,4 +1609,7 @@ onMounted(async () => {
     
 });
 
+useHead({
+    titleTemplate: `%s-${titleHead.value}`,
+});
 </script>

@@ -76,7 +76,7 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="flex relative h-60 rounded-2xl overflow-hidden">
-                                            <img :src="`https://api.hypomelk.ir/${data.cover}`" class="object-cover w-full h-full bg-cover group-hover:scale-110 transition-all duration-300">
+                                            <img :src="`${apiRootStore.api}/${data.cover}`" class="object-cover w-full h-full bg-cover group-hover:scale-110 transition-all duration-300">
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                 
                                 <div class="flex-row-reverse justify-between">
                                     <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
-                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${data.user_picture}`">
+                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`">
                                         <div class="flex flex-col justify-around">
                                             <span class="text-[10px] md:text-base">{{ data.username }}</span>
                                             <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
@@ -170,6 +170,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const dataRes = ref()
 
 const dateCalc = (prevDate) => {
@@ -204,7 +207,7 @@ onMounted(async () => {
         },
     });
 
-    const response = await fetch(`https://api.hypomelk.ir/real/weblog/`)
+    const response = await fetch(`${apiRootStore.api}/real/weblog/`)
     const data = await response.json()
     dataRes.value = data.results
 

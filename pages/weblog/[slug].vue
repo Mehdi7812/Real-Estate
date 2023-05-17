@@ -27,14 +27,14 @@
             <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col gap-5 md:gap-7 p-4 md:p-11">
                 <h3 class="text-right font-bold md:text-[28px]">{{ weblogItem.title }}</h3>
 
-                <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`https://api.hypomelk.ir${weblogItem.cover}`">
+                <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`${apiRootStore.api}${weblogItem.cover}`">
 
                 <div v-html="weblogItem.text" class="text-xs md:text-base"></div>
             
                 <div class="flex justify-between">
 
-                    <a :href="`propertyUser.html?user=${weblogItem.user_id}`" class="flex gap-4">
-                        <img class="w-12 h-12 object-cover md:w-16 md:h-16 rounded-lg" :src="`https://api.hypomelk.ir/${weblogItem.user_picture}`">
+                    <a :href="`propertyUser?user=${weblogItem.user_id}`" class="flex gap-4">
+                        <img class="w-12 h-12 object-cover md:w-16 md:h-16 rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
 
                         <div class="flex flex-col justify-between">
                             <span class="text-sm md:text-xl">{{ weblogItem.username }}</span>
@@ -157,7 +157,7 @@
                             <div v-if="comment.answer" class="pr-16">
                                 <div class="flex gap-3">
                                     <div class="hidden lg:block w-14 h-14 overflow-hidden rounded-lg" :style="`background-color: ${stringToHslColor(comment.user)}`" >
-                                        <img class="w-full h-full bg-cover" :src="`https://api.hypomelk.ir/${comment.user_picture}`">
+                                        <img class="w-full h-full bg-cover" :src="`${apiRootStore.api}/${comment.user_picture}`">
                                     </div>
                                     
                                     <div class="flex flex-col gap-3 w-full">
@@ -226,7 +226,7 @@
                         
                         <NuxtLink :to="`weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
                             <div class="relative h-60">
-                                <img :src="`https://api.hypomelk.ir${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
+                                <img :src="`${apiRootStore.api}${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
         
                                 <div class="absolute top-3 left-3 right-3 flex justify-between">
                                     <div class="flex gap-2 items-center">
@@ -268,7 +268,7 @@
 
                             <div class="flex-row-reverse justify-between">
                                 <NuxtLink :to="`propertyCode?user=${weblogItem.user_id}`" class="flex gap-3">
-                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`https://api.hypomelk.ir/${weblogItem.user_picture}`">
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
                                     <div class="flex flex-col justify-around">
                                         <span class="text-[10px] dark:text-black md:text-base">{{ weblogItem.username }}</span>
                                         <span class="text-[8px] text-[#B1B1B1] dark:text-black md:text-[11px]">{{ weblogItem.user_activity }}</span>
@@ -297,6 +297,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
     const route = useRoute()
 
     const weblogItem = ref("")
@@ -322,15 +325,15 @@
     }
 
     onMounted(async () => {
-        const response = await fetch(`https://api.hypomelk.ir/real/weblog/${route.params.slug}`)
+        const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
         const data = await response.json()
         weblogItem.value = data
         
-        const resReview = await fetch(`https://api.hypomelk.ir/real/weblog/${route.params.slug}/review/`)
+        const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
         const dataReview = await resReview.json()
         reviews.value = dataReview
         
-        const resSimilarPosts = await fetch(`https://api.hypomelk.ir/real/weblog/${route.params.slug}/similarposts/`)
+        const resSimilarPosts = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/similarposts/`)
         const dataSimilar = await resSimilarPosts.json()
         similarPosts.value = dataSimilar
     });

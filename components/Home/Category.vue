@@ -324,6 +324,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import PN from "persian-number";
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 
@@ -568,7 +571,7 @@ const closeListPrice = () => {
 
 // Count Estate_type
 const countType = async (estateType) => {
-    const response = await fetch(`https://api.hypomelk.ir/real/cases/?estate_type=${estateType}`)
+    const response = await fetch(`${apiRootStore.api}/real/cases/?estate_type=${estateType}`)
     const data = await response.json()
     return data.count
 };

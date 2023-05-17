@@ -183,15 +183,25 @@
 
         <!-- Persons Section -->
         <HomePersons />
+
+        <!-- Call Modal -->
+        <CallModal />
+
+        <!-- Send Message Modal -->
+        <SendMessageModal />
     </main>
 
     <Footer />
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 definePageMeta({
     layout: false
 })
+
 const logo_dark = ref("");
 const homePage_headline = ref("");
 const homePage_headText = ref("");
@@ -200,7 +210,7 @@ const homePage_header = ref("");
 const estateCode = ref("");
 
 onMounted(async () => {
-    const response = await fetch("https://api.hypomelk.ir/real/HomePage/");
+    const response = await fetch(`${apiRootStore.api}/real/HomePage/`);
     const data = await response.json();
     logo_dark.value = data[0].logo_dark;
     homePage_headline.value = data[0].homePage_headline;

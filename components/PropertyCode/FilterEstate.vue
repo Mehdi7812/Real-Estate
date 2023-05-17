@@ -494,6 +494,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 import iranStates from '~/assets/iranStates/iranstates.json';
 
 const dataRes = ref("")
@@ -831,7 +834,7 @@ const openListCity = (divElem) => {
 }
 
 onMounted(async () => {
-    const resMostView = await fetch(`https://api.hypomelk.ir/real/mostviewcase/`)
+    const resMostView = await fetch(`${apiRootStore.api}/real/mostviewcase/`)
     const mostViewData = await resMostView.json()
     dataRes.value = mostViewData
 });

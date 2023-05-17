@@ -267,6 +267,9 @@
 </template>
 
 <script setup>
+import { useApiRoot } from "~/stores/ApiRoot"
+const apiRootStore = useApiRoot()
+
 const customer_name = ref("");
 const phone = ref("");
 const province = ref("");
@@ -304,7 +307,7 @@ const fetchData = () => {
     let minPriceNumber = changeToNumberprice(min_price.value)
     let maxPriceNumber = changeToNumberprice(max_price.value)
 
-    fetch(`https://api.hypomelk.ir/real/vilayab/`, {
+    fetch(`${apiRootStore.api}/real/vilayab/`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
