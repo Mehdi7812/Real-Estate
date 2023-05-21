@@ -1,8 +1,8 @@
 <template>
     <section class="lg:w-4/6">
         <div class="flex flex-col bg-secondary rounded-[31px] rounded-l-none">
-            <!-- <template x-if="!weblogItem">
-                <main class="mostSearch w-4/5 p-5">
+            <!-- Loading Page -->
+            <main v-if="!weblogItem" class="mostSearch w-4/5 p-5">
                 <ul class="o-vertical-spacing o-vertical-spacing--l">
                     <li class="blog-post o-media">
                     <div class="o-media__body">
@@ -21,8 +21,7 @@
                     </div>
                     </li>
                 </ul>
-                </main>
-            </template> -->
+            </main>
             
             <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col gap-5 md:gap-7 p-4 md:p-11">
                 <h3 class="text-right font-bold md:text-[28px]">{{ weblogItem.title }}</h3>
@@ -61,7 +60,7 @@
                                 </span>
                                 <span class="text-graytext ">نوشته شده در: </span>
                             
-                                <p class="text-[9px] md:text-base">{{dateCalc(weblogItem.placed_at)}}</p>
+                                <p class="text-[9px] md:text-base">{{ convertDatas.dateCalc(weblogItem.placed_at) }}</p>
                             </p>
                         </div>
                     </div>
@@ -71,7 +70,7 @@
             <!-- Next And Prev Post-->
             <div class="mt-16 flex justify-between gap-3 lg:px-8 relative">
                 <div class="w-1/2">
-                    <NuxtLink :to="`weblog/${weblogItem.prev_post.slug}`" v-if="weblogItem.prev_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
+                    <NuxtLink :to="`/weblog/${weblogItem.prev_post.slug}`" v-if="weblogItem.prev_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست قبلی</p>
                         <p class="text-[10px] md:text-xl">{{ weblogItem.prev_post.title }}</p>
                     
@@ -89,7 +88,7 @@
                 </div>
 
                 <div class="w-1/2">
-                    <NuxtLink :to="`weblog/${weblogItem.next_post.slug}`" v-if="weblogItem.next_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:bg-primaryOrange/20 dark:hover:bg-bluePrimary/40 hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
+                    <NuxtLink :to="`/weblog/${weblogItem.next_post.slug}`" v-if="weblogItem.next_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:bg-primaryOrange/20 dark:hover:bg-bluePrimary/40 hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست بعدی</p>
                         <p class=" text-[10px] md:text-xl">{{ weblogItem.next_post.title }}</p>
                     
@@ -136,20 +135,20 @@
                         <div v-if="reviews.length >= 1" v-for="comment in reviews" class="flex flex-col gap-5 mb-5">
                             <div class="flex gap-3 pl-16">
                                 <div class="hidden lg:block w-14 h-14 text-white rounded-lg overflow-hidden" :style="`background-color: ${stringToHslColor(comment.name)}`">
-                                    <span class="flex justify-center items-center h-full" x-text="splitName(comment.name)"></span>
+                                    <span class="flex justify-center items-center h-full">{{ splitName(comment.name) }}</span>
                                 </div>
 
                                 <div class="flex flex-col gap-3 w-full">
                                     <div class="flex justify-between items-center">
-                                        <span x-text="comment.name" class="text-xs"></span>
+                                        <span class="text-xs">{{ comment.name }}</span>
                                         <p class="text-[10px] text-graytext">
-                                                <span>{{ dateCalc(comment.review_date) }}</span>
+                                                <span>{{ convertDatas.dateCalc(comment.review_date) }}</span>
                                             نوشته شده
                                         </p>
                                     </div>
 
                                     <div class="flex flex-col bg-primary dark:bg-whiteSecondary px-5 py-4 rounded-lg shadow-sm">
-                                        <p x-text="comment.review" class="pl-6 text-[10px] md:text-sm"></p>
+                                        <p class="pl-6 text-[10px] md:text-sm">{{ comment.review }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +163,7 @@
                                         <div class="flex justify-between items-center">
                                             <p class="flex gap-2 text-xs text-graytext">پاسخ<span class="text-white dark:text-black">{{ comment.user }} </span>به <span x-text="comment.name" class="text-white dark:text-black"></span></p>
                                             <p class="text-[10px] text-graytext">
-                                                    <span>{{ dateCalc(comment.answer_date) }}</span>
+                                                    <span>{{ convertDatas.dateCalc(comment.answer_date) }}</span>
                                                 نوشته شده
                                             </p>
                                         </div>
@@ -180,21 +179,21 @@
 
                     <h4 class="text-center text-lg font-semibold md:text-2xl my-20">کامنت بگذارید</h4>
 
-                    <form id="recaptcha-form" class="flex flex-col gap-3">
+                    <form @submit.prevent="sendComment" id="recaptcha-form" class="flex flex-col gap-3">
                         <div class="flex flex-col lg:flex-row gap-3 lg:justify-between">
                             <div class="flex flex-col-reverse gap-2 lg:w-1/2 group">
-                                <input v-model="name" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" id="fullName" type="text" placeholder="نام کامل" required>
+                                <input v-model="name" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" id="fullName" type="text" placeholder="نام کامل" >
                                 <label class="group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary transition-all duration-300" for="fullName">نام کامل <span id="resultName" class="text-red-500 opacity-0 transition-all duration-300">باید به فارسی نوشته شود</span></label>
                             </div>
 
                             <div class="flex flex-col-reverse gap-2 lg:w-1/2 group">
-                                <input v-model="email" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" id="email" type="email" placeholder="آدرس ایمیل" required>
+                                <input v-model="email" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" id="email" type="email" placeholder="آدرس ایمیل" >
                                 <label class="group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary transition-all duration-300" for="email">آدرس ایمیل <span id="resultEmail" class="text-red-500 opacity-0 transition-all duration-300">را درست وارد کنید</span></label>
                             </div>
                         </div>
 
                         <div class="flex flex-col-reverse gap-2 group">
-                            <textarea v-model="review" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" name="message" id="message" cols="30" rows="10" placeholder="پیام خود را بنویسید..." required></textarea>
+                            <textarea v-model="review" class="formCommentInput bg-transparent outline-none text-xs md:text-sm border-[1px] border-graytext px-5 py-4 rounded-lg group-focus-within:border-primaryOrange dark:group-focus-within:border-bluePrimary transition-all duration-300" name="message" id="message" cols="30" rows="10" placeholder="پیام خود را بنویسید..." ></textarea>
                             <label class="group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary transition-all duration-300" for="message">پیام شما</label>
                         </div>
 
@@ -208,7 +207,7 @@
                 </div>
 
                 <!-- similar Posts -->
-                <div x-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col">
+                <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col">
                     <h4 class="text-center text-lg font-semibold md:text-xl my-20">پست های مرتبط</h4>
 
                     <div class="flex flex-col md:flex-row gap-2">
@@ -224,7 +223,7 @@
                             <p class="text-2xl text-center">پست مشابهی یافت نشد!</p>
                         </div>
                         
-                        <NuxtLink :to="`weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
+                        <NuxtLink :to="`/weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" :key="post.id" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
                             <div class="relative h-60">
                                 <img :src="`${apiRootStore.api}${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
         
@@ -242,7 +241,7 @@
                                         </div>
                                     </div>
         
-                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
+                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(post.placed_at) }}</p>
                                 </div>
         
                                 <div class="absolute bottom-3 right-3 left-3 flex justify-end items-end gap-2">
@@ -267,7 +266,7 @@
                             </div>
 
                             <div class="flex-row-reverse justify-between">
-                                <NuxtLink :to="`propertyCode?user=${weblogItem.user_id}`" class="flex gap-3">
+                                <NuxtLink :to="`/propertyCode?user=${weblogItem.user_id}`" class="flex gap-3">
                                     <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
                                     <div class="flex flex-col justify-around">
                                         <span class="text-[10px] dark:text-black md:text-base">{{ weblogItem.username }}</span>
@@ -297,48 +296,139 @@
 </template>
 
 <script setup>
+import { toast } from 'vue3-toastify';
+
+// Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
-    const route = useRoute()
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
 
-    const weblogItem = ref("")
-    const reviews = ref("")
-    const similarPosts = ref("")
+const route = useRoute()
 
-    const name = ref("")
-    const email = ref("")
-    const review = ref("")
+const weblogItem = ref("")
+const reviews = ref("")
+const similarPosts = ref("")
 
-    const dateCalc = (prevDate) => {
-        let now = new Date().toJSON()
-        let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
-        let days = Math.floor(seconds / (3600*24))
+// Review _ Comment
+const name = ref("")
+const email = ref("")
+const review = ref("")
 
-        if(days <= 0) {
-            return 'امروز'
-        } else if (days >= 1 && days <= 31) {
-            return `${days} روز پیش`
-        } else {
-            return `${Math.round(days/31)} ماه پیش`
-        }
+const splitName = (name) => {
+    let splitedNames = name.split(' ');
+    let characters = []
+    splitedNames.forEach(word => {
+        characters.push(word.split('')[0])
+    })
+    return characters
+};
+const stringToHslColor = (str, s='80', l='40') => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
+    
+    let h = hash % 360;
+    return 'hsl('+h+', '+s+'%, '+l+'%)';
+}
 
-    onMounted(async () => {
-        const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
-        const data = await response.json()
-        weblogItem.value = data
-        
-        const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
-        const dataReview = await resReview.json()
-        reviews.value = dataReview
-        
-        const resSimilarPosts = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/similarposts/`)
-        const dataSimilar = await resSimilarPosts.json()
-        similarPosts.value = dataSimilar
-    });
+const sendComment = () => {
+    validateE()
+    validateN()
 
-    useHead({
-        titleTemplate: `%s-${route.params.slug}`
-    });
+    if(validateE() && validateN()) {
+        fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name.value,
+                email: email.value,
+                review: review.value,
+            })
+        }).then(res => {
+            if(res.status >=200 && res.status < 400) {
+                toast.success('کامنت شما ثبت شد:D.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+
+                name.value = '';
+                email.value = '';
+                review.value = '';
+            } else {
+                toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            }
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err, 'Error')
+            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        })
+    } else {
+        toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    }
+}
+// Review _ Comment
+
+onMounted(async () => {
+    const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
+    const data = await response.json()
+    weblogItem.value = data
+    
+    const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
+    const dataReview = await resReview.json()
+    reviews.value = dataReview
+    
+    const resSimilarPosts = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/similarposts/`)
+    const dataSimilar = await resSimilarPosts.json()
+    similarPosts.value = dataSimilar
+});
+
+useHead({
+    titleTemplate: `${route.params.slug}-%s`
+});
+
+
+// validate Name 
+function validateName (name) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(name);
+};
+function validateN () {
+	const nameInput = document.getElementById('fullName');
+	nameInput.addEventListener('keyup', validateN)
+
+	const result = document.getElementById('resultName')
+	const name = document.getElementById('fullName').value;
+
+	if (validateName(name)) {
+		result.style.opacity = '0';
+		return true;
+	} else {
+		result.style.opacity = '1';
+	}
+	return false;
+}
+// validate Email 
+function validateEmail (email) {
+	const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+};
+function validateE () {
+	const emailInput = document.getElementById('email');
+	emailInput.addEventListener('keyup', validateE)
+
+	const result = document.getElementById('resultEmail')
+	const email = document.getElementById('email').value;
+
+	if (validateEmail(email)) {
+		result.style.opacity = '0';
+		return true;
+	} else {
+		result.style.opacity = '1';
+	}
+	return false;
+}
 </script>

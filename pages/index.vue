@@ -23,7 +23,7 @@
     
             <NuxtLink to="/" class="flex justify-center w-full m-auto" >
                 <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                <!-- <img class="dark:inline-block hidden h-[50px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
             </NuxtLink>
         </nav>
     
@@ -64,7 +64,7 @@
                     
                     <NuxtLink to="/">
                         <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                        <!-- <img class="dark:inline-block hidden h-[50px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                        <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
                     </NuxtLink>
                 </div>
             </div>
@@ -95,10 +95,12 @@
                 </li>
                 <li>
                     <NuxtLink class="block h-[67px]" to="/">
-                        <div class="h-full">
+                        <div v-if="logo_dark" class="h-full">
                             <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark">
-                            <!-- <img class="dark:inline-block hidden w-full h-full object-cover" :src="$store.darkMode.lightLogo"> -->
+                            <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white">
                         </div>
+
+                        <div v-if="!logo_dark" class="h-full w-[67px]"></div>
                     </NuxtLink>
                 </li>
                 <li>
@@ -203,6 +205,7 @@ definePageMeta({
 })
 
 const logo_dark = ref("");
+const logo_white = ref("");
 const homePage_headline = ref("");
 const homePage_headText = ref("");
 const homePagePic = ref("");
@@ -213,9 +216,25 @@ onMounted(async () => {
     const response = await fetch(`${apiRootStore.api}/real/HomePage/`);
     const data = await response.json();
     logo_dark.value = data[0].logo_dark;
+    logo_white.value = data[0].logo_white;
     homePage_headline.value = data[0].homePage_headline;
     homePage_headText.value = data[0].homePage_headText;
     homePagePic.value = data[0].homePage_pic;
     homePage_header.value = data[0].homePage_header;
-})
+
+    // Hambarger Menu Responsive Size
+    const hamburger = document.getElementById("hamburger");
+    const menuMobile = document.getElementById("menu_mobile");
+    const exitBtn = document.getElementById("exitBtn");
+
+    hamburger.addEventListener("click", () => {
+        menuMobile.classList.remove("w-0");
+        menuMobile.classList.add("w-full");
+    }); 
+
+    exitBtn.addEventListener("click", () => {
+        menuMobile.classList.remove("w-full");
+        menuMobile.classList.add("w-0");
+    });
+});
 </script>

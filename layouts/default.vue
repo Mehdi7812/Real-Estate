@@ -22,7 +22,7 @@
     
             <NuxtLink to="/" class="flex justify-center w-full m-auto" >
                 <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                <!-- <img class="dark:inline-block hidden h-[50px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
             </NuxtLink>
     
             <a style="color: var(--primaryColor)" @click="isOpenModalSearch = true" id="resSearchMelkBtn" class="text-primaryOrange dark:text-bluePrimary hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/80 flex items-center justify-end gap-2" href="#">کدملکی
@@ -72,7 +72,7 @@
 
                     <NuxtLink to="/">
                         <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                        <!-- <img class="dark:inline-block hidden h-[50px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                        <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
                     </NuxtLink>
                 </div>
             </div>
@@ -98,9 +98,12 @@
                 <ul class="flex justify-center items-center gap-5 lg:gap-10">
                     <li class="md:ml-5">
                         <NuxtLink class="block h-[67px]" to="/">
-                            <div class="h-full">
+                            <div v-if="logo_dark" class="h-full">
                                 <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark">
-                                <!-- <img class="dark:inline-block hidden w-full h-full object-cover" :src="$store.darkMode.lightLogo"> -->
+                                <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white">
+                            </div>
+                            <div v-if="!logo_dark" class="h-full">
+                                <div class="w-[67px] h-full"></div>
                             </div>
                         </NuxtLink>
                     </li>
@@ -186,7 +189,7 @@
                     <div class="flex flex-col justify-center text-center items-center gap-5 mt-20 md:mt-0 md:w-64 md:text-right md:items-end">
                         <NuxtLink to="/">
                             <img class="inline-block dark:hidden h-[67px] object-cover" :src="logo_dark">
-                            <!-- <img class="dark:inline-block hidden h-[67px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                            <img class="dark:inline-block hidden h-[67px] object-cover" :src="logo_white">
                         </NuxtLink>
                         <p class="px-10 text-graytext md:text-xs md:px-0">{{ pageDescription }}</p>
                         
@@ -272,7 +275,7 @@
                         
                         <NuxtLink to="/">
                             <img class="inline-block dark:hidden h-[65px] object-cover" :src="logo_dark">
-                            <!-- <img class="dark:inline-block hidden h-[65px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                            <img class="dark:inline-block hidden h-[65px] object-cover" :src="logo_white">
                         </NuxtLink>
                         
                         <span id="exitModalBtn" @click ="isOpenModalSearch = false">
@@ -340,10 +343,10 @@ const sendPhoneNumber = () => {
         })
         .catch(err => {
             console.log(err, 'Error')
-            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
         })
     } else {
-        toast.warning('لطفا شماره کنید', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+        toast.warning('لطفا شماره خود را درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
     }
 }
 
@@ -355,12 +358,14 @@ const exitModalBtn = ref()
 const homePage_pic = ref()
 const title = ref()
 const logo_dark = ref()
+const logo_white = ref()
 const pageDescription = ref()
 
 onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
+    const response = await fetch(`${apiRootStore.api}/real/HomePage`)
     const data = await response.json()
     logo_dark.value = data[0].logo_dark
+    logo_white.value = data[0].logo_white
     title.value = data[0].homePage_title
     pageDescription.value = data[0].homePage_text
 
@@ -371,6 +376,7 @@ onMounted(async () => {
     const hamburger = document.getElementById("hamburger");
     const menuMobile = document.getElementById("menu_mobile");
     const exitBtn = document.getElementById("exitBtn");
+
 
     hamburger.addEventListener("click", () => {
         menuMobile.classList.remove("w-0");
@@ -415,15 +421,3 @@ function validateFooterP () {
 	return false;
 };
 </script>
-
-<style>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>

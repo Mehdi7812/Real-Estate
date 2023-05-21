@@ -88,7 +88,7 @@
                     </svg>
 
                     <div>
-                        <span>{{ dateCalc(item.placed_at) }}</span>
+                        <span>{{ convertDatas.dateCalc(item.placed_at) }}</span>
                     </div>
                 </p>
             </div>
@@ -97,24 +97,15 @@
 </template>
 
 <script setup>
+// Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
+
 const dataRes = ref()
-
-const dateCalc = (prevDate) => {
-    let now = new Date().toJSON()
-    let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
-    let days = Math.floor(seconds / (3600*24))
-
-    if(days <= 0) {
-        return 'امروز'
-    } else if (days >= 1 && days <= 31) {
-        return `${days} روز پیش`
-    } else {
-        return `${Math.round(days/31)} ماه پیش`
-    }
-}
 
 onMounted(async () => {
     const response = await fetch(`${apiRootStore.api}/real/MostViewWeblogs/`)

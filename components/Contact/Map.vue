@@ -3,7 +3,7 @@
         <div class="container m-auto">
             <main v-if="!dataRes" class="bg-primary mostSearch flex flex-col rounded-[20px] overflow-hidden md:z-10 md:rounded-[63px]">
                 <div class="relative h-40 sm:h-48 md:h-[448px]">
-                    <img src="/contactMap.webp" class="block w-full h-full">
+                    <img src="" class="block w-full h-full">
                     <span class="rounded-full bg-primaryOrange w-3 h-3 absolute top-1/3 left-1/2 shadow-[0_0_0_4px_rgba(225,100,40,0.4)] md:w-10 md:h-10 md:shadow-[0_0_0_10px_rgba(225,100,40,0.4)] md:top-[45%] md:left-[45%]"></span>
                 </div>
 
@@ -16,7 +16,6 @@
                         </li>
                     </ul>
                 </main>
-
 
                 <div class="flex justify-between o-media__body p-8 md:justify-center md:gap-12 lg:gap-24 xl:gap-36">
                     <a href="#" class="flex o-vertical-spacing flex-col items-center gap-3">
@@ -221,11 +220,11 @@
                     <div class="flex justify-between pl-16 md:pl-0 md:flex-col md:gap-5">
                         <p class="flex flex-col gap-5 md:flex-row md:text-lg">
                             <span>تلفن:</span>
-                            <a :href="`tel:${dataRes.number}`">{{ convertToPersianNumber(dataRes.number) }}</a>
+                            <a :href="`tel:${dataRes.number}`">{{ PN.convertEnToPe(dataRes.number) }}</a>
                         </p>
                         <p class="flex flex-col gap-5 md:flex-row md:text-lg">
                             <span>شماره همراه:</span>
-                            <a :href="`tel:${dataRes.phone_number}`">{{ convertToPersianNumber(dataRes.phone_number) }}</a>
+                            <a :href="`tel:${dataRes.phone_number}`">{{ PN.convertEnToPe(dataRes.phone_number) }}</a>
                         </p>
                     </div>
                 </div>
@@ -296,7 +295,7 @@
                                 />
                             </svg>
 
-                            <span class="text-xs md:text-2xl md:text-graytext">{{ convertToPersianNumber(dataRes.whatsapp) }}</span>
+                            <span class="text-xs md:text-2xl md:text-graytext">{{ PN.convertEnToPe(dataRes.whatsapp) }}</span>
                         </a>
                     </div>
 
@@ -382,14 +381,13 @@
 </template>
 
 <script setup>
+import PN from "persian-number";
+
+// Api Root Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 const dataRes = ref("");
-
-const convertToPersianNumber = (input = '0') => {
-    return input.toString().replace(/[0-9]/g, c => String.fromCharCode(c.charCodeAt(0) + 1728))
-};
 
 onMounted(async () => {
     const response = await fetch(`${apiRootStore.api}/real/ContactUs/`)

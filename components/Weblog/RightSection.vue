@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col lg:w-4/6">
-        <main v-if="!posts.results" class="mostSearch" style="margin-top: 0;">
+        <main v-if="!posts" class="mostSearch" style="margin-top: 0;">
             <ul class="o-vertical-spacing o-vertical-spacing--l">
             <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
                 <div class="o-media__figure md:w-5/12">
@@ -68,8 +68,8 @@
             </ul>
         </main>
 
-        <div class="flex flex-col gap-6">
-            <NuxtLink :to="`/weblog/${data.slug}`" v-if="posts.results" v-for="data in posts.results" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
+        <div class="flex flex-col gap-6" v-if="posts">
+            <NuxtLink :to="`/weblog/${data.slug}`" v-for="data in posts.results" :key="data.id" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
                 <div class="relative md:w-5/12">
                     <img :src="`${apiRootStore.api}/${data.cover}`" class="w-full h-48 object-cover rounded-2xl md:rounded-[31px] overflow-hidden">
 
@@ -83,12 +83,12 @@
                                         <path d="M7.125 1.58337H11.875" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>   
                                 </span>
-                                <p class="text-[10px] absolute right-7 whitespace-nowrap"><span x-text="data.time"></span> دقیقه مطالعه</p>
+                                <p class="text-[10px] absolute right-7 whitespace-nowrap"><span>{{PN.convertEnToPe(data.time)}}</span> دقیقه مطالعه</p>
                             </div>
                         </div>
 
                             <div>
-                                <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
+                                <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(data.placed_at) }}</p>
                             </div>
                     </div>
 
@@ -151,7 +151,7 @@
             </button>
         </div>
 
-        <div v-if="posts.results && posts.results.length < 1" class="flex flex-col items-center gap-6 rounded-lg py-24 bg-secondary dark:bg-[#fcfcfc]">
+        <div v-if="posts && posts.results.length < 1" class="flex flex-col items-center gap-6 rounded-lg py-24 bg-secondary dark:bg-[#fcfcfc]">
             <svg class="dark:hidden" width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M30.7575 0.0100708C14.1997 0.0100708 0.707031 13.5027 0.707031 30.0606C0.707031 46.6184 14.1997 60.1111 30.7575 60.1111C47.3154 60.1111 60.808 46.6184 60.808 30.0606C60.808 13.5027 47.3154 0.0100708 30.7575 0.0100708ZM28.5037 18.0404C28.5037 16.8083 29.5255 15.7866 30.7575 15.7866C31.9896 15.7866 33.0113 16.8083 33.0113 18.0404V33.0656C33.0113 34.2977 31.9896 35.3194 30.7575 35.3194C29.5255 35.3194 28.5037 34.2977 28.5037 33.0656V18.0404ZM33.5222 43.2227C33.3719 43.6133 33.1616 43.9139 32.8911 44.2144C32.5906 44.4848 32.2601 44.6952 31.8995 44.8454C31.5388 44.9957 31.1482 45.0858 30.7575 45.0858C30.3669 45.0858 29.9762 44.9957 29.6156 44.8454C29.255 44.6952 28.9245 44.4848 28.6239 44.2144C28.3535 43.9139 28.1431 43.6133 27.9929 43.2227C27.8426 42.8621 27.7525 42.4714 27.7525 42.0808C27.7525 41.6901 27.8426 41.2995 27.9929 40.9389C28.1431 40.5783 28.3535 40.2477 28.6239 39.9472C28.9245 39.6767 29.255 39.4664 29.6156 39.3161C30.3368 39.0156 31.1782 39.0156 31.8995 39.3161C32.2601 39.4664 32.5906 39.6767 32.8911 39.9472C33.1616 40.2477 33.3719 40.5783 33.5222 40.9389C33.6724 41.2995 33.7626 41.6901 33.7626 42.0808C33.7626 42.4714 33.6724 42.8621 33.5222 43.2227Z" fill="#EDEDED"/>
             </svg>
@@ -167,8 +167,15 @@
 </template>
 
 <script setup>
+// Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
+
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
+
+import PN from "persian-number";
 
 const route = useRoute()
 
@@ -190,20 +197,6 @@ const seeMore = (nextPage) => {
             // btn.style.cursor = 'pointer'
         })
 };
-
-const dateCalc = (prevDate) => {
-    let now = new Date().toJSON()
-    let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
-    let days = Math.floor(seconds / (3600*24))
-
-    if(days <= 0) {
-        return 'امروز'
-    } else if (days >= 1 && days <= 31) {
-        return `${days} روز پیش`
-    } else {
-        return `${Math.round(days/31)} ماه پیش`
-    }
-}
 
 const { data: posts, pending, refresh, error } = await useFetch(() => `${apiRootStore.api}/real/weblog/?search=${route.query.search ? route.query.search : ''}&weblog_type=${route.query.weblog_type ? route.query.weblog_type : ''}`);
 </script>

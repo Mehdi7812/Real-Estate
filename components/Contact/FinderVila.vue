@@ -6,10 +6,10 @@
             </h2>
             <div class="bg-secondary dark:bg-[#f0f3f7] flex justify-center py-4 rounded-2xl md:rounded-[50px] relative overflow-hidden">
                 <div style="background-color: var(--primaryColor-20)" class="absolute top-0 bottom-0 right-0 left-0"></div>
-                <form id="recaptcha-form" x-data="villaYab" class=" z-[1] flex flex-col md:w-2/3">
-                    <div x-data id="finderInputs" class="flex flex-col gap-4 py-8 p-6 md:text-lg md:font-medium xl:flex-row xl:flex-wrap xl:gap-10">
+                <form id="recaptcha-form" class=" z-[1] flex flex-col md:w-2/3">
+                    <div id="finderInputs" class="flex flex-col gap-4 py-8 p-6 md:text-lg md:font-medium xl:flex-row xl:flex-wrap xl:gap-10">
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
-                            <input v-model="customer_name" class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300" type="text" id="name" required/>
+                            <input v-model="customer_name" class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300" type="text" id="name" />
                             <label class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="name">نام و نام خانوادگی</label>
                                 <span id="resultName" class="absolute h-0 overflow-hidden transition-all duration-300 -bottom-8 text-red-700">لطفا نام خود را درست وارد کنید</span>
@@ -18,7 +18,7 @@
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
                             <input v-model="phone" id="phoneNumber" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                 class="border-b-2 border-graytext bg-transparent autofill:bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" required/>
+                                type="text" />
                             <label class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="phoneNumber">شماره همراه</label>
                                 <span id="resultPhone" class="absolute h-0 overflow-hidden transition-all duration-300 -bottom-8 text-red-700">لطفا شماره همراه خود را درست وارد کنید</span>
@@ -27,7 +27,7 @@
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[95%] relative md:h-[66px]">
                             <input v-model="province"
                                 class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" id="ostan" required/>
+                                type="text" id="ostan" />
                             <label
                                 class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="ostan">استان</label>
@@ -37,7 +37,7 @@
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
                             <input v-model="city"
                                 class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" id="city" required/>
+                                type="text" id="city" />
                             <label
                                 class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="city">شهرستان</label>
@@ -47,7 +47,7 @@
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
                             <input v-model="region"
                                 class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" id="mantaghe" required/>
+                                type="text" id="mantaghe" />
                             <label
                                 class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="mantaghe">منطقه</label>
@@ -56,7 +56,7 @@
 
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
                             <input x-ref="minPrice" v-model="min_price" x-mask:dynamic="$money($input)" class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" required id="minPrice"/>
+                                type="text"  id="minPrice"/>
                             <label
                                 class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="minPrice">کمترین قیمت به تومان</label>
@@ -65,7 +65,7 @@
 
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
                             <input v-model="max_price" x-mask:dynamic="$money($input)" class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300"
-                                type="text" id="maxPrice" required/>
+                                type="text" id="maxPrice" />
                             <label class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="maxPrice">بیشترین قیمت به تومان</label>
                                 <span id="resultMaxPrice" class="absolute h-0 overflow-hidden -bottom-8 transition-all duration-300 text-red-700">لطفا فقط از اعداد استفاده کنید</span>
@@ -206,7 +206,7 @@
                             </div>
                         </div> -->
                         
-                        <input style="background-color: var(--primaryColor)" @click="fetchData" type="submit" class="cursor-pointer btn hover:opacity-80 w-full dark:bg-bluePrimary text-xs md:max-w-sm md:text-lg md:font-bold md:h-14 md:m-auto transition-all duration-300" value="ثبت اطلاعات">
+                        <button style="background-color: var(--primaryColor)" @click.prevent="fetchData" type="submit" class="cursor-pointer btn hover:opacity-80 w-full dark:bg-bluePrimary text-xs md:max-w-sm md:text-lg md:font-bold md:h-14 md:m-auto transition-all duration-300">ثبت اطلاعات</button>
                     </div>
                 </form>
 
@@ -270,6 +270,8 @@
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
+import { toast } from 'vue3-toastify';
+
 const customer_name = ref("");
 const phone = ref("");
 const province = ref("");
@@ -297,39 +299,61 @@ const clearInputs = () => {
 };
 
 const fetchData = () => {
-    let ele = document.getElementsByName('type');
-				  
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
-        demand_type.value = ele[i].value
-    };
+    validateN();
+    validateP();
+    validateO();
+    validateC();
+    validateR();
+    validateMP();
+    validateMxP();
+    validateT();
 
-    let minPriceNumber = changeToNumberprice(min_price.value)
-    let maxPriceNumber = changeToNumberprice(max_price.value)
-
-    fetch(`${apiRootStore.api}/real/vilayab/`, {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            customer_name: customer_name.value,
-            phone: phone.value,
-            province: province.value,
-            city: city.value,
-            region: region.value,
-            demand_type: demand_type.value,
-            min_price: minPriceNumber,
-            max_price: maxPriceNumber,
-            text: text.value,
-        })
-    })
-    .then(res => {
-        console.log(res.json());
-        if(res.status >=200 && res.status < 400) {
-            clearInputs()
+    if(validateN() && validateP() && validateO() && validateC() && validateR() && validateMP() && validateMxP() && validateT()) {
+        let minPriceNumber = changeToNumberprice(min_price.value)
+        let maxPriceNumber = changeToNumberprice(max_price.value)
+    
+        if(minPriceNumber >= maxPriceNumber) {
+            toast.warning('حداقلِ قیمت نباید از حداکثر قیمت بیشتر باشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            return
         }
-    })
+        let ele = document.getElementsByName('type');
+                      
+        for(let i = 0; i < ele.length; i++) {
+            if(ele[i].checked)
+            demand_type.value = ele[i].value
+        };
+    
+        fetch(`${apiRootStore.api}/real/vilayab/`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                customer_name: customer_name.value,
+                phone: phone.value,
+                province: province.value,
+                city: city.value,
+                region: region.value,
+                demand_type: demand_type.value,
+                min_price: minPriceNumber,
+                max_price: maxPriceNumber,
+                text: text.value,
+            })
+        })
+        .then(res => {
+            console.log(res.json());
+            if(res.status >=200 && res.status < 400) {
+                toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                clearInputs()
+            } else {
+                toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            }
+        }). catch(err => {
+            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        })
+    } else {
+        toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    }
 }
 
 onMounted(() => {
@@ -378,6 +402,165 @@ onMounted(() => {
     });
     
 });
+
+
+// Validate Form Vila Yab
+// validate Name 
+function validateName (name) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(name);
+};
+function validateN () {
+	const nameInput = document.getElementById('name');
+	nameInput.addEventListener('keyup', validateN)
+
+	const result = document.getElementById('resultName')
+	const name = document.getElementById('name').value;
+
+	if (validateName(name)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Phone Number
+function validatePhoneNumber (phone) {
+	const re = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+	return re.test(phone);
+};
+function validateP () {
+	const phoneInput = document.getElementById('phoneNumber');
+	phoneInput.addEventListener('keyup', validateP)
+
+	const result = document.getElementById('resultPhone')
+	const phone = document.getElementById('phoneNumber').value;
+
+	if (validatePhoneNumber(phone)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Ostan 
+function validateOstan (ostan) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(ostan);
+};
+function validateO () {
+	const ostanInput = document.getElementById('ostan');
+	ostanInput.addEventListener('keyup', validateO)
+
+	const result = document.getElementById('resultOstan')
+	const ostan = document.getElementById('ostan').value;
+
+	if (validateOstan(ostan)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate city 
+function validateCity (city) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(city);
+};
+function validateC () {
+	const cityInput = document.getElementById('city');
+	cityInput.addEventListener('keyup', validateC)
+
+	const result = document.getElementById('resultCity')
+	const city = document.getElementById('city').value;
+
+	if (validateCity(city)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Region 
+function validateRegion (region) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(region);
+};
+function validateR () {
+	const regionInput = document.getElementById('mantaghe');
+	regionInput.addEventListener('keyup', validateR)
+
+	const result = document.getElementById('resultRegion')
+	const region = document.getElementById('mantaghe').value;
+
+	if (validateRegion(region)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate min Price 
+function validateMinPrice (minPrice) {
+	const re = /\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?/;
+	return re.test(minPrice);
+};
+function validateMP () {
+	const minPriceInput = document.getElementById('minPrice');
+	minPriceInput.addEventListener('keyup', validateMP)
+
+	const result = document.getElementById('resultMinPrice')
+	const minPrice = document.getElementById('minPrice').value;
+
+	if (validateMinPrice(minPrice)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Max Price 
+function validateMaxPrice (maxPrice) {
+	const re = /\d{1,3}(?:[.,]\d{3})*(?:[.,]\d{2})?/;
+	return re.test(maxPrice);
+};
+function validateMxP () {
+	const maxPriceInput = document.getElementById('maxPrice');
+	maxPriceInput.addEventListener('keyup', validateMxP)
+
+	const result = document.getElementById('resultMaxPrice')
+	const maxPrice = document.getElementById('maxPrice').value;
+
+	if (validateMaxPrice(maxPrice)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Text 
+function validateText (text) {
+	const re = /^[آ-ی\s]{2,30}$/;
+	return re.test(text);
+};
+function validateT () {
+	const textInput = document.getElementById('text');
+	textInput.addEventListener('keyup', validateT)
+
+	const result = document.getElementById('resultText')
+	const text = document.getElementById('text').value;
+
+	if (validateText(text)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// Validate Form Vila Yab
 </script>
 
 <style scoped>
@@ -385,15 +568,11 @@ onMounted(() => {
   background: var(--primaryColor)!important;
 }
 
-#report1:checked + label:after, #report2:checked + label:after, #report3:checked + label:after, #report4:checked + label:after, #report5:checked + label:after {
-  background: var(--primaryColor)!important;
-}
-
-#vila + label:before, #maghaze + label:before, #aparteman + label:before, #vilaBagh + label:before, #bagh + label:before, #vilaFlat + label:before, #vilaDoblex + label:before,#vilaThreeblex + label:before, #report1 + label:before, #report2 + label:before, #report3 + label:before, #report4 + label:before, #report5 + label:before {
+#vila + label:before, #maghaze + label:before, #aparteman + label:before, #vilaBagh + label:before, #bagh + label:before, #vilaFlat + label:before, #vilaDoblex + label:before,#vilaThreeblex + label:before {
   right: 0;
 }
 
-#vila:checked + label:before, #maghaze:checked + label:before, #aparteman:checked + label:before, #vilaBagh:checked + label:before, #bagh:checked + label:before, #vilaFlat:checked + label:before, #vilaDoblex:checked + label:before, #vilaThreeblex:checked + label:before, #report1:checked + label:before, #report2:checked + label:before, #report3:checked + label:before, #report4:checked + label:before, #report5:checked + label:before {
+#vila:checked + label:before, #maghaze:checked + label:before, #aparteman:checked + label:before, #vilaBagh:checked + label:before, #bagh:checked + label:before, #vilaFlat:checked + label:before, #vilaDoblex:checked + label:before, #vilaThreeblex:checked + label:before {
   right: 0;
   z-index: 10;
 }

@@ -148,7 +148,7 @@ const apiRootStore = useApiRoot()
 import PN from "persian-number";
 
 const favouritePlaceCount = async (city) => {
-    const response = await fetch(`${apiRootStore}/real/cases/?city=${city}`)
+    const response = await fetch(`${apiRootStore.api}/real/cases/?city=${city}`)
     const data = await response.json()
     return data.count
 };
@@ -160,11 +160,11 @@ const count3 = ref(0)
 const count4 = ref(0)
 const count5 = ref(0)
 
-countLargeImg.value = await favouritePlaceCount('نوشهر')
-count1.value = await favouritePlaceCount('متل قو')
-count2.value = await favouritePlaceCount('نور')
-count3.value = await favouritePlaceCount('چمستان')
-count4.value = await favouritePlaceCount('سرخ رود')
-count5.value = await favouritePlaceCount('نوشهر')
+countLargeImg.value = await favouritePlaceCount('نوشهر');
+count1.value = await favouritePlaceCount('متل قو');
+count2.value = await favouritePlaceCount('نور');
+count3.value = await favouritePlaceCount('چمستان');
+count4.value = await favouritePlaceCount('سرخ رود');
+count5.value = await favouritePlaceCount('نوشهر');
 
 </script>

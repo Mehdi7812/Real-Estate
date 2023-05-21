@@ -20,5 +20,5 @@ const bannerImg = ref()
 
 const setHeaderImg = (img) => {
     bannerImg.value = img
-}
+};
 </script>

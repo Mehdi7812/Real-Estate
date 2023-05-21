@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
         
-                                    <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
+                                    <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(data.placed_at) }}</p>
                                 </div>
         
                                 <div class="absolute dark:text-white bottom-3 z-10 right-3 left-3 flex justify-end items-end gap-2">
@@ -170,24 +170,15 @@
 </template>
 
 <script setup>
+// Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
+
 const dataRes = ref()
-
-const dateCalc = (prevDate) => {
-    let now = new Date().toJSON()
-    let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
-    let days = Math.floor(seconds / (3600*24))
-
-    if(days <= 0) {
-        return 'امروز'
-    } else if (days >= 1 && days <= 31) {
-        return `${days} روز پیش`
-    } else {
-        return `${Math.round(days/31)} ماه پیش`
-    }
-}
 
 onMounted(async () => {
     const swiperWeblog1 = new Swiper(".swiperWeblog", {

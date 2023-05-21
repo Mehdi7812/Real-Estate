@@ -17,7 +17,7 @@
     
     <section>
         <div class="container m-auto md:my-32 px-4">
-            <a href="propertyCode.html?unit_price__gte=7000000000" class="relative mb-10 md:my-28 rounded-xl overflow-hidden dark:text-white lg:mt-0 block">
+            <a href="/propertyCode?unit_price__gte=7000000000" class="relative mb-10 md:my-28 rounded-xl overflow-hidden dark:text-white lg:mt-0 block">
                 <div class=" w-full h-[117px] lg:h-[223px]">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
 

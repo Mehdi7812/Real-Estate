@@ -4,6 +4,6 @@
 
 <script setup>
     useHead({
-        titleTemplate: "%s-وبلاگ"
+        titleTemplate: "وبلاگ-%s"
     });
 </script>

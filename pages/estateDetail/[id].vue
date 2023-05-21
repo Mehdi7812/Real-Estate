@@ -169,7 +169,7 @@
                                         <path d="M17.4173 9.50004C17.4173 13.87 13.8707 17.4167 9.50065 17.4167C5.13065 17.4167 1.58398 13.87 1.58398 9.50004C1.58398 5.13004 5.13065 1.58337 9.50065 1.58337C13.8707 1.58337 17.4173 5.13004 17.4173 9.50004Z" stroke="gray" stroke-opacity="0.39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M12.437 12.0175L9.98286 10.5529C9.55536 10.2996 9.20703 9.69002 9.20703 9.19127V5.94543" stroke="gray" stroke-opacity="0.39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    {{ PN.convertEnToPe(dateCalc(postItem.placed_at)) }}
+                                    {{ PN.convertEnToPe(convertDatas.dateCalc(postItem.placed_at)) }}
                                 </p>
 
                                 <!-- view -->
@@ -183,7 +183,7 @@
                             </div>
 
                             <!-- Share -->
-                            <div class="cursor-pointer md:mr-auto" @click="isOpenShareModal = true">
+                            <div class="cursor-pointer md:mr-auto" @click="openShareModal">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3.96401 13.0228C5.66031 13.0228 7.03544 11.6427 7.03544 9.94035C7.03544 8.23796 5.66031 6.85791 3.96401 6.85791C2.2677 6.85791 0.892578 8.23796 0.892578 9.94035C0.892578 11.6427 2.2677 13.0228 3.96401 13.0228Z" stroke="gray" stroke-width="1.5" stroke-linejoin="round"/>
                                     <path d="M16.0363 7.06099C17.7326 7.06099 19.1077 5.68094 19.1077 3.97856C19.1077 2.27617 17.7326 0.896118 16.0363 0.896118C14.34 0.896118 12.9648 2.27617 12.9648 3.97856C12.9648 5.68094 14.34 7.06099 16.0363 7.06099Z" stroke="gray" stroke-width="1.5" stroke-linejoin="round"/>
@@ -195,95 +195,97 @@
                         
 
                         <!-- share Modal -->
-                        <div v-show="false" x-transition class="fixed top-0 left-0 right-0 bottom-0 flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm">
-                            <div @click.outside="isOpenShareModal = false" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[46px] p-8 pt-5">
-                                <div class="flex justify-between mr-auto">
-                                    <svg @click="isOpenShareModal = false" class="dark:inline-block hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="black"/>
-                                        <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="black"/>
-                                    </svg>
-                                    <svg @click="isOpenShareModal = false" class="dark:hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="#EBEBEB"/>
-                                        <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="#EBEBEB"/>
-                                    </svg>
-                                </div>
-                                
-                                <div x-data="{locationHref: window.location.href}" class="flex flex-col items-center gap-6 -mt-14">
-                                    <h3 class="text-[26px] font-semibold">اشتراک گذاری</h3>
-                                    <p class="text-lg text-graytext">این ملک را با دیگران به اشتراک بگذارید</p>
-                                    <div>
-                                        <svg class="dark:hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#343434"/>
-                                            <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#343434"/>
-                                            <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M45.2603 36.6964C43.3032 33.2714 44.4449 27.5223 45.2603 25.0758V24.4642H56.8801C56.6762 30.988 56.2685 44.2803 56.2685 45.2589C56.2685 46.2374 53.0066 45.6666 51.3756 45.2589C50.1527 43.8318 47.2175 40.1214 45.2603 36.6964Z" fill="#343434"/>
-                                            <path d="M57.7105 22.8331C57.2538 24.5456 57.0827 26.4294 57.0827 28.5415V45.6665H28.541V34.2498C28.541 27.9706 33.6785 22.8331 39.9577 22.8331H57.7105Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M79.916 45.6669V74.2085" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M102.75 45.6669V74.2085" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path style="fill: var(--primaryColor)" d="M91.7408 94.1875H79.5086C76.1448 94.1875 73.3926 97.0498 73.3926 100.548V125.991H97.8569V100.548C97.8569 97.0498 95.1046 94.1875 91.7408 94.1875Z" fill="#519FFF"/>
-                                            <path d="M97.041 97.0419H85.6243C82.4848 97.0419 79.916 99.6106 79.916 102.75V125.584H102.749V102.75C102.749 99.6106 100.181 97.0419 97.041 97.0419Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M34.25 74.2081V97.0415" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <Transition>
+                            <div v-show="isOpenShareModal" class="fixed top-0 left-0 right-0 bottom-0 flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm">
+                                <div v-click-out-side="closeShareModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[46px] p-8 pt-5">
+                                    <div class="flex justify-between mr-auto">
+                                        <svg @click="closeShareModal" class="dark:inline-block hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="black"/>
+                                            <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="black"/>
                                         </svg>
-
-                                        <svg class="dark:inline-block hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#E9EDFC"/>
-                                            <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#E9EDFC"/>
-                                            <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M45.2603 36.6964C43.3032 33.2714 44.4449 27.5223 45.2603 25.0758V24.4642H56.8801C56.6762 30.988 56.2685 44.2803 56.2685 45.2589C56.2685 46.2374 53.0066 45.6666 51.3756 45.2589C50.1527 43.8318 47.2175 40.1214 45.2603 36.6964Z" fill="#E9EDFC"/>
-                                            <path d="M57.7105 22.8331C57.2538 24.5456 57.0827 26.4294 57.0827 28.5415V45.6665H28.541V34.2498C28.541 27.9706 33.6785 22.8331 39.9577 22.8331H57.7105Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M79.916 45.6669V74.2085" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M102.75 45.6669V74.2085" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path style="fill: var(--primaryColor)" d="M91.7408 94.1875H79.5086C76.1448 94.1875 73.3926 97.0498 73.3926 100.548V125.991H97.8569V100.548C97.8569 97.0498 95.1046 94.1875 91.7408 94.1875Z" fill="#519FFF"/>
-                                            <path d="M97.041 97.0419H85.6243C82.4848 97.0419 79.916 99.6106 79.916 102.75V125.584H102.749V102.75C102.749 99.6106 100.181 97.0419 97.041 97.0419Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M34.25 74.2081V97.0415" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <svg @click="closeShareModal" class="dark:hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="#EBEBEB"/>
+                                            <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="#EBEBEB"/>
                                         </svg>
                                     </div>
-                                    <div class="flex p-3 justify-between items-center bg-primary dark:bg-[#DFDFDF] border-2 border-graytext w-full rounded-[21px]">
-                                        <div @click="$refs.postLink.focus();$refs.postLink.select();document.execCommand('copy'); $refs.copyLink.innerHTML='کپی شد';setTimeout(() => {$refs.copyLink.innerHTML='کپی لینک'}, 3000);" x-ref="copyLink" style="background-color: var(--primaryColor)" class="hover:opacity-80 btn cursor-pointer whitespace-nowrap">کپی لینک</div>
-                                        <input type="text" x-model="locationHref" x-ref="postLink" class="text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
-                                    </div>
-
-                                    <div class="flex justify-around items-center text-center w-full">
-                                        <a target="_blank" :href="`https://telegram.me/share/?url=${locationHref}`" class="flex flex-col gap-3">
-                                            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M54.5 28C54.5 42.6355 42.6355 54.5 28 54.5C13.3645 54.5 1.5 42.6355 1.5 28C1.5 13.3645 13.3645 1.5 28 1.5C42.6355 1.5 54.5 13.3645 54.5 28Z" stroke="url(#paint0_linear_954_3705)" stroke-width="3"/>
-                                                <path d="M11.6516 27.7571L30.5071 19.9883C32.3684 19.1791 38.6805 16.5895 38.6805 16.5895C38.6805 16.5895 41.5938 15.4565 41.351 18.208C41.2701 19.3409 40.6227 23.3062 39.9753 27.5952L37.9522 40.3004C37.9522 40.3004 37.7903 42.1617 36.4146 42.4854C35.0389 42.8091 32.773 41.3525 32.3684 41.0288C32.0447 40.786 26.299 37.1444 24.1949 35.364C23.6285 34.8785 22.9811 33.9074 24.2759 32.7744C27.1892 30.1039 30.6689 26.786 32.773 24.682C33.7441 23.7109 34.7152 21.445 30.6689 24.1964L19.2585 31.8843C19.2585 31.8843 17.9637 32.6935 15.536 31.9652C13.1082 31.2369 10.2759 30.2658 10.2759 30.2658C10.2759 30.2658 8.33367 29.0519 11.6516 27.7571Z" fill="url(#paint1_linear_954_3705)"/>
-                                                <defs>
-                                                <linearGradient id="paint0_linear_954_3705" x1="37.3355" y1="9.33549" x2="23.3355" y2="42" gradientUnits="userSpaceOnUse">
-                                                <stop stop-color="#37AEE2"/>
-                                                <stop offset="1" stop-color="#1E96C8"/>
-                                                </linearGradient>
-                                                <linearGradient id="paint1_linear_954_3705" x1="30.8151" y1="20.7217" x2="25.1254" y2="36.7767" gradientUnits="userSpaceOnUse">
-                                                <stop stop-color="#37AEE2"/>
-                                                <stop offset="1" stop-color="#1E96C8"/>
-                                                </linearGradient>
-                                                </defs>
+                                    
+                                    <div class="flex flex-col items-center gap-6 -mt-14">
+                                        <h3 class="text-[26px] font-semibold">اشتراک گذاری</h3>
+                                        <p class="text-lg text-graytext">این ملک را با دیگران به اشتراک بگذارید</p>
+                                        <div>
+                                            <svg class="dark:hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#343434"/>
+                                                <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#343434"/>
+                                                <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M45.2603 36.6964C43.3032 33.2714 44.4449 27.5223 45.2603 25.0758V24.4642H56.8801C56.6762 30.988 56.2685 44.2803 56.2685 45.2589C56.2685 46.2374 53.0066 45.6666 51.3756 45.2589C50.1527 43.8318 47.2175 40.1214 45.2603 36.6964Z" fill="#343434"/>
+                                                <path d="M57.7105 22.8331C57.2538 24.5456 57.0827 26.4294 57.0827 28.5415V45.6665H28.541V34.2498C28.541 27.9706 33.6785 22.8331 39.9577 22.8331H57.7105Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M79.916 45.6669V74.2085" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M102.75 45.6669V74.2085" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path style="fill: var(--primaryColor)" d="M91.7408 94.1875H79.5086C76.1448 94.1875 73.3926 97.0498 73.3926 100.548V125.991H97.8569V100.548C97.8569 97.0498 95.1046 94.1875 91.7408 94.1875Z" fill="#519FFF"/>
+                                                <path d="M97.041 97.0419H85.6243C82.4848 97.0419 79.916 99.6106 79.916 102.75V125.584H102.749V102.75C102.749 99.6106 100.181 97.0419 97.041 97.0419Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M34.25 74.2081V97.0415" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
-
-                                            <span>تلگرام</span>
-                                        </a>
-                                        <a target="_blank" :href="`https://wa.me/?text=${locationHref}`" class="flex flex-col gap-3">
-                                            <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18.6868 55.7916C22.7494 58.2291 27.6244 59.5833 32.4994 59.5833C47.3952 59.5833 59.5827 47.3958 59.5827 32.5C59.5827 17.6041 47.3952 5.41663 32.4994 5.41663C17.6035 5.41663 5.41602 17.6041 5.41602 32.5C5.41602 37.375 6.77018 41.9791 8.93685 46.0416L6.60888 54.9953C6.08151 57.0237 7.95894 58.8567 9.9741 58.281L18.6868 55.7916Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M44.6875 40.2147C44.6875 40.6534 44.5899 41.1044 44.3824 41.5431C44.1749 41.9819 43.9063 42.3963 43.5524 42.7863C42.9543 43.4444 42.2952 43.9197 41.5506 44.2244C40.8183 44.5291 40.0249 44.6875 39.1705 44.6875C37.9255 44.6875 36.595 44.395 35.1914 43.7978C33.7877 43.2006 32.384 42.3963 30.9926 41.3847C29.5889 40.3609 28.2585 39.2275 26.9891 37.9722C25.7319 36.7047 24.5967 35.3763 23.5837 33.9869C22.5828 32.5975 21.7772 31.2081 21.1913 29.8309C20.6054 28.4416 20.3125 27.1131 20.3125 25.8456C20.3125 25.0169 20.459 24.2247 20.7519 23.4934C21.0448 22.75 21.5087 22.0675 22.1556 21.4581C22.9367 20.6903 23.7912 20.3125 24.6944 20.3125C25.0361 20.3125 25.3779 20.3856 25.6831 20.5319C26.0004 20.6781 26.2811 20.8975 26.5008 21.2144L29.3326 25.1997C29.5523 25.5044 29.711 25.7847 29.8208 26.0528C29.9307 26.3088 29.9917 26.5647 29.9917 26.7963C29.9917 27.0888 29.9063 27.3812 29.7354 27.6616C29.5767 27.9419 29.3448 28.2344 29.0519 28.5269L28.1242 29.4897C27.99 29.6237 27.9289 29.7822 27.9289 29.9772C27.9289 30.0747 27.9411 30.16 27.9655 30.2575C28.0022 30.355 28.0388 30.4281 28.0632 30.5012C28.2829 30.9034 28.6613 31.4275 29.1983 32.0613C29.7476 32.695 30.3335 33.3409 30.9682 33.9869C31.6273 34.6328 32.262 35.23 32.9089 35.7784C33.5436 36.3147 34.0684 36.6803 34.4834 36.8997C34.5445 36.9241 34.6177 36.9606 34.7031 36.9972C34.8008 37.0337 34.8984 37.0459 35.0083 37.0459C35.2158 37.0459 35.3745 36.9728 35.5087 36.8388L36.4364 35.9247C36.7415 35.62 37.0345 35.3884 37.3152 35.2422C37.5959 35.0716 37.8767 34.9862 38.1818 34.9862C38.4137 34.9862 38.6578 35.035 38.9264 35.1447C39.1949 35.2544 39.4756 35.4128 39.7808 35.62L43.8209 38.4841C44.1382 38.7034 44.3579 38.9594 44.4922 39.2641C44.6143 39.5687 44.6875 39.8734 44.6875 40.2147Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10"/>
+    
+                                            <svg class="dark:inline-block hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#E9EDFC"/>
+                                                <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#E9EDFC"/>
+                                                <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M45.2603 36.6964C43.3032 33.2714 44.4449 27.5223 45.2603 25.0758V24.4642H56.8801C56.6762 30.988 56.2685 44.2803 56.2685 45.2589C56.2685 46.2374 53.0066 45.6666 51.3756 45.2589C50.1527 43.8318 47.2175 40.1214 45.2603 36.6964Z" fill="#E9EDFC"/>
+                                                <path d="M57.7105 22.8331C57.2538 24.5456 57.0827 26.4294 57.0827 28.5415V45.6665H28.541V34.2498C28.541 27.9706 33.6785 22.8331 39.9577 22.8331H57.7105Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M79.916 45.6669V74.2085" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M102.75 45.6669V74.2085" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path style="fill: var(--primaryColor)" d="M91.7408 94.1875H79.5086C76.1448 94.1875 73.3926 97.0498 73.3926 100.548V125.991H97.8569V100.548C97.8569 97.0498 95.1046 94.1875 91.7408 94.1875Z" fill="#519FFF"/>
+                                                <path d="M97.041 97.0419H85.6243C82.4848 97.0419 79.916 99.6106 79.916 102.75V125.584H102.749V102.75C102.749 99.6106 100.181 97.0419 97.041 97.0419Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M34.25 74.2081V97.0415" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
-                                            
-                                            <span>واتساپ</span>
-                                        </a>
-                                        <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=${locationHref}`" class="flex flex-col gap-3">
-                                            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M20.8694 38.9401C20.4443 40.7672 20.965 43.4033 21.1497 45.0769V47L22.2408 45.5201C23.1025 44.1151 24.3909 41.8119 24.8682 39.9746C25.1252 38.9848 26.1851 34.9459 26.1851 34.9459C26.8745 36.2614 28.8882 37.3749 31.0304 37.3749C37.4063 37.3749 42 31.5077 42 24.2174C42 17.2291 36.3011 12 28.9678 12C19.8451 12 15 18.1282 15 24.801C15 27.9036 16.6507 31.7663 19.2909 32.996C19.6916 33.1826 19.9058 33.1004 19.9979 32.7132C20.0679 32.4191 20.4246 30.9823 20.585 30.3142C20.6365 30.1004 20.6112 29.9169 20.4384 29.7075C19.5651 28.6476 18.8652 26.6981 18.8652 24.8799C18.8652 20.2144 22.3957 15.6999 28.4107 15.6999C33.6039 15.6999 37.2408 19.2411 37.2408 24.306C37.2408 30.0284 34.3527 33.9927 30.5955 33.9927C28.5202 33.9927 26.967 32.2757 27.465 30.1703C28.061 27.6556 29.2158 24.942 29.2158 23.127C29.2158 21.5023 28.3446 20.1473 26.5411 20.1473C24.4197 20.1473 22.7159 22.3433 22.7159 25.2847C22.7159 27.1581 23.3483 28.4253 23.3483 28.4253C23.3483 28.4253 21.2536 37.2891 20.8694 38.9401Z" fill="#E60023"/>
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M28 53C41.8071 53 53 41.8071 53 28C53 14.1929 41.8071 3 28 3C14.1929 3 3 14.1929 3 28C3 41.8071 14.1929 53 28 53ZM28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="#E60023"/>
-                                            </svg>    
-
-                                            <span>پینترست</span>
-                                        </a>
+                                        </div>
+                                        <div class="flex p-3 justify-between items-center bg-primary dark:bg-[#DFDFDF] border-2 border-graytext w-full rounded-[21px]">
+                                            <div @click="copyShareLink($refs.postLink, $refs.copyLink)" ref="copyLink" style="background-color: var(--primaryColor)" class="hover:opacity-80 btn cursor-pointer whitespace-nowrap">کپی لینک</div>
+                                            <input type="text" :value="route.fullPath" ref="postLink" class="text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
+                                        </div>
+    
+                                        <div class="flex justify-around items-center text-center w-full">
+                                            <a target="_blank" :href="`https://telegram.me/share/?url=${route.fullPath}`" class="flex flex-col gap-3">
+                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M54.5 28C54.5 42.6355 42.6355 54.5 28 54.5C13.3645 54.5 1.5 42.6355 1.5 28C1.5 13.3645 13.3645 1.5 28 1.5C42.6355 1.5 54.5 13.3645 54.5 28Z" stroke="url(#paint0_linear_954_3705)" stroke-width="3"/>
+                                                    <path d="M11.6516 27.7571L30.5071 19.9883C32.3684 19.1791 38.6805 16.5895 38.6805 16.5895C38.6805 16.5895 41.5938 15.4565 41.351 18.208C41.2701 19.3409 40.6227 23.3062 39.9753 27.5952L37.9522 40.3004C37.9522 40.3004 37.7903 42.1617 36.4146 42.4854C35.0389 42.8091 32.773 41.3525 32.3684 41.0288C32.0447 40.786 26.299 37.1444 24.1949 35.364C23.6285 34.8785 22.9811 33.9074 24.2759 32.7744C27.1892 30.1039 30.6689 26.786 32.773 24.682C33.7441 23.7109 34.7152 21.445 30.6689 24.1964L19.2585 31.8843C19.2585 31.8843 17.9637 32.6935 15.536 31.9652C13.1082 31.2369 10.2759 30.2658 10.2759 30.2658C10.2759 30.2658 8.33367 29.0519 11.6516 27.7571Z" fill="url(#paint1_linear_954_3705)"/>
+                                                    <defs>
+                                                    <linearGradient id="paint0_linear_954_3705" x1="37.3355" y1="9.33549" x2="23.3355" y2="42" gradientUnits="userSpaceOnUse">
+                                                    <stop stop-color="#37AEE2"/>
+                                                    <stop offset="1" stop-color="#1E96C8"/>
+                                                    </linearGradient>
+                                                    <linearGradient id="paint1_linear_954_3705" x1="30.8151" y1="20.7217" x2="25.1254" y2="36.7767" gradientUnits="userSpaceOnUse">
+                                                    <stop stop-color="#37AEE2"/>
+                                                    <stop offset="1" stop-color="#1E96C8"/>
+                                                    </linearGradient>
+                                                    </defs>
+                                                </svg>
+    
+                                                <span>تلگرام</span>
+                                            </a>
+                                            <a target="_blank" :href="`https://wa.me/?text=${route.fullPath}`" class="flex flex-col gap-3">
+                                                <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.6868 55.7916C22.7494 58.2291 27.6244 59.5833 32.4994 59.5833C47.3952 59.5833 59.5827 47.3958 59.5827 32.5C59.5827 17.6041 47.3952 5.41663 32.4994 5.41663C17.6035 5.41663 5.41602 17.6041 5.41602 32.5C5.41602 37.375 6.77018 41.9791 8.93685 46.0416L6.60888 54.9953C6.08151 57.0237 7.95894 58.8567 9.9741 58.281L18.6868 55.7916Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M44.6875 40.2147C44.6875 40.6534 44.5899 41.1044 44.3824 41.5431C44.1749 41.9819 43.9063 42.3963 43.5524 42.7863C42.9543 43.4444 42.2952 43.9197 41.5506 44.2244C40.8183 44.5291 40.0249 44.6875 39.1705 44.6875C37.9255 44.6875 36.595 44.395 35.1914 43.7978C33.7877 43.2006 32.384 42.3963 30.9926 41.3847C29.5889 40.3609 28.2585 39.2275 26.9891 37.9722C25.7319 36.7047 24.5967 35.3763 23.5837 33.9869C22.5828 32.5975 21.7772 31.2081 21.1913 29.8309C20.6054 28.4416 20.3125 27.1131 20.3125 25.8456C20.3125 25.0169 20.459 24.2247 20.7519 23.4934C21.0448 22.75 21.5087 22.0675 22.1556 21.4581C22.9367 20.6903 23.7912 20.3125 24.6944 20.3125C25.0361 20.3125 25.3779 20.3856 25.6831 20.5319C26.0004 20.6781 26.2811 20.8975 26.5008 21.2144L29.3326 25.1997C29.5523 25.5044 29.711 25.7847 29.8208 26.0528C29.9307 26.3088 29.9917 26.5647 29.9917 26.7963C29.9917 27.0888 29.9063 27.3812 29.7354 27.6616C29.5767 27.9419 29.3448 28.2344 29.0519 28.5269L28.1242 29.4897C27.99 29.6237 27.9289 29.7822 27.9289 29.9772C27.9289 30.0747 27.9411 30.16 27.9655 30.2575C28.0022 30.355 28.0388 30.4281 28.0632 30.5012C28.2829 30.9034 28.6613 31.4275 29.1983 32.0613C29.7476 32.695 30.3335 33.3409 30.9682 33.9869C31.6273 34.6328 32.262 35.23 32.9089 35.7784C33.5436 36.3147 34.0684 36.6803 34.4834 36.8997C34.5445 36.9241 34.6177 36.9606 34.7031 36.9972C34.8008 37.0337 34.8984 37.0459 35.0083 37.0459C35.2158 37.0459 35.3745 36.9728 35.5087 36.8388L36.4364 35.9247C36.7415 35.62 37.0345 35.3884 37.3152 35.2422C37.5959 35.0716 37.8767 34.9862 38.1818 34.9862C38.4137 34.9862 38.6578 35.035 38.9264 35.1447C39.1949 35.2544 39.4756 35.4128 39.7808 35.62L43.8209 38.4841C44.1382 38.7034 44.3579 38.9594 44.4922 39.2641C44.6143 39.5687 44.6875 39.8734 44.6875 40.2147Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10"/>
+                                                </svg>
+                                                
+                                                <span>واتساپ</span>
+                                            </a>
+                                            <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=${route.fullPath}`" class="flex flex-col gap-3">
+                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M20.8694 38.9401C20.4443 40.7672 20.965 43.4033 21.1497 45.0769V47L22.2408 45.5201C23.1025 44.1151 24.3909 41.8119 24.8682 39.9746C25.1252 38.9848 26.1851 34.9459 26.1851 34.9459C26.8745 36.2614 28.8882 37.3749 31.0304 37.3749C37.4063 37.3749 42 31.5077 42 24.2174C42 17.2291 36.3011 12 28.9678 12C19.8451 12 15 18.1282 15 24.801C15 27.9036 16.6507 31.7663 19.2909 32.996C19.6916 33.1826 19.9058 33.1004 19.9979 32.7132C20.0679 32.4191 20.4246 30.9823 20.585 30.3142C20.6365 30.1004 20.6112 29.9169 20.4384 29.7075C19.5651 28.6476 18.8652 26.6981 18.8652 24.8799C18.8652 20.2144 22.3957 15.6999 28.4107 15.6999C33.6039 15.6999 37.2408 19.2411 37.2408 24.306C37.2408 30.0284 34.3527 33.9927 30.5955 33.9927C28.5202 33.9927 26.967 32.2757 27.465 30.1703C28.061 27.6556 29.2158 24.942 29.2158 23.127C29.2158 21.5023 28.3446 20.1473 26.5411 20.1473C24.4197 20.1473 22.7159 22.3433 22.7159 25.2847C22.7159 27.1581 23.3483 28.4253 23.3483 28.4253C23.3483 28.4253 21.2536 37.2891 20.8694 38.9401Z" fill="#E60023"/>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M28 53C41.8071 53 53 41.8071 53 28C53 14.1929 41.8071 3 28 3C14.1929 3 3 14.1929 3 28C3 41.8071 14.1929 53 28 53ZM28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="#E60023"/>
+                                                </svg>    
+    
+                                                <span>پینترست</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Transition>
                     </div>
 
                     <!-- Title and Price -->
@@ -299,7 +301,7 @@
                                     <path d="M6.37354 11C5.82687 11 5.37354 11.4533 5.37354 12V16C5.37354 16.5467 5.82687 17 6.37354 17C6.9202 17 7.37354 16.5467 7.37354 16V12C7.37354 11.4533 6.93354 11 6.37354 11Z" fill="#237E48"/>
                                     <path d="M21.6133 11C21.0666 11 20.6133 11.4533 20.6133 12V16C20.6133 16.5467 21.0666 17 21.6133 17C22.1599 17 22.6133 16.5467 22.6133 16V12C22.6133 11.4533 22.1733 11 21.6133 11Z" fill="#237E48"/>
                                 </svg>
-                                <p class="text-sm"><span v-html="postItem.unit_price ? getNumber(postItem.unit_price) : ''" class="text-3xl font-semibold mx-3"> </span> تومان</p>   
+                                <p class="text-sm"><span v-html="postItem.unit_price ? convertDatas.getNumber(postItem.unit_price) : ''" class="text-3xl font-semibold mx-3"> </span> تومان</p>   
                             </div>
                         </div>
 
@@ -313,7 +315,7 @@
                             </p>
 
                             <!-- پیش پرداخت -->
-                            <p v-if="postItem.pre_payment_status" class="flex items-center whitespace-nowrap gap-1 text-xs lg:text-base text-graytext">پیش پرداخت : <span v-html="getNumber(postItem.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"> </span> تومان</p>
+                            <p v-if="postItem.pre_payment_status" class="flex items-center whitespace-nowrap gap-1 text-xs lg:text-base text-graytext">پیش پرداخت : <span v-html="convertDatas.getNumber(postItem.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"> </span> تومان</p>
                         </div>
                     </div>
 
@@ -346,7 +348,7 @@
                                         </li>
                                         <li class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4">
                                             قیمت واقعی : 
-                                            <span x-html="getNumber(postItem.real_price)" class="text-white dark:text-black"></span>
+                                            <span x-html="convertDatas.getNumber(postItem.real_price)" class="text-white dark:text-black"></span>
                                         </li>
                                     </ul>
                                 </template>
@@ -400,7 +402,7 @@
                         </ul>
 
                         <!-- گزارش مشکل در آگهی -->
-                        <div @click="$store.Modal.reportModal = true" class="lg:hidden flex justify-center gap-2 items-center cursor-pointer text-[#FF9800] dark:text-[#ed9d02] text-sm">
+                        <div @click="openReportModal" class="lg:hidden flex justify-center gap-2 items-center cursor-pointer text-[#FF9800] dark:text-[#ed9d02] text-sm">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.07617 1.58333V17.4167" stroke="#FF9800" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M4.07617 3.16667H12.9428C15.0803 3.16667 15.5553 4.35417 14.0512 5.85834L13.1012 6.80834C12.4678 7.44167 12.4678 8.47084 13.1012 9.02501L14.0512 9.97501C15.5553 11.4792 15.0012 12.6667 12.9428 12.6667H4.07617" stroke="#FF9800" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -919,27 +921,25 @@
                     </div>
 
                     <!-- پلان ملک -->
-                    <div x-data="planMelk(postItem.id)">
-                        <div v-if="casePlan && casePlan.length >=1" class="my-10 lg:my-14">
-                            <!-- خط افقی -->
-                            <div class="w-full h-[1.5px] bg-graytext/30"></div>
-                            <h4 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">پلان ملک</h4>
+                    <div v-if="casePlan && casePlan.length >=1" class="my-10 lg:my-14">
+                        <!-- خط افقی -->
+                        <div class="w-full h-[1.5px] bg-graytext/30"></div>
+                        <h4 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">پلان ملک</h4>
 
-                            <div v-for="plans in casePlan" class="w-full bg-[#525050] dark:bg-[#f8f8f8] rounded-2xl overflow-hidden mb-4">
-                                <div @click="selectItem(plans.id)" class="flex rounded-2xl w-full gap-4 items-center p-6 cursor-pointer">
-                                    <div class="flex justify-between flex-wrap gap-3 w-full items-center">
-                                        <p class="whitespace-nowrap">{{ plans.title }}</p>
-                                        <div class="text-graytext flex flex-wrap gap-2 gap-y-0"><p class="whitespace-nowrap"> <span>{{ plans.input_1 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_1) }}</span></p><p class="whitespace-nowrap"> <span>{{ plans.input_2 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_2) }}</span></p><p class="whitespace-nowrap"> <span>{{ plans.input_3 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_3) }}</span> </p> </div>
-                                    </div>
+                        <div v-for="plans in casePlan" class="w-full bg-[#525050] dark:bg-[#f8f8f8] rounded-2xl overflow-hidden mb-4">
+                            <div @click="selectItem(plans.id)" class="flex rounded-2xl w-full gap-4 items-center p-6 cursor-pointer">
+                                <div class="flex justify-between flex-wrap gap-3 w-full items-center">
+                                    <p class="whitespace-nowrap">{{ plans.title }}</p>
+                                    <div class="text-graytext flex flex-wrap gap-2 gap-y-0"><p class="whitespace-nowrap"> <span>{{ plans.input_1 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_1) }}</span></p><p class="whitespace-nowrap"> <span>{{ plans.input_2 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_2) }}</span></p><p class="whitespace-nowrap"> <span>{{ plans.input_3 }}</span> : <span style="color: var(--primaryColor)">{{ PN.convertEnToPe(plans.value_3) }}</span> </p> </div>
+                                </div>
 
-                                    <svg :class="activeItem == plans.id ? '-rotate-180' : ''" class="transition-all duration-300" width="18" height="9" viewBox="0 0 18 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M16.9201 0.950012L10.4001 7.47001C9.63008 8.24001 8.37008 8.24001 7.60008 7.47001L1.08008 0.950012" stroke="#C9C9C9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>                                                    
-                                </div>
-                                
-                                <div v-show="activeItem == plans.id" class="bg-primary dark:bg-white transition-all duration-300">
-                                    <img :style="activeItem == plans.id ? 'height: 300px' : 'height: 0px'" :src="`${apiRootStore.api}${plans.plan}`" class="m-auto transition-all duration-300">
-                                </div>
+                                <svg :class="activeItem == plans.id ? '-rotate-180' : ''" class="transition-all duration-300" width="18" height="9" viewBox="0 0 18 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.9201 0.950012L10.4001 7.47001C9.63008 8.24001 8.37008 8.24001 7.60008 7.47001L1.08008 0.950012" stroke="#C9C9C9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                                    
+                            </div>
+                            
+                            <div class="bg-primary dark:bg-white">
+                                <img :style="activeItem == plans.id ? 'height: 300px' : 'height: 0px'" :src="`${apiRootStore.api}${plans.plan}`" class="m-auto transition-all duration-300">
                             </div>
                         </div>
                     </div>
@@ -974,7 +974,7 @@
                 <div class="hidden lg:block lg:w-4/12">
                     <div class="flex flex-col gap-2 2xl:gap-5 sticky top-24">
                         <!-- Contact DIV -->
-                        <div x-data="contactUs">
+                        <div>
                             <div class="flex">
                                 <a v-for="tab in tabs" class="p-3 pb-7 2xl:p-4 2xl:pb-8 rounded-t-[21px] w-36 text-center cursor-pointer transition-all duration-300" :class="activeTab == tab ? 'bg-[#525050] dark:bg-[#dfdfdf]' : 'bg-primary dark:bg-whiteSecondary'" @click="activeTab = tab">{{ tab }}</a>
                             </div>
@@ -1013,27 +1013,27 @@
                                 
                                 <!-- ارسال پیام -->
                                 <div dir="ltr" :class="{'!w-full !h-auto' : activeTab == 'ارسال پیام'}" class="w-0 h-0 overflow-hidden transition-all duration-300">
-                                    <div x-data="message" class="flex flex-col items-center gap-4 2xl:gap-5 rounded-[21px] p-3 2xl:p-5 pt-10 2xl:pt-12 bg-[#525050] dark:bg-[#DFDFDF] whitespace-nowrap">
+                                    <div class="flex flex-col items-center gap-4 2xl:gap-5 rounded-[21px] p-3 2xl:p-5 pt-10 2xl:pt-12 bg-[#525050] dark:bg-[#DFDFDF] whitespace-nowrap">
                                         <!-- name Input -->
                                         <div class="relative w-full">
                                             <span id="resultName" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا از حروف فارسی استفاده کنید</span>
-                                            <input id="name" x-model="customer_name" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":نام و نام خانوادگی" />
+                                            <input id="name" v-model="customer_name" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":نام و نام خانوادگی" />
                                         </div>
                                         
                                         <!-- call Input -->
                                         <div class="relative w-full">
                                             <span id="resultPhone" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا فقط از اعداد انگلیسی استفاده کنید</span>
-                                            <input id="phoneNumber" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" x-model="customer_phone" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":شماره تماس" />
+                                            <input id="phoneNumber" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="customer_phone" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":شماره تماس" />
                                         </div>
                                         
                                         <!-- text Area Input -->
                                         <div class="relative w-full">
                                             <span id="resultText" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا از حروف فارسی استفاده کنید</span>
-                                            <textarea id="text" x-model="text" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" rows="3" placeholder="متن پیام شما"></textarea>
+                                            <textarea id="text" v-model="text" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 2xl:p-5 rounded-lg text-graytext placeholder:text-graytext text-right" rows="3" placeholder="متن پیام شما"></textarea>
                                         </div>
                                     
                                         <!-- send Btn -->
-                                        <a @click.prevent="fetchData" class="bg-[#0DA049] dark:text-white p-3 2xl:p-5 w-full rounded-lg text-center text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</a>
+                                        <a @click="fetchSendMessage" class="bg-[#0DA049] dark:text-white p-3 2xl:p-5 w-full rounded-lg text-center text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</a>
                                     </div>
                                 </div>
                             </div>
@@ -1046,7 +1046,7 @@
                         </div>
 
                         <!-- گزارش مشکل در آگهی -->
-                        <div @click="$store.Modal.reportModal = true" class="flex gap-2 justify-center items-center cursor-pointer text-[#FF9800] dark:text-[#ed9d02]">
+                        <div @click="openReportModal" class="flex gap-2 justify-center items-center cursor-pointer text-[#FF9800] dark:text-[#ed9d02]">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.07617 1.58333V17.4167" stroke="#FF9800" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M4.07617 3.16667H12.9428C15.0803 3.16667 15.5553 4.35417 14.0512 5.85834L13.1012 6.80834C12.4678 7.44167 12.4678 8.47084 13.1012 9.02501L14.0512 9.97501C15.5553 11.4792 15.0012 12.6667 12.9428 12.6667H4.07617" stroke="#FF9800" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1103,7 +1103,7 @@
                                 <div class="swiper swiperNewsImg1">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide h-64">
+                                            <div class="swiper-slide !h-64">
                                                 <div class="relative rounded-2xl overflow-hidden h-full">
                                                     <img :src="post.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
                                                 </div>
@@ -1122,7 +1122,7 @@
                                             </div>
                 
                                             <div class="bg-primary flex gap-2 rounded-md p-1 items-center">
-                                                <span class="text-[10px]">{{ estateTypeRender(post.estate_type) }}</span>
+                                                <span class="text-[10px]">{{ convertDatas.estateTypeRender(post.estate_type) }}</span>
             
                                                 <span>
                                                     <svg v-if="post.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1179,21 +1179,21 @@
                 
                                         <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
                                             <!--عکسها-->
-                                            <p class="bg-primary text-[10px] py-2 px-3 rounded-md opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
+                                            <p class="bg-primary text-[10px] py-2 px-3 rounded-md opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(post.placed_at) }}</p>
                                         </div>
                                     </div>
             
                                     <!-- swiper next prev Elem -->
                                 </div>
             
-                                <RouterLink :to="`estateDetail/${post.id}`" class="py-3 flex gap-4 flex-col">
+                                <NuxtLink :to="`/estateDetail/${post.id}`" class="py-3 flex gap-4 flex-col">
                                     <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ post.title }}</h3>
             
                                     <div class="flex gap-8 overflow-hidden">
                                         <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3"><span>{{ Number(post.land_size).toLocaleString('fa-ir') }}</span> متر </p>
                                         <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3">{{ post.region }}</span>
                                         <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3">{{ post.location }}</span>
-                                        <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black">{{ estateTypeRender(post.estate_type) }}</span>
+                                        <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black">{{ convertDatas.estateTypeRender(post.estate_type) }}</span>
                                     </div>
             
                                     <div class="flex items-center">
@@ -1204,98 +1204,71 @@
                                             <path d="M6.37354 11C5.82687 11 5.37354 11.4533 5.37354 12V16C5.37354 16.5467 5.82687 17 6.37354 17C6.9202 17 7.37354 16.5467 7.37354 16V12C7.37354 11.4533 6.93354 11 6.37354 11Z" fill="#237E48"/>
                                             <path d="M21.6133 11C21.0666 11 20.6133 11.4533 20.6133 12V16C20.6133 16.5467 21.0666 17 21.6133 17C22.1599 17 22.6133 16.5467 22.6133 16V12C22.6133 11.4533 22.1733 11 21.6133 11Z" fill="#237E48"/>
                                         </svg>
-                                        <p class="text-sm"><span v-html="getNumber(postItem.unit_price)" class="text-3xl font-semibold mx-3"> </span> تومان</p>
+                                        <p class="text-sm"><span v-html="convertDatas.getNumber(postItem.unit_price)" class="text-3xl font-semibold mx-3"> </span> تومان</p>
                                     </div>
             
-                                    <!-- <div x-data="findPerson">
-                                        <template x-if="!persons">
-                                            <div class="flex !justify-center gap-5 dark:text-white md:items-start headerInfo box !p-0">
-                                                <div class="skeleton !p-0">
-                                                    <div class="skeleton-left" dir="rtl">
-                                                        <div class="line !w-14"></div>
-                                                        <div class="line !w-11"></div>
-                                                    </div>
-                                                    <div class="skeleton-right p-0">
-                                                        <div class="square circle p-0 !w-11 !h-11" style="height: 44px !important"></div>
-                                                    </div>
-                                                    <div class="skeleton-left">
-                                                        <div class="line !w-14"></div>
-                                                        <div class="line !w-11"></div>
-                                                    </div>
+                                    <template v-for="person in persons" :key="person.id">
+                                        <div v-if="person.id == post.user" class="text-right -mb-[48px]">
+                                            <NuxtLink :to="`/propertyCode?user=${person.id}`">
+                                                <img class="relative w-[41px] h-[41px] rounded-full lg:m-auto z-10 object-cover" :src="person.picture" />
+                                            </NuxtLink>
+                                            <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
+                                                <NuxtLink :to="`/propertyCode?user=${person.id}`" class="flex px-7 flex-col">
+                                                    <span class="text-[15px] font-bold">{{ person.username }}</span> 
+                                                    <span class="text-xs">{{ person.activity }}</span>
+                                                </NuxtLink>
+                
+                                                <div class="flex px-7 gap-5">
+                                                    <NuxtLink :to="route.fullPath" @click="showMessageModal(person.id)">
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M14.1401 0.959997L5.11012 3.96C-0.959883 5.99 -0.959883 9.3 5.11012 11.32L7.79012 12.21L8.68012 14.89C10.7001 20.96 14.0201 20.96 16.0401 14.89L19.0501 5.87C20.3901 1.82 18.1901 -0.390003 14.1401 0.959997ZM14.4601 6.34L10.6601 10.16C10.5101 10.31 10.3201 10.38 10.1301 10.38C9.94012 10.38 9.75012 10.31 9.60012 10.16C9.31012 9.87 9.31012 9.39 9.60012 9.1L13.4001 5.28C13.6901 4.99 14.1701 4.99 14.4601 5.28C14.7501 5.57 14.7501 6.05 14.4601 6.34Z" fill="#FFA80A"/>
+                                                        </svg>
+                                                    </NuxtLink>
+                
+                                                    <NuxtLink :to="route.fullPath" @click="showCallModal(post.id, person.id, person.username, person.activity, person.id, person.picture)">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
+                                                            <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>
+                                                            <path d="M11.05 14.95L9.2 16.8C8.81 17.19 8.19 17.19 7.79 16.81C7.68 16.7 7.57 16.6 7.46 16.49C6.43 15.45 5.5 14.36 4.67 13.22C3.85 12.08 3.19 10.94 2.71 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C10.83 13.32 10.94 13.42 11.04 13.52C11.44 13.91 11.45 14.55 11.05 14.95Z" fill="#0DA049"/>
+                                                            <path d="M21.97 18.33C21.97 18.61 21.92 18.9 21.82 19.18C21.79 19.26 21.76 19.34 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C19.39 21.62 19.38 21.63 19.37 21.63C18.78 21.87 18.14 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C10.36 19 8.09999 17.08 7.72999 16.77L11 13.5C11.28 13.71 13.4 15.5 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" fill="#0DA049"/>
+                                                        </svg>     
+                                                    </NuxtLink>
                                                 </div>
                                             </div>
-                                        </template>
-
-                                        <template x-if="persons">
-                                            <template x-for="person in persons">
-                                                <template x-if="post.user == person.id">
-                                                    <div class="text-right -mb-[48px]">
-                                                        <a :href="`propertyUser.html?user=${person.id}`">
-                                                            <img class="relative w-[41px] h-[41px] rounded-full lg:m-auto z-10 object-cover" :src="person.picture" />
-                                                        </a>
-                                                        <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
-                                                            <a :href="`propertyUser.html?user=${person.id}`" class="flex px-7 flex-col">
-                                                                <span x-text="person.username" class="text-[15px] font-bold"></span> 
-                                                                <span x-text="person.activity" class="text-xs"></span>
-                                                            </a>
-                            
-                                                            <div class="flex px-7 gap-5">
-                                                                <a @click.prevent="idPostCase = post.id; findCase(post.id); isOpenModalMessage = true;" href="#">
-                                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.1401 0.959997L5.11012 3.96C-0.959883 5.99 -0.959883 9.3 5.11012 11.32L7.79012 12.21L8.68012 14.89C10.7001 20.96 14.0201 20.96 16.0401 14.89L19.0501 5.87C20.3901 1.82 18.1901 -0.390003 14.1401 0.959997ZM14.4601 6.34L10.6601 10.16C10.5101 10.31 10.3201 10.38 10.1301 10.38C9.94012 10.38 9.75012 10.31 9.60012 10.16C9.31012 9.87 9.31012 9.39 9.60012 9.1L13.4001 5.28C13.6901 4.99 14.1701 4.99 14.4601 5.28C14.7501 5.57 14.7501 6.05 14.4601 6.34Z" fill="#FFA80A"/>
-                                                                    </svg>
-                                                                </a>
-                            
-                                                                <a @click.prevent="idPostCase = post.id; findCase(post.id); isOpenModal = true; generateStars(post.id, person.rate_avg, person.id)">
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
-                                                                        <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>
-                                                                        <path d="M11.05 14.95L9.2 16.8C8.81 17.19 8.19 17.19 7.79 16.81C7.68 16.7 7.57 16.6 7.46 16.49C6.43 15.45 5.5 14.36 4.67 13.22C3.85 12.08 3.19 10.94 2.71 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C10.83 13.32 10.94 13.42 11.04 13.52C11.44 13.91 11.45 14.55 11.05 14.95Z" fill="#0DA049"/>
-                                                                        <path d="M21.97 18.33C21.97 18.61 21.92 18.9 21.82 19.18C21.79 19.26 21.76 19.34 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C19.39 21.62 19.38 21.63 19.37 21.63C18.78 21.87 18.14 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C10.36 19 8.09999 17.08 7.72999 16.77L11 13.5C11.28 13.71 13.4 15.5 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" fill="#0DA049"/>
-                                                                    </svg>     
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </template>
-                                            </template>
-                                        </template>
-                                    </div> -->
-                                </RouterLink>
+                                        </div>
+                                    </template>
+                                </NuxtLink>
                             </div>
                         </div>
 
-                        <!-- <template x-if="!postsSimilar">
-                            <template x-for="_ in Array.from({ length: 4 })">
-                                <div class="swiper-slide">
-                                    <div class="loadingCard">
-                                        <a class="card w-full" id="card-link" target="_blank">
-                                            <div class="card__body h-64">
-                                                <div class="card__body body__img !h-full">
-                                                <img class="skeleton" alt="" id="cover-img" />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="card__header">
-                                                <h3 class="card__header header__title" id="card-title">
-                                                    <div class="skeleton skeleton-text"></div>
-                                                    <div class="skeleton skeleton-text"></div>
-                                                </h3>
-                                                <div class="card__footer" id="card-footer">
-                                                    <div class="skeleton skeleton-text skeleton-footer"></div>
-                                                </div>
-                                                <h3 class="card__header header__title" id="card-title">
-                                                    <div class="skeleton skeleton-text"></div>
-                                                </h3>
-                                                <div>
-                                                <img class="header__img skeleton m-auto" id="logo-img" alt="" />
-                                                </div>
-                                            </div>
-                                        </a>
+                        <!-- Loading Post Similar -->
+                        <div v-if="!postsSimilar" v-for="_ in Array.from({ length: 4 })" class="swiper-slide">
+                            <div class="loadingCard">
+                                <a class="card w-full" id="card-link" target="_blank">
+                                    <div class="card__body h-64">
+                                        <div class="card__body body__img !h-full">
+                                        <img class="skeleton" alt="" id="cover-img" />
+                                        </div>
                                     </div>
-                                </div>
-                            </template>
-                        </template> -->
+                                    
+                                    <div class="card__header">
+                                        <h3 class="card__header header__title" id="card-title">
+                                            <div class="skeleton skeleton-text"></div>
+                                            <div class="skeleton skeleton-text"></div>
+                                        </h3>
+                                        <div class="card__footer" id="card-footer">
+                                            <div class="skeleton skeleton-text skeleton-footer"></div>
+                                        </div>
+                                        <h3 class="card__header header__title" id="card-title">
+                                            <div class="skeleton skeleton-text"></div>
+                                        </h3>
+                                        <div>
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1319,18 +1292,13 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Modal Call And Message -->
-                <!-- Modal Call -->
-                
-                <!-- Modal Send Message -->
             </div>
         </div>
 
         <!-- Contact Elem in Responsive Size -->
         <div class="block lg:hidden bg-primary dark:bg-whiteSecondary dark:text-white py-4 sm:p-4 fixed bottom-0 left-0 right-0 z-10">
             <div class="container flex justify-between m-auto">
-                <a id="modalCallBtn" @click="$store.Modal.isOpenCall = !$store.Modal.isOpenCall" class="flex gap-2 items-center bg-[#0DA049] hover:bg-[#0DA049]/80 rounded-xl py-3 px-8 sm:px-10 text-[13px] sm:text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
+                <a id="modalCallBtn" @click="showCallModal(postItem.id, postItem.user_id, postItem.username, postItem.user_activity, postItem.user_number, postItem.userPicture)" class="flex gap-2 items-center bg-[#0DA049] hover:bg-[#0DA049]/80 rounded-xl py-3 px-8 sm:px-10 text-[13px] sm:text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
                     درخواست تماس
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.1398 16.8028C20.1398 17.1328 20.0665 17.472 19.9106 17.802C19.7548 18.132 19.5532 18.4437 19.2873 18.737C18.8382 19.232 18.3431 19.5895 17.784 19.8187C17.234 20.0478 16.6382 20.167 15.9965 20.167C15.0615 20.167 14.0623 19.947 13.0082 19.4978C11.954 19.0487 10.8998 18.4437 9.85482 17.6828C8.80065 16.9128 7.80148 16.0603 6.84815 15.1162C5.90398 14.1628 5.05148 13.1637 4.29065 12.1187C3.53898 11.0737 2.93398 10.0287 2.49398 8.99285C2.05398 7.94785 1.83398 6.94868 1.83398 5.99535C1.83398 5.37201 1.94398 4.77618 2.16398 4.22618C2.38398 3.66701 2.73232 3.15368 3.21815 2.69535C3.80482 2.11785 4.44648 1.83368 5.12482 1.83368C5.38148 1.83368 5.63815 1.88868 5.86732 1.99868C6.10565 2.10868 6.31648 2.27368 6.48148 2.51201L8.60815 5.50951C8.77315 5.73868 8.89232 5.94951 8.97482 6.15118C9.05732 6.34368 9.10315 6.53618 9.10315 6.71035C9.10315 6.93035 9.03898 7.15035 8.91065 7.36118C8.79148 7.57201 8.61732 7.79201 8.39732 8.01201L7.70065 8.73618C7.59982 8.83701 7.55398 8.95618 7.55398 9.10285C7.55398 9.17618 7.56315 9.24035 7.58148 9.31368C7.60898 9.38701 7.63648 9.44201 7.65482 9.49701C7.81982 9.79951 8.10398 10.1937 8.50732 10.6703C8.91982 11.147 9.35982 11.6328 9.83648 12.1187C10.3315 12.6045 10.8082 13.0537 11.294 13.4662C11.7707 13.8695 12.1648 14.1445 12.4765 14.3095C12.5223 14.3278 12.5773 14.3553 12.6415 14.3828C12.7148 14.4103 12.7882 14.4195 12.8707 14.4195C13.0265 14.4195 13.1457 14.3645 13.2465 14.2637L13.9432 13.5762C14.1723 13.347 14.3923 13.1728 14.6032 13.0628C14.814 12.9345 15.0248 12.8703 15.254 12.8703C15.4281 12.8703 15.6115 12.907 15.8132 12.9895C16.0148 13.072 16.2257 13.1912 16.4548 13.347L19.489 15.5012C19.7273 15.6662 19.8923 15.8587 19.9931 16.0878C20.0848 16.317 20.1398 16.5462 20.1398 16.8028Z" fill="white" stroke-miterlimit="10"/>
@@ -1339,7 +1307,7 @@
                     </svg>                           
                 </a>
 
-                <a id="modalMessageBtn" @click="$store.Modal.isOpenMessage = !$store.Modal.isOpenMessage" class="flex gap-2 items-center bg-[#FFA80A] hover:bg-[#FFA80A]/80 rounded-xl py-3 px-8 sm:px-10 text-[13px] sm:text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
+                <a id="modalMessageBtn" @click="showMessageModal(postItem.id)" class="flex gap-2 items-center bg-[#FFA80A] hover:bg-[#FFA80A]/80 rounded-xl py-3 px-8 sm:px-10 text-[13px] sm:text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
                     ارسال پیام
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.4677 0.836708L4.81398 3.71171C-1.0031 5.65712 -1.0031 8.82921 4.81398 10.765L7.38232 11.618L8.23524 14.1863C10.1711 20.0034 13.3527 20.0034 15.2886 14.1863L18.1732 5.54212C19.4573 1.66087 17.349 -0.457042 13.4677 0.836708ZM13.7744 5.99254L10.1327 9.65337C9.98898 9.79712 9.8069 9.86421 9.62482 9.86421C9.44273 9.86421 9.26065 9.79712 9.1169 9.65337C8.83899 9.37546 8.83899 8.91546 9.1169 8.63754L12.7586 4.97671C13.0365 4.69879 13.4965 4.69879 13.7744 4.97671C14.0523 5.25462 14.0523 5.71462 13.7744 5.99254Z" fill="white"/>
@@ -1348,12 +1316,116 @@
             </div>
         </div>
 
+        <!-- Modal Report -->
+        <div id="reportModal" v-show="reportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
+            <div v-click-out-side="closeReportModal" class="w-[450px] py-10 pb-0 px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
+                <div class="flex justify-between">
+                    <div class="p-4 px-5"></div>
+                    <p class="text-[26px] font-semibold">گزارش مشکل</p>
+                    <div @click="closeReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection p-4 px-5 rounded-md transition-all duration-300 relative -top-5">
+                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7185 17.7594L0.798514 3.83938C0.0851131 3.12598 0.0851134 1.94278 0.798514 1.22938C1.51191 0.515978 2.69512 0.515978 3.40852 1.22938L17.3285 15.1494C18.0419 15.8628 18.0419 17.046 17.3285 17.7594C16.6151 18.4728 15.4319 18.4728 14.7185 17.7594Z" fill="#777777"/>
+                            <path d="M0.796476 17.7594C0.0830747 17.046 0.0830744 15.8628 0.796475 15.1494L14.7165 1.22938C15.4299 0.515978 16.6131 0.515978 17.3265 1.22938C18.0399 1.94278 18.0399 3.12598 17.3265 3.83938L3.40648 17.7594C2.69308 18.4728 1.50988 18.4728 0.796476 17.7594Z" fill="#777777"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="px-3 flex flex-col gap-2 group" id="groupTypes">
+                    <div class="flex gap-2 relative">
+                        <input checked type="radio" name="report" class="cursor-pointer opacity-0" id="report1" value="ملک واگذار شده" />
+                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="ملک واگذاری شده" for="report1" >ملک واگذار شده</label>
+                    </div>
+
+                    <div class="flex gap-2 relative">
+                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report2" value="قیمت اشتباهه" />
+                        <label class="cursor-pointer md:text-lg after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="قیمت اشتباهه" for="report2">قیمت اشتباهه</label>
+                    </div>
+
+                    <div class="flex gap-2 relative">
+                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report3" value="عکس ها مرتبط نیست" />
+                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="عکس ها مرتبط نیست" for="report3" >عکس ها مرتبط نیست</label>
+                    </div>
+
+                    <div class="flex gap-2 relative">
+                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report4" value="کسی پاسخگو نبود" />
+                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="کسی پاسخگو نبود" for="report4">کسی پاسخگو نبود</label>
+                    </div>
+                    
+                    <div class="flex gap-2 relative">
+                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report5" value="توضیحات ناقصه" />
+                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="توضیحات ناقصه" for="report5">توضیحات ناقصه</label>
+                    </div>
+
+                    <textarea id="descReport" v-model="desc" rows="5" class="w-full bg-primary dark:bg-whiteSecondary outline-none rounded-[21px] border-[1px] border-graytext placeholder:text-graytext p-3" placeholder="اگر مشکلی از نظرتون نیاز به توضیح بیشتری داشت اینجا برامون بنویسید."></textarea>
+                    
+                    <form id="recaptcha-form" class="flex flex-col my-3 items-center relative">
+                        <div class="g-recaptcha" id="html_element" data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError" data-expired-callback="onRecaptchaResponseExpiry"></div>
+                    
+                        <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 mb-8" value="ارسال گزارش" />
+                        <!--
+                        <div class="absolute -bottom-2">
+                            <div id="recaptcha-form-error" style="display: none" class="bg-red-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
+                                Please fill the recaptcha checkbox.
+                            </div>
+        
+                            
+                            <div id="recaptcha-form-success" style="display: none" class="bg-green-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
+                                Recaptcha validated Successfully..!
+                                <a @click="location.reload()" href="#" class="px-2 text-slate-800">Retry</a>
+                            </div>
+                            
+                        </div>
+                        -->
+                    </form>
+                </div>
+            </div>    
+        </div>
+
+        <!-- Success Report Modal -->
+        <div id="successReportModal" v-show="successReportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
+            <div v-click-out-side="closeSuccessReportModal" class="w-[450px] py-10 px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
+                <div class="flex justify-between">
+                    <div class="p-4 px-5"></div>
+                    <p class="text-[26px] font-semibold">گزارش مشکل</p>
+                    <div @click="closeSuccessReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection p-4 px-5 rounded-md transition-all duration-300 relative -top-5">
+                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.7185 17.7594L0.798514 3.83938C0.0851131 3.12598 0.0851134 1.94278 0.798514 1.22938C1.51191 0.515978 2.69512 0.515978 3.40852 1.22938L17.3285 15.1494C18.0419 15.8628 18.0419 17.046 17.3285 17.7594C16.6151 18.4728 15.4319 18.4728 14.7185 17.7594Z" fill="#777777"/>
+                            <path d="M0.796476 17.7594C0.0830747 17.046 0.0830744 15.8628 0.796475 15.1494L14.7165 1.22938C15.4299 0.515978 16.6131 0.515978 17.3265 1.22938C18.0399 1.94278 18.0399 3.12598 17.3265 3.83938L3.40648 17.7594C2.69308 18.4728 1.50988 18.4728 0.796476 17.7594Z" fill="#777777"/>
+                        </svg>
+                    </div>
+                </div>
+                    
+                <div class="flex flex-col justify-center items-center">
+                    <svg class="my-10" width="115" height="115" viewBox="0 0 115 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.4" d="M51.5105 11.7396C54.8168 8.91251 60.2314 8.91251 63.5855 11.7396L71.1564 18.2563C72.5939 19.5021 75.2772 20.5083 77.1939 20.5083H85.3397C90.4189 20.5083 94.5876 24.6771 94.5876 29.7563V37.9021C94.5876 39.7708 95.5939 42.5021 96.8397 43.9396L103.356 51.5104C106.183 54.8167 106.183 60.2313 103.356 63.5854L96.8397 71.1563C95.5939 72.5938 94.5876 75.2771 94.5876 77.1938V85.3396C94.5876 90.4188 90.4189 94.5875 85.3397 94.5875H77.1939C75.3251 94.5875 72.5939 95.5938 71.1564 96.8396L63.5855 103.356C60.2793 106.183 54.8647 106.183 51.5105 103.356L43.9397 96.8396C42.5022 95.5938 39.8189 94.5875 37.9022 94.5875H29.6126C24.5335 94.5875 20.3647 90.4188 20.3647 85.3396V77.1459C20.3647 75.2771 19.3585 72.5938 18.1605 71.1563L11.6918 63.5375C8.91263 60.2313 8.91263 54.8646 11.6918 51.5583L18.1605 43.9396C19.3585 42.5021 20.3647 39.8188 20.3647 37.95V29.7083C20.3647 24.6292 24.5335 20.4604 29.6126 20.4604H37.9022C39.771 20.4604 42.5022 19.4542 43.9397 18.2083L51.5105 11.7396Z" fill="#62FEA2"/>
+                        <path d="M51.703 72.6896C50.7447 72.6896 49.8342 72.3062 49.1634 71.6354L37.5676 60.0396C36.178 58.65 36.178 56.35 37.5676 54.9604C38.9572 53.5708 41.2572 53.5708 42.6467 54.9604L51.703 64.0167L72.3072 43.4125C73.6967 42.0229 75.9967 42.0229 77.3863 43.4125C78.7759 44.8021 78.7759 47.1021 77.3863 48.4917L54.2426 71.6354C53.5717 72.3062 52.6613 72.6896 51.703 72.6896Z" fill="#62FEA2"/>
+                    </svg>
+
+                    <p class="text-graytext dark:text-black">از اینکه در بروزرسانی آگهی‌ها به ما کمک می‌کنید از شما ممنونیم .</p>
+                </div>
+            </div>    
+        </div>
+
+        <!-- Call Modal -->
+        <CallModal />
+
+        <!-- Send Message Modal -->
+        <SendMessageModal />
+
     </section>
 </template>
 
 <script setup>
+import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
+import { toast } from 'vue3-toastify';
+
+// Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
+
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
 
 import PN from "persian-number";
 
@@ -1362,9 +1434,9 @@ const route = useRoute();
 const postItem = ref("");
 const titleHead = ref("")
 const activeItem = ref(null);
-const isOpen = ref(true);
 const casePlan = ref();
 const postsSimilar = ref(null);
+const persons = ref(null);
 
 const tabs = ["درخواست تماس","ارسال پیام"]
 
@@ -1375,180 +1447,6 @@ const selectItem = (item) => {
         activeItem.value = null
     } else {
         activeItem.value = item
-    }
-}
-
-const estateTypeRender = (type) => {
-    if(type== 'G') {
-        return 'باغ'
-    } else if (type == "A") {
-        return 'آپارتمان'
-    } else if (type == "H") {
-        return 'ویلا باغ'
-    } else if (type == "L") {
-        return 'زمین'
-    } else if (type == "B") {
-        return 'مغازه و واحد تجاری'
-    } else if (type == "V") {
-        return 'خانه ویلایی'
-    }
-};
-
-const getNumber = (n) => {
-    var string = n.toString(), units, tens, scales, start, end, chunks, chunksLen, chunk, ints, i, word, words, and = ' ';
-
-    /* Remove spaces and commas */
-    string = string.replace(/[, ]/g,"");
-
-    /* Is number zero? */
-    if( parseInt( string ) === 0 ) {
-        return 'صفر';
-    }
-    
-    /* Array of units as words */
-    units = [ '', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹', '۱۰', '۱۱', '۱۲', '۱۳', '۱۴', '۱۵', '۱۶', '۱۷', '۱۸', '۱۹' ];
-    
-    /* Array of tens as words */
-    tens = [ '', '', '۲۰', '۳۰', '۴۰', '۵۰', '۶۰', '۷۰', '۸۰', '۹۰' ];
-    
-    /* Array of scales as words */
-    scales = [ '', 'هزار', 'میلیون', 'میلیارد', 'تریلیارد', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion', 'decillion', 'undecillion', 'duodecillion', 'tredecillion', 'quatttuor-decillion', 'quindecillion', 'sexdecillion', 'septen-decillion', 'octodecillion', 'novemdecillion', 'vigintillion', 'centillion' ];
-    
-    /* Split user argument into 3 digit chunks from right to left */
-    start = string.length;
-    chunks = [];
-    while( start > 0 ) {
-        end = start;
-        chunks.push( string.slice( ( start = Math.max( 0, start - 3 ) ), end ) );
-    }
-    
-    /* Check if function has enough scale words to be able to stringify the user argument */
-    chunksLen = chunks.length;
-    if( chunksLen > scales.length ) {
-        return '';
-    }
-    
-    /* Stringify each integer in each chunk */
-    words = [];
-    for( i = 0; i < chunksLen; i++ ) {
-        
-        chunk = parseInt( chunks[i] );
-        
-        if( chunk ) {
-            /* Split chunk into array of individual integers */
-            ints = chunks[i].split( '' ).reverse().map( parseFloat );
-        
-            /* If tens integer is 1, i.e. 10, then add 10 to units integer */
-            if( ints[1] === 1 ) {
-                ints[0] += 10;
-            }
-            
-            /* Add scale word if chunk is not zero and array item exists */
-            if( ( word = scales[i] ) ) {
-                words.push( word );
-            }
-            
-            /* Add unit word if array item exists */
-            if( ( word = units[ ints[0] ] ) ) {
-                words.push( word );
-            }
-            
-            /* Add tens word if array item exists */
-            if( ( word = tens[ ints[1] ] ) ) {
-                words.push( word );
-            }
-            
-            /* Add 'and' string after units or tens integer if: */
-            if( ints[0] || ints[1] ) {
-                
-                /* Chunk has a hundreds integer or chunk is the first of multiple chunks */
-                if( ints[2] || ! i && chunksLen ) {
-                    words.push( and );
-                }
-            
-            }
-            
-            if( ( word = units[ ints[2] ] ) ) {
-                if(word == '۱') {
-                    words.push('۱۰۰')
-                } else if (word == '۲'){
-                    words.push('۲۰۰')
-                } else if (word == '۳'){
-                    words.push('۳۰۰')
-                } else if (word == '۴'){
-                    words.push('۴۰۰')
-                } else if (word == '۵'){
-                    words.push('۵۰۰')
-                } else if (word == '۶'){
-                    words.push('۶۰۰')
-                } else if (word == '۷'){
-                    words.push('۷۰۰')
-                } else if (word == '۸'){
-                    words.push('۸۰۰')
-                } else if (word == '۹'){
-                    words.push('۹۰۰')
-                }
-            }
-        }
-    }
-
-    words = words.reverse()
-
-    if(words.slice(2, 3)[0]) {
-        if(words.slice(2, 3)[0] == '۱۰۰') {
-            words[2] = '۱'
-        } else if (words.slice(2, 3)[0] == '۲۰۰'){
-            words[2] = '۲'
-        } else if (words.slice(2, 3)[0] == '۳۰۰'){
-            words[2] = '۳'
-        } else if (words.slice(2, 3)[0] == '۴۰۰'){
-            words[2] = '۴'
-        } else if (words.slice(2, 3)[0] == '۵۰۰'){
-            words[2] = '۵'
-        } else if (words.slice(2, 3)[0] == '۶۰۰'){
-            words[2] = '۶'
-        } else if (words.slice(2, 3)[0] == '۷۰۰'){
-            words[2] = '۷'
-        } else if (words.slice(2, 3)[0] == '۸۰۰'){
-            words[2] = '۸'
-        } else if (words.slice(2, 3)[0] == '۹۰۰'){
-            words[2] = '۹'
-        }
-    }
-
-    let priceStrong = ""
-    let priceLite = ""
-
-    if(words.slice(2, 3)[0]) {
-        priceStrong = `<span>${words.slice(0, 1)},${words.slice(2, 3)} ${words.slice(1, 2)}</span>`
-    } else {
-        priceStrong = `<span>${words.slice(0, 1)}${words.slice(2, 3)} ${words.slice(1, 2)}</span>`
-    }
-
-    if(words.slice(3).length == 0) {
-        priceLite = ''
-    } else if(words.slice(3) == 'میلیون') {
-        priceLite = ''
-    } else {
-        priceLite = ` <span class='text-xl' style='margin-right: 10px'>${words.slice(3).join(' ')}</span>`
-    }
-
-    words = priceStrong + priceLite
-
-    return words;
-}
-
-const dateCalc = (prevDate) => {
-    let now = new Date().toJSON()
-    let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
-    let days = Math.floor(seconds / (3600*24))
-
-    if(days <= 0) {
-        return 'امروز'
-    } else if (days >= 1 && days <= 31) {
-        return `${days} روز پیش`
-    } else {
-        return `${Math.round(days/31)} ماه پیش`
     }
 }
 
@@ -1571,6 +1469,21 @@ const documentTypeChange = (document_type) => {
 };
 
 onMounted(async () => {
+    const swiper2 = new Swiper(".swiper1", {
+        direction: "horizontal",
+        spaceBetween:15,
+        slidesPerView: 1,
+
+        breakpoints: {
+            768: {slidesPerView: 2, spaceBetween: 10},
+            1024: {slidesPerView: 3, spaceBetween: 10}
+        },
+        navigation: {
+            nextEl: ".swiperNewst-next",
+            prevEl: ".swiperNewst-prev",
+        }
+    });
+
     const response = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}`)
     const data = await response.json()
     postItem.value = data
@@ -1587,29 +1500,273 @@ onMounted(async () => {
     const dataSimilar = await similarPostRes.json()
     postsSimilar.value = dataSimilar;
 
-    watch(postsSimilar.value, similar => {
+    const personRes = await fetch(`${apiRootStore.api}/real/usersinfo/`)
+    const dataPerson = await personRes.json()
+    persons.value = dataPerson;
+
+    watch(postsSimilar => {
         setTimeout(() => {
-            
-        }, 2000);
-        const swiper1 = new Swiper(".swiper1", {
-            direction: "horizontal",
-            spaceBetween:15,
-            slidesPerView: 1,
-    
-            breakpoints: {
-                768: {slidesPerView: 2, spaceBetween: 10},
-                1024: {slidesPerView: 3, spaceBetween: 10}
-            },
-            navigation: {
-                nextEl: ".swiperNewst-next",
-                prevEl: ".swiperNewst-prev",
-            }
-        });
+            const swiper1 = new Swiper(".swiper1", {
+                direction: "horizontal",
+                spaceBetween:15,
+                slidesPerView: 1,
+        
+                breakpoints: {
+                    768: {slidesPerView: 2, spaceBetween: 10},
+                    1024: {slidesPerView: 3, spaceBetween: 10}
+                },
+                navigation: {
+                    nextEl: ".swiperNewst-next",
+                    prevEl: ".swiperNewst-prev",
+                }
+            });
+        }, 200);
     })
-    
 });
 
-useHead({
-    titleTemplate: `%s-${titleHead.value}`,
-});
+watch(titleHead, () => {
+    useHead({
+        titleTemplate: `%s-${titleHead.value}`,
+    });
+})
+
+// Send Message
+const customer_name = ref("")
+const customer_phone = ref("")
+const text = ref("")
+
+const fetchSendMessage = (e) => {
+    e.target.style.pointerEvents = 'none'
+    e.target.classList.add('opacity-80')
+
+    validateN()
+    validateP()
+    validateT()
+
+    if(validateN() && validateP() && validateT()) {
+        fetch(`${apiRootStore.api}/real/cases/${route.params.id}/conversation/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                customer_name: customer_name.value,
+                customer_phone: customer_phone.value,
+                text: text.value,
+            })
+        }).then(res => {
+            if(res.status >= 200 && res.status < 400) {
+                customer_name.value = "";
+                customer_phone.value = "";
+                text.value = "";
+
+                toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            } else{
+                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            }
+            
+            e.target.style.pointerEvents = 'auto'
+            e.target.classList.remove('opacity-80')
+        })
+        .catch(err => {
+            console.log(err, 'Error')
+            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            
+            e.target.style.pointerEvents = 'auto'
+            e.target.classList.remove('opacity-80')
+        })
+        
+        e.target.style.pointerEvents = 'auto'
+        e.target.classList.remove('opacity-80')
+    } else {
+        toast.warning('لطفا همه ی مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+
+        e.target.style.pointerEvents = 'auto'
+        e.target.classList.remove('opacity-80')
+    }
+
+    e.target.style.pointerEvents = 'auto'
+    e.target.classList.remove('opacity-80')
+}
+
+// Modal Message And Call Store
+import { useModalMessage } from "~/stores/SendMessage";
+import { storeToRefs } from "pinia";
+const modalMessageStore = useModalMessage();
+let { isOpenModalMessage, idPost } = storeToRefs(modalMessageStore);
+
+import { useModalCall } from "~/stores/CallModal"
+const modalCallStore = useModalCall();
+let {isOpenModalCall, idCase, userId, userName, userActivity, userNumber, userImg} = storeToRefs(modalCallStore);
+
+const showCallModal = (idPost, idUser, user_name, activity, user_number, userPicture) => {
+    idCase.value = idPost
+    userId.value = idUser
+    userName.value = user_name
+    userActivity.value = activity
+    userNumber.value = user_number
+    userImg.value = userPicture
+    setTimeout(() => {
+        isOpenModalCall.value = true
+    }, 5);
+}
+const showMessageModal = (idCase) => {
+    idPost.value = idCase
+    setTimeout(() => {
+        isOpenModalMessage.value = true
+    }, 5);
+};
+
+// validate Name 
+function validateName (name) {
+	const re = /^[آ-ی]{2,30}$/;
+	return re.test(name);
+};
+function validateN () {
+	const nameInput = document.getElementById('name');
+	nameInput.addEventListener('keyup', validateN)
+
+	const result = document.getElementById('resultName')
+	const name = document.getElementById('name').value;
+
+	if (validateName(name)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Phone Number
+function validatePhoneNumber (phone) {
+	const re = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+	return re.test(phone);
+}; 
+function validateP () {
+	const phoneInput = document.getElementById('phoneNumber');
+	phoneInput.addEventListener('keyup', validateP)
+
+	const result = document.getElementById('resultPhone')
+	const phone = document.getElementById('phoneNumber').value;
+
+	if (validatePhoneNumber(phone)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// validate Text 
+function validateText (text) {
+	const re = /^[آ-ی]{2,30}$/;
+	return re.test(text);
+};
+function validateT () {
+	const textInput = document.getElementById('text');
+	textInput.addEventListener('keyup', validateT)
+
+	const result = document.getElementById('resultText')
+	const text = document.getElementById('text').value;
+
+	if (validateText(text)) {
+		result.style.height = '0px';return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+}
+// Modal Message And Call Store
+
+// Share Modal
+const isOpenShareModal = ref(false)
+
+const closeShareModal = () => {
+    isOpenShareModal.value = false
+};
+const openShareModal = () => {
+    setTimeout(() => {
+        isOpenShareModal.value = true
+    }, 5)
+};
+const copyShareLink = (text, btn) => {
+    text.focus();
+    text.select();
+    document.execCommand('copy');
+    btn.innerHTML='کپی شد';
+    setTimeout(() => {
+        btn.innerHTML='کپی لینک'
+    }, 3000);
+};
+
+
+// Report Modal
+const reportModal = ref(false);
+const successReportModal = ref(false);
+const topic = ref("ملک واگذار شده")
+const desc = ref("")
+
+const sendReport = (idCase) => {
+    let ele = document.getElementsByName('report');
+            
+    for(let i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        topic.value = ele[i].value
+    };
+
+    fetch(`${apiRootStore.api}/real/cases/${idCase}/report/`, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            report: topic.value,
+            desc: desc.value,
+        }),
+    })
+    .then(res => {
+        if (res.status >=200 && res.status < 400) {
+            toast.success('گزارش شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            reportModal.value = false;
+            successReportModal.value = true;
+            return res.json()
+        }
+    })
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => {
+        toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    })
+}
+const openReportModal = () => {
+    setTimeout(() => {
+        reportModal.value = true
+    }, 5)
+};
+const closeReportModal = () => {
+    reportModal.value = false
+};
+const closeSuccessReportModal = () => {
+    successReportModal.value = false
+}
+
+function sendReportValidate(topicValue, descValue, idCase,) {
+    
+};
 </script>
+
+<style scoped>
+#report1:checked + label:after, #report2:checked + label:after, #report3:checked + label:after, #report4:checked + label:after, #report5:checked + label:after {
+    background: var(--primaryColor)!important;
+}
+
+#report1 + label:before, #report2 + label:before, #report3 + label:before, #report4 + label:before, #report5 + label:before {
+    right: 0;
+}
+
+#report1:checked + label:before, #report2:checked + label:before, #report3:checked + label:before, #report4:checked + label:before, #report5:checked + label:before {
+    right: 0;
+    z-index: 10;
+}
+</style>
