@@ -19,20 +19,16 @@ const fetchData = () => {
             'Authorization': "JWT " + localStorage.getItem('token')
         },
         body: JSON.stringify({
-            username: this.username,
-            password: this.password,
+            username: username.value,
+            password: password.value,
         })
     })
     .then(res => {
         if(res.status >= 200 && res.status < 400) {
-            document.getElementById('toastMessageNotify').classList.add('bg-emerald-500')
-            document.getElementById('toastMessageNotify').classList.remove('bg-red-700')
             toast.success('شما وارد شدید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
 
             return res.json()
         } else {
-            document.getElementById('toastMessageNotify').classList.add('bg-red-700')
-            document.getElementById('toastMessageNotify').classList.remove('bg-emerald-500')
             toast.warning('نام کاربری یا رمز ورود اشتباه است!', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
         }
     })
@@ -50,11 +46,13 @@ const fetchData = () => {
 }
 
 useHead({
-    titleTemplate: '%s-ورود کاربر',
+    titleTemplate: 'ورود کاربر-%s',
 });
 </script>
 
 <template>
+    <HeaderViaBackground :pageName="'ورود کاربر'" />
+
     <main class="px-2">
         <section class="relative -top-20">
             <div class="container m-auto">

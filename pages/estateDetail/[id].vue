@@ -1526,7 +1526,7 @@ onMounted(async () => {
 
 watch(titleHead, () => {
     useHead({
-        titleTemplate: `%s-${titleHead.value}`,
+        titleTemplate: `${titleHead.value}-%s`,
     });
 })
 

@@ -14,40 +14,6 @@ body {
 .rtl {
   direction: rtl;
 }
-.bg-primary {
-  background-color: #363333;
-}
-.bg-secondary {
-  background-color: #272121;
-}
-.bg-primaryOrange {
-  background-color: #E16428;
-}
-.bg-sec222831 {
-  background-color: #222831;
-}
-.bg-hoverPrimaryOrange {
-  background-color: #A74A1E;
-}
-.bg-black50 {
-  background-color: rgba(0, 0, 0, 50%);
-}
-.bg-graytext {
-  background-color: #9B9B9B;
-}
-
-.text-graytext {
-  color: #9B9B9B;
-}
-.text-primary {
-  color: #363333;
-}
-.text-secondary {
-  color: #272121;
-}
-.text-primaryOrange {
-  color: #E16428;
-}
 
 .btn {
   color: white;

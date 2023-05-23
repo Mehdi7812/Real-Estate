@@ -1,6 +1,6 @@
 <template>
     <section class="lg:w-4/6">
-        <div class="flex flex-col bg-secondary rounded-[31px] rounded-l-none">
+        <div class="flex flex-col bg-secondary dark:bg-[#fcfcfc] rounded-[31px] rounded-l-none">
             <!-- Loading Page -->
             <main v-if="!weblogItem" class="mostSearch w-4/5 p-5">
                 <ul class="o-vertical-spacing o-vertical-spacing--l">

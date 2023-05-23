@@ -94,6 +94,11 @@
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
+import { useAuth } from "~/stores/Auth"
+const authStore = useAuth()
+
+// authStore.looger()
+
 const homePagePic = ref("")
 const homePage_header = ref("")
 const data = ref("")
@@ -109,13 +114,13 @@ onMounted(async () => {
     const dataCon = await resConsultants.json()
     dataConsultants.value = dataCon;
 
-    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
-    const dataHomePage = await response.json()
-    homePage_header.value = dataHomePage[0].homePage_header
+    const response = await fetch(`${apiRootStore.api}/real/HomePage`);
+    const dataHomePage = await response.json();
+    homePage_header.value = dataHomePage[0].homePage_header;
 });
 
 useHead({
-    titleTemplate: '%s-درباره ما',
+    titleTemplate: 'درباره ما-%s',
 })
 
 onUpdated(() => {

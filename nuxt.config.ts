@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     modules: [
         'nuxt-swiper',
         '@pinia/nuxt',
-    //  'nuxt-leaflet',
+        'nuxt-vue-map-ui'
     ],
 	css: ["~/assets/css/main.css"],
 	postcss: {
@@ -23,9 +23,11 @@ export default defineNuxtConfig({
             link: [
                 { rel: 'stylesheet', href: '/Swiper.css' },
                 { rel: 'stylesheet', href: '/Skelton.css' },
+                { rel: 'stylesheet', href: '/darkMode.css' },
+                { rel: 'stylesheet', href: '/loadingPuls.css' },
               ],
             script: [
-                { src: "/Swiper.js" }
+                { src: "/Swiper.js" },
             ],
         }
     },

@@ -26,6 +26,6 @@
 
 <script setup>
 useHead({
-    titleTemplate: '%s-فیلتر ملک ها',
+    titleTemplate: 'فیلتر ملک ها-%s',
 })
 </script>
