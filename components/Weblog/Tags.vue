@@ -14,9 +14,7 @@ const apiRootStore = useApiRoot()
 
 const dataRes = ref()
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/tags/`)
-    const data = await response.json()
-    dataRes.value = data
-});
+const response = await fetch(`${apiRootStore.api}/real/tags/`)
+const data = await response.json()
+dataRes.value = data;
 </script>

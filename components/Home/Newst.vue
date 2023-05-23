@@ -338,42 +338,13 @@ const showMessageModal = (idCase) => {
 }
 // Modal Message And Call Store
 
+
+const response = await fetch(`${apiRootStore.api}/real/cases/`);
+const data = await response.json();
+dataRes.value = data.results;
+
 onMounted(async () => {
-    const swiperNewst1 = new Swiper(".swiperNewst", {
-        direction: "horizontal",
-        // loop: true,
-        spaceBetween: 10,
-
-        breakpoints: {
-            768: {slidesPerView: 2},
-            1024: {slidesPerView: 3}
-        },
-
-        navigation: {
-            nextEl: ".swiperNewst-next",
-            prevEl: ".swiperNewst-prev",
-        },
-    });
-
-    const navMenu = document.getElementById('navMenu')
-
-    document.addEventListener('scroll', function () {
-        if(document.documentElement.scrollTop > 100) {
-            if(navMenu.classList.contains('navMain')) {
-                navMenu.classList.remove('navMain')
-            }
-        } else {
-            if(!navMenu.classList.contains('navMain')) {
-                navMenu.classList.add('navMain')
-            } 
-        }
-    })
-    
-    const response = await fetch(`${apiRootStore.api}/real/cases/`)
-    const data = await response.json()
-    dataRes.value = data.results
-
-    const swiperNewst = await new Swiper(".swiperNewst", {
+    const swiperNewst1 = await new Swiper(".swiperNewst", {
         direction: "horizontal",
         // loop: true,
         spaceBetween: 10,
@@ -399,5 +370,18 @@ onMounted(async () => {
         },
     });
 
+    const navMenu = document.getElementById('navMenu')
+
+    document.addEventListener('scroll', function () {
+        if(document.documentElement.scrollTop > 100) {
+            if(navMenu.classList.contains('navMain')) {
+                navMenu.classList.remove('navMain')
+            }
+        } else {
+            if(!navMenu.classList.contains('navMain')) {
+                navMenu.classList.add('navMain')
+            } 
+        }
+    })
 });
 </script>

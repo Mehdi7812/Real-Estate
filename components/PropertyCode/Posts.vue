@@ -286,7 +286,7 @@ const showMessageModal = (idCase) => {
     setTimeout(() => {
         isOpenModalMessage.value = true
     }, 5);
-}
+};
 // Modal Message And Call Store
 
 </script>

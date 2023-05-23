@@ -1,35 +1,42 @@
 import { defineStore } from "pinia"
 import { useApiRoot } from "~/stores/ApiRoot"
+import { toast } from 'vue3-toastify';
 
 export const useAuth = defineStore("auth", () => {
     const apiRootStore = useApiRoot()
     
-    const isLoggin = ref(false)
-    let userInfo = ref("")
+    const isLogin = ref(false);
+    const userInfo = ref("");
 
-    const looger = () => {
-        // if(localStorage.getItem("token")) {
-        //     fetch(`${apiRootStore.api}/auth/users/me`, {
-        //         method: 'GET',
-        //         headers: {
-        //             'Authorization': "JWT " + localStorage.getItem('token')
-        //         }
-        //     })
-        //     .then(res => {
-        //         if(res.status >=200 && res.status < 400) {
-        //             isLoggin.value = true
-        //         } else {
-        //             isLoggin.value = false
-        //         }
-        //         return res.json()
-        //         }) 
-        //     .then(data => {
-        //         if(isLoggin.value){
-        //             userInfo.value = data
-        //         }
-        //     })
-        // }
-    }
+    const checkLogin = () => {
+        if(localStorage.getItem("token")) {
+            fetch(`${apiRootStore.api}/auth/users/me`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': "JWT " + localStorage.getItem('token')
+                }
+            })
+            .then(res => {
+                if(res.status >=200 && res.status < 400) {
+                    isLogin.value = true
+                } else {
+                    isLogin.value = false
+                }
+                return res.json()
+                }) 
+            .then(data => {
+                if(isLogin.value){
+                    userInfo.value = data
+                }
+            })
+        }
+    };
+
+    const exitUser = () => {
+        isLogin.value = false;
+        localStorage.removeItem('token')
+        toast.warning('شما خارج شدید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    };
     
-    return { isLoggin, userInfo, looger }
+    return { isLogin, userInfo, checkLogin, exitUser };
 })

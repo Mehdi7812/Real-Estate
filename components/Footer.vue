@@ -88,8 +88,6 @@
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
-const route = useRoute()
-
 const phoneNumber = ref("")
 
 const sendPhoneNumber = () => {
@@ -106,9 +104,14 @@ const sendPhoneNumber = () => {
                     console.log(res);
 					if(res.status >= 200 && res.status < 400) {
 						phoneNumber.value = '';
+                        toast.success('شماره شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                        
 					}
 				})
-					.catch(err => console.log(err, 'Error'))
+                .catch(err => {
+                    console.log(err, 'Error')
+                    toast.warning('شماره شما قبلا ثبت شده.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    })
 }
 
 const homePage_pic = ref()
@@ -116,13 +119,9 @@ const title = ref()
 const logo_dark = ref()
 const pageDescription = ref()
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
-    const data = await response.json()
-    logo_dark.value = data[0].logo_dark
-    title.value = data[0].homePage_title
-    pageDescription.value = data[0].homePage_text
-
-});
-
+const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
+const data = await response.json()
+logo_dark.value = data[0].logo_dark
+title.value = data[0].homePage_title
+pageDescription.value = data[0].homePage_text;
 </script>

@@ -94,58 +94,44 @@
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
-import { useAuth } from "~/stores/Auth"
-const authStore = useAuth()
-
-// authStore.looger()
-
 const homePagePic = ref("")
-const homePage_header = ref("")
 const data = ref("")
 const dataConsultants = ref("")
 
-onMounted(async () => {
-    const resAbout = await fetch(`${apiRootStore.api}/real/AboutUs/`)
-    const dataAbout = await resAbout.json()
-    data.value = dataAbout[0]
-    homePagePic.value = dataAbout[0].estate_picture
+const resAbout = await fetch(`${apiRootStore.api}/real/AboutUs/`)
+const dataAbout = await resAbout.json()
+data.value = dataAbout[0]
+homePagePic.value = dataAbout[0].estate_picture
 
-    const resConsultants = await fetch(`${apiRootStore.api}/real/consultants/`)
-    const dataCon = await resConsultants.json()
-    dataConsultants.value = dataCon;
-
-    const response = await fetch(`${apiRootStore.api}/real/HomePage`);
-    const dataHomePage = await response.json();
-    homePage_header.value = dataHomePage[0].homePage_header;
-});
+const resConsultants = await fetch(`${apiRootStore.api}/real/consultants/`)
+const dataCon = await resConsultants.json()
+dataConsultants.value = dataCon;
 
 useHead({
     titleTemplate: 'درباره ما-%s',
 })
 
-onUpdated(() => {
-    setTimeout(() => {
-        new Swiper('.swiper', {
-            direction: "horizontal",
-            // loop: true,
-            slidesPerView: 3,
-            spaceBetween: 10,
-            pagination: {
-                el: '.swiper-paginationPersons',
-                clickable: true,
-            },
-    
-            breakpoints: {
-                768: {slidesPerView: 4, spaceBetween: 10},
-                1024: {slidesPerView: 5, spaceBetween: 20},
-            },
-    
-            navigation: {
-                nextEl: '.personsNext',
-                prevEl: '.personsPrev',
-            }
-        })
-    }, 10);
+onMounted(async () => {
+    await new Swiper('.swiper', {
+        direction: "horizontal",
+        // loop: true,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        pagination: {
+            el: '.swiper-paginationPersons',
+            clickable: true,
+        },
+
+        breakpoints: {
+            768: {slidesPerView: 4, spaceBetween: 10},
+            1024: {slidesPerView: 5, spaceBetween: 20},
+        },
+
+        navigation: {
+            nextEl: '.personsNext',
+            prevEl: '.personsPrev',
+        }
+    })
 });
 
 </script>

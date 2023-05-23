@@ -5,7 +5,7 @@
 		<!-- DarkMode Elem -->
 		<div v-show="themeStatus == 'هر دو'" class="opacity-0" :class="themeStatus == 'هر دو' ? 'opacity-100' : 'opacity-0'" id="darkModeEl">
 			<div class="theme-container shadow-dark fixed bottom-4 left-4 cursor-pointer w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]">
-				<img class="w-5 h-5 lg:w-7 lg:h-7" id="theme-icon" src="https://www.uplooder.net/img/image/2/addf703a24a12d030968858e0879b11e/moon.svg" alt="ERR">
+				<img class="w-5 h-5 lg:w-7 lg:h-7" id="theme-icon" src="/moon.svg" alt="ERR">
 			</div>
 		</div>
 	</NuxtLayout>
@@ -52,7 +52,7 @@ onMounted(async () => {
 
 	const toggleDark = document.getElementById('darkModeEl')
 
-	toggleDark.addEventListener('click', (e) => {
+	toggleDark.addEventListener('click', () => {
 		document.documentElement.classList.toggle('dark')
 
 		if(document.documentElement.classList == 'dark') {

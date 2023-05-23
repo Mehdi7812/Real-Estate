@@ -167,4 +167,21 @@ count3.value = await favouritePlaceCount('چمستان');
 count4.value = await favouritePlaceCount('سرخ رود');
 count5.value = await favouritePlaceCount('نوشهر');
 
+onMounted(async () => {
+    const swiperFavourite = await new Swiper(".swiperFavourite", {
+        direction: "horizontal",
+        // loop: true,
+        spaceBetween: 20,
+
+        navigation: {
+            nextEl: ".swiperFavImg1-next",
+            prevEl: ".swiperFavImg1-prev",
+        },
+
+        breakpoints: {
+            768: {slidesPerView: 2, spaceBetween: 10},
+            1024: {slidesPerView: 3, spaceBetween: 10}
+        }
+    });
+});
 </script>

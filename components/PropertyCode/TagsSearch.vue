@@ -149,12 +149,11 @@
 <script setup>
 import PN from "persian-number";
 
-// Convert diigits func Store
+// Convert digits func Store
 import { useConvertDatas } from "~/stores/ConvertDatas"
 const convertDatas = useConvertDatas()
 
 const route = useRoute()
-
 
 const documentTypeChange = (document_type) => {
     if(document_type == 'E'){

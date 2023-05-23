@@ -37,11 +37,9 @@ const apiRootStore = useApiRoot()
 
 const emit = defineEmits(['banner'])
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/ContactUsBanner/`)
-    const data = await response.json()
-    dataRes.value = data[0]
+const response = await fetch(`${apiRootStore.api}/real/ContactUsBanner/`)
+const data = await response.json()
+dataRes.value = data[0]
 
-    emit('banner', data[0].banner)
-});
+emit('banner', data[0].banner);
 </script>

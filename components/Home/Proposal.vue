@@ -337,25 +337,12 @@ const showMessageModal = (idCase) => {
 }
 // Modal Call And Message Store
 
+
+const response = await fetch(`${apiRootStore.api}/real/cases/?special=true`) 
+const data = await response.json()
+dataRes.value = data.results;
+
 onMounted(async () => {
-    const swiperProposal1 = new Swiper(".swiperProposal", {
-        direction: "horizontal",
-        // loop: true,
-        slidesPerView: 1,
-        spaceBetween: 10,
-        breakpoints: {
-            768: {slidesPerView: 2},
-        },
-        navigation: {
-            nextEl: ".swiperProposal-next",
-            prevEl: ".swiperProposal-prev",
-        },
-    });
-
-    const response = await fetch(`${apiRootStore.api}/real/cases/?special=true`) 
-    const data = await response.json()
-    dataRes.value = data.results
-
     const swiperProposal = await new Swiper(".swiperProposal", {
         direction: "horizontal",
         // loop: true,

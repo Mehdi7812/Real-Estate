@@ -180,28 +180,11 @@ const convertDatas = useConvertDatas()
 
 const dataRes = ref()
 
+const response = await fetch(`${apiRootStore.api}/real/weblog/`)
+const data = await response.json()
+dataRes.value = data.results;
+
 onMounted(async () => {
-    const swiperWeblog1 = new Swiper(".swiperWeblog", {
-        direction: "horizontal",
-        // loop: true,
-        slidesPerView: 1,
-        spaceBetween: 10,
-
-        breakpoints: {
-            768: {slidesPerView: 2, spaceBetween: 10},
-            1024: {slidesPerView: 3, spaceBetween: 10}
-        },
-        
-        navigation: {
-            nextEl: ".swiperWeblog-next",
-            prevEl: ".swiperWeblog-prev",
-        },
-    });
-
-    const response = await fetch(`${apiRootStore.api}/real/weblog/`)
-    const data = await response.json()
-    dataRes.value = data.results
-
     const swiperWeblog = await new Swiper(".swiperWeblog", {
         direction: "horizontal",
         // loop: true,

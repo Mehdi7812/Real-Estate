@@ -1,7 +1,7 @@
 <template>
     <Transition>
         <div v-show="modalCallStore.isOpenModalCall" id="modalCall" class="transition-all duration-300 overflow-hidden">
-            <div class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
+            <div class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto overflow-x-hidden flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
                 <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[26px] p-5 pt-0">
                     <div class="flex justify-between items-center p-2">
                         <span class="text-[17px] font-bold">درخواست تماس</span>
@@ -39,7 +39,9 @@
                                 <p class="text-black font-bold">چه امتیازی به <span>{{ modalCallStore.userName }}</span> میدین؟</p>
                                 
                                 <div id="loadingPuls" style="display: none" class="loading-pulse"></div>
-                                <div id="demo"></div>
+                                <client-only>
+                                    <star-rating id="starRating" @update:rating ="setRating" :rating="0" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
+                                </client-only>
                             </div>
                         </div>
                     </div>
@@ -54,12 +56,42 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 import PN from "persian-number";
-
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 import { toast } from 'vue3-toastify';
+import StarRating from "vue-star-rating";
 
 import { useModalCall } from "~/stores/CallModal"
-const modalCallStore = useModalCall()
+const modalCallStore = useModalCall();
+
+const setRating = (newRate) => {
+    document.getElementById("loadingPuls").style.display = 'block'
+    document.getElementById("starRating").style.display = 'none';
+
+    fetch(`${apiRootStore.api}/real/cases/${modalCallStore.idCase}/rate/`, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            'new_rate':newRate
+        }),
+        }).then(response => {
+            console.log(response);
+            if(response.status >= 200 && response.status < 400) {
+                toast.success('رای شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                document.getElementById("starRating").style.pointerEvents = 'none';
+            } else {
+                toast.warning('رای شما ثبت نشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            }
+            document.getElementById("starRating").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
+        })
+        .catch(err => {
+            toast.warning('لطفا دوباره امتحان کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            document.getElementById("starRating").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
+        })
+}
 
 const closeModal = () => {
     modalCallStore.isOpenModalCall = false

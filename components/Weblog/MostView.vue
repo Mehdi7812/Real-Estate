@@ -107,9 +107,7 @@ const convertDatas = useConvertDatas()
 
 const dataRes = ref()
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/MostViewWeblogs/`)
-    const data = await response.json()
-    dataRes.value = data
-});
+const response = await fetch(`${apiRootStore.api}/real/MostViewWeblogs/`)
+const data = await response.json()
+dataRes.value = data;
 </script>

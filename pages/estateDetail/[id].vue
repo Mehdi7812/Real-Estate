@@ -332,54 +332,50 @@
                     </div>
 
                     <!-- اطلاعات پنهان -->
-                    <template x-if="$store.login.isLogin">
-                        <div>
-                            <!-- خط افقی -->
-                            <div class="w-full h-[1.5px] bg-graytext/30"></div>
+                    <div v-if="authStore.isLogin">
+                        <!-- خط افقی -->
+                        <div class="w-full h-[1.5px] bg-graytext/30"></div>
 
-                            <div class="my-10 lg:my-14">
-                                <h4 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">اطلاعات پنهان</h4>
+                        <div class="my-10 lg:my-14">
+                            <h4 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">اطلاعات پنهان</h4>
 
-                                <template x-if="$store.login.userInfo">
-                                    <ul class="flex flex-wrap w-full">
-                                        <li class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4">
-                                            شماره مالک : 
-                                            <span class="text-white dark:text-black" x-text="convertToPersianNumber(postItem.owner_number)"></span>
-                                        </li>
-                                        <li class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4">
-                                            قیمت واقعی : 
-                                            <span x-html="convertDatas.getNumber(postItem.real_price)" class="text-white dark:text-black"></span>
-                                        </li>
-                                    </ul>
-                                </template>
+                            <ul class="flex flex-wrap w-full">
+                                <li v-if="postItem.owner_number" class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4">
+                                    شماره مالک : 
+                                    <span class="text-white dark:text-black">{{ PN.convertEnToPe(postItem.owner_number) }}</span>
+                                </li>
+                                <li v-if="postItem.real_price" class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4">
+                                    قیمت واقعی : 
+                                    <span v-html="convertDatas.getNumber(postItem.real_price)" class="text-white dark:text-black"></span>
+                                </li>
+                            </ul>
 
-                                <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${postItem.lat},${postItem.lng}`" class="rounded-[21px] block h-52 md:h-72 overflow-hidden relative">
-                                    <div class="h-full z-0" id="map"></div>
+                            <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${postItem.lat},${postItem.lng}`" class="rounded-[21px] block h-52 md:h-72 overflow-hidden relative">
+                                <ClientOnly>
+                                    <VMap :zoom="12" :center="[36.457464, 52.363243]" class="h-full z-0">
+                                        <VMapGoogleTileLayer title="Google Hybrid" type="hybrid" />
+                                    </VMap>
+                                </ClientOnly>
+                                
+                                <div class="flex gap-5 justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-[21px] backdrop-brightness-[.38]">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.0009 13.43C13.724 13.43 15.1209 12.0331 15.1209 10.31C15.1209 8.58687 13.724 7.19 12.0009 7.19C10.2777 7.19 8.88086 8.58687 8.88086 10.31C8.88086 12.0331 10.2777 13.43 12.0009 13.43Z" stroke="white" stroke-width="1.5"/>
+                                        <path d="M3.61971 8.49C5.58971 -0.169998 18.4197 -0.159997 20.3797 8.5C21.5297 13.58 18.3697 17.88 15.5997 20.54C13.5897 22.48 10.4097 22.48 8.38971 20.54C5.62971 17.88 2.46971 13.57 3.61971 8.49Z" stroke="white" stroke-width="1.5"/>
+                                    </svg>
                                     
-                                    <div class="flex gap-5 justify-center items-center absolute top-0 left-0 right-0 bottom-0 rounded-[21px] backdrop-brightness-[.38]">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12.0009 13.43C13.724 13.43 15.1209 12.0331 15.1209 10.31C15.1209 8.58687 13.724 7.19 12.0009 7.19C10.2777 7.19 8.88086 8.58687 8.88086 10.31C8.88086 12.0331 10.2777 13.43 12.0009 13.43Z" stroke="white" stroke-width="1.5"/>
-                                            <path d="M3.61971 8.49C5.58971 -0.169998 18.4197 -0.159997 20.3797 8.5C21.5297 13.58 18.3697 17.88 15.5997 20.54C13.5897 22.48 10.4097 22.48 8.38971 20.54C5.62971 17.88 2.46971 13.57 3.61971 8.49Z" stroke="white" stroke-width="1.5"/>
-                                        </svg>
-                                        
-                                        <span class="font-bold text-[17px] text-white">مسیریابی آدرس ملک</span>
-                                    </div>
-                                </a>
+                                    <span class="font-bold text-[17px] text-white">مسیریابی آدرس ملک</span>
+                                </div>
+                            </a>
 
-                                <template x-if="postItem.address">
-                                    <p class="text-graytext text-[17px] pt-11">آدرس دقیق : <span class="text-white dark:text-black ml-5" x-text="postItem.address"> </span></p>
-                                </template>
+                            <p v-if="postItem.address" class="text-graytext text-[17px] pt-11">آدرس دقیق : <span class="text-white dark:text-black ml-5">{{ postItem.address }}</span></p>
 
-                                <template x-if="postItem.more_details">
-                                    <div class="pt-5">
-                                        <span class="text-graytext text-[17px]">توضیحات : </span>
-                                        
-                                        <p class="text-white dark:text-black text-[17px] break-spaces indent-5" x-text="postItem.more_details"></p>
-                                    </div>
-                                </template>
+                            <div v-if="postItem.more_details" class="pt-5">
+                                <span class="text-graytext text-[17px]">توضیحات : </span>
+                                
+                                <p class="text-white dark:text-black text-[17px] break-spaces indent-5">{{ postItem.more_details }}</p>
                             </div>
                         </div>
-                    </template>
+                    </div>
 
                     <!-- خط افقی -->
                     <div class="w-full h-[1.5px] bg-graytext/30"></div>
@@ -984,7 +980,7 @@
                                 <div :class="{'!w-full !h-auto' : activeTab == 'درخواست تماس'}" class="w-0 h-0 overflow-hidden transition-all duration-300">
                                     <div class="flex flex-col items-center gap-5 rounded-[21px] p-4 2xl:p-5 bg-[#525050] dark:bg-[#DFDFDF] whitespace-nowrap">
                                         <!-- person info(image name ...) -->
-                                        <NuxtLink :to="`propertyUser?user=${postItem.user_id}`" class="flex flex-col items-center pt-10 2xl:pt-12 pb-3 2xl:pb-4 gap-2">
+                                        <NuxtLink :to="`/propertyCode?user=${postItem.user_id}`" class="flex flex-col items-center pt-10 2xl:pt-12 pb-3 2xl:pb-4 gap-2">
                                             <img class="w-16 h-16 rounded-xl object-cover" :src="`${apiRootStore.api}/${postItem.userPicture}`">
                                             <p class="text-xl font-bold">{{ postItem.username }}</p>
                                             <p class="text-graytext">{{ postItem.user_activity }}</p>
@@ -1006,7 +1002,9 @@
                                             <p class="text-black font-bold">چه امتیازی به <span>{{ postItem.username }}</span> میدین؟</p>
                                             
                                             <div id="loadingPuls" style="display: none" class="loading-pulse"></div>
-                                            <div id="demo"></div>
+                                            <client-only>
+                                                <star-rating id="starRating" @update:rating ="setRating" :rating="0" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
+                                            </client-only>
                                         </div>
                                     </div>
                                 </div>
@@ -1418,16 +1416,23 @@
 <script setup>
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 import { toast } from 'vue3-toastify';
+// Map.vue
+import { VMap, VMapGoogleTileLayer } from 'vue-map-ui';
 
 // Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
+
+// Auth user Store
+import { useAuth } from "~/stores/Auth"
+const authStore = useAuth()
 
 // Convert diigits func Store
 import { useConvertDatas } from "~/stores/ConvertDatas"
 const convertDatas = useConvertDatas()
 
 import PN from "persian-number";
+import StarRating from "vue-star-rating";
 
 const route = useRoute();
 
@@ -1467,6 +1472,37 @@ const documentTypeChange = (document_type) => {
         return 'انتخاب کنید'
     }
 };
+
+// SetRating
+const setRating = (newRate) => {
+    document.getElementById("loadingPuls").style.display = 'block'
+    document.getElementById("starRating").style.display = 'none';
+
+    fetch(`${apiRootStore.api}/real/cases/${route.params.id}/rate/`, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            'new_rate':newRate
+        }),
+        }).then(response => {
+            console.log(response);
+            if(response.status >= 200 && response.status < 400) {
+                toast.success('رای شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                document.getElementById("starRating").style.pointerEvents = 'none';
+            } else {
+                toast.warning('رای شما ثبت نشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            }
+            document.getElementById("starRating").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
+        })
+        .catch(err => {
+            toast.warning('لطفا دوباره امتحان کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            document.getElementById("starRating").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
+        })
+}
 
 onMounted(async () => {
     const swiper2 = new Swiper(".swiper1", {

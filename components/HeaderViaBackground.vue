@@ -102,16 +102,16 @@ const userDatas = ref()
 const { pageName, customImage } = defineProps({ pageName: String, customImage: {default: null} })
 
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
-    const dataHomePage = await response.json()
-    homePage_header.value = dataHomePage[0].homePage_header
-    homePage_Pic.value = dataHomePage[0].homePage_pic
-   
-    if(route.query.user) {
-        const response = await fetch(`${apiRootStore.api}/real/usersinfo/${route.query.user}`)
-        const dataUser = await response.json()
-        userDatas.value = dataUser
-    }
-});
+const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
+const dataHomePage = await response.json()
+homePage_header.value = dataHomePage[0].homePage_header
+homePage_Pic.value = dataHomePage[0].homePage_pic
+
+if(route.query.user) {
+    const response = await fetch(`${apiRootStore.api}/real/usersinfo/${route.query.user}`)
+    const dataUser = await response.json()
+    userDatas.value = dataUser
+} else {
+    userDatas.value = null
+};
 </script>

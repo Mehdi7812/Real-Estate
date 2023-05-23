@@ -185,8 +185,8 @@
                 <div class="relative h-56 md:h-[448px] rounded-[20px] md:rounded-[63px] overflow-hidden">
                     <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${dataRes.lat},${dataRes.lng}`" class="block h-full overflow-hidden relative rounded-[20px] md:rounded-[63px]">
                         <ClientOnly>
-                            <VMap :zoom="12" :center="[36.457464, 52.363243]" class="h-full z-0 rounded-[20px] md:rounded-[63px]">
-                                <VMapOsmTileLayer />
+                            <VMap :zoom="12" :center="[dataRes.lat, dataRes.lng]" class="h-full z-0 rounded-[20px] md:rounded-[63px]">
+                                <VMapGoogleTileLayer title="Google Hybrid" type="hybrid" />
                             </VMap>
                         </ClientOnly>
                         
@@ -378,7 +378,7 @@
 <script setup>
 import PN from "persian-number";
 // Map.vue
-import { VMap, VMapOsmTileLayer } from 'vue-map-ui';
+import { VMap, VMapGoogleTileLayer } from 'vue-map-ui';
 
 // Api Root Store
 import { useApiRoot } from "~/stores/ApiRoot"
@@ -386,9 +386,7 @@ const apiRootStore = useApiRoot()
 
 const dataRes = ref("");
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/ContactUs/`)
-    const data = await response.json()
-    dataRes.value = data[0]
-});
+const response = await fetch(`${apiRootStore.api}/real/ContactUs/`)
+const data = await response.json()
+dataRes.value = data[0];
 </script>

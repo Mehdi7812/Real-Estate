@@ -2,7 +2,7 @@
     <div class="lg:w-2/6 p-5">
         <div class=" sticky top-10">
             <h4 class="pr-5">فیلتر جستجو</h4>
-            <div x-data="filterSearch" class="flex flex-col gap-3 py-6">
+            <div class="flex flex-col gap-3 py-6">
                 <!-- متراژ -->
                 <!-- land_size__lte & land_size__gte -->
                 <div class="flex gap-3">
@@ -505,6 +505,10 @@ const convertDatas = useConvertDatas()
 import iranStates from '~/assets/iranStates/iranstates.json';
 
 const dataRes = ref("")
+// Get Value MostViewCases
+const resMostView = await fetch(`${apiRootStore.api}/real/mostviewcase/`)
+const mostViewData = await resMostView.json()
+dataRes.value = mostViewData;
 
 const route = useRoute()
 
@@ -675,11 +679,5 @@ const openListCity = (divElem) => {
         divElem.querySelector('div:first-child').classList.add('bg-[#3f3f3f]')
         divElem.querySelector('div:first-child').classList.add('z-20')
     }
-}
-
-onMounted(async () => {
-    const resMostView = await fetch(`${apiRootStore.api}/real/mostviewcase/`)
-    const mostViewData = await resMostView.json()
-    dataRes.value = mostViewData
-});
+};
 </script>

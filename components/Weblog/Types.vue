@@ -20,9 +20,7 @@ const apiRootStore = useApiRoot()
 
 const dataRes = ref()
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/weblogTypes/`)
-    const data = await response.json()
-    dataRes.value = data
-});
+const response = await fetch(`${apiRootStore.api}/real/weblogTypes/`)
+const data = await response.json()
+dataRes.value = data;
 </script>

@@ -6,7 +6,7 @@ import { toast } from 'vue3-toastify';
 
 const username = ref("")
 const password = ref("")
-const showPassword = ref(false)
+const showPassword = ref(true)
 
 const fetchData = () => {
     document.getElementById("loadingPuls").style.display = 'block'
@@ -33,7 +33,7 @@ const fetchData = () => {
         }
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         localStorage.setItem('token', data.access)
         navigateTo("/")
     })
