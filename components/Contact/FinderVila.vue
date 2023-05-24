@@ -323,34 +323,41 @@ const fetchData = () => {
             demand_type.value = ele[i].value
         };
     
-        fetch(`${apiRootStore.api}/real/vilayab/`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                customer_name: customer_name.value,
-                phone: phone.value,
-                province: province.value,
-                city: city.value,
-                region: region.value,
-                demand_type: demand_type.value,
-                min_price: minPriceNumber,
-                max_price: maxPriceNumber,
-                text: text.value,
+        if(isRecaptchaValidated) {
+            fetch(`${apiRootStore.api}/real/vilayab/`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    customer_name: customer_name.value,
+                    phone: phone.value,
+                    province: province.value,
+                    city: city.value,
+                    region: region.value,
+                    demand_type: demand_type.value,
+                    min_price: minPriceNumber,
+                    max_price: maxPriceNumber,
+                    text: text.value,
+                })
             })
-        })
-        .then(res => {
-            console.log(res.json());
-            if(res.status >=200 && res.status < 400) {
-                toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-                clearInputs()
-            } else {
-                toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-            }
-        }). catch(err => {
-            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-        })
+            .then(res => {
+                console.log(res.json());
+                if(res.status >=200 && res.status < 400) {
+                    toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    clearInputs()
+                } else {
+                    toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                }
+            }). catch(err => {
+                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            })
+        } else {
+            toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+
+        }
+
+    // Else Validate
     } else {
         toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
     }
@@ -403,6 +410,27 @@ onMounted(() => {
     
 });
 
+useHead({
+    script: [
+        {
+			innerHTML: `
+                var onloadCallback = function() {
+                    grecaptcha.render(document.getElementById('html_element'), {
+                    'sitekey' : '6LcyDlcjAAAAAJjUldF0P9wg-EGkl_WssAicoT1i'
+                    });
+                };
+                `,
+		},
+
+		{
+			src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
+			async: true,
+			defer: true,
+            body: true
+		},
+        { src: '/recaptcha.js', body: true }
+    ]
+});
 
 // Validate Form Vila Yab
 // validate Name 

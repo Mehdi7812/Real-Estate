@@ -340,37 +340,43 @@ const sendComment = () => {
     validateN()
 
     if(validateE() && validateN()) {
-        fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: name.value,
-                email: email.value,
-                review: review.value,
+        if(isRecaptchaValidated) {
+            fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    email: email.value,
+                    review: review.value,
+                })
+            }).then(res => {
+                if(res.status >=200 && res.status < 400) {
+                    toast.success('کامنت شما ثبت شد:D.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    
+                    name.value = '';
+                    email.value = '';
+                    review.value = '';
+                } else {
+                    toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                }
+                console.log(res);
             })
-        }).then(res => {
-            if(res.status >=200 && res.status < 400) {
-                toast.success('کامنت شما ثبت شد:D.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            .catch(err => {
+                console.log(err, 'Error')
+                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            })
+        } else {
+            toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        }
 
-                name.value = '';
-                email.value = '';
-                review.value = '';
-            } else {
-                toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-            }
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err, 'Error')
-            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-        })
+    // Else Validate
     } else {
         toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
     }
 }
-// Review _ Comment
+// Review _ Comment //
 
 onMounted(async () => {
     const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
@@ -387,7 +393,26 @@ onMounted(async () => {
 });
 
 useHead({
-    titleTemplate: `${route.params.slug}-%s`
+    titleTemplate: `${route.params.slug}-%s`,
+    script: [
+        {
+			innerHTML: `
+                var onloadCallback = function() {
+                    grecaptcha.render(document.getElementById('html_element'), {
+                    'sitekey' : '6LcyDlcjAAAAAJjUldF0P9wg-EGkl_WssAicoT1i'
+                    });
+                };
+                `,
+		},
+
+		{
+			src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
+			async: true,
+			defer: true,
+            body: true
+		},
+        { src: '/recaptcha.js', body: true }
+    ]
 });
 
 

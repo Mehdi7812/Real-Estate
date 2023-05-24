@@ -1750,30 +1750,34 @@ const sendReport = (idCase) => {
         topic.value = ele[i].value
     };
 
-    fetch(`${apiRootStore.api}/real/cases/${idCase}/report/`, {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            report: topic.value,
-            desc: desc.value,
-        }),
-    })
-    .then(res => {
-        if (res.status >=200 && res.status < 400) {
-            toast.success('گزارش شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-            reportModal.value = false;
-            successReportModal.value = true;
-            return res.json()
-        }
-    })
-    .then(data => {
-        console.log(data)
-    })
-    .catch(err => {
-        toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-    })
+    if(isRecaptchaValidated) {
+        fetch(`${apiRootStore.api}/real/cases/${idCase}/report/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                report: topic.value,
+                desc: desc.value,
+            }),
+        })
+        .then(res => {
+            if (res.status >=200 && res.status < 400) {
+                toast.success('گزارش شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                reportModal.value = false;
+                successReportModal.value = true;
+                return res.json()
+            }
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => {
+            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        })
+    } else {
+        toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    }
 }
 const openReportModal = () => {
     setTimeout(() => {

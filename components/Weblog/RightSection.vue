@@ -136,7 +136,7 @@
                 </div>
             </NuxtLink>
 
-            <button v-if="posts.next" style="background-color: var(--primaryColor-20)" @click="seeMore(posts.next)" class="hover:opacity-80 bg-primaryOrange dark:bg-bluePrimary/40 bg-opacity-20 w-44 h-11 m-auto rounded-[14px] outline-none text-primaryOrange dark:text-bluePrimary hover:bg-opacity-50 dark:hover:bg-bluePrimary/60 transition-all duration-300 my-11"> 
+            <button v-if="posts.next" style="background-color: var(--primaryColor-20)" ref="nextBtn" @click="seeMore(posts.next, $refs.nextBtn)" class="hover:opacity-80 bg-primaryOrange dark:bg-bluePrimary/40 bg-opacity-20 w-44 h-11 m-auto rounded-[14px] outline-none text-primaryOrange dark:text-bluePrimary hover:bg-opacity-50 dark:hover:bg-bluePrimary/60 transition-all duration-300 my-11"> 
                 <p style="color: var(--primaryColor)" class="flex justify-center items-center gap-3">مشاهده بیشتر
                     <span>
                         <svg class="dark:inline-block hidden" width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,22 +179,22 @@ import PN from "persian-number";
 
 const route = useRoute()
 
-const seeMore = (nextPage) => {
-    // btn.style.pointerEvents = 'none'
-    // btn.style.cursor = 'not-allowed'
-    // btn.querySelector('p').style.display = 'none'
-    // btn.querySelector('#loadRingPuls').style.display = 'block'
+const seeMore = (nextPage, btn) => {
+    btn.style.pointerEvents = 'none'
+    btn.style.cursor = 'not-allowed'
+    btn.querySelector('p').style.display = 'none'
+    btn.querySelector('#loadRingPuls').style.display = 'block'
     
     fetch(nextPage)
         .then(res => res.json())
         .then(data => {
-            // btn.querySelector('#loadRingPuls').style.display = 'none'
-            // btn.querySelector('p').style.display = 'flex'
+            btn.querySelector('#loadRingPuls').style.display = 'none'
+            btn.querySelector('p').style.display = 'flex'
 
             posts.value.next = data.next
             posts.value.results.push(...data.results)
-            // btn.style.pointerEvents = 'auto'
-            // btn.style.cursor = 'pointer'
+            btn.style.pointerEvents = 'auto'
+            btn.style.cursor = 'pointer'
         })
 };
 

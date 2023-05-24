@@ -17,6 +17,9 @@ const apiRootStore = useApiRoot();
 let title = ref("");
 let themeStatus = ref("");
 
+const keywords = ref("")
+const description = ref("")
+
 onMounted(async () => {
 	if (localStorage.getItem("darkMode") == "true") {
 		document.documentElement.classList.remove("dark");
@@ -30,6 +33,17 @@ onMounted(async () => {
 	const response = await fetch(`${apiRootStore.api}/real/HomePage`);
 	const data = await response.json();
 	title.value = data[0].homePage_title;
+
+	description.value = data[0].homePage_text
+	// set Keyword Meta tag
+	data[0].keywords_list.forEach((key, index) =>  {
+		if(data[0].keywords_list.length == index + 1) {
+			keywords.value += `${key}`
+		} else {
+			keywords.value += `${key}, `
+		}
+	})
+
 	themeStatus.value = data[0].theme_status;
 	setWithApi(data[0].theme_status)
 
@@ -77,6 +91,11 @@ useHead({
 			window.$crisp=[];window.CRISP_WEBSITE_ID="23f3cfed-8c0f-49d4-9708-dfafe3f3eb3f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
 		` }
 	],
+	meta: [
+		{ name: "keywords", content: keywords },
+		{ name: "description", content: description },
+		{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" },
+	]
 });
 </script>
 
