@@ -39,9 +39,7 @@
                                 <p class="text-black font-bold">چه امتیازی به <span>{{ modalCallStore.userName }}</span> میدین؟</p>
                                 
                                 <div id="loadingPuls" style="display: none" class="loading-pulse"></div>
-                                <client-only>
-                                    <star-rating id="starRating" @update:rating ="setRating" :rating="0" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
-                                </client-only>
+                                <star-rating id="starRating" ref="starRate" @update:rating ="setRating" :rating="0" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
                             </div>
                         </div>
                     </div>
@@ -58,7 +56,6 @@ const apiRootStore = useApiRoot()
 import PN from "persian-number";
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 import { toast } from 'vue3-toastify';
-import StarRating from "vue-star-rating";
 
 import { useModalCall } from "~/stores/CallModal"
 const modalCallStore = useModalCall();
