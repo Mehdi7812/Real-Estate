@@ -50,9 +50,10 @@
 </template>
 
 <script setup>
+// import StarRating from "vue-star-rating";
+
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
-// import StarRating from "vue-star-rating";
 
 const dataRes = ref()
 

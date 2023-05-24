@@ -14,8 +14,8 @@
 import { useApiRoot } from "~/stores/ApiRoot";
 const apiRootStore = useApiRoot();
 
-let title = ref("");
-let themeStatus = ref("");
+const title = ref("");
+const themeStatus = ref("");
 
 const keywords = ref("")
 const description = ref("")
