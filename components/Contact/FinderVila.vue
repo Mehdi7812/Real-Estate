@@ -12,7 +12,7 @@
                             <input v-model="customer_name" class="border-b-2 border-graytext bg-transparent outline-none focus:border-b-primaryOrange dark:focus:border-b-bluePrimary transition-all duration-300" type="text" id="name" />
                             <label class="text-graytext relative top-[30px] group-focus-within:top-0 md:group-focus-within:text-lg text-xs group-focus-within:text-primaryOrange dark:group-focus-within:text-bluePrimary group-focus-within:font-bold md:text-base md:group-focus-within:font-medium transition-all duration-300"
                                 for="name">نام و نام خانوادگی</label>
-                                <span id="resultName" class="absolute h-0 overflow-hidden transition-all duration-300 -bottom-8 text-red-700">لطفا نام خود را درست وارد کنید</span>
+                            <span id="resultName" class="absolute h-0 overflow-hidden transition-all duration-300 -bottom-8 text-red-700">لطفا نام خود را درست وارد کنید</span>
                         </div>
 
                         <div class="contactInput flex flex-col-reverse gap-2 group xl:w-[45%] relative md:h-[66px]">
