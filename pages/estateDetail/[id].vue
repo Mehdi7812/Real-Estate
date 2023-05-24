@@ -61,7 +61,7 @@
                 <!-- Responsive Size -->
                 <div class="grid grid-cols-3 lg:hidden gap-3">
                     <!-- Big Picture -->
-                    <div data-fancybox="demo" :data-src="`${postItem.cover}`" class="row-span-3 col-span-full">
+                    <div data-fancybox="gallery" :data-src="`${postItem.cover}`" class="row-span-3 col-span-full">
                         <div class="overflow-hidden col-span-full row-span-full w-full h-[300px] rounded-[10px]">
                             <img class="object-cover w-full h-full bg-red-700" :src="postItem.cover">
                         </div>
@@ -70,16 +70,16 @@
                     <!-- Images -->
                     <div class="grid grid-cols-3 col-span-full gap-3">
                         <div v-for="(img, index) in postItem.media" :class="index >= 3 ? 'hidden' : ''">
-                            <div v-if="index <= 1" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
+                            <div v-if="index <= 1" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
                                 <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                             </div>
 
-                            <div v-if="index == 2" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
+                            <div v-if="index == 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
                                 <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${img.image}`">
                                 <p dir="rtl" class="text-xs flex justify-center items-center text-white flex-col backdrop-blur-[2px] rounded-[10px] overflow-hidden backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
 
-                            <div v-if="index > 2" data-fancybox="demo" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
+                            <div v-if="index > 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
                                 <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
                                 <p dir="rtl" class="text-xs flex justify-center text-white items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
@@ -92,27 +92,27 @@
                     <div dir="rtl" class="grid grid-cols-2 grid-rows-2 gap-4">
                         <div v-for="(img, index) in postItem.media" :class="index >= 4 ? 'hidden' : ''">
                             <div v-if="index < 4" class="h-full">
-                                <div v-if="index <= 2" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px]">
-                                    <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
+                                <div v-if="index <= 2" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] cursor-pointer">
+                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`">
                                 </div>
 
-                                <div v-if="index == 3" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
-                                    <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
+                                <div v-if="index == 3" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="group overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
+                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`">
                                     <p v-if="postItem.media.length - 4 > 0" dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                                 </div>
                             </div>
 
-                            <div v-if="index >= 4" data-fancybox="demoLg" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
+                            <div v-if="index >= 4" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
                                 <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`">
-                                <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
+                                <!-- <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p> -->
                             </div>
                         </div>
                     </div>
                     
                     <!-- Big Picture -->
-                    <div data-fancybox="demoLg" :data-src="`${postItem.cover}`" class="grid grid-cols-2 grid-rows-2 gap-4 h-[500px]">
+                    <div data-fancybox="galleryLG" :data-src="`${postItem.cover}`" class="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] cursor-pointer">
                         <div class="overflow-hidden col-span-2 row-span-2 w-full rounded-[10px]">
-                            <img class="object-cover w-full h-full" :src="postItem.cover">
+                            <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="postItem.cover">
                         </div>
                     </div>
                     
@@ -1416,6 +1416,12 @@
 <script setup>
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';
 import { toast } from 'vue3-toastify';
+// Import fancyBox
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
+Fancybox.bind("[data-fancybox='gallery']", {});
+Fancybox.bind("[data-fancybox='galleryLG']", {});
+
 // Map.vue
 import { VMap, VMapGoogleTileLayer } from 'vue-map-ui';
 
@@ -1779,6 +1785,7 @@ const sendReport = (idCase) => {
         toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
     }
 }
+
 const openReportModal = () => {
     setTimeout(() => {
         reportModal.value = true
@@ -1789,10 +1796,6 @@ const closeReportModal = () => {
 };
 const closeSuccessReportModal = () => {
     successReportModal.value = false
-}
-
-function sendReportValidate(topicValue, descValue, idCase,) {
-    
 };
 </script>
 
