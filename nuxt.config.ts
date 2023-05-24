@@ -28,6 +28,8 @@ export default defineNuxtConfig({
               ],
             script: [
                 { src: "/Swiper.js" },
+		        { src: "/darkMode.js", defer: true },
+
             ],
         }
     },

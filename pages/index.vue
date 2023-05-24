@@ -188,8 +188,6 @@
         <!-- Send Message Modal -->
         <SendMessageModal />
     </main>
-
-    <Footer />
 </template>
 
 <script setup>
@@ -238,5 +236,9 @@ onMounted(async () => {
         menuMobile.classList.remove("w-full");
         menuMobile.classList.add("w-0");
     });
+});
+
+useHead({
+    titleTemplate: '%s'
 });
 </script>
