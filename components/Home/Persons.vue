@@ -52,7 +52,7 @@
 <script setup>
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
-import StarRating from "vue-star-rating";
+// import StarRating from "vue-star-rating";
 
 const dataRes = ref()
 
