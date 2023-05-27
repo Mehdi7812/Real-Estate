@@ -1,7 +1,19 @@
 <template>
-	<NuxtLayout>
-		<NuxtPage />
-	</NuxtLayout>
+	<Suspense>
+		<template #default>
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
+		</template>
+		
+		<template #fallback>
+			<div class="backdrop-brightness-[.2] w-full flex justify-center items-center" style="height: 100vh">
+				<div class="lds-spinner">
+					<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+				</div>
+			</div>
+		</template>
+	</Suspense>
 	
 	<!-- DarkMode Elem -->
 	<div v-show="themeStatus == 'هر دو'" class="opacity-0" :class="themeStatus == 'هر دو' ? 'opacity-100' : 'opacity-0'" id="darkModeEl">

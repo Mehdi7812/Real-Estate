@@ -176,7 +176,18 @@
         </nav>
     </div>
 
-    <slot></slot>
+    <Suspense>
+        <template #default>
+            <slot></slot>
+        </template>
+        <template #fallback>
+			<div class="backdrop-brightness-[.2] w-full flex justify-center items-center" style="height: 90vh">
+				<div class="lds-spinner">
+					<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+				</div>
+			</div>
+        </template>
+    </Suspense>
 
     <footer style="background-color: var(--primaryColor-20)" dir="ltr" class="bg-[#1D2228] dark:bg-[#f0f3f7]">
         <div class=" lg:px-12">
