@@ -1,6 +1,58 @@
 <template>
     <div class="py-6">
-        <div>
+        <div v-if="pending">
+            <div class="loadingCard flex-wrap gap-5" style="width: 100%;">
+                <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
+                    <div class="card__body h-64">
+                        <div class="card__body body__img h-full">
+                            <img class="skeleton" alt="" id="cover-img" />
+                        </div>
+                        </div>
+                    
+                    <div class="card__header">
+                        <h3 class="card__header header__title" id="card-title">
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text"></div>
+                        </h3>
+                        <div class="card__footer" id="card-footer">
+                            <div class="skeleton skeleton-text skeleton-footer"></div>
+                        </div>
+                        <h3 class="card__header header__title" id="card-title">
+                            <div class="skeleton skeleton-text"></div>
+                        </h3>
+                        <div>
+                            <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                        </div>
+                    </div>
+                </a>
+                
+                <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
+                    <div class="card__body h-64">
+                        <div class="card__body body__img h-full">
+                            <img class="skeleton" alt="" id="cover-img" />
+                        </div>
+                        </div>
+                    
+                    <div class="card__header">
+                        <h3 class="card__header header__title" id="card-title">
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text"></div>
+                        </h3>
+                        <div class="card__footer" id="card-footer">
+                            <div class="skeleton skeleton-text skeleton-footer"></div>
+                        </div>
+                        <h3 class="card__header header__title" id="card-title">
+                            <div class="skeleton skeleton-text"></div>
+                        </h3>
+                        <div>
+                            <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <Transition>
             <div class="flex flex-wrap gap-4">
                 <div v-if="!posts.results" class="loadingCard flex-wrap gap-5" style="width: 100%;">
                     <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
@@ -53,8 +105,8 @@
                 </div>
                 
                 <div class="flex flex-wrap gap-4 w-full">
-                    <NuxtLink :to="`estateDetail/${data.id}`" v-for="data in posts.results" :key="data.id" class="postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer relative w-full md:w-[48%]">
-                        <div class="swiper swiperNewst relative h-64">
+                    <div v-for="data in posts.results" :key="data.id" class="postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer relative w-full md:w-[48%]">
+                        <NuxtLink :to="`/estateDetail/${data.id}`" class="block swiper swiperNewst relative h-64">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="relative h-full rounded-2xl overflow-hidden">
@@ -75,7 +127,7 @@
     
                                 <div class="bg-primary flex gap-2 rounded-md p-1 items-center">
                                     <span class="text-[10px] relative top-[2px]">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
-
+    
                                     <span>
                                         <svg v-if="data.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.25 24.75H24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -128,7 +180,7 @@
                                     </span>
                                 </div>
                             </div>
-
+    
                             <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
                                 <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 lg:h-7 relative group-hover:h-11 overflow-hidden transition-all duration-300">
                                     <span class="absolute bottom-5">{{ Number(data.media.length).toLocaleString('fa-ir') }}</span>
@@ -142,11 +194,11 @@
     
                                 <p class="bg-primary text-[10px] py-2 px-3 rounded-md lg:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(data.placed_at) }}</p>
                             </div>
-                        </div>
+                        </NuxtLink>
     
-                        <div class="py-3 flex gap-4 flex-col overflow-hidden">
+                        <NuxtLink :to="`/estateDetail/${data.id}`" class="py-3 flex gap-4 flex-col overflow-hidden relative">
                             <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
-
+    
                             <div class="flex gap-8 flex-wrap gap-y-2">
                                 <p class="text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-3">{{ data.region  }}</span>
@@ -169,29 +221,29 @@
                                 <p v-if="data.pre_payment_status" class="flex items-center justify-center flex-wrap gap-1 text-xs lg:text-base text-graytext">پیش پرداخت : <span><span v-html="convertDatas.getNumber(data.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"> </span> تومان</span></p>
                             </div>
     
-                            <div class="flex justify-between">
-                                <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
-                                    <div x-init="rateAvg = person.rate_avg">
-                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.userPicture}`" />
-                                    </div>
-                                    <div class="flex flex-col justify-around">
-                                        <span class="text-[10px] md:text-base">{{ data.username }}</span>
-                                        <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
-                                    </div>
-                                </NuxtLink>
-                                
-                                <div class="flex gap-3 items-center">
-                                    <NuxtLink :to="route.fullPath">
-                                        <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group 34.svg" />
-                                    </NuxtLink>
-                                    
-                                    <NuxtLink :to="route.fullPath" @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
-                                        <img class="md:w-11 md:h-11 cursor-pointer" src="/Group 33.svg" />
-                                    </NuxtLink>
+                        </NuxtLink>
+                        <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex justify-between">
+                            <div class="flex gap-3">
+                                <div>
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.userPicture}`" />
+                                </div>
+                                <div class="flex flex-col justify-around">
+                                    <span class="text-[10px] md:text-base">{{ data.username }}</span>
+                                    <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
                                 </div>
                             </div>
-                        </div>
-                    </NuxtLink>
+                            
+                            <NuxtLink :to="route.fullPath" class="flex gap-3 items-center">
+                                <span>
+                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group 34.svg" />
+                                </span>
+                                
+                                <span @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
+                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group 33.svg" />
+                                </span>
+                            </NuxtLink>
+                        </NuxtLink>
+                    </div>
                     
                     <button v-if="posts.next" style="background-color: var(--primaryColor-20)" @click="seeMore(posts.next, $refs.seeMoreBtn)" ref="seeMoreBtn" class="bg-primaryOrange dark:bg-bluePrimary/40 bg-opacity-20 w-44 h-11 m-auto rounded-[14px] text-primaryOrange dark:text-bluePrimary hover:bg-opacity-50 dark:hover:bg-bluePrimary/60 transition-all duration-300 my-11"> 
                         <p style="color: var(--primaryColor)" class="flex justify-center items-center gap-3">مشاهده بیشتر
@@ -204,7 +256,7 @@
                         <div id="loadRingPuls" style="display: none" class="load-4"><div class="ring-1LoadPuls"></div></div>
                     </button>
                 </div>
-
+    
                 <div v-if="posts.results != null && posts.results.length < 1" class="my-10 m-auto">
                     <svg class="dark:hidden" width="289" height="119" viewBox="0 0 289 119" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M144.758 6.01007C128.2 6.01007 114.707 19.5027 114.707 36.0606C114.707 52.6184 128.2 66.1111 144.758 66.1111C161.315 66.1111 174.808 52.6184 174.808 36.0606C174.808 19.5027 161.315 6.01007 144.758 6.01007ZM142.504 24.0404C142.504 22.8083 143.525 21.7866 144.758 21.7866C145.99 21.7866 147.011 22.8083 147.011 24.0404V39.0656C147.011 40.2977 145.99 41.3194 144.758 41.3194C143.525 41.3194 142.504 40.2977 142.504 39.0656V24.0404ZM147.522 49.2227C147.372 49.6133 147.162 49.9139 146.891 50.2144C146.591 50.4848 146.26 50.6952 145.899 50.8454C145.539 50.9957 145.148 51.0858 144.758 51.0858C144.367 51.0858 143.976 50.9957 143.616 50.8454C143.255 50.6952 142.924 50.4848 142.624 50.2144C142.353 49.9139 142.143 49.6133 141.993 49.2227C141.843 48.8621 141.752 48.4714 141.752 48.0808C141.752 47.6901 141.843 47.2995 141.993 46.9389C142.143 46.5783 142.353 46.2477 142.624 45.9472C142.924 45.6767 143.255 45.4664 143.616 45.3161C144.337 45.0156 145.178 45.0156 145.899 45.3161C146.26 45.4664 146.591 45.6767 146.891 45.9472C147.162 46.2477 147.372 46.5783 147.522 46.9389C147.672 47.2995 147.763 47.6901 147.763 48.0808C147.763 48.4714 147.672 48.8621 147.522 49.2227Z" fill="#EDEDED"/>
@@ -216,7 +268,7 @@
                     </svg>
                 </div>
             </div>
-        </div>
+        </Transition>
 
         <!-- Call Modal -->
         <CallModal />

@@ -1,7 +1,8 @@
 <template>
     <div class="md:p-8 md:bg-secondary md:dark:bg-[#fcfcfc] rounded-[31px]" :class="route.params.slug ? 'rounded-r-none' : ''">
         <h4 class="mb-4 md:text-xl">جستجوی پست</h4>
-        <form class="flex">
+
+        <form @submit.prevent="fetchSearch" class="flex">
             <input style="border-color: var(--primaryColor)" v-model="slug" type="text" class="w-full outline-none border-l-0 rounded-l-none bg-primary dark:bg-graytext/10 rounded-r-lg p-4 h-12 border-primaryOrange dark:border-bluePrimary border-[1px] placeholder:text-graytext" placeholder="جستجو">
             
             <a v-if="!slug" style="background-color: var(--primaryColor)" class="opacity-80 bg-primaryOrange !cursor-not-allowed dark:bg-bluePrimary hover:bg-hoverPrimaryOrange dark:hover:bg-bluePrimary/30 rounded-l-lg h-12 px-4 lg:px-6 rounded-r-none transition-all duration-300 flex justify-center items-center">
@@ -28,4 +29,8 @@
 const route = useRoute()
 
 const slug = ref("");
+
+const fetchSearch = () => {
+    navigateTo(`/weblog?search=${slug}&weblog_type=`)
+}
 </script>

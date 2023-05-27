@@ -32,14 +32,14 @@
             
                 <div class="flex justify-between">
 
-                    <a :href="`propertyUser?user=${weblogItem.user_id}`" class="flex gap-4">
+                    <NuxtLink :to="`/propertyCode?user=${weblogItem.user_id}`" class="flex gap-4">
                         <img class="w-12 h-12 object-cover md:w-16 md:h-16 rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
 
                         <div class="flex flex-col justify-between">
                             <span class="text-sm md:text-xl">{{ weblogItem.username }}</span>
                             <span class="text-xs md:text-base text-graytext">{{ weblogItem.user_activity }}</span>
                         </div>
-                    </a>
+                    </NuxtLink>
 
                     <div class="flex flex-col items-end justify-center">
                         <div>

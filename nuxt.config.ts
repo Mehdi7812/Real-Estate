@@ -4,7 +4,6 @@ export default defineNuxtConfig({
         assets: "/<rootDir>/assets",
     },
     modules: [
-        'nuxt-swiper',
         '@pinia/nuxt',
         'nuxt-vue-map-ui'
     ],

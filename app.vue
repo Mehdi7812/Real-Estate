@@ -80,7 +80,7 @@ onMounted(async () => {
 	});
 
 	useHead({
-		title: `${title.value}`,
+		title: data[0].homePage_title,
 	});
 });
 
