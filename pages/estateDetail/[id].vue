@@ -1313,69 +1313,71 @@
         </div>
 
         <!-- Modal Report -->
-        <div id="reportModal" v-show="reportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
-            <div v-click-out-side="closeReportModal" class="w-[450px] py-10 pb-0 px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
-                <div class="flex justify-between">
-                    <div class="p-4 px-5"></div>
-                    <p class="text-[26px] font-semibold">گزارش مشکل</p>
-                    <div @click="closeReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection p-4 px-5 rounded-md transition-all duration-300 relative -top-5">
-                        <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.7185 17.7594L0.798514 3.83938C0.0851131 3.12598 0.0851134 1.94278 0.798514 1.22938C1.51191 0.515978 2.69512 0.515978 3.40852 1.22938L17.3285 15.1494C18.0419 15.8628 18.0419 17.046 17.3285 17.7594C16.6151 18.4728 15.4319 18.4728 14.7185 17.7594Z" fill="#777777"/>
-                            <path d="M0.796476 17.7594C0.0830747 17.046 0.0830744 15.8628 0.796475 15.1494L14.7165 1.22938C15.4299 0.515978 16.6131 0.515978 17.3265 1.22938C18.0399 1.94278 18.0399 3.12598 17.3265 3.83938L3.40648 17.7594C2.69308 18.4728 1.50988 18.4728 0.796476 17.7594Z" fill="#777777"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="px-3 flex flex-col gap-2 group" id="groupTypes">
-                    <div class="flex gap-2 relative">
-                        <input checked type="radio" name="report" class="cursor-pointer opacity-0" id="report1" value="ملک واگذار شده" />
-                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="ملک واگذاری شده" for="report1" >ملک واگذار شده</label>
-                    </div>
-
-                    <div class="flex gap-2 relative">
-                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report2" value="قیمت اشتباهه" />
-                        <label class="cursor-pointer md:text-lg after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="قیمت اشتباهه" for="report2">قیمت اشتباهه</label>
-                    </div>
-
-                    <div class="flex gap-2 relative">
-                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report3" value="عکس ها مرتبط نیست" />
-                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="عکس ها مرتبط نیست" for="report3" >عکس ها مرتبط نیست</label>
-                    </div>
-
-                    <div class="flex gap-2 relative">
-                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report4" value="کسی پاسخگو نبود" />
-                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="کسی پاسخگو نبود" for="report4">کسی پاسخگو نبود</label>
-                    </div>
-                    
-                    <div class="flex gap-2 relative">
-                        <input type="radio" name="report" class="cursor-pointer opacity-0" id="report5" value="توضیحات ناقصه" />
-                        <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="توضیحات ناقصه" for="report5">توضیحات ناقصه</label>
-                    </div>
-
-                    <textarea id="descReport" v-model="desc" rows="5" class="w-full bg-primary dark:bg-whiteSecondary outline-none rounded-[21px] border-[1px] border-graytext placeholder:text-graytext p-3" placeholder="اگر مشکلی از نظرتون نیاز به توضیح بیشتری داشت اینجا برامون بنویسید."></textarea>
-                    
-                    <form id="recaptcha-form" class="flex flex-col my-3 items-center relative">
-                        <div class="g-recaptcha" id="html_element" data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError" data-expired-callback="onRecaptchaResponseExpiry"></div>
-                    
-                        <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 mb-8" value="ارسال گزارش" />
-                        <!--
-                        <div class="absolute -bottom-2">
-                            <div id="recaptcha-form-error" style="display: none" class="bg-red-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
-                                Please fill the recaptcha checkbox.
-                            </div>
-        
-                            
-                            <div id="recaptcha-form-success" style="display: none" class="bg-green-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
-                                Recaptcha validated Successfully..!
-                                <a @click="location.reload()" href="#" class="px-2 text-slate-800">Retry</a>
-                            </div>
-                            
+        <Transition>
+            <div id="reportModal" v-show="reportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
+                <div v-click-out-side="closeReportModal" class="w-[450px] py-10 pb-0 px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
+                    <div class="flex justify-between">
+                        <div class="p-4 px-5"></div>
+                        <p class="text-[26px] font-semibold">گزارش مشکل</p>
+                        <div @click="closeReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection p-4 px-5 rounded-md transition-all duration-300 relative -top-5">
+                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.7185 17.7594L0.798514 3.83938C0.0851131 3.12598 0.0851134 1.94278 0.798514 1.22938C1.51191 0.515978 2.69512 0.515978 3.40852 1.22938L17.3285 15.1494C18.0419 15.8628 18.0419 17.046 17.3285 17.7594C16.6151 18.4728 15.4319 18.4728 14.7185 17.7594Z" fill="#777777"/>
+                                <path d="M0.796476 17.7594C0.0830747 17.046 0.0830744 15.8628 0.796475 15.1494L14.7165 1.22938C15.4299 0.515978 16.6131 0.515978 17.3265 1.22938C18.0399 1.94278 18.0399 3.12598 17.3265 3.83938L3.40648 17.7594C2.69308 18.4728 1.50988 18.4728 0.796476 17.7594Z" fill="#777777"/>
+                            </svg>
                         </div>
-                        -->
-                    </form>
-                </div>
-            </div>    
-        </div>
+                    </div>
+    
+                    <div class="px-3 flex flex-col gap-2 group" id="groupTypes">
+                        <div class="flex gap-2 relative">
+                            <input checked type="radio" name="report" class="cursor-pointer opacity-0" id="report1" value="ملک واگذار شده" />
+                            <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="ملک واگذاری شده" for="report1" >ملک واگذار شده</label>
+                        </div>
+    
+                        <div class="flex gap-2 relative">
+                            <input type="radio" name="report" class="cursor-pointer opacity-0" id="report2" value="قیمت اشتباهه" />
+                            <label class="cursor-pointer md:text-lg after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="قیمت اشتباهه" for="report2">قیمت اشتباهه</label>
+                        </div>
+    
+                        <div class="flex gap-2 relative">
+                            <input type="radio" name="report" class="cursor-pointer opacity-0" id="report3" value="عکس ها مرتبط نیست" />
+                            <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="عکس ها مرتبط نیست" for="report3" >عکس ها مرتبط نیست</label>
+                        </div>
+    
+                        <div class="flex gap-2 relative">
+                            <input type="radio" name="report" class="cursor-pointer opacity-0" id="report4" value="کسی پاسخگو نبود" />
+                            <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="کسی پاسخگو نبود" for="report4">کسی پاسخگو نبود</label>
+                        </div>
+                        
+                        <div class="flex gap-2 relative">
+                            <input type="radio" name="report" class="cursor-pointer opacity-0" id="report5" value="توضیحات ناقصه" />
+                            <label class="md:text-lg cursor-pointer after:absolute after:w-6 after:h-6 after:rounded-full after:bg-graytext after:-right-2 before:w-2 before:h-4 before:absolute before:border-4 before:rounded-lg before:border-t-0 before:border-l-0 before:border-b-white before:border-r-white before:rotate-45 before:top-[2px] checked:before:z-10 checked:after:bg-primaryOrange dark:checked:after:bg-bluePrimary after:transition-all after:duration-200 before:transition-all before:duration-300" value="توضیحات ناقصه" for="report5">توضیحات ناقصه</label>
+                        </div>
+    
+                        <textarea id="descReport" v-model="desc" rows="5" class="w-full bg-primary dark:bg-whiteSecondary outline-none rounded-[21px] border-[1px] border-graytext placeholder:text-graytext p-3" placeholder="اگر مشکلی از نظرتون نیاز به توضیح بیشتری داشت اینجا برامون بنویسید."></textarea>
+                        
+                        <form id="recaptcha-form" class="flex flex-col my-3 items-center relative">
+                            <div class="g-recaptcha" id="html_element" data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError" data-expired-callback="onRecaptchaResponseExpiry"></div>
+                        
+                            <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 mb-8" value="ارسال گزارش" />
+                            <!--
+                            <div class="absolute -bottom-2">
+                                <div id="recaptcha-form-error" style="display: none" class="bg-red-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
+                                    Please fill the recaptcha checkbox.
+                                </div>
+            
+                                
+                                <div id="recaptcha-form-success" style="display: none" class="bg-green-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
+                                    Recaptcha validated Successfully..!
+                                    <a @click="location.reload()" href="#" class="px-2 text-slate-800">Retry</a>
+                                </div>
+                                
+                            </div>
+                            -->
+                        </form>
+                    </div>
+                </div>    
+            </div>
+        </Transition>
 
         <!-- Success Report Modal -->
         <div id="successReportModal" v-show="successReportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
@@ -1561,6 +1563,29 @@ onMounted(async () => {
             });
         }, 200);
     })
+
+    
+useHead({
+    script: [
+        {
+			innerHTML: `
+                var onloadCallback = function() {
+                    grecaptcha.render(document.getElementById('html_element'), {
+                    'sitekey' : '6LcyDlcjAAAAAJjUldF0P9wg-EGkl_WssAicoT1i'
+                    });
+                };
+                `,
+		},
+
+		{
+			src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
+			async: true,
+			defer: true,
+            body: true
+		},
+        { src: '/recaptcha.js', body: true }
+    ]
+});
 });
 
 watch(titleHead, () => {
@@ -1740,6 +1765,8 @@ const copyShareLink = (text, btn) => {
 
 
 // Report Modal
+
+
 const reportModal = ref(false);
 const successReportModal = ref(false);
 const topic = ref("ملک واگذار شده")

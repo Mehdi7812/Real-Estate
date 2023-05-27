@@ -136,7 +136,7 @@ const closeModal = () => {
 <template>
     <!-- Modal Send Message -->
     <Transition>
-        <div v-show="modalMessageStore.isOpenModalMessage" id="modalMessage" class="transition-all duration-300 overflow-hidden">
+        <div v-show="modalMessageStore.isOpenModalMessage" id="modalMessage" class="relative z-50 transition-all duration-300 overflow-hidden">
             <div class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
                 <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[26px] p-2 md:p-5 pt-0">
                     <div class="flex justify-between items-center p-2">
