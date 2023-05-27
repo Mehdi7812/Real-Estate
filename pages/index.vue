@@ -1,7 +1,7 @@
 <template>
     <!-- Header Section -->
     <div dir="ltr">
-        <nav dir="rtl" class="grid grid-cols-3 items-center justify-between cursor-pointer bg-primary dark:bg-white p-2 border-black fixed top-0 left-0 right-0 z-30 md:hidden">
+        <nav dir="rtl" class="grid grid-cols-3 items-center justify-between cursor-pointer bg-primary dark:bg-white p-2 border-black fixed top-0 left-0 right-0 z-30 sm:hidden">
             <span id="hamburger">
                 <svg class="dark:inline-block hidden col-span-1 justify-self-start" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 9.33337H28H4Z" fill="#000"></path>
@@ -85,13 +85,13 @@
     
         <nav id="navMenu" class="hidden sm:block fixed top-0 left-0 right-0 w-full m-auto transition-all duration-300 navMain p-2 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
             <ul class="flex justify-center items-center gap-14">
-                <li>
+                <li class="w-14 whitespace-nowrap">
                     <NuxtLink onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/about">درباره ما</NuxtLink>
                 </li>
-                <li>
+                <li class="w-14 whitespace-nowrap">
                     <NuxtLink onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/contact">ارتباط با ما</NuxtLink>
                 </li>
-                <li>
+                <li class="w-14 whitespace-nowrap">
                     <NuxtLink class="block h-[67px]" to="/">
                         <div v-if="logo_dark" class="h-full">
                             <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark">
@@ -101,10 +101,10 @@
                         <div v-if="!logo_dark" class="h-full w-[67px]"></div>
                     </NuxtLink>
                 </li>
-                <li>
+                <li class="w-14 whitespace-nowrap">
                     <NuxtLink onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/weblog">وبلاگ</NuxtLink>
                 </li>
-                <li>
+                <li class="w-14 whitespace-nowrap">
                     <NuxtLink style="color: var(--primaryColor);" class="hover:opacity-80 transition-all duration-300" to="/">خانه</NuxtLink>
                 </li>
             </ul>
@@ -121,7 +121,7 @@
             class="w-full h-5/6 bg-gray-400 pt-[86px] relative bg-cover -top-[86px] bg-no-repeat">
         
             <div class="backdrop-brightness-[.38]">
-                <div class="container m-auto mt-10 md:mt-0 p-6 lg:p-0 lg:pb-5 lg:pt-32 dark:text-white">
+                <div class="container m-auto mt-10 sm:mt-0 p-6 lg:p-0 lg:pb-5 lg:pt-32 dark:text-white">
                     <div class="flex flex-col text-center items-center gap-5 p-5 lg:p-24 sm:pt-32 lg:px-12 lg:items-end lg:py-28">
                         <h1 class="text-2xl font-extrabold lg:text-6xl">{{ homePage_headline }}</h1>
                         <h2 class="mt-5 text-xs font-bold lg:text-lg">{{ homePage_header }}</h2>
@@ -188,6 +188,8 @@
         <!-- Send Message Modal -->
         <SendMessageModal />
     </main>
+
+    <Footer />
 </template>
 
 <script setup>

@@ -5,7 +5,7 @@
 		
 	<!-- DarkMode Elem -->
 	<div v-show="themeStatus == 'هر دو'" class="opacity-0" :class="themeStatus == 'هر دو' ? 'opacity-100' : 'opacity-0'" id="darkModeEl">
-		<div class="theme-container shadow-dark fixed bottom-4 left-4 cursor-pointer w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]">
+		<div :class="route.name == 'estateDetail-id' ? 'bottom-[90px] lg:bottom-4' : 'bottom-4' " class="theme-container shadow-dark fixed left-4 cursor-pointer w-[50px] h-[50px] lg:w-[70px] lg:h-[70px]">
 			<img class="w-5 h-5 lg:w-7 lg:h-7" id="theme-icon" src="/moon.svg" alt="ERR">
 		</div>
 	</div>
@@ -13,6 +13,7 @@
 <script setup>
 import { useApiRoot } from "~/stores/ApiRoot";
 const apiRootStore = useApiRoot();
+const route = useRoute()
 
 const title = ref("");
 const themeStatus = ref("");
@@ -82,6 +83,7 @@ onMounted(async () => {
 	useHead({
 		title: data[0].homePage_title,
 	});
+
 });
 
 useHead({

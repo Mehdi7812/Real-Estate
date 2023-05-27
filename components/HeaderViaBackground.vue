@@ -1,6 +1,6 @@
 <template>
     <header v-if="homePage_header" :style="`background: url(${customImage ? customImage : homePage_Pic});`" class="w-full h-5/6 bg-gray-400 relative !bg-cover !bg-top">
-        <div class="backdrop-brightness-[.2]">
+        <div class="backdrop-brightness-[.2] overflow-x-hidden">
             <!-- --User Header-- If Query User is True -->
             <div v-if="route.query.user" class="container m-auto mt-16 md:mt-0 p-6 lg:p-0 lg:py-5">
                 <div v-if="!userDatas" class="flex justify-center lg:justify-between gap-5 p-5 pb-20 dark:text-white lg:px-12 md:items-start lg:py-40 headerInfo box">

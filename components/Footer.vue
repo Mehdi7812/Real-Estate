@@ -87,34 +87,39 @@
 <script setup>
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
+import { toast } from 'vue3-toastify';
 
 const phoneNumber = ref("")
 
 const sendPhoneNumber = () => {
-    fetch(`${apiRootStore.api}/real/footer/`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						phone: phoneNumber.value,
-					})
-				}).then(res => {
-					res.json();
-                    console.log(res);
-					if(res.status >= 200 && res.status < 400) {
-						phoneNumber.value = '';
-                        toast.success('شماره شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-                        
-					}
-				})
-                .catch(err => {
-                    console.log(err, 'Error')
-                    toast.warning('شماره شما قبلا ثبت شده.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
-                    })
+    validateFooterP()
+
+    if(validateFooterP()) {
+        fetch(`${apiRootStore.api}/real/footer/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                phone: phoneNumber.value,
+            })
+        }).then(res => {
+            res.json();
+            console.log(res);
+            if(res.status >= 200 && res.status < 400) {
+                phoneNumber.value = '';
+                toast.success('شماره همراه شما ثبت شد :D', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+            }
+        })
+        .catch(err => {
+            console.log(err, 'Error')
+            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+        })
+    } else {
+        toast.warning('لطفا شماره خود را درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+    }
 }
 
-const homePage_pic = ref()
 const title = ref()
 const logo_dark = ref()
 const pageDescription = ref()
@@ -124,4 +129,23 @@ const data = await response.json()
 logo_dark.value = data[0].logo_dark
 title.value = data[0].homePage_title
 pageDescription.value = data[0].homePage_text;
+
+// Validate Footer Phone Number
+function validateFooterPhoneNumber (phone) {
+	const re = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+	return re.test(phone);
+};
+  
+function validateFooterP () {
+	const result = document.getElementById('resultFooterPhone')
+	const phone = document.getElementById('footerInputNumber').value;
+
+	if (validateFooterPhoneNumber(phone)) {
+		result.style.height = '0px';
+		return true;
+	} else {
+		result.style.height = '30px';
+	}
+	return false;
+};
 </script>
