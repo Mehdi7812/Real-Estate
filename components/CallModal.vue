@@ -39,7 +39,7 @@
                                 <p class="text-black font-bold">چه امتیازی به <span>{{ modalCallStore.userName }}</span> میدین؟</p>
                                 
                                 <div id="loadingPuls" style="display: none" class="loading-pulse"></div>
-                                <star-rating id="starRating" ref="starRate" @update:rating ="setRating" :rating="0" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
+                                <star-rating id="starRating" ref="starRate" @update:rating ="setRating" :rating="0" active-color="black" :star-size="30" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
                             </div>
                         </div>
                     </div>
