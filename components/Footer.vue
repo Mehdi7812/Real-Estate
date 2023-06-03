@@ -6,7 +6,7 @@
                     <div class="flex flex-col justify-center text-center items-center gap-5 mt-20 md:mt-0 md:w-64 md:text-right md:items-end">
                         <NuxtLink to="/">
                             <img class="inline-block dark:hidden h-[67px] object-cover" :src="logo_dark">
-                            <!-- <img class="dark:inline-block hidden h-[67px] object-cover" :src="$store.darkMode.lightLogo"> -->
+                            <img class="dark:inline-block hidden h-[67px] object-cover" :src="logo_white">
                         </NuxtLink>
                         <p class="px-10 text-graytext md:text-xs md:px-0">{{ pageDescription }}</p>
                         
@@ -122,11 +122,13 @@ const sendPhoneNumber = () => {
 
 const title = ref()
 const logo_dark = ref()
+const logo_white = ref()
 const pageDescription = ref()
 
 const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
 const data = await response.json()
 logo_dark.value = data[0].logo_dark
+logo_white.value = data[0].logo_white
 title.value = data[0].homePage_title
 pageDescription.value = data[0].homePage_text;
 

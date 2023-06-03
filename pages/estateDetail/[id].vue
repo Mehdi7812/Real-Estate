@@ -1509,6 +1509,29 @@ const setRating = (newRate) => {
         })
 }
 
+
+const response = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}`)
+const data = await response.json()
+postItem.value = data
+titleHead.value = postItem.value.title
+
+const planMelkRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/caseplan`)
+const dataPlanMelk = await planMelkRes.json()
+casePlan.value = dataPlanMelk
+if(casePlan.value.length >= 1) {
+    activeItem.value = dataPlanMelk[0].id
+}
+
+const similarPostRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/similarcases`)
+const dataSimilar = await similarPostRes.json()
+postsSimilar.value = dataSimilar;
+
+const personRes = await fetch(`${apiRootStore.api}/real/usersinfo/`)
+const dataPerson = await personRes.json()
+persons.value = dataPerson;
+
+
+
 onMounted(async () => {
     const swiper2 = new Swiper(".swiper1", {
         direction: "horizontal",
@@ -1524,26 +1547,6 @@ onMounted(async () => {
             prevEl: ".swiperNewst-prev",
         }
     });
-
-    const response = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}`)
-    const data = await response.json()
-    postItem.value = data
-    titleHead.value = postItem.value.title
-
-    const planMelkRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/caseplan`)
-    const dataPlanMelk = await planMelkRes.json()
-    casePlan.value = dataPlanMelk
-    if(casePlan.value.length >= 1) {
-        activeItem.value = dataPlanMelk[0].id
-    }
-
-    const similarPostRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/similarcases`)
-    const dataSimilar = await similarPostRes.json()
-    postsSimilar.value = dataSimilar;
-
-    const personRes = await fetch(`${apiRootStore.api}/real/usersinfo/`)
-    const dataPerson = await personRes.json()
-    persons.value = dataPerson;
 
     watch(postsSimilar => {
         setTimeout(() => {
@@ -1563,7 +1566,6 @@ onMounted(async () => {
             });
         }, 200);
     })
-
     useHead({
         script: [
             {
@@ -1575,7 +1577,7 @@ onMounted(async () => {
                     };
                     `,
             },
-
+    
             {
                 src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
                 async: true,
@@ -1585,6 +1587,17 @@ onMounted(async () => {
             { src: '/recaptcha.js', body: true }
         ]
     });
+
+    // if(window.screen.width <= 1024) {
+    //     document.querySelector('.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge').style.bottom = '90px!important'
+    // } else {
+    //     document.querySelector('.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge').style.bottom = ''
+    // }
+    watch(titleHead, () => {
+        useHead({
+            titleTemplate: `${titleHead.value}-%s`,
+        });
+    })
 });
 
 watch(titleHead, () => {

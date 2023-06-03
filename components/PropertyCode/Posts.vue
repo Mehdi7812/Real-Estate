@@ -235,11 +235,11 @@
                             
                             <NuxtLink :to="route.fullPath" class="flex gap-3 items-center">
                                 <span>
-                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group 34.svg" />
+                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" />
                                 </span>
                                 
                                 <span @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
-                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group 33.svg" />
+                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group33.svg" />
                                 </span>
                             </NuxtLink>
                         </NuxtLink>
