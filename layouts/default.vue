@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="route.fullPath != '/'">
         <nav id="navMenu" class="grid grid-cols-3 items-center justify-between cursor-pointer bg-primary dark:bg-white p-2 border-black fixed top-0 left-0 right-0 z-30 md:hidden">
             <span id="hamburger">
                 <svg class="dark:inline-block hidden col-span-1 justify-self-start" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@
                         <p class="text-xs md:text-lg pb-8">کد ملکی موردنظر خود را برای جستجوی سریع تر وارد کنید .</p>
                     </div>
     
-                    <NuxtLink v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
+                    <NuxtLink @click="closeModal" v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
                     <p v-if="isNaN(Number(estateType)) || estateType.length == 0" style="background-color: var(--primaryColor)" class="opacity-70 btn dark:bg-bluePrimary/80 bg-primaryOrange/80 md:text-2xl !cursor-not-allowed md:p-5">جستجو</p>
                 </div>
             </div>

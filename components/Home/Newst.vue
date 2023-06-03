@@ -72,7 +72,7 @@
                     </div>
 
                     <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
-                        <NuxtLink :to="`estateDetail/${data.id}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
+                        <NuxtLink :to="`/estateDetail/${data.id}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
                             <div class="swiper h-64 swiperNewsImg1 rounded-2xl overflow-hidden">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
@@ -242,11 +242,11 @@
 
                             <!-- Person info -->
                             <div class="text-right -mb-[38px]">
-                                <NuxtLink :to="`propertyCode?user=${data.user_id}`">
+                                <NuxtLink :to="`/propertyCode?user=${data.user_id}`">
                                     <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`${apiRootStore.api}/${data.userPicture}`">
                                 </NuxtLink>
                                 <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
-                                    <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">
+                                    <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">
                                         <span class="text-[15px] font-bold whitespace-nowrap">{{ data.username }}</span> 
                                         <span class="text-xs whitespace-nowrap">{{ data.user_activity }}</span>
                                     </NuxtLink>
@@ -348,12 +348,12 @@ onMounted(async () => {
         direction: "horizontal",
         // loop: true,
         spaceBetween: 10,
-
+    
         breakpoints: {
             768: {slidesPerView: 2},
             1024: {slidesPerView: 3}
         },
-
+    
         navigation: {
             nextEl: ".swiperNewst-next",
             prevEl: ".swiperNewst-prev",

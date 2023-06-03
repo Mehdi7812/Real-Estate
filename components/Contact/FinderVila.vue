@@ -313,7 +313,7 @@ const fetchData = () => {
         let maxPriceNumber = changeToNumberprice(max_price.value)
     
         if(minPriceNumber >= maxPriceNumber) {
-            toast.warning('حداقلِ قیمت نباید از حداکثر قیمت بیشتر باشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('حداقلِ قیمت نباید از حداکثر قیمت بیشتر باشد.');
             return
         }
         let ele = document.getElementsByName('type');
@@ -344,22 +344,22 @@ const fetchData = () => {
             .then(res => {
                 console.log(res.json());
                 if(res.status >=200 && res.status < 400) {
-                    toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    toast.success('پیام شما ارسال شد.');
                     clearInputs()
                 } else {
-                    toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    toast.warning('لطفا همه مقادیر را به درستی وارد کنید.');
                 }
             }). catch(err => {
-                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('لطفا دوباره تلاش کنید.');
             })
         } else {
-            toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا کپچا را کامل کنید.');
 
         }
 
     // Else Validate
     } else {
-        toast.warning('لطفا همه مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا همه مقادیر را به درستی وارد کنید.');
     }
 }
 

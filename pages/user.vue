@@ -25,11 +25,11 @@ const fetchData = () => {
     })
     .then(res => {
         if(res.status >= 200 && res.status < 400) {
-            toast.success('شما وارد شدید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.success('شما وارد شدید.');
 
             return res.json()
         } else {
-            toast.warning('نام کاربری یا رمز ورود اشتباه است!', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('نام کاربری یا رمز ورود اشتباه است!');
         }
     })
     .then(data => {
@@ -41,7 +41,7 @@ const fetchData = () => {
         console.log(err)
         document.getElementById("loginBtn").style.display = 'block'
         document.getElementById("loadingPuls").style.display = 'none'
-        toast.warning('لطفا دوباره امتحان کنید!', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا دوباره امتحان کنید!');
     })
 }
 

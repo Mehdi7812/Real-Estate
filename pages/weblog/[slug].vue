@@ -353,27 +353,27 @@ const sendComment = () => {
                 })
             }).then(res => {
                 if(res.status >=200 && res.status < 400) {
-                    toast.success('کامنت شما ثبت شد:D.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    toast.success('کامنت شما ثبت شد:D.');
     
                     name.value = '';
                     email.value = '';
                     review.value = '';
                 } else {
-                    toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                    toast.warning('لطفا مقادیر درست وارد کنید.');
                 }
                 console.log(res);
             })
             .catch(err => {
                 console.log(err, 'Error')
-                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('لطفا دوباره تلاش کنید.');
             })
         } else {
-            toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا کپچا را کامل کنید.');
         }
 
     // Else Validate
     } else {
-        toast.warning('لطفا مقادیر درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا مقادیر درست وارد کنید.');
     }
 }
 // Review _ Comment //

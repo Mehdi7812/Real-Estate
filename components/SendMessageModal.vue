@@ -98,10 +98,10 @@ const fetchSendMessage = (e) => {
                 customer_phone.value = "";
                 text.value = "";
 
-                toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.success('پیام شما ارسال شد.');
                 closeModal()
             } else{
-                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('لطفا دوباره تلاش کنید.');
             }
             
             e.target.style.pointerEvents = 'auto'
@@ -109,7 +109,7 @@ const fetchSendMessage = (e) => {
         })
         .catch(err => {
             console.log(err, 'Error')
-            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا دوباره تلاش کنید.');
             
             e.target.style.pointerEvents = 'auto'
             e.target.classList.remove('opacity-80')
@@ -118,7 +118,7 @@ const fetchSendMessage = (e) => {
         e.target.style.pointerEvents = 'auto'
         e.target.classList.remove('opacity-80')
     } else {
-        toast.warning('لطفا همه ی مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا همه ی مقادیر را به درستی وارد کنید.');
 
         e.target.style.pointerEvents = 'auto'
         e.target.classList.remove('opacity-80')

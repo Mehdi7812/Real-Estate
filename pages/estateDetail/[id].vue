@@ -1494,16 +1494,16 @@ const setRating = (newRate) => {
         }).then(response => {
             console.log(response);
             if(response.status >= 200 && response.status < 400) {
-                toast.success('رای شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.success('رای شما ثبت شد.');
                 document.getElementById("starRating").style.pointerEvents = 'none';
             } else {
-                toast.warning('رای شما ثبت نشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('رای شما ثبت نشد.');
             }
             document.getElementById("starRating").style.display = 'flex';
             document.getElementById("loadingPuls").style.display = 'none';
         })
         .catch(err => {
-            toast.warning('لطفا دوباره امتحان کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا دوباره امتحان کنید.');
             document.getElementById("starRating").style.display = 'flex';
             document.getElementById("loadingPuls").style.display = 'none';
         })
@@ -1636,9 +1636,9 @@ const fetchSendMessage = (e) => {
                 customer_phone.value = "";
                 text.value = "";
 
-                toast.success('پیام شما ارسال شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.success('پیام شما ارسال شد.');
             } else{
-                toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('لطفا دوباره تلاش کنید.');
             }
             
             e.target.style.pointerEvents = 'auto'
@@ -1646,7 +1646,7 @@ const fetchSendMessage = (e) => {
         })
         .catch(err => {
             console.log(err, 'Error')
-            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا دوباره تلاش کنید.');
             
             e.target.style.pointerEvents = 'auto'
             e.target.classList.remove('opacity-80')
@@ -1655,7 +1655,7 @@ const fetchSendMessage = (e) => {
         e.target.style.pointerEvents = 'auto'
         e.target.classList.remove('opacity-80')
     } else {
-        toast.warning('لطفا همه ی مقادیر را به درستی وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا همه ی مقادیر را به درستی وارد کنید.');
 
         e.target.style.pointerEvents = 'auto'
         e.target.classList.remove('opacity-80')
@@ -1805,7 +1805,7 @@ const sendReport = (idCase) => {
         })
         .then(res => {
             if (res.status >=200 && res.status < 400) {
-                toast.success('گزارش شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.success('گزارش شما ثبت شد.');
                 reportModal.value = false;
                 successReportModal.value = true;
                 return res.json()
@@ -1815,10 +1815,10 @@ const sendReport = (idCase) => {
             console.log(data)
         })
         .catch(err => {
-            toast.warning('لطفا دوباره تلاش کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا دوباره تلاش کنید.');
         })
     } else {
-        toast.warning('لطفا کپچا را کامل کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا کپچا را کامل کنید.');
     }
 }
 

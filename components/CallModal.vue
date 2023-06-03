@@ -75,16 +75,16 @@ const setRating = (newRate) => {
         }).then(response => {
             console.log(response);
             if(response.status >= 200 && response.status < 400) {
-                toast.success('رای شما ثبت شد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.success('رای شما ثبت شد.');
                 document.getElementById("starRating").style.pointerEvents = 'none';
             } else {
-                toast.warning('رای شما ثبت نشد.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+                toast.warning('رای شما ثبت نشد.');
             }
             document.getElementById("starRating").style.display = 'flex';
             document.getElementById("loadingPuls").style.display = 'none';
         })
         .catch(err => {
-            toast.warning('لطفا دوباره امتحان کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+            toast.warning('لطفا دوباره امتحان کنید.');
             document.getElementById("starRating").style.display = 'flex';
             document.getElementById("loadingPuls").style.display = 'none';
         })

@@ -18,7 +18,7 @@
                         
                         <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 shadow-lg rounded-lg bg-[#525050] dark:bg-[#dfdfdf] h-0 overflow-hidden transition-all duration-300">
                             <ul class="flex flex-col gap-2 p-5 pt-6">
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_gte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">مهم نیست</li>
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_gte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_gte" valueItem="75" class="hover:text-primaryOrange transition-all duration-300 py-2">از 75 متر</li>
                                 <hr class="border-[#c5c5c5]" />
@@ -65,7 +65,7 @@
                         
                         <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 rounded-lg right-0 bg-[#525050] shadow-lg dark:bg-[#dfdfdf] h-0 overflow-hidden transition-all duration-300">
                             <ul class="flex flex-col gap-2 p-5 pt-6">
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_lte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">مهم نیست</li>
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_lte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectland_size_lte" valueItem="75" class="hover:text-primaryOrange transition-all duration-300 py-2">تا 75 متر</li>
                                 <hr class="border-[#c5c5c5]" />
@@ -117,7 +117,7 @@
 
                     <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                         <ul class="flex flex-col gap-2 p-5 pt-6">
-                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectestate_type" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">انتخاب کنید</li>
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectestate_type" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                             <hr class="border-graytext bg-[#3f3f3f]" />
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectestate_type" valueItem="V" class="hover:text-primaryOrange transition-all duration-300 py-2">خانه ویلایی</li>
                             <hr class="border-graytext bg-[#3f3f3f]" />
@@ -149,17 +149,7 @@
                         
                         <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                             <ul class="flex flex-col gap-2 p-5 pt-6">
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">مهم نیست</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="50000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 50 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="100000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 100 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="150000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 150 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="200000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 200 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="250000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 250 میلیون</li>
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">همه موارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="300000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 300 میلیون</li>
                                 <hr class="border-[#c5c5c5]" />
@@ -214,6 +204,14 @@
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="9000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 9 میلیارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="10000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 10 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="15000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 15 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="30000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 30 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="40000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 40 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__gte" valueItem="50000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">از 50 میلیارد</li>
                             </ul>
                         </div>
                     </div>
@@ -230,17 +228,7 @@
                         
                         <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                             <ul class="flex flex-col gap-2 p-5 pt-6">
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">مهم نیست</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="50000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 50 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="100000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 100 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="150000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 150 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="200000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 200 میلیون</li>
-                                <hr class="border-[#c5c5c5]" />
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="250000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 250 میلیون</li>
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">همه موارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="300000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 300 میلیون</li>
                                 <hr class="border-[#c5c5c5]" />
@@ -295,6 +283,14 @@
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="9000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 9 میلیارد</li>
                                 <hr class="border-[#c5c5c5]" />
                                 <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="10000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 10 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="15000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 15 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="30000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 30 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="40000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 40 میلیارد</li>
+                                <hr class="border-[#c5c5c5]" />
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectunit_price__lte" valueItem="50000000000" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">تا 50 میلیارد</li>
                             </ul>
                         </div>
                     </div>
@@ -316,7 +312,7 @@
 
                     <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                         <ul class="flex flex-col gap-2 p-5 pt-6">
-                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectrooms__lte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">مهم نیست</li>
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectrooms__lte" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                             <hr class="border-[#c5c5c5]" />
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectrooms__lte" valueItem="1" class="hover:text-primaryOrange transition-all duration-300 py-2">1 خوابه</li>
                             <hr class="border-[#c5c5c5]" />
@@ -349,7 +345,7 @@
 
                     <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                         <ul class="flex flex-col gap-2 p-5 pt-6">
-                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectbuilding_age" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">مهم نیست</li>
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectbuilding_age" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                             <hr class="border-[#c5c5c5]" />
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectbuilding_age" valueItem="1" class="hover:text-primaryOrange transition-all duration-300 py-2">نوساز</li>
                             <hr class="border-[#c5c5c5]" />
@@ -384,7 +380,7 @@
 
                     <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                         <ul class="flex flex-col gap-2 p-5 pt-6">
-                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">انتخاب کنید</li>
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="" class="hover:text-primaryOrange transition-all duration-300 py-2">همه موارد</li>
                             <hr class="border-[#c5c5c5]" />
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="E" class="hover:text-primaryOrange transition-all duration-300 py-2">ملکی</li>
                             <hr class="border-[#c5c5c5]" />
@@ -417,7 +413,7 @@
 
                     <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                         <ul class="flex flex-col gap-2 p-5 pt-6">
-                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectprovinceEmpty" value="انتخاب کنید" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">مهم نیست</li>
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectprovinceEmpty" value="انتخاب کنید" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">همه موارد</li>
                             <li v-for="state in iranStates" onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectprovince" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">{{ state[0].name }}</li>
                         </ul>
                     </div>
@@ -441,7 +437,7 @@
 
                         <div class="listElems absolute overflow-y-scroll z-10 top-12 left-0 right-0 bg-[#525050] dark:bg-[#dfdfdf] shadow-lg rounded-lg h-0 overflow-hidden transition-all duration-300">
                             <ul class="flex flex-col gap-2 p-5 pt-6">
-                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectcityEmpty" value="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">مهم نیست</li>
+                                <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectcityEmpty" value="" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">همه موارد</li>
                                 <template v-for="state in iranStates">
                                     <li v-if="state[0].name == province" v-for="cities in state[0].city" onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectcity" class="hover:text-primaryOrange hover:bg-[#474747] hover:rounded-[6px] pr-2 dark:hover:text-bluePrimary transition-all duration-300 py-2">{{ cities }}</li>
                                 </template>
@@ -480,8 +476,8 @@
             <div class="flex flex-col gap-7 md:py-8">
                 <h4 class="mb-2 md:text-xl">جستجوهای اخیر</h4>
 
-                <NuxtLink v-for="item in dataRes" :to="`estateDetail/${item.id}`" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="flex gap-2 overflow-hidden rounded-xl md:rounded-[21px] hover:bg-secondary shadow-md dark:hover:bg-[#BEBEBE] transition-all duration-300 cursor-pointer">
-                    <img class="rounded-xl h-32 w-32 object-cover overflow-hidden md:rounded-[21px] lg:w-4/5 lg:max-w-[200px]" :src="item.cover" />
+                <NuxtLink v-for="item in dataRes" :to="`/estateDetail/${item.id}`" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="flex gap-2 overflow-hidden rounded-xl md:rounded-[21px] hover:bg-secondary shadow-md dark:hover:bg-[#BEBEBE] transition-all duration-300 cursor-pointer">
+                    <img class="rounded-xl h-32 w-40 object-cover overflow-hidden md:rounded-[21px] lg:w-4/5 lg:max-w-[200px]" :src="item.cover" />
                     <div class="flex flex-col justify-around">
                         <h5 class="text-xs md:text-base">{{ item.title }}</h5>
 

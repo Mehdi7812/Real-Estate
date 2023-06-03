@@ -63,8 +63,11 @@
                         <h3 style="color: var(--primaryColor)" class="font-extrabold lg:text-xl">از جدیدترین کالاهای ما با خبر شوید</h3>
                         <form class="relative h-[51px] w-5/6 lg:w-full">
                             <span id="resultFooterPhone" class="text-red-700 absolute -bottom-8 h-0 overflow-hidden right-0 transition-all duration-300">لطفا فقط از اعداد استفاده کنید</span>
-                            <input id="footerInputNumber" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="11" v-model="phoneNumber" class="h-full w-full bg-secondary dark:bg-graytext/40 dark:placeholder:text-black dark:text-black rounded-lg text-right p-4 outline-none border-0" type="text" placeholder="شماره همراه خود را وارد کنید" />
-                            <button style="background-color: var(--primaryColor)" @click.prevent="sendPhoneNumber" type="submit" class="btn hover:opacity-80 !rounded-lg py-2 px-4 cursor-pointer absolute left-[5px] top-[5px] h-4/5">ثبت</button>
+                            <input id="footerInputNumber" maxlength="11" v-model="phoneNumber" class="h-full w-full bg-secondary dark:bg-graytext/40 dark:placeholder:text-black dark:text-black rounded-lg text-right p-4 outline-none border-0" type="text" placeholder="شماره همراه خود را وارد کنید" />
+                            <button style="background-color: var(--primaryColor); width: 50px" @click.prevent="sendPhoneNumber" type="submit" class="btn hover:opacity-80 !rounded-lg py-2 px-4 cursor-pointer absolute left-[5px] top-[5px] h-4/5 min-w-[50px]">
+                                <div id="loadingPuls" class="hidden loading-pulse"></div>
+                                <p id="sendNumberBtn" class="flex justify-center items-center gap-3">ثبت</p>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -93,8 +96,11 @@ const phoneNumber = ref("")
 
 const sendPhoneNumber = () => {
     validateFooterP()
-
+    
     if(validateFooterP()) {
+        document.getElementById("loadingPuls").style.display = 'block'
+        document.getElementById("sendNumberBtn").style.display = 'none';
+
         fetch(`${apiRootStore.api}/real/footer/`, {
             method: 'POST',
             headers: {
@@ -104,19 +110,28 @@ const sendPhoneNumber = () => {
                 phone: phoneNumber.value,
             })
         }).then(res => {
-            res.json();
-            console.log(res);
+            console.log(res.json());
+            document.getElementById("sendNumberBtn").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
             if(res.status >= 200 && res.status < 400) {
                 phoneNumber.value = '';
-                toast.success('شماره همراه شما ثبت شد :D', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+                toast.success('شماره همراه شما ثبت شد :D');
+            }else {
+                document.getElementById("sendNumberBtn").style.display = 'flex';
+                document.getElementById("loadingPuls").style.display = 'none';
+        
+                toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید.');
             }
         })
         .catch(err => {
             console.log(err, 'Error')
-            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 40000,});
+            document.getElementById("sendNumberBtn").style.display = 'flex';
+            document.getElementById("loadingPuls").style.display = 'none';
+
+            toast.warning('لطفا از شماره تکراری یا اشتباه استفاده نکنید.');
         })
     } else {
-        toast.warning('لطفا شماره خود را درست وارد کنید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('لطفا شماره خود را درست وارد کنید.');
     }
 }
 
@@ -140,9 +155,10 @@ function validateFooterPhoneNumber (phone) {
   
 function validateFooterP () {
 	const result = document.getElementById('resultFooterPhone')
-	const phone = document.getElementById('footerInputNumber').value;
+	const phoneInput = document.getElementById('footerInputNumber');
+	phoneInput.addEventListener('keyup', validateFooterP)
 
-	if (validateFooterPhoneNumber(phone)) {
+	if (validateFooterPhoneNumber(phoneInput.value)) {
 		result.style.height = '0px';
 		return true;
 	} else {

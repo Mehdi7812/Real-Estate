@@ -188,8 +188,6 @@
         <!-- Send Message Modal -->
         <SendMessageModal />
     </main>
-
-    <Footer />
 </template>
 
 <script setup>
@@ -197,11 +195,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 import { useAuth } from "~/stores/Auth"
-const authStore = useAuth()
-
-definePageMeta({
-    layout: false
-})
+const authStore = useAuth();
 
 const logo_dark = ref("");
 const logo_white = ref("");
@@ -223,21 +217,6 @@ homePage_header.value = data[0].homePage_header;
 onMounted(async () => {
     // Check user Login
     authStore.checkLogin()
-
-    // Hambarger Menu Responsive Size
-    const hamburger = document.getElementById("hamburger");
-    const menuMobile = document.getElementById("menu_mobile");
-    const exitBtn = document.getElementById("exitBtn");
-
-    hamburger.addEventListener("click", () => {
-        menuMobile.classList.remove("w-0");
-        menuMobile.classList.add("w-full");
-    }); 
-
-    exitBtn.addEventListener("click", () => {
-        menuMobile.classList.remove("w-full");
-        menuMobile.classList.add("w-0");
-    });
 });
 
 useHead({
