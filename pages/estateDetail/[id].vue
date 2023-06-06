@@ -435,7 +435,7 @@
                                 </li>
                                 <li v-if="postItem.real_price" class="w-1/2 flex gap-2 text-graytext lg:text-lg mb-4 whitespace-nowrap">
                                     قیمت واقعی : 
-                                    <span class="text-white dark:text-black">{{ convertDatas.getNumber(postItem.real_price) }}</span>
+                                    <span class="text-white dark:text-black">{{ PN.convertEnToPe(convertDatas.getNumber(postItem.real_price)) }}</span>
                                 </li>
                             </ul>
 

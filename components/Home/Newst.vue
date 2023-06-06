@@ -324,7 +324,7 @@
                                 <NuxtLink :to="`/propertyCode?user=${data.user_id}`">
                                     <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`${apiRootStore.api}/${data.userPicture}`">
                                 </NuxtLink>
-                                <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-full transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
+                                <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] md:group-hover:w-full transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
                                     <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">
                                         <span class="text-[15px] font-bold whitespace-nowrap">{{ data.username }}</span> 
                                         <span class="text-xs whitespace-nowrap">{{ data.user_activity }}</span>

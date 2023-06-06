@@ -1,5 +1,5 @@
 <template>
-    <div v-if="route.fullPath != '/'">
+    <div>
         <nav id="navMenu" class="grid grid-cols-3 items-center justify-between cursor-pointer bg-primary dark:bg-white p-2 border-black fixed top-0 left-0 right-0 z-30 md:hidden">
             <span id="hamburger">
                 <svg class="dark:inline-block hidden col-span-1 justify-self-start" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
             </a>
         </nav>
     
-        <div dir="ltr" id="menu_mobile" class="fixed right-0 top-0 bottom-0 bg-secondary dark:bg-whiteSecondary w-0 z-50 text-right overflow-hidden transition-all duration-300 ease-in-out flex flex-col justify-between">
+        <div ref="menuMobileElem" dir="ltr" id="menu_mobile" class="fixed right-0 top-0 bottom-0 bg-secondary dark:bg-whiteSecondary w-0 z-50 text-right overflow-hidden transition-all duration-300 ease-in-out flex flex-col justify-between">
             <div class="grid grid-cols-2 items-center p-4">
                 <span id="exitBtn" class="mr-auto">
                     <svg class="cursor-pointer dark:hidden" width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@
                         خروج
                     </button>
 
-                    <NuxtLink to="/">
+                    <NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/">
                         <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
                         <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
                     </NuxtLink>
@@ -78,10 +78,10 @@
             <div class="flex justify-end p-5"> 
                 <ul class="text-righ">
                     <li class="text-graytext cursor-default mb-6 text-lg">منو</li>
-                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink to="/">خانه</NuxtLink></li>
-                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink to="/weblog">وبلاگ</NuxtLink></li>
-                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink to="/contact">تماس باما</NuxtLink></li>
-                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink to="/about">درباره ما</NuxtLink></li>
+                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/">خانه</NuxtLink></li>
+                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/weblog">وبلاگ</NuxtLink></li>
+                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/contact">تماس باما</NuxtLink></li>
+                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/about">درباره ما</NuxtLink></li>
                 </ul>
             </div>
     
@@ -91,7 +91,7 @@
             </div>
         </div>
     
-        <nav class="hidden md:block p-2 fixed left-0 right-0 top-0 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
+        <nav v-if="route.fullPath != '/'" class="hidden md:block p-2 fixed left-0 right-0 top-0 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
             <div class="container m-auto flex justify-between items-center">
                 <ul class="flex justify-center items-center gap-5 lg:gap-10">
                     <li class="md:ml-5">
@@ -283,6 +283,13 @@ onMounted(() => {
         menuMobile.classList.add("w-0");
     });
 });
+
+const closeMenuMobile = (menuElem) => {
+    setTimeout(() => {
+        menuElem.classList.remove("w-full");
+        menuElem.classList.add("w-0");
+    }, 500);
+}
 
 const toggleModal = () => {
     setTimeout(() => {
