@@ -1,4 +1,5 @@
 <template>
+    <!-- Nav Header -->
     <div>
         <nav id="navMenu" class="grid grid-cols-3 items-center justify-between cursor-pointer bg-primary dark:bg-white p-2 border-black fixed top-0 left-0 right-0 z-30 md:hidden">
             <span id="hamburger">
@@ -191,10 +192,11 @@
 
     <Footer />
 
+    <!-- Modal search Via Estate_code -->
     <div id="modal" class="opacity-0 transition-all duration-300">
         <Transition>
             <div v-show="isOpenModalSearch" class="fixed flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
-                <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-whiteSecondary rounded-[46px] p-8 pt-5">
+                <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-whiteSecondary rounded-3xl lg:rounded-[46px] p-4 pt-3 lg:p-8 lg:pt-5">
                     <div class="flex justify-between items-start">
                         <span class="w-[65px]"></span>
                         
@@ -216,7 +218,7 @@
                     </div>
     
                     <div class="flex flex-col">
-                        <p class="text-sm md:text-2xl md:font-semibold py-7">جستجوی کد ملکی</p>
+                        <p class="text-sm md:text-2xl md:font-semibold py-5 lg:py-7">جستجوی کد ملکی</p>
                         <input type="text" v-model="estateType" class="bg-primary dark:bg-whiteSecondary p-4 md:p-6 outline-none border-graytext border rounded-[21px] inputNumber" placeholder="کد ملکی رو جستجو کنید...">
                         <p v-if="estateType && estateType.length >= 1 && isNaN(Number(estateType))" class="p-3 text-red-500 transition-all duration-300">لطفا مقدار صحیح وارد کنید :)</p>
                     </div>

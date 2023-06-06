@@ -195,23 +195,23 @@
                         <!-- share Modal -->
                         <Transition>
                             <div v-show="isOpenShareModal" class="fixed top-0 left-0 right-0 bottom-0 flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm">
-                                <div v-click-out-side="closeShareModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[46px] p-8 pt-5">
+                                <div v-click-out-side="closeShareModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[25px] md:rounded-[46px] p-5 md:p-8 pt-3 md:pt-5">
                                     <div class="flex justify-between mr-auto">
-                                        <svg @click="closeShareModal" class="dark:inline-block hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg @click="closeShareModal" class="dark:inline-block hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="black"/>
                                             <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="black"/>
                                         </svg>
-                                        <svg @click="closeShareModal" class="dark:hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" id="exitShareModalBtn" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg @click="closeShareModal" class="dark:hidden cursor-pointer transition-all duration-300 z-50 hover:bg-graytext/[.2] rounded-md" width="65" height="55" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M47.7205 50.7635L33.8005 36.8435C33.0871 36.1301 33.0871 34.9469 33.8005 34.2335C34.5139 33.5201 35.6971 33.5201 36.4105 34.2335L50.3305 48.1535C51.0439 48.8669 51.0439 50.0501 50.3305 50.7635C49.6171 51.4769 48.4339 51.4769 47.7205 50.7635Z" fill="#EBEBEB"/>
                                             <path d="M33.7999 50.7635C33.0865 50.0501 33.0865 48.8669 33.7999 48.1535L47.7199 34.2335C48.4333 33.5201 49.6165 33.5201 50.3299 34.2335C51.0433 34.9469 51.0433 36.1301 50.3299 36.8435L36.4099 50.7635C35.6965 51.4769 34.5133 51.4769 33.7999 50.7635Z" fill="#EBEBEB"/>
                                         </svg>
                                     </div>
                                     
-                                    <div class="flex flex-col items-center gap-6 -mt-14">
-                                        <h3 class="text-[26px] font-semibold">اشتراک گذاری</h3>
-                                        <p class="text-lg text-graytext">این ملک را با دیگران به اشتراک بگذارید</p>
+                                    <div class="flex flex-col items-center gap-3 md:gap-6 -mt-14">
+                                        <h3 class="text-2xl md:text-[26px] font-semibold">اشتراک گذاری</h3>
+                                        <p class="text-base md:text-lg text-graytext">این ملک را با دیگران به اشتراک بگذارید</p>
                                         <div>
-                                            <svg class="dark:hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <svg class="dark:hidden w-24 md:w-32" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#343434"/>
                                                 <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#343434"/>
                                                 <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -225,7 +225,7 @@
                                                 <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#fff" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
     
-                                            <svg class="dark:inline-block hidden" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <svg class="dark:inline-block hidden w-24 md:w-32" width="137" height="137" viewBox="0 0 137 137" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M108.865 44.0357C111.312 32.2929 106.215 18.3482 103.361 12.8438H118.039L125.379 18.9598V90.5179V116.817L112.535 125.991L78.8965 122.933L88.6822 96.6339C94.3905 83.994 106.419 55.7786 108.865 44.0357Z" fill="#E9EDFC"/>
                                                 <path d="M44.0333 111.312C42.9949 104.577 43.0139 65.8497 44.0333 47.0938H56.8785L58.1017 115.594L65.4409 126.603H53.2088C50.1508 126.603 45.259 119.263 44.0333 111.312Z" fill="#E9EDFC"/>
                                                 <path d="M74.2077 125.584H28.541C17.1243 125.584 11.416 119.875 11.416 108.459V62.7919C11.416 51.3752 17.1243 45.6669 28.541 45.6669H57.0827V108.459C57.0827 119.875 62.791 125.584 74.2077 125.584Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -239,14 +239,14 @@
                                                 <path d="M57.084 108.459V28.5419C57.084 17.1252 62.7923 11.4169 74.209 11.4169H108.459C119.876 11.4169 125.584 17.1252 125.584 28.5419V108.459C125.584 119.875 119.876 125.584 108.459 125.584H74.209C62.7923 125.584 57.084 119.875 57.084 108.459Z" stroke="#292D32" stroke-width="6.11607" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </div>
-                                        <div class="flex p-3 justify-between items-center bg-primary dark:bg-[#DFDFDF] border-2 border-graytext w-full rounded-[21px]">
-                                            <div @click="copyShareLink($refs.postLink, $refs.copyLink)" ref="copyLink" style="background-color: var(--primaryColor)" class="hover:opacity-80 btn cursor-pointer whitespace-nowrap">کپی لینک</div>
-                                            <input type="text" :value="route.fullPath" ref="postLink" class="text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
+                                        <div class="flex p-2 md:p-3 justify-between items-center bg-primary dark:bg-[#DFDFDF] border-2 border-graytext w-full rounded-2xl md:rounded-[21px]">
+                                            <div @click="copyShareLink($refs.postLink, $refs.copyLink)" ref="copyLink" style="background-color: var(--primaryColor)" class="hover:opacity-80 btn !p-2 !md:p-3 cursor-pointer whitespace-nowrap">کپی لینک</div>
+                                            <input type="text" :value="route.fullPath" ref="postLink" class="text-base md:text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
                                         </div>
     
                                         <div class="flex justify-around items-center text-center w-full">
-                                            <a target="_blank" :href="`https://telegram.me/share/?url=${route.fullPath}`" class="flex flex-col gap-3">
-                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <a target="_blank" :href="`https://telegram.me/share/?url=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                                <svg class="w-12 md:w-14" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M54.5 28C54.5 42.6355 42.6355 54.5 28 54.5C13.3645 54.5 1.5 42.6355 1.5 28C1.5 13.3645 13.3645 1.5 28 1.5C42.6355 1.5 54.5 13.3645 54.5 28Z" stroke="url(#paint0_linear_954_3705)" stroke-width="3"/>
                                                     <path d="M11.6516 27.7571L30.5071 19.9883C32.3684 19.1791 38.6805 16.5895 38.6805 16.5895C38.6805 16.5895 41.5938 15.4565 41.351 18.208C41.2701 19.3409 40.6227 23.3062 39.9753 27.5952L37.9522 40.3004C37.9522 40.3004 37.7903 42.1617 36.4146 42.4854C35.0389 42.8091 32.773 41.3525 32.3684 41.0288C32.0447 40.786 26.299 37.1444 24.1949 35.364C23.6285 34.8785 22.9811 33.9074 24.2759 32.7744C27.1892 30.1039 30.6689 26.786 32.773 24.682C33.7441 23.7109 34.7152 21.445 30.6689 24.1964L19.2585 31.8843C19.2585 31.8843 17.9637 32.6935 15.536 31.9652C13.1082 31.2369 10.2759 30.2658 10.2759 30.2658C10.2759 30.2658 8.33367 29.0519 11.6516 27.7571Z" fill="url(#paint1_linear_954_3705)"/>
                                                     <defs>
@@ -263,16 +263,16 @@
     
                                                 <span>تلگرام</span>
                                             </a>
-                                            <a target="_blank" :href="`https://wa.me/?text=${route.fullPath}`" class="flex flex-col gap-3">
-                                                <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <a target="_blank" :href="`https://wa.me/?text=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                                <svg class="w-[58px] md:w-[65px]" width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M18.6868 55.7916C22.7494 58.2291 27.6244 59.5833 32.4994 59.5833C47.3952 59.5833 59.5827 47.3958 59.5827 32.5C59.5827 17.6041 47.3952 5.41663 32.4994 5.41663C17.6035 5.41663 5.41602 17.6041 5.41602 32.5C5.41602 37.375 6.77018 41.9791 8.93685 46.0416L6.60888 54.9953C6.08151 57.0237 7.95894 58.8567 9.9741 58.281L18.6868 55.7916Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                                     <path d="M44.6875 40.2147C44.6875 40.6534 44.5899 41.1044 44.3824 41.5431C44.1749 41.9819 43.9063 42.3963 43.5524 42.7863C42.9543 43.4444 42.2952 43.9197 41.5506 44.2244C40.8183 44.5291 40.0249 44.6875 39.1705 44.6875C37.9255 44.6875 36.595 44.395 35.1914 43.7978C33.7877 43.2006 32.384 42.3963 30.9926 41.3847C29.5889 40.3609 28.2585 39.2275 26.9891 37.9722C25.7319 36.7047 24.5967 35.3763 23.5837 33.9869C22.5828 32.5975 21.7772 31.2081 21.1913 29.8309C20.6054 28.4416 20.3125 27.1131 20.3125 25.8456C20.3125 25.0169 20.459 24.2247 20.7519 23.4934C21.0448 22.75 21.5087 22.0675 22.1556 21.4581C22.9367 20.6903 23.7912 20.3125 24.6944 20.3125C25.0361 20.3125 25.3779 20.3856 25.6831 20.5319C26.0004 20.6781 26.2811 20.8975 26.5008 21.2144L29.3326 25.1997C29.5523 25.5044 29.711 25.7847 29.8208 26.0528C29.9307 26.3088 29.9917 26.5647 29.9917 26.7963C29.9917 27.0888 29.9063 27.3812 29.7354 27.6616C29.5767 27.9419 29.3448 28.2344 29.0519 28.5269L28.1242 29.4897C27.99 29.6237 27.9289 29.7822 27.9289 29.9772C27.9289 30.0747 27.9411 30.16 27.9655 30.2575C28.0022 30.355 28.0388 30.4281 28.0632 30.5012C28.2829 30.9034 28.6613 31.4275 29.1983 32.0613C29.7476 32.695 30.3335 33.3409 30.9682 33.9869C31.6273 34.6328 32.262 35.23 32.9089 35.7784C33.5436 36.3147 34.0684 36.6803 34.4834 36.8997C34.5445 36.9241 34.6177 36.9606 34.7031 36.9972C34.8008 37.0337 34.8984 37.0459 35.0083 37.0459C35.2158 37.0459 35.3745 36.9728 35.5087 36.8388L36.4364 35.9247C36.7415 35.62 37.0345 35.3884 37.3152 35.2422C37.5959 35.0716 37.8767 34.9862 38.1818 34.9862C38.4137 34.9862 38.6578 35.035 38.9264 35.1447C39.1949 35.2544 39.4756 35.4128 39.7808 35.62L43.8209 38.4841C44.1382 38.7034 44.3579 38.9594 44.4922 39.2641C44.6143 39.5687 44.6875 39.8734 44.6875 40.2147Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10"/>
                                                 </svg>
                                                 
                                                 <span>واتساپ</span>
                                             </a>
-                                            <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=${route.fullPath}`" class="flex flex-col gap-3">
-                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                                <svg class="w-12 md:w-14" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M20.8694 38.9401C20.4443 40.7672 20.965 43.4033 21.1497 45.0769V47L22.2408 45.5201C23.1025 44.1151 24.3909 41.8119 24.8682 39.9746C25.1252 38.9848 26.1851 34.9459 26.1851 34.9459C26.8745 36.2614 28.8882 37.3749 31.0304 37.3749C37.4063 37.3749 42 31.5077 42 24.2174C42 17.2291 36.3011 12 28.9678 12C19.8451 12 15 18.1282 15 24.801C15 27.9036 16.6507 31.7663 19.2909 32.996C19.6916 33.1826 19.9058 33.1004 19.9979 32.7132C20.0679 32.4191 20.4246 30.9823 20.585 30.3142C20.6365 30.1004 20.6112 29.9169 20.4384 29.7075C19.5651 28.6476 18.8652 26.6981 18.8652 24.8799C18.8652 20.2144 22.3957 15.6999 28.4107 15.6999C33.6039 15.6999 37.2408 19.2411 37.2408 24.306C37.2408 30.0284 34.3527 33.9927 30.5955 33.9927C28.5202 33.9927 26.967 32.2757 27.465 30.1703C28.061 27.6556 29.2158 24.942 29.2158 23.127C29.2158 21.5023 28.3446 20.1473 26.5411 20.1473C24.4197 20.1473 22.7159 22.3433 22.7159 25.2847C22.7159 27.1581 23.3483 28.4253 23.3483 28.4253C23.3483 28.4253 21.2536 37.2891 20.8694 38.9401Z" fill="#E60023"/>
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M28 53C41.8071 53 53 41.8071 53 28C53 14.1929 41.8071 3 28 3C14.1929 3 3 14.1929 3 28C3 41.8071 14.1929 53 28 53ZM28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="#E60023"/>
                                                 </svg>    
@@ -1496,14 +1496,14 @@
         <!-- Modal Report -->
         <Transition>
             <div id="reportModal" v-show="reportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
-                <div v-click-out-side="closeReportModal" class="w-[450px] py-10 pb-0 px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
+                <div v-click-out-side="closeReportModal" class="w-[450px] py-7 md:py-10 pb-0 px-3 md:px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
                     <div class="flex justify-between">
-                        <div class="p-4 px-5"></div>
-                        <p class="text-[26px] font-semibold">گزارش مشکل</p>
-                        <div @click="closeReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection p-4 px-5 rounded-md transition-all duration-300 relative -top-5">
-                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.7185 17.7594L0.798514 3.83938C0.0851131 3.12598 0.0851134 1.94278 0.798514 1.22938C1.51191 0.515978 2.69512 0.515978 3.40852 1.22938L17.3285 15.1494C18.0419 15.8628 18.0419 17.046 17.3285 17.7594C16.6151 18.4728 15.4319 18.4728 14.7185 17.7594Z" fill="#777777"/>
-                                <path d="M0.796476 17.7594C0.0830747 17.046 0.0830744 15.8628 0.796475 15.1494L14.7165 1.22938C15.4299 0.515978 16.6131 0.515978 17.3265 1.22938C18.0399 1.94278 18.0399 3.12598 17.3265 3.83938L3.40648 17.7594C2.69308 18.4728 1.50988 18.4728 0.796476 17.7594Z" fill="#777777"/>
+                        <div class="h-4 px-3"></div>
+                        <p class="text-2xl md:text-[26px] font-semibold">گزارش مشکل</p>
+                        <div @click="closeReportModal" class="cursor-pointer hover:bg-primary dark:hover:bg-whiteSecSection h-4 px-3 rounded-md transition-all duration-300">
+                            <svg class="w-4 md:w-[18px]" width="15" height="15" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.76284 10.0456L0.904382 2.18712C0.501636 1.78437 0.501637 1.11641 0.904383 0.713659C1.30713 0.310913 1.9751 0.310913 2.37784 0.713659L10.2363 8.57211C10.639 8.97486 10.639 9.64283 10.2363 10.0456C9.83355 10.4483 9.16558 10.4483 8.76284 10.0456Z" fill="#777777"/>
+                                <path d="M0.904326 10.0456C0.50158 9.64283 0.50158 8.97486 0.904326 8.57211L8.76278 0.713659C9.16553 0.310913 9.8335 0.310913 10.2362 0.713659C10.639 1.11641 10.639 1.78437 10.2362 2.18712L2.37779 10.0456C1.97504 10.4483 1.30707 10.4483 0.904326 10.0456Z" fill="#777777"/>
                             </svg>
                         </div>
                     </div>
@@ -1539,21 +1539,7 @@
                         <form id="recaptcha-form" class="flex flex-col my-3 items-center relative">
                             <div class="g-recaptcha" id="html_element" data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError" data-expired-callback="onRecaptchaResponseExpiry"></div>
                         
-                            <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 mb-8" value="ارسال گزارش" />
-                            <!--
-                            <div class="absolute -bottom-2">
-                                <div id="recaptcha-form-error" style="display: none" class="bg-red-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
-                                    Please fill the recaptcha checkbox.
-                                </div>
-            
-                                
-                                <div id="recaptcha-form-success" style="display: none" class="bg-green-400 text-black dark:text-white rounded py-1 px-2 text-sm sm:text-md">
-                                    Recaptcha validated Successfully..!
-                                    <a @click="location.reload()" href="#" class="px-2 text-slate-800">Retry</a>
-                                </div>
-                                
-                            </div>
-                            -->
+                            <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 md:mb-8" value="ارسال گزارش" />
                         </form>
                     </div>
                 </div>    

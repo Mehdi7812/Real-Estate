@@ -138,7 +138,7 @@ const closeModal = () => {
     <Transition>
         <div v-show="modalMessageStore.isOpenModalMessage" id="modalMessage" class="relative z-50 transition-all duration-300 overflow-hidden">
             <div class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
-                <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-[26px] p-2 md:p-5 pt-0">
+                <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-2xl lg:rounded-[26px] p-2 md:p-5 pt-0">
                     <div class="flex justify-between items-center p-2">
                         <span class="text-[17px] font-bold">ارسال پیام</span>
 
@@ -151,27 +151,27 @@ const closeModal = () => {
                     </div>
 
                     <div dir="ltr" class="w-full h-auto overflow-hidden transition-all duration-300">
-                        <div class="flex flex-col items-center gap-5 rounded-[21px] p-2 md:p-5 pt-7 md:pt-12 whitespace-nowrap">
+                        <div class="flex flex-col items-center gap-5 rounded-[21px] p-2 md:p-5 pt-5 md:pt-12 whitespace-nowrap">
                             <!-- name Input -->
                             <div class="relative w-full">
                                 <span id="resultName" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا از حروف فارسی استفاده کنید</span>
-                                <input id="name" v-model="customer_name" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":نام و نام خانوادگی" />
+                                <input id="name" v-model="customer_name" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 lg:p-5 rounded-md lg:rounded-lg text-graytext placeholder:text-sm lg:placeholder:text-base placeholder:text-graytext text-right" type="text" placeholder=":نام و نام خانوادگی" />
                             </div>
                             
                             <!-- call Input -->
                             <div class="relative w-full">
                                 <span id="resultPhone" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا فقط از اعداد انگلیسی استفاده کنید</span>
-                                <input id="phoneNumber" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="customer_phone" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-5 rounded-lg text-graytext placeholder:text-graytext text-right" type="text" placeholder=":شماره تماس" />
+                                <input id="phoneNumber" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="customer_phone" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 lg:p-5 rounded-md lg:rounded-lg text-graytext placeholder:text-sm lg:placeholder:text-base placeholder:text-graytext text-right" type="text" placeholder=":شماره تماس" />
                             </div>
                             
                             <!-- text Area Input -->
                             <div class="relative w-full">
                                 <span id="resultText" class="text-red-700 absolute -top-5 h-0 overflow-hidden right-0 transition-all duration-300">لطفا از حروف فارسی استفاده کنید</span>
-                                <textarea id="text" v-model="text" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-5 rounded-lg text-graytext placeholder:text-graytext text-right" rows="5" placeholder="متن پیام شما"></textarea>
+                                <textarea id="text" v-model="text" class="w-full bg-primary dark:bg-whiteSecondary outline-none p-3 lg:p-5 rounded-md lg:rounded-lg text-graytext placeholder:text-sm lg:placeholder:text-base placeholder:text-graytext text-right" rows="5" placeholder="متن پیام شما"></textarea>
                             </div>
                         
                             <!-- send Btn -->
-                            <a @click.prevent="fetchSendMessage" class="bg-[#0DA049] dark:bg-bluePrimary dark:text-white dark:hover:bg-bluePrimary/80 p-4 md:p-5 w-full rounded-lg text-center text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</a>
+                            <a @click.prevent="fetchSendMessage" class="bg-[#0DA049] dark:bg-bluePrimary dark:text-white dark:hover:bg-bluePrimary/80 p-3 md:p-5 w-full rounded-md lg:rounded-lg text-center text-sm lg:text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</a>
                         </div>
                     </div>
                 </div>
