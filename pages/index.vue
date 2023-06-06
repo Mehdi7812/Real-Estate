@@ -217,6 +217,20 @@ homePage_header.value = data[0].homePage_header;
 onMounted(async () => {
     // Check user Login
     authStore.checkLogin()
+    
+    document.addEventListener('scroll', function () {
+        const navMenu = document.getElementById('navMenu')
+        
+        if(document.documentElement.scrollTop > 100) {
+            if(navMenu.classList.contains('navMain')) {
+                navMenu.classList.remove('navMain')
+            }
+        } else {
+            if(!navMenu.classList.contains('navMain')) {
+                navMenu.classList.add('navMain')
+            } 
+        }
+    })
 });
 
 useHead({

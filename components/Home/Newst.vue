@@ -93,16 +93,11 @@
                                         <span class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
                                         <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px]">پیش فروش</span>
                                          
-                                        <div class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
+                                        <div v-if="data.special" class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
                                             <span>
                                                 <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1771 7.48667H8.73086V1.78667C8.73086 0.456667 8.01045 0.1875 7.1317 1.185L6.49836 1.90542L1.13878 8.00125C0.402528 8.8325 0.711278 9.51333 1.81961 9.51333H4.26586V15.2133C4.26586 16.5433 4.98628 16.8125 5.86503 15.815L6.49836 15.0946L11.8579 8.99875C12.5942 8.1675 12.2854 7.48667 11.1771 7.48667Z" fill="white"/></svg>
-                                                </span>
+                                            </span>
                                             <span class="text-[10px] absolute right-6">فروش فوری</span>
-                                        </div>
-                                        <div v-if="data.special" class="bg-[#FFA80A] p-1 rounded-md flex items-center relative w-20 md:w-6 overflow-hidden group-hover:w-20 whitespace-nowrap transition-all duration-300">
-                                            <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8518 16.0147H5.0974C4.82047 16.0147 4.59082 15.7672 4.59082 15.4687C4.59082 15.1703 4.82047 14.9228 5.0974 14.9228H11.8518C12.1287 14.9228 12.3584 15.1703 12.3584 15.4687C12.3584 15.7672 12.1287 16.0147 11.8518 16.0147Z" fill="white"/><path d="M14.1144 4.01824L11.4126 6.10015C11.0546 6.37677 10.5413 6.20934 10.386 5.7653L9.10939 2.09647C8.89325 1.46316 8.06246 1.46316 7.84632 2.09647L6.56298 5.75802C6.40763 6.20934 5.90105 6.37677 5.54307 6.09287L2.84132 4.01096C2.30097 3.60331 1.585 4.17838 1.8079 4.85537L4.61772 13.3359C4.71228 13.6271 4.96895 13.8163 5.25263 13.8163H11.6896C11.9732 13.8163 12.2299 13.6198 12.3245 13.3359L15.1343 4.85537C15.3639 4.17838 14.648 3.60331 14.1144 4.01824ZM10.1631 10.7371H6.78588C6.50895 10.7371 6.2793 10.4896 6.2793 10.1912C6.2793 9.89272 6.50895 9.64522 6.78588 9.64522H10.1631C10.44 9.64522 10.6696 9.89272 10.6696 10.1912C10.6696 10.4896 10.44 10.7371 10.1631 10.7371Z" fill="white"/></svg>
-                                                </span>
-                                            <span class="text-[10px] absolute right-7">فروش ویژه</span>
                                         </div>
                                     </div>
         
@@ -219,11 +214,11 @@
                                 </div>
                             </div>
         
-                            <div class="py-3 flex gap-4 flex-col overflow-hidden">
-                                <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
+                            <div class="p-3 flex gap-4 flex-col overflow-hidden">
+                                <h3 class="text-[15px] font-bold truncate lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
         
                                 <!-- types -->
-                                <div class="flex gap-8 gap-y-3 flex-wrap">
+                                <div class="flex gap-8 gap-y-3 flex-nowrap">
                                     <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
                                     <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.region }}</span>
                                     <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.location }}</span>
@@ -234,7 +229,7 @@
                                 <div class="w-full rounded-md bg-graytext h-[1px] opacity-50"></div>
                                 
                                 <!-- Price -->
-                                <div class="flex items-center gap-3 justify-between">
+                                <div class="flex items-center gap-3 justify-between h-[75px]">
                                     <div class="flex items-center h-[75px] gap-[5px]">
                                         <svg class="dark:hidden" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.4" d="M25.7346 10.56V17.4267C25.7346 21.5333 23.3879 23.2933 19.8679 23.2933H8.14791C7.54791 23.2933 6.97458 23.24 6.44124 23.12C6.10791 23.0667 5.78792 22.9734 5.49459 22.8667C3.49459 22.12 2.28125 20.3867 2.28125 17.4267V10.56C2.28125 6.45331 4.62791 4.69336 8.14791 4.69336H19.8679C22.8546 4.69336 25.0012 5.96002 25.5746 8.85335C25.6679 9.38669 25.7346 9.93331 25.7346 10.56Z" fill="#237E48"/>
@@ -243,7 +238,6 @@
                                             <path d="M6.375 11C5.82833 11 5.375 11.4533 5.375 12V16C5.375 16.5467 5.82833 17 6.375 17C6.92167 17 7.375 16.5467 7.375 16V12C7.375 11.4533 6.935 11 6.375 11Z" fill="#237E48"/>
                                             <path d="M21.6133 11C21.0666 11 20.6133 11.4533 20.6133 12V16C20.6133 16.5467 21.0666 17 21.6133 17C22.1599 17 22.6133 16.5467 22.6133 16V12C22.6133 11.4533 22.1733 11 21.6133 11Z" fill="#237E48"/>
                                         </svg>
-
                                         <svg class="dark:inline-block hidden" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.4" d="M25.7346 10.56V17.4267C25.7346 21.5333 23.3879 23.2933 19.8679 23.2933H8.14791C7.54791 23.2933 6.97458 23.24 6.44124 23.12C6.10791 23.0667 5.78792 22.9734 5.49459 22.8667C3.49459 22.12 2.28125 20.3867 2.28125 17.4267V10.56C2.28125 6.45331 4.62791 4.69336 8.14791 4.69336H19.8679C22.8546 4.69336 25.0012 5.96002 25.5746 8.85335C25.6679 9.38669 25.7346 9.93331 25.7346 10.56Z" fill="#237E48"/>
                                             <path d="M29.7347 14.56V21.4267C29.7347 25.5334 27.3881 27.2933 23.8681 27.2933H12.1481C11.1614 27.2933 10.2681 27.1601 9.49475 26.8667C7.90808 26.2801 6.82807 25.0667 6.44141 23.1201C6.97474 23.2401 7.54807 23.2933 8.14807 23.2933H19.8681C23.3881 23.2933 25.7347 21.5334 25.7347 17.4267V10.56C25.7347 9.93335 25.6814 9.37339 25.5747 8.85339C28.1081 9.38673 29.7347 11.1734 29.7347 14.56Z" fill="#237E48"/>
@@ -255,8 +249,8 @@
 
                                         <div class="flex flex-col gap-[5px]">
                                             <!-- Real Price -->
-                                            <p class="text-sm flex flex-nowrap items-center">
-                                                <p v-html="convertDatas.getNumber(data.unit_price)" class="whitespace-nowrap text-2xl font-bold mx-3"></p>
+                                            <p class="whitespace-nowrap text-sm flex flex-nowrap items-center">
+                                                <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(convertDatas.getNumber(data.unit_price)) }}</p>
                                             
                                                 <!-- SVG Toman -->
                                                 <span>
@@ -286,18 +280,18 @@
 
                                             <!-- Takhfif Vizhe -->
                                             <div class="flex flex-nowrap items-center text-base">
-                                                <p class="whitespace-nowrap font-normal mx-3 text-graytext line-through">230میلیارد</p>
-                                                <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">40%</span>
+                                                <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe("230میلیارد") }}</p>
+                                                <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe("40") }}٪</span>
                                             </div>
                                         </div>
                                     </div>
                                 
                                     <!-- پیش پرداخت -->
-                                    <div v-if="data.pre_payment_status" class="flex flex-col items-center">
-                                        <p class="text-xs lg:text-base text-graytext">پـیــش‌ پـرداخــت:</p>
+                                    <div v-if="data.pre_payment_status" class="flex flex-col items-center gap-[5px]">
+                                        <p class="text-sm text-[#BEBEBE]">پـیــش‌ پـرداخــت:</p>
                                         
-                                        <div class="flex flex-nowrap gap-2">
-                                            <span v-html="convertDatas.getNumber(data.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"></span>
+                                        <div class="flex flex-nowrap items-center whitespace-nowrap gap-2">
+                                            <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(convertDatas.getNumber(data.pre_payment)) }}</p>
                                             <svg class="dark:hidden" width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1.60427 7.94561C2.05741 7.94561 2.43853 7.91045 2.74762 7.84014C3.05672 7.76984 3.3013 7.66132 3.48135 7.51459C3.6374 7.3862 3.75144 7.22265 3.82346 7.02396C3.89848 6.82526 3.93599 6.57765 3.93599 6.28113H3.10774C2.89767 6.28113 2.6846 6.24904 2.46854 6.18484C2.25247 6.12065 2.05591 6.01518 1.87885 5.86845C1.7048 5.72172 1.56225 5.53067 1.45122 5.29529C1.34018 5.05685 1.28467 4.76645 1.28467 4.42408C1.28467 4.22232 1.30117 4.04044 1.33418 3.87842C1.37019 3.71335 1.41371 3.56662 1.46472 3.43823C1.51874 3.30984 1.57726 3.19827 1.64028 3.1035C1.7033 3.00874 1.76482 2.92773 1.82484 2.86048C1.98989 2.69235 2.17895 2.56243 2.39201 2.47073C2.60508 2.37902 2.83315 2.33317 3.07623 2.33317C3.28929 2.33317 3.48885 2.36679 3.67491 2.43404C3.86097 2.5013 4.02752 2.60217 4.17457 2.73668C4.57969 3.12184 4.78226 3.72558 4.78226 4.54788V5.41451H5.45747V6.28113H4.78226C4.78226 6.71521 4.71924 7.08815 4.5932 7.39995C4.47016 7.71481 4.2781 7.9777 4.01702 8.18863C3.75294 8.39955 3.42433 8.55546 3.03121 8.65633C2.64109 8.76027 2.16544 8.81223 1.60427 8.81223V7.94561ZM3.07623 3.19979C2.77913 3.19979 2.54806 3.30679 2.38301 3.52077C2.21796 3.73475 2.13543 4.03585 2.13543 4.42408C2.13543 4.81841 2.25247 5.09201 2.48654 5.24485C2.54356 5.28153 2.60208 5.3121 2.6621 5.33656C2.72211 5.35795 2.78063 5.37477 2.83765 5.387C2.89467 5.39617 2.94568 5.40381 2.9907 5.40992C3.03871 5.41298 3.07773 5.41451 3.10774 5.41451H3.93599V4.54788C3.93599 4.32473 3.91949 4.13673 3.88648 3.98388C3.85347 3.82798 3.81145 3.69959 3.76044 3.59872C3.70942 3.49784 3.6509 3.42142 3.58488 3.36945C3.52186 3.31443 3.45884 3.27469 3.39582 3.25023C3.33281 3.22578 3.27279 3.21202 3.21577 3.20896C3.15875 3.20285 3.11224 3.19979 3.07623 3.19979Z" fill="white"/>
                                                 <path d="M7.15423 5.41451C7.18724 5.41451 7.20374 5.42673 7.20374 5.45119V6.23528C7.20374 6.26585 7.18724 6.28113 7.15423 6.28113H5.22763C5.19762 6.28113 5.18261 6.26585 5.18261 6.23528V5.45119C5.18261 5.42673 5.19762 5.41451 5.22763 5.41451H7.15423Z" fill="white"/>
@@ -320,7 +314,7 @@
                                             </svg>
                                         </div>
 
-                                        <p class="bg-[#519FFF] text-[12px] rounded-[16px] text-white px-2 whitespace-nowrap">شرایط اقساطی <span>12</span> ماهه</p>
+                                        <p class="bg-[#519FFF] text-[12px] rounded-[16px] text-white px-2 whitespace-nowrap">شرایط اقساطی <span>{{ PN.convertEnToPe(12) }}</span> ماهه</p>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +324,7 @@
                                 <NuxtLink :to="`/propertyCode?user=${data.user_id}`">
                                     <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`${apiRootStore.api}/${data.userPicture}`">
                                 </NuxtLink>
-                                <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-full md:w-1 h-[43px] group-hover:w-full transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
+                                <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] group-hover:w-full transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
                                     <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">
                                         <span class="text-[15px] font-bold whitespace-nowrap">{{ data.username }}</span> 
                                         <span class="text-xs whitespace-nowrap">{{ data.user_activity }}</span>
@@ -384,6 +378,8 @@
 </template>
 
 <script setup>
+import PN from "persian-number";
+
 // Api Root Address Store
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
@@ -436,7 +432,7 @@ onMounted(async () => {
     
         breakpoints: {
             768: {slidesPerView: 2},
-            1024: {slidesPerView: 3}
+            1204: {slidesPerView: 3}
         },
     
         navigation: {
@@ -454,19 +450,5 @@ onMounted(async () => {
             prevEl: ".swiperNewsImg1-prev",
         },
     });
-
-    const navMenu = document.getElementById('navMenu')
-
-    document.addEventListener('scroll', function () {
-        if(document.documentElement.scrollTop > 100) {
-            if(navMenu.classList.contains('navMain')) {
-                navMenu.classList.remove('navMain')
-            }
-        } else {
-            if(!navMenu.classList.contains('navMain')) {
-                navMenu.classList.add('navMain')
-            } 
-        }
-    })
 });
 </script>

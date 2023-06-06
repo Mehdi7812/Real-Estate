@@ -24,7 +24,7 @@
                             <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture">
                             <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
                             
-                            <star-rating :read-only="true" :id="`starRating-${data.id}`" :rating="data.rate_avg" active-color="black" :star-size="22" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
+                            <star-rating :read-only="true" :id="`starRating-${data.id}`" :rating="data.rate_avg" :star-size="22" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
                         </NuxtLink>
                     </div>
                 </div>

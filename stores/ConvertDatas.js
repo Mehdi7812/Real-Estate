@@ -21,13 +21,13 @@ export const useConvertDatas = defineStore("convertDatas", () => {
     
     const getNumber = (num) => {
         if (num >= 1000000000) {
-            return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "میلیارد";
+            return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + " میلیارد";
         }
         if (num >= 1000000) {
-            return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "میلیون";
+            return (num / 1000000).toFixed(1).replace(/\.0$/, "") + " میلیون";
         }
         if (num >= 1000) {
-            return (num / 1000).toFixed(1).replace(/\.0$/, "") + "هزار";
+            return (num / 1000).toFixed(1).replace(/\.0$/, "") + " هزار";
         }
         return num;
     }
@@ -40,9 +40,9 @@ export const useConvertDatas = defineStore("convertDatas", () => {
         if(days <= 0) {
             return 'امروز'
         } else if (days >= 1 && days <= 31) {
-            return `${days} روز پیش`
+            return `${days.toLocaleString('fa-ir')} روز پیش`
         } else {
-            return `${Math.round(days/31)} ماه پیش`
+            return `${Math.round(days/31).toLocaleString('fa-ir')} ماه پیش`
         }
     }
 
