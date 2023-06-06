@@ -185,7 +185,7 @@
                 <div class="relative h-56 md:h-[448px] rounded-[20px] md:rounded-[63px] overflow-hidden">
                     <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${dataRes.lat},${dataRes.lng}`" class="block h-full overflow-hidden relative rounded-[20px] md:rounded-[63px]">
                         <ClientOnly>
-                            <VMap :zoom="12" :center="[dataRes.lat, dataRes.lng]" class="h-full z-0 rounded-[20px] md:rounded-[63px]">
+                            <VMap :zoom="14" :center="[dataRes.lat, dataRes.lng]" class="h-full z-0 rounded-[20px] md:rounded-[63px]">
                                 <VMapGoogleTileLayer title="Google Hybrid" type="hybrid" />
                             </VMap>
                         </ClientOnly>
