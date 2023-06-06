@@ -221,7 +221,7 @@
                             
                             <!-- Price -->
                             <div class="flex items-center gap-3 justify-between">
-                                <div class="flex items-center h-[70px]">
+                                <div class="flex items-center h-[75px] gap-[5px]">
                                     <svg class="dark:hidden" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M25.7346 10.56V17.4267C25.7346 21.5333 23.3879 23.2933 19.8679 23.2933H8.14791C7.54791 23.2933 6.97458 23.24 6.44124 23.12C6.10791 23.0667 5.78792 22.9734 5.49459 22.8667C3.49459 22.12 2.28125 20.3867 2.28125 17.4267V10.56C2.28125 6.45331 4.62791 4.69336 8.14791 4.69336H19.8679C22.8546 4.69336 25.0012 5.96002 25.5746 8.85335C25.6679 9.38669 25.7346 9.93331 25.7346 10.56Z" fill="#237E48"/>
                                         <path d="M29.7347 14.56V21.4267C29.7347 25.5334 27.3881 27.2933 23.8681 27.2933H12.1481C11.1614 27.2933 10.2681 27.1601 9.49475 26.8667C7.90808 26.2801 6.82807 25.0667 6.44141 23.1201C6.97474 23.2401 7.54807 23.2933 8.14807 23.2933H19.8681C23.3881 23.2933 25.7347 21.5334 25.7347 17.4267V10.56C25.7347 9.93335 25.6814 9.37339 25.5747 8.85339C28.1081 9.38673 29.7347 11.1734 29.7347 14.56Z" fill="#237E48"/>
@@ -238,7 +238,7 @@
                                     </svg>
 
 
-                                    <div class="flex flex-col">
+                                    <div class="flex flex-col gap-[5px]">
                                         <!-- Real Price -->
                                         <p class="text-sm flex flex-nowrap items-center">
                                             <p v-html="convertDatas.getNumber(data.unit_price)" class="whitespace-nowrap text-2xl font-bold mx-3"></p>
