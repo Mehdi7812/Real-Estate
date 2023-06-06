@@ -1738,40 +1738,34 @@ onMounted(async () => {
             });
         }, 200);
     })
-    useHead({
-        script: [
-            {
-                innerHTML: `
-                    var onloadCallback = function() {
-                        grecaptcha.render(document.getElementById('html_element'), {
-                        'sitekey' : '6LcyDlcjAAAAAJjUldF0P9wg-EGkl_WssAicoT1i'
-                        });
-                    };
-                    `,
-            },
-    
-            {
-                src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
-                async: true,
-                defer: true,
-                body: true
-            },
-            { src: '/recaptcha.js', body: true }
-        ]
-    });
-
-    watch(titleHead, () => {
-        useHead({
-            titleTemplate: `${titleHead.value}-%s`,
-        });
-    })
 });
 
-watch(titleHead, () => {
-    useHead({
-        titleTemplate: `${titleHead.value}-%s`,
-    });
-})
+useHead({
+    titleTemplate: `${titleHead.value}-%s`,
+    
+    script: [
+        {
+            innerHTML: `
+                var onloadCallback = function() {
+                    grecaptcha.render(document.getElementById('html_element'), {
+                    'sitekey' : '6LcyDlcjAAAAAJjUldF0P9wg-EGkl_WssAicoT1i'
+                    });
+                };
+                `,
+        },
+
+        {
+            src: "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit",
+            async: true,
+            defer: true,
+            body: true
+        },
+        { src: '/recaptcha.js', body: true }
+    ],
+    link: [
+        { href: "/crispStyle.css" }
+    ]
+});
 
 // Send Message
 const customer_name = ref("")
@@ -2012,13 +2006,5 @@ const closeSuccessReportModal = () => {
 #report1:checked + label:before, #report2:checked + label:before, #report3:checked + label:before, #report4:checked + label:before, #report5:checked + label:before {
     right: 0;
     z-index: 10;
-}
-.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {
-    bottom: 90px!important;
-}
-@media (min-width: 1024px) { 
-    .crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {
-        bottom: 16px!important;
-    }
 }
 </style>

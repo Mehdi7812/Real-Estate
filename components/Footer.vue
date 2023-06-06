@@ -1,5 +1,5 @@
 <template>
-    <footer style="background-color: var(--primaryColor-20)" dir="ltr" class="bg-[#1D2228] dark:bg-[#f0f3f7]">
+    <footer :class="route.name == 'estateDetail-id' ? 'mb-[75px] lg:mb-0' : ''  " style="background-color: var(--primaryColor-20)" dir="ltr" class="bg-[#1D2228] dark:bg-[#f0f3f7]">
         <div class=" lg:px-12">
             <div class="container m-auto p-5 lg:p-6 ">
                 <div class="flex text-center justify-center items-center lg:items-start gap-12 flex-row-reverse flex-wrap md:py-8 lg:justify-between lg:gap-0">
@@ -91,6 +91,8 @@
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 import { toast } from 'vue3-toastify';
+
+const route = useRoute()
 
 const phoneNumber = ref("")
 

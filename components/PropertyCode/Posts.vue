@@ -116,18 +116,12 @@
                             </div>
                                         
                             <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
-                                <div class="flex gap-2 items-center">
+                                <div class="flex gap-2 items-center flex-wrap">
                                     <span class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
                                     <!-- Transaction -->
-                                    <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px]">پیش فروش</span> 
+                                    <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">پیش فروش</span> 
                                     <!-- special -->
-                                    <div v-if="data.special" class="bg-[#FFA80A] p-1 rounded-md flex items-center relative w-20 lg:w-6 overflow-hidden group-hover:w-20 whitespace-nowrap transition-all duration-300">
-                                        <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8518 16.0147H5.0974C4.82047 16.0147 4.59082 15.7672 4.59082 15.4687C4.59082 15.1703 4.82047 14.9228 5.0974 14.9228H11.8518C12.1287 14.9228 12.3584 15.1703 12.3584 15.4687C12.3584 15.7672 12.1287 16.0147 11.8518 16.0147Z" fill="white"/><path d="M14.1144 4.01824L11.4126 6.10015C11.0546 6.37677 10.5413 6.20934 10.386 5.7653L9.10939 2.09647C8.89325 1.46316 8.06246 1.46316 7.84632 2.09647L6.56298 5.75802C6.40763 6.20934 5.90105 6.37677 5.54307 6.09287L2.84132 4.01096C2.30097 3.60331 1.585 4.17838 1.8079 4.85537L4.61772 13.3359C4.71228 13.6271 4.96895 13.8163 5.25263 13.8163H11.6896C11.9732 13.8163 12.2299 13.6198 12.3245 13.3359L15.1343 4.85537C15.3639 4.17838 14.648 3.60331 14.1144 4.01824ZM10.1631 10.7371H6.78588C6.50895 10.7371 6.2793 10.4896 6.2793 10.1912C6.2793 9.89272 6.50895 9.64522 6.78588 9.64522H10.1631C10.44 9.64522 10.6696 9.89272 10.6696 10.1912C10.6696 10.4896 10.44 10.7371 10.1631 10.7371Z" fill="white"/></svg>
-                                            </span>
-                                        <span class="text-[10px] absolute right-7">فروش ویژه</span>
-                                    </div>
-
-                                    <div class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
+                                    <div v-if="data.special" class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
                                         <span>
                                             <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1771 7.48667H8.73086V1.78667C8.73086 0.456667 8.01045 0.1875 7.1317 1.185L6.49836 1.90542L1.13878 8.00125C0.402528 8.8325 0.711278 9.51333 1.81961 9.51333H4.26586V15.2133C4.26586 16.5433 4.98628 16.8125 5.86503 15.815L6.49836 15.0946L11.8579 8.99875C12.5942 8.1675 12.2854 7.48667 11.1771 7.48667Z" fill="white"/></svg>
                                             </span>

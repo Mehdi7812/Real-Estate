@@ -74,7 +74,3 @@ body {
 .formCommentInput:focus-within + label {
   color: var(--primaryColor)!important;
 }
-
-/* .crisp-client .cc-tlyw .cc-qfnu {
-  background-color: var(--primaryColor)!important;
-} */

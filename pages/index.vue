@@ -139,14 +139,16 @@ onMounted(async () => {
     document.addEventListener('scroll', function () {
         const navMenu = document.getElementById('navMain')
         
-        if(document.documentElement.scrollTop > 100) {
-            if(navMenu.classList.contains('navMain')) {
-                navMenu.classList.remove('navMain')
+        if(navMenu) {
+            if(document.documentElement.scrollTop > 100) {
+                if(navMenu.classList.contains('navMain')) {
+                    navMenu.classList.remove('navMain')
+                }
+            } else {
+                if(!navMenu.classList.contains('navMain')) {
+                    navMenu.classList.add('navMain')
+                } 
             }
-        } else {
-            if(!navMenu.classList.contains('navMain')) {
-                navMenu.classList.add('navMain')
-            } 
         }
     })
 });
