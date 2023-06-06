@@ -46,7 +46,7 @@ function setDark() {
   setTimeout(() => {
     container.classList.add("shadow-dark");
     themeIcon.classList.remove("change");
-  }, 300);
+  }, 100);
   themeIcon.classList.add("change");
   themeIcon.src = moon;
 }

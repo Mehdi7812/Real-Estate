@@ -1473,7 +1473,7 @@
         </div>
 
         <!-- Contact Elem in Responsive Size -->
-        <div class="block lg:hidden bg-primary dark:bg-whiteSecondary dark:text-white py-4 sm:p-4 sm:px-8 fixed bottom-0 left-0 right-0 z-10">
+        <div class="block lg:hidden bg-primary dark:bg-whiteSecondary dark:text-white py-4 px-8 fixed bottom-0 left-0 right-0 z-10">
             <div class="container flex justify-between m-auto">
                 <a id="modalCallBtn" @click="showCallModal(postItem.id, postItem.user_id, postItem.username, postItem.user_activity, postItem.user_number, postItem.userPicture)" class="flex gap-2 items-center bg-[#0DA049] hover:bg-[#0DA049]/80 rounded-xl py-3 px-8 sm:px-10 text-[15px] whitespace-nowrap font-bold cursor-pointer transition-all duration-300">
                     درخواست تماس
