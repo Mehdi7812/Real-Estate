@@ -66,7 +66,7 @@
 
         <NuxtLink :to="`/weblog/${item.slug}`" v-for="item in dataRes" :key="item.id" style="background-color: var(--primaryColor-20);" class="flex gap-2 rounded-xl hover:shadow-lg md:rounded-[21px] overflow-hidden hover:-translate-y-4 transition-all duration-300">
             <div class="rounded-xl h-32 w-52 object-cover overflow-hidden md:rounded-[21px]">
-                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}/${item.cover}`">
+                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}/${item.cover}`" :alt="item.title">
             </div>
             <div class="flex flex-col justify-around w-full">
                 <h5 class="text-base md:text-lg">{{ item.title }}</h5>

@@ -5,8 +5,8 @@
                 <div class="flex text-center justify-center items-center lg:items-start gap-12 flex-row-reverse flex-wrap md:py-8 lg:justify-between lg:gap-0">
                     <div class="flex flex-col justify-center text-center items-center gap-5 mt-20 md:mt-0 md:w-64 md:text-right md:items-end">
                         <NuxtLink to="/">
-                            <img class="inline-block dark:hidden h-[67px] object-cover" :src="logo_dark">
-                            <img class="dark:inline-block hidden h-[67px] object-cover" :src="logo_white">
+                            <img class="inline-block dark:hidden h-[67px] object-cover" :src="logo_dark" :alt="title" />
+                            <img class="dark:inline-block hidden h-[67px] object-cover" :src="logo_white" :alt="title" />
                         </NuxtLink>
                         <p class="px-10 text-graytext md:text-xs md:px-0">{{ pageDescription }}</p>
                         

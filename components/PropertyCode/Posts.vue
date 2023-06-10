@@ -5,7 +5,7 @@
                 <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
                     <div class="card__body h-64">
                         <div class="card__body body__img h-full">
-                            <img class="skeleton" alt="" id="cover-img" />
+                            <img class="skeleton" alt="املانک" id="cover-img" />
                         </div>
                         </div>
                     
@@ -21,7 +21,7 @@
                             <div class="skeleton skeleton-text"></div>
                         </h3>
                         <div>
-                            <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                            <img class="header__img skeleton m-auto" id="logo-img" alt="بانک املاک" />
                         </div>
                     </div>
                 </a>
@@ -58,7 +58,7 @@
                     <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
                         <div class="card__body h-64">
                             <div class="card__body body__img h-full">
-                                <img class="skeleton" alt="" id="cover-img" />
+                                <img class="skeleton" alt="AMLANK.ir" id="cover-img" />
                             </div>
                             </div>
                         
@@ -74,7 +74,7 @@
                                 <div class="skeleton skeleton-text"></div>
                             </h3>
                             <div>
-                                <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                <img class="header__img skeleton m-auto" id="logo-img" alt="amlank" />
                             </div>
                         </div>
                     </a>
@@ -82,7 +82,7 @@
                     <a class="card w-full md:w-[48%]" id="card-link" target="_blank">
                         <div class="card__body h-64">
                             <div class="card__body body__img h-full">
-                                <img class="skeleton" alt="" id="cover-img" />
+                                <img class="skeleton" alt="amlank" id="cover-img" />
                             </div>
                             </div>
                         
@@ -98,7 +98,7 @@
                                 <div class="skeleton skeleton-text"></div>
                             </h3>
                             <div>
-                                <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                <img class="header__img skeleton m-auto" id="logo-img" alt="amlank" />
                             </div>
                         </div>
                     </a>
@@ -110,7 +110,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="relative h-full rounded-2xl overflow-hidden">
-                                        <img :src="data.cover" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300">
+                                        <img :src="data.cover" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.title" />
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                         <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex justify-between">
                             <div class="flex gap-3">
                                 <div>
-                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.userPicture}`" />
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.userPicture}`" :alt="data.username" />
                                 </div>
                                 <div class="flex flex-col justify-around">
                                     <span class="text-[10px] md:text-base">{{ data.username }}</span>
@@ -317,11 +317,11 @@
                             
                             <NuxtLink :to="route.fullPath" class="flex gap-3 items-center">
                                 <span>
-                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" />
+                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" alt="ارسال پیام" />
                                 </span>
                                 
                                 <span @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
-                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group33.svg" />
+                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group33.svg" alt="درخواست تماس" />
                                 </span>
                             </NuxtLink>
                         </NuxtLink>

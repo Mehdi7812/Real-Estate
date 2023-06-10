@@ -22,8 +22,8 @@
             </span>
     
             <NuxtLink to="/" class="flex justify-center w-full m-auto" >
-                <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
+                <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark" :alt="title" />
+                <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white" :alt="title" />
             </NuxtLink>
     
             <a style="color: var(--primaryColor)" @click="toggleModal" id="resSearchMelkBtn" class="text-primaryOrange dark:text-bluePrimary hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/80 flex items-center justify-end gap-2">کدملکی
@@ -70,8 +70,8 @@
                     </button>
 
                     <NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/">
-                        <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark">
-                        <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white">
+                        <img class="inline-block dark:hidden h-[50px] object-cover" :src="logo_dark" :alt="title">
+                        <img class="dark:inline-block hidden h-[50px] object-cover" :src="logo_white" :alt="title">
                     </NuxtLink>
                 </div>
             </div>
@@ -92,14 +92,14 @@
             </div>
         </div>
     
-        <nav v-if="route.fullPath != '/'" class="hidden md:block p-2 fixed left-0 right-0 top-0 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
+        <nav class="hidden md:block p-2 fixed left-0 right-0 top-0 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
             <div class="container m-auto flex justify-between items-center">
                 <ul class="flex justify-center items-center gap-5 lg:gap-10">
                     <li class="md:ml-5">
                         <NuxtLink class="block h-[67px]" to="/">
                             <div v-if="logo_dark" class="h-full">
-                                <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark">
-                                <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white">
+                                <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark" :alt="title">
+                                <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white" :alt="title">
                             </div>
                             <div v-if="!logo_dark" class="h-full">
                                 <div class="w-[67px] h-full"></div>
@@ -201,8 +201,8 @@
                         <span class="w-[65px]"></span>
                         
                         <NuxtLink to="/">
-                            <img class="inline-block dark:hidden h-[65px] object-cover" :src="logo_dark">
-                            <img class="dark:inline-block hidden h-[65px] object-cover" :src="logo_white">
+                            <img class="inline-block dark:hidden h-[65px] object-cover" :src="logo_dark" :alt="title">
+                            <img class="dark:inline-block hidden h-[65px] object-cover" :src="logo_white" :alt="title">
                         </NuxtLink>
                         
                         <span id="exitModalBtn" @click ="isOpenModalSearch = false">

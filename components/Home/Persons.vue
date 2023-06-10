@@ -21,7 +21,7 @@
                 <div class="swiper-wrapper">
                     <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
                         <NuxtLink style="background-color: var(--primaryColor-20)" :to="`propertyCode?user=${data.id}`" class="bg-primary dark:bg-whiteSecondary rounded-2xl flex flex-col cursor-pointer hover:-translate-y-3 justify-center items-center p-5 gap-3 transition-all duration-300">
-                            <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture">
+                            <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture" :alt="data.username" />
                             <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
                             
                             <star-rating :read-only="true" :id="`starRating-${data.id}`" :rating="data.rate_avg" :star-size="22" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>

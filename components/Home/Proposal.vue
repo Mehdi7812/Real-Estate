@@ -47,7 +47,7 @@
                             <a class="card w-full" style="flex-direction: row; justify-content: flex-start; height: 16rem;" id="card-link" target="_blank">
                                 <div class="card__body h-full w-1/2">
                                     <div class="card__body body__img h-full" style="margin: 0;">
-                                        <img class="skeleton" alt="" id="cover-img" />
+                                        <img class="skeleton" alt="amlank.ir" id="cover-img" />
                                     </div>
                                 </div>
                                 
@@ -63,7 +63,7 @@
                                         <div class="skeleton skeleton-text"></div>
                                     </h3>
                                     <div>
-                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="Amlank.ir" />
                                     </div>
                                 </div>
                             </a>
@@ -78,13 +78,13 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
-                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
+                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                         </div>
                                     </div>
 
                                     <div v-if="data.media.length >= 1" v-for="media in data.media" class="swiper-slide">
                                         <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
-                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
+                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                         </div>
                                     </div>
                                 </div>
@@ -320,7 +320,7 @@
                                 <!-- Person Info -->
                                 <div class="text-right -mb-[48px]">
                                     <NuxtLink :to="`/propertyCode?user=${data.user_id}`">
-                                        <img class="relative z-10 rounded-full object-cover w-[43px] h-[43px]" :src="`${apiRootStore.api}/${data.userPicture}`" />
+                                        <img class="relative z-10 rounded-full object-cover w-[43px] h-[43px]" :src="`${apiRootStore.api}/${data.userPicture}`" :alt="data.username" />
                                     </NuxtLink>
                                     <div style="background-color: var(--primaryColor-20)" class="flex justify-between items-center relative -top-[43px] right-5 bg-primary dark:bg-whiteSecondary w-11/12 md:w-1 h-[43px] group-hover:w-11/12 transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden">
                                         <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex px-10 whitespace-nowrap flex-col">

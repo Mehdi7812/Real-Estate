@@ -35,14 +35,14 @@
 
                     <div v-if="data" class="z-[1] flex flex-col lg:flex-row items-center lg:items-stretch w-full gap-4 lg:gap-14">
                         <div class="w-full lg:w-1/2 rounded-[20px] lg:rounded-l-none">
-                            <img class="w-full h-full rounded-[20px] lg:rounded-l-none object-cover" :src="homePagePic">
+                            <img class="w-full h-full rounded-[20px] lg:rounded-l-none object-cover" :src="homePagePic" :alt="data.manager_name" />
                         </div>
                         
                         <div class="flex flex-col gap-3 lg:mt-9 xl:mt-12 text-center lg:text-right lg:w-1/2">
                             <div class="flex flex-col lg:flex-row items-center gap-3 relative -mt-[55px] lg:mt-0 lg:-right-[103px]">
                                 <div class="bg-secondary dark:bg-[#f0f3f7] w-[90px] h-[90px] lg:w-[105px] lg:h-[105px] rounded-full flex justifu-center items-center relative">
                                     <div class="absolute top-0 left-0 right-0 bottom-0 rounded-full" style="background-color: var(--primaryColor-20);"></div>
-                                    <img class="block w-[75px] h-[75px] lg:w-[90px] lg:h-[90px] rounded-full object-cover m-auto z-[1]" :src="data.manager_pic" alt="Person">
+                                    <img class="block w-[75px] h-[75px] lg:w-[90px] lg:h-[90px] rounded-full object-cover m-auto z-[1]" :src="data.manager_pic" :alt="data.manager_name" />
                                 </div>
                                 
                                 <h4 class="lg:text-[22px]">به مدیریت : <span class="font-semibold">{{ data.manager_name }}</span></h4>
@@ -65,7 +65,7 @@
                     <div class="swiper-wrapper">
                         <div v-for="person in dataConsultants" :key="person.id" class="swiper-slide">
                             <div style="background-color: var(--primaryColor-20)" class="bg-primary dark:bg-[#f0f3f7] rounded-2xl flex flex-col justify-center items-center p-5 gap-3">
-                                <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-2 w-11 h-11 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="person.picture">
+                                <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-2 w-11 h-11 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="person.picture" :alt="person.full_name" />
                                 <p class="text-[10px] font-bold lg:text-base">{{ person.full_name }}</p>
                                 <p class="text-[10px] text-graytext font-bold lg:text-base">{{ person.activity_type }}</p>
                             </div>

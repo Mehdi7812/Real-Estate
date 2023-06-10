@@ -17,8 +17,8 @@
                     <div class="w-full h-auto overflow-hidden transition-all duration-300">
                         <div class="flex flex-col items-center gap-3 lg:gap-5 p-1 lg:p-2">
                             <!-- person info(image name ...) -->
-                            <a :href="`propertyUser?user=${modalCallStore.userId}`" class="flex flex-col items-center p-2 lg:p-4 gap-2">
-                                <img class="w-16 h-16 rounded-xl object-cover" :src="`${apiRootStore.api}/${modalCallStore.userImg}`">
+                            <a :href="`/propertyUser?user=${modalCallStore.userId}`" class="flex flex-col items-center p-2 lg:p-4 gap-2">
+                                <img class="w-16 h-16 rounded-xl object-cover" :src="`${apiRootStore.api}/${modalCallStore.userImg}`" :alt="modalCallStore.userName" />
                                 <p class="text-xl font-bold">{{ modalCallStore.userName }}</p>
                                 <p class="text-graytext">{{ modalCallStore.userActivity }}</p>
                             </a>

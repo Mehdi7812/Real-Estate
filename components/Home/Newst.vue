@@ -48,7 +48,7 @@
                             <a class="card w-full" id="card-link" target="_blank">
                                 <div class="card__body h-64">
                                     <div class="card__body body__img h-full">
-                                        <img class="skeleton" alt="" id="cover-img" />
+                                        <img class="skeleton" alt="Amlank.ir" id="cover-img" />
                                     </div>
                                 </div>
                                 
@@ -64,7 +64,7 @@
                                         <div class="skeleton skeleton-text"></div>
                                     </h3>
                                     <div>
-                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="amlank.ir" />
                                     </div>
                                 </div>
                             </a>
@@ -77,13 +77,13 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
+                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                         </div>
                                     </div>
 
                                     <div v-if="data.media.length" v-for="media in data.media" class="swiper-slide h-64">
                                         <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300">
+                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                         </div>
                                     </div>
                                 </div>
@@ -322,7 +322,7 @@
                             <!-- Person info -->
                             <div class="text-right -mb-[38px]">
                                 <NuxtLink :to="`/propertyCode?user=${data.user_id}`">
-                                    <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`${apiRootStore.api}/${data.userPicture}`">
+                                    <img class="relative w-[43px] h-[43px] lg:m-auto rounded-full z-10 object-cover" :src="`${apiRootStore.api}/${data.userPicture}`" :alt="data.username" />
                                 </NuxtLink>
                                 <div class="flex justify-between items-center relative -top-[43px] right-5 bg-secondary dark:bg-white w-11/12 md:w-1 h-[43px] md:group-hover:w-full transition-all duration-300 rounded-tl-[21.5px] rounded-bl-[21.5px] overflow-hidden lg:m-auto lg:right-auto lg:rounded-r-[21.5px]">
                                     <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex px-7 flex-col">

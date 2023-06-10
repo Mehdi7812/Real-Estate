@@ -47,7 +47,7 @@
                             <a class="card w-full" id="card-link" target="_blank">
                                 <div class="card__body h-64">
                                     <div class="card__body body__img h-full">
-                                        <img class="skeleton" alt="" id="cover-img" />
+                                        <img class="skeleton" alt="amlank.ir weblog" id="cover-img" />
                                     </div>
                                 </div>
                                 
@@ -63,7 +63,7 @@
                                         <div class="skeleton skeleton-text"></div>
                                     </h3>
                                     <div>
-                                        <img class="header__img skeleton m-auto" id="logo-img" alt="" />
+                                        <img class="header__img skeleton m-auto" id="logo-img" alt="AMLANK.IR" />
                                     </div>
                                 </div>
                             </a>
@@ -76,7 +76,7 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="flex relative h-60 rounded-2xl overflow-hidden">
-                                            <img :src="`${apiRootStore.api}/${data.cover}`" class="object-cover w-full h-full bg-cover group-hover:scale-110 transition-all duration-300">
+                                            <img :src="`${apiRootStore.api}/${data.cover}`" class="object-cover w-full h-full bg-cover group-hover:scale-110 transition-all duration-300" :alt="data.title" />
                                         </div>
                                     </div>
                                 </div>
@@ -132,8 +132,8 @@
                                 <p class="text-right h-12 overflow-hidden text-[#F6E9E9] dark:text-graytext">{{ data.introduction }}</p>
                                 
                                 <div class="flex-row-reverse justify-between">
-                                    <NuxtLink :to="`propertyCode?user=${data.user_id}`" class="flex gap-3">
-                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`">
+                                    <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex gap-3">
+                                        <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`" :alt="data.username" />
                                         <div class="flex flex-col justify-around">
                                             <span class="text-[10px] md:text-base">{{ data.username }}</span>
                                             <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>

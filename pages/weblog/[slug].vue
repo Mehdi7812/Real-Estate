@@ -26,14 +26,14 @@
             <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col gap-5 md:gap-7 p-4 md:p-11">
                 <h3 class="text-right font-bold md:text-[28px]">{{ weblogItem.title }}</h3>
 
-                <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`${apiRootStore.api}${weblogItem.cover}`">
+                <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`${apiRootStore.api}${weblogItem.cover}`" :alt="weblogItem.title" />
 
                 <div v-html="weblogItem.text" class="text-xs md:text-base"></div>
             
                 <div class="flex justify-between">
 
                     <NuxtLink :to="`/propertyCode?user=${weblogItem.user_id}`" class="flex gap-4">
-                        <img class="w-12 h-12 object-cover md:w-16 md:h-16 rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
+                        <img class="w-12 h-12 object-cover md:w-16 md:h-16 rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`" :alt="weblogItem.username" />
 
                         <div class="flex flex-col justify-between">
                             <span class="text-sm md:text-xl">{{ weblogItem.username }}</span>
@@ -156,12 +156,12 @@
                             <div v-if="comment.answer" class="pr-16">
                                 <div class="flex gap-3">
                                     <div class="hidden lg:block w-14 h-14 overflow-hidden rounded-lg" :style="`background-color: ${stringToHslColor(comment.user)}`" >
-                                        <img class="w-full h-full bg-cover" :src="`${apiRootStore.api}/${comment.user_picture}`">
+                                        <img class="w-full h-full bg-cover" :src="`${apiRootStore.api}/${comment.user_picture}`" :alt="comment.user" />
                                     </div>
                                     
                                     <div class="flex flex-col gap-3 w-full">
                                         <div class="flex justify-between items-center">
-                                            <p class="flex gap-2 text-xs text-graytext">پاسخ<span class="text-white dark:text-black">{{ comment.user }} </span>به <span x-text="comment.name" class="text-white dark:text-black"></span></p>
+                                            <p class="flex gap-2 text-xs text-graytext">پاسخ<span class="text-white dark:text-black">{{ comment.user }} </span>به <span class="text-white dark:text-black">{{ comment.name }}</span></p>
                                             <p class="text-[10px] text-graytext">
                                                     <span>{{ convertDatas.dateCalc(comment.answer_date) }}</span>
                                                 نوشته شده
@@ -225,7 +225,7 @@
                         
                         <NuxtLink :to="`/weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" :key="post.id" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
                             <div class="relative h-60">
-                                <img :src="`${apiRootStore.api}${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden">
+                                <img :src="`${apiRootStore.api}${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden" :alt="post.title" />
         
                                 <div class="absolute top-3 left-3 right-3 flex justify-between">
                                     <div class="flex gap-2 items-center">
@@ -267,7 +267,7 @@
 
                             <div class="flex-row-reverse justify-between">
                                 <NuxtLink :to="`/propertyCode?user=${weblogItem.user_id}`" class="flex gap-3">
-                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`">
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${weblogItem.user_picture}`" :alt="weblogItem.username" />
                                     <div class="flex flex-col justify-around">
                                         <span class="text-[10px] dark:text-black md:text-base">{{ weblogItem.username }}</span>
                                         <span class="text-[8px] text-[#B1B1B1] dark:text-black md:text-[11px]">{{ weblogItem.user_activity }}</span>

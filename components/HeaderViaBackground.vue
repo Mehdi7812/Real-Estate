@@ -20,7 +20,7 @@
                 <div v-if="userDatas" class="flex justify-center lg:justify-between gap-5 p-5 pb-20 dark:text-white lg:px-12 md:items-start lg:py-40">
                     <div class="flex flex-col lg:flex-row items-center gap-8">
                         <div class="flex items-center flex-col gap-8">
-                            <img style="border-color: var(--primaryColor)" class="rounded-full border-2 lg:border-4 border-primaryOrange dark:border-bluePrimary w-20 h-20 lg:w-24 lg:h-24" :src="userDatas.picture">
+                            <img style="border-color: var(--primaryColor)" class="rounded-full border-2 lg:border-4 border-primaryOrange dark:border-bluePrimary w-20 h-20 lg:w-24 lg:h-24" :src="userDatas.picture" :alt="userDatas.username" />
                             <div class="lg:hidden cursor-default">
                                 <star-rating style="direction: ltr;" :read-only="true" :rtl="true" :show-rating="false" :rating="userDatas.rate_avg" :star-size="15" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
                             </div>
