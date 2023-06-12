@@ -17,17 +17,15 @@
             <p style="color: var(--primaryColor)" class="lg:text-xl">نمایندگان با پشتکار ما</p>
             <h2 class="text-xl dark:text-black font-extrabold mt-2 mb-10 lg:text-4xl">بانمایندگان ما آشنا شوید</h2>
 
-            <div class="swiper swiperPersons text-center lg:px-4 !pt-3">
-                <div class="swiper-wrapper">
-                    <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
-                        <NuxtLink style="background-color: var(--primaryColor-20)" :to="`propertyCode?user=${data.id}`" class="bg-primary dark:bg-whiteSecondary rounded-2xl flex flex-col cursor-pointer hover:-translate-y-3 justify-center items-center p-5 gap-3 transition-all duration-300">
-                            <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture" :alt="data.username" />
-                            <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
-                            
-                            <star-rating :read-only="true" :id="`starRating-${data.id}`" :rating="data.rate_avg" :star-size="22" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
-                        </NuxtLink>
-                    </div>
-                </div>
+            <Swiper :modules="[SwiperNavigation, SwiperPagination]" :navigation="swiperOption.navigation" :breakpoints="swiperOption.breakpoints" :pagination="swiperOption.pagination" :spaceBetween="swiperOption.spaceBetween" :slidesPerView="swiperOption.slidesPerView" :direction="swiperOption.direction" class="text-center lg:px-4 !pt-3">
+                <SwiperSlide v-for="data in dataRes" :key="data.id">
+                    <NuxtLink style="background-color: var(--primaryColor-20)" :to="`/propertyCode?user=${data.id}`" class="bg-primary dark:bg-whiteSecondary rounded-2xl flex flex-col cursor-pointer hover:-translate-y-3 justify-center items-center p-5 gap-3 transition-all duration-300">
+                        <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-[3px] w-14 h-14 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="data.picture" :alt="data.username" />
+                        <p class="text-sm font-bold lg:text-base">{{ data.username }}</p>
+                        
+                        <star-rating :read-only="true" :id="`starRating-${data.id}`" :rating="data.rate_avg" :star-size="22" :rounded-corners="true" :border-width="2" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" style="direction: ltr;" :rtl="true" :show-rating="false"></star-rating>
+                    </NuxtLink>
+                </SwiperSlide>
 
                 <div class="personsPrev hidden lg:flex lg:justify-center lg:items-center lg:absolute lg:top-[40%] lg:left-0 lg:z-10 lg:bg-[#393e46] lg:bg-opacity-50 lg:w-12 lg:h-12 lg:rounded-full">
                     <svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +40,7 @@
                 </div>
                 
                 <div class="swiper-paginationPersons my-9 lg:hidden"></div> 
-            </div>
+            </Swiper>
         </div>
     </section>
 </template>
@@ -57,27 +55,25 @@ const response = await fetch(`${apiRootStore.api}/real/usersinfo/`)
 const data = await response.json()
 dataRes.value = data;
 
-onMounted(async () => {
-    const swiperPersons = await new Swiper('.swiperPersons', {
-        direction: "horizontal",
-        // loop: true,
-        slidesPerView: 2,
-        spaceBetween: 10,
-        pagination: {
-            el: '.swiper-paginationPersons',
-            clickable: true,
-        },
+const swiperOption = {
+    direction: "horizontal",
+    // loop: true,
+    slidesPerView: 2,
+    spaceBetween: 10,
+    pagination: {
+        el: '.swiper-paginationPersons',
+        clickable: true,
+    },
 
-        breakpoints: {
-            550:{slidesPerView: 3},
-            768: {slidesPerView: 4, spaceBetween: 10},
-            1024: {slidesPerView: 5, spaceBetween: 20},
-        },
+    breakpoints: {
+        550:{slidesPerView: 3},
+        768: {slidesPerView: 4, spaceBetween: 10},
+        1024: {slidesPerView: 5, spaceBetween: 20},
+    },
 
-        navigation: {
-            nextEl: '.personsNext',
-            prevEl: '.personsPrev',
-        }
-    });
-});
+    navigation: {
+        nextEl: '.personsNext',
+        prevEl: '.personsPrev',
+    }
+};
 </script>

@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     },
     modules: [
         '@pinia/nuxt',
-        'nuxt-vue-map-ui'
+        'nuxt-vue-map-ui',
+        'nuxt-swiper'
     ],
 	css: ["~/assets/css/main.css"],
 	postcss: {
@@ -20,13 +21,11 @@ export default defineNuxtConfig({
                 class: "rtl bg-secondary dark:bg-[#fcfcfc] dark:text-black text-white overflow-x-hidden",
             },
             link: [
-                { rel: 'stylesheet', href: '/Swiper.css' },
                 { rel: 'stylesheet', href: '/Skelton.css' },
                 { rel: 'stylesheet', href: '/darkMode.css' },
                 { rel: 'stylesheet', href: '/loadingPuls.css' },
               ],
             script: [
-                { src: "/Swiper.js" },
 		        { src: "/darkMode.js", defer: true },
 
             ],

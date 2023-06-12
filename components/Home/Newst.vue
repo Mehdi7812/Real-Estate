@@ -10,7 +10,7 @@
                 <!-- Arrow Navigation -->
                 <div class="flex gap-2">
                     <div>
-                        <NuxtLink to="propertyCode" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg transition-all duration-300">
+                        <NuxtLink to="/propertyCode" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg transition-all duration-300">
                             <span class="w-0 max-h-5 dark:text-white lg:group-hover:w-[90px] whitespace-nowrap overflow-hidden transition-all duration-300">مشاهده همه</span>
                             <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.84317 2.16666H5.78484C3.41234 2.16666 2.1665 3.41249 2.1665 5.77416V7.83249C2.1665 10.1942 3.41234 11.44 5.774 11.44H7.83234C10.194 11.44 11.4398 10.1942 11.4398 7.83249V5.77416C11.4507 3.41249 10.2048 2.16666 7.84317 2.16666Z" fill="white"/>
@@ -22,28 +22,27 @@
                     </div>
 
                     <div class="hidden lg:block">
-                        <a style="background-color: var(--primaryColor);" class="swiperNewst-next hover:opacity-70 p-3 lg:p-5 flex justify-center items-center rounded-lg transition-all duration-300">
+                        <div style="background-color: var(--primaryColor);" class="swiperNewst-next hover:opacity-70 p-3 lg:p-5 flex justify-center items-center rounded-lg transition-all duration-300 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.7144 12L18.4286 7L12.7144 2" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M2 7H18.4286" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>  
-                        </a>
+                        </div>
                     </div>
                     
                     <div class="hidden lg:block">
-                        <a style="background-color: var(--primaryColor);" class="swiperNewst-prev hover:opacity-80 p-3 lg:p-5 flex justify-center items-center rounded-lg transition-all duration-300">
+                        <div style="background-color: var(--primaryColor);" class="swiperNewst-prev hover:opacity-80 p-3 lg:p-5 flex justify-center items-center rounded-lg transition-all duration-300 cursor-pointer">
                             <svg width="20" height="20" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.71338 12L1.99909 7L7.71338 2" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M18.4277 7H1.99916" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>                                
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="swiper swiperNewst"> 
-                <div class="swiper-wrapper">
-                    <div v-if="!dataRes" v-for="_ in Array.from({ length: 4 })" class="swiper-slide">
+            <Swiper :modules="[SwiperNavigation]" :direction="swiperOption.direction" :navigation="swiperOption.navigation" :breakpoints="swiperOption.breakpoints" :spaceBetween="swiperOption.spaceBetween">
+                    <SwiperSlide v-if="!dataRes" v-for="_ in Array.from({ length: 4 })">
                             <div class="loadingCard">
                             <a class="card w-full" id="card-link" target="_blank">
                                 <div class="card__body h-64">
@@ -69,24 +68,22 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </SwiperSlide>
 
-                    <div v-for="data in dataRes" :key="data.id" class="swiper-slide">
+                    <SwiperSlide v-if="dataRes" v-for="data in dataRes" :key="data.id">
                         <NuxtLink :to="`/estateDetail/${data.id}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
-                            <div class="swiper h-64 swiperNewsImg1 rounded-2xl overflow-hidden">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
-                                        </div>
+                            <Swiper :modules="[SwiperNavigation]" :direction="swiperNewstImg.direction" :navigation="swiperNewstImg.navigation" class="h-64 rounded-2xl overflow-hidden">
+                                <SwiperSlide>
+                                    <div class="relative rounded-2xl overflow-hidden h-full">
+                                        <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                     </div>
+                                </SwiperSlide>
 
-                                    <div v-if="data.media.length" v-for="media in data.media" class="swiper-slide h-64">
-                                        <div class="relative rounded-2xl overflow-hidden h-full">
-                                            <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
-                                        </div>
+                                <SwiperSlide v-if="data.media.length" v-for="media in data.media" class="h-64">
+                                    <div class="relative rounded-2xl overflow-hidden h-full">
+                                        <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                     </div>
-                                </div>
+                                </SwiperSlide>
 
                                 <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
                                     <div class="flex gap-2 items-center">
@@ -212,7 +209,7 @@
                                         </defs>
                                     </svg>                                
                                 </div>
-                            </div>
+                            </Swiper>
         
                             <div class="p-3 flex gap-4 flex-col overflow-hidden">
                                 <h3 class="text-[15px] font-bold truncate lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
@@ -349,9 +346,8 @@
                                 </div>
                             </div>
                         </NuxtLink>
-                    </div>
-                </div>
-            </div>
+                    </SwiperSlide>
+            </Swiper>
 
             <!-- Arrow Navigation -->
             <div class="flex lg:hidden gap-2 justify-center mt-5">
@@ -388,7 +384,7 @@ const apiRootStore = useApiRoot()
 import { useConvertDatas } from "~/stores/ConvertDatas"
 const convertDatas = useConvertDatas()
 
-const dataRes = ref("")
+const dataRes = ref()
 
 // Modal Message And Call Store
 import { useModalMessage } from "~/stores/SendMessage";
@@ -419,36 +415,31 @@ const showMessageModal = (idCase) => {
 }
 // Modal Message And Call Store
 
+const swiperOption = {
+    direction: "horizontal",
+    // loop: true,
+    spaceBetween: 10,
+    
+     breakpoints: {
+        768: {slidesPerView: 2},
+        1204: {slidesPerView: 3}
+    },
+    
+    navigation: {
+        nextEl: ".swiperNewst-next",
+        prevEl: ".swiperNewst-prev",
+    },    
+}
 
+const swiperNewstImg = {
+    direction: "horizontal",
+        // loop: true,
+    navigation: {
+        nextEl: ".swiperNewsImg1-next",
+        prevEl: ".swiperNewsImg1-prev",
+    },
+}
 const response = await fetch(`${apiRootStore.api}/real/cases/`);
 const data = await response.json();
 dataRes.value = data.results;
-
-onMounted(async () => {
-    const swiperNewst1 = await new Swiper(".swiperNewst", {
-        direction: "horizontal",
-        // loop: true,
-        spaceBetween: 10,
-    
-        breakpoints: {
-            768: {slidesPerView: 2},
-            1204: {slidesPerView: 3}
-        },
-    
-        navigation: {
-            nextEl: ".swiperNewst-next",
-            prevEl: ".swiperNewst-prev",
-        },
-    });
-    
-    // Swiper Img Run
-    const swiperNewsImg1 = await new Swiper(".swiperNewsImg1", {
-        direction: "horizontal",
-        // loop: true,
-        navigation: {
-            nextEl: ".swiperNewsImg1-next",
-            prevEl: ".swiperNewsImg1-prev",
-        },
-    });
-});
 </script>
