@@ -61,16 +61,14 @@
         <section class="-mt-8 mb-8 md:mb-28 md:-mt-0">
             <div class="container m-auto">
                 <h2 class="text-center mb-8 md:text-2xl md:font-extrabold md:mb-12">اعضاء مشاورین املاک هوم لند</h2>
-                <div class="swiper text-center lg:px-4">
-                    <div class="swiper-wrapper">
-                        <div v-for="person in dataConsultants" :key="person.id" class="swiper-slide">
-                            <div style="background-color: var(--primaryColor-20)" class="bg-primary dark:bg-[#f0f3f7] rounded-2xl flex flex-col justify-center items-center p-5 gap-3">
-                                <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-2 w-11 h-11 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="person.picture" :alt="person.full_name" />
-                                <p class="text-[10px] font-bold lg:text-base">{{ person.full_name }}</p>
-                                <p class="text-[10px] text-graytext font-bold lg:text-base">{{ person.activity_type }}</p>
-                            </div>
+                <Swiper :direction="swiperOption.direction" :slidesPerView="swiperOption.slidesPerView" :breakpoints="swiperOption.breakpoints" :pagination="swiperOption.pagination" :spaceBetween="swiperOption.spaceBetween" :navigation="swiperOption.navigation" class="text-center lg:px-4">
+                    <SwiperSlide v-for="person in dataConsultants" :key="person.id">
+                        <div style="background-color: var(--primaryColor-20)" class="bg-primary dark:bg-[#f0f3f7] rounded-2xl flex flex-col justify-center items-center p-5 gap-3">
+                            <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-2 w-11 h-11 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="person.picture" :alt="person.full_name" />
+                            <p class="text-[10px] font-bold lg:text-base">{{ person.full_name }}</p>
+                            <p class="text-[10px] text-graytext font-bold lg:text-base">{{ person.activity_type }}</p>
                         </div>
-                    </div>
+                    </SwiperSlide>
 
                     <div class="personsPrev hidden lg:flex lg:justify-center lg:items-center lg:absolute lg:top-[35%] lg:left-0 lg:z-10 lg:bg-[#393e46] lg:bg-opacity-50 lg:w-12 lg:h-12 lg:rounded-full">
                         <svg width="10" height="19" viewBox="0 0 10 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +82,7 @@
                     </div>
                     
                     <div class="swiper-paginationPersons my-9 lg:hidden"></div> 
-                </div>
+                </Swiper>
             </div>
         </section>
     </main>
@@ -111,27 +109,24 @@ useHead({
     titleTemplate: 'درباره ما-%s',
 })
 
-onMounted(async () => {
-    await new Swiper('.swiper', {
-        direction: "horizontal",
-        // loop: true,
-        slidesPerView: 3,
-        spaceBetween: 10,
-        pagination: {
-            el: '.swiper-paginationPersons',
-            clickable: true,
-        },
+const swiperOption = {
+    direction: "horizontal",
+    // loop: true,
+    slidesPerView: 3,
+    spaceBetween: 10,
+    pagination: {
+        el: '.swiper-paginationPersons',
+        clickable: true,
+    },
 
-        breakpoints: {
-            768: {slidesPerView: 4, spaceBetween: 10},
-            1024: {slidesPerView: 5, spaceBetween: 20},
-        },
+    breakpoints: {
+        768: {slidesPerView: 4, spaceBetween: 10},
+        1024: {slidesPerView: 5, spaceBetween: 20},
+    },
 
-        navigation: {
-            nextEl: '.personsNext',
-            prevEl: '.personsPrev',
-        }
-    })
-});
-
+    navigation: {
+        nextEl: '.personsNext',
+        prevEl: '.personsPrev',
+    }
+};
 </script>

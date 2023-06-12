@@ -122,7 +122,7 @@
     
                     <div class="flex gap-4 flex-col md:w-7/12 md:justify-between">
                         <NuxtLink :to="`/weblog/${data.slug}`" class="py-3">
-                            <h3 class="text-[15px] font-bold md:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
+                            <h1 class="text-[15px] font-bold md:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h1>
         
                             <p class="text-[10px] text-right md:text-[14px] text-[#9EA1AC]">{{ data.introduction }}</p>
                         </NuxtLink>

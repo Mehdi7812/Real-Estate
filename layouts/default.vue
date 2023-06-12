@@ -91,104 +91,58 @@
                 <p class="text-lg">Homeland.2022@gmail.com</p>
             </div>
         </div>
-    
-        <nav class="hidden md:block p-2 fixed left-0 right-0 top-0 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
-            <div class="container m-auto flex justify-between items-center">
-                <ul class="flex justify-center items-center gap-5 lg:gap-10">
-                    <li class="md:ml-5">
-                        <NuxtLink class="block h-[67px]" to="/">
-                            <div v-if="logo_dark" class="h-full">
-                                <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark" :alt="title">
-                                <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white" :alt="title">
-                            </div>
-                            <div v-if="!logo_dark" class="h-full">
-                                <div class="w-[67px] h-full"></div>
-                            </div>
-                        </NuxtLink>
-                    </li>
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/">
-                            خرید خانه
-                        
-                            <span style="background-color: var(--primaryColor)" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/propertyCode?estate_type=V">
-                            خرید ویلا
-                        
-                            <span style="background-color: var(--primaryColor)" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/propertyCode?estate_type=A">
-                            خرید آپارتمان
-                        
-                            <span style="background-color: var(--primaryColor)" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
 
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/weblog">
-                            وبلاگ
-                        
-                            <span style="background-color: var(--primaryColor)" :class="route.path == '/weblog' ? 'h-2' : ''" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
-                    
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/contact">
-                            ارتباط با ما
-                        
-                            <span style="background-color: var(--primaryColor)" :class="route.path == '/contact' ? 'h-2' : ''" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
+        <nav dir="ltr" id="navMain" class="hidden sm:block fixed top-0 left-0 right-0 w-full m-auto transition-all duration-300 navMain p-2 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
+            <ul class="flex justify-center items-center gap-14">
+                <li class="w-14 whitespace-nowrap">
+                    <NuxtLink :style="{ color: route.fullPath=='/about' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/about">درباره ما</NuxtLink>
+                </li>
+                <li class="w-14 whitespace-nowrap">
+                    <NuxtLink :style="{ color: route.fullPath=='/contact' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/contact">ارتباط با ما</NuxtLink>
+                </li>
+                <li class="w-14 whitespace-nowrap">
+                    <NuxtLink class="block h-[67px]" to="/">
+                        <div v-if="logo_dark" class="h-full">
+                            <img class="inline-block dark:hidden w-full h-full object-cover" :src="logo_dark">
+                            <img class="dark:inline-block hidden w-full h-full object-cover" :src="logo_white">
+                        </div>
 
-                    <li class="relative group">
-                        <NuxtLink onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" class="relative text-sm lg:text-base hover:text-hoverPrimaryOrange dark:hover:text-bluePrimary/50 transition-all duration-300 pb-[30px]" to="/about">
-                            درباره ما
-                        
-                            <span style="background-color: var(--primaryColor)" :class="route.path == '/about' ? 'h-2' : ''" class="absolute bottom-0 left-0 right-0 rounded-t-md h-0 group-hover:h-2 transition-all duration-300"></span>
-                        </NuxtLink>
-                    </li>
-                </ul>
-    
-                <div class="flex gap-3">
-                    <button v-if="authStore.isLogin" @click="authStore.exitUser" style="background-color: rgba(225, 10, 50, 1)" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
-                        <span>
-                            <svg fill="#fff" height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Exit_1_"> <path d="M52.4501991,28.7678509l-5-4.9990005c-0.3768997-0.3770008-0.9902-0.3770008-1.3671989,0 c-0.3778992,0.3778992-0.3778992,0.9902,0,1.3671989l3.3171997,3.3164005H35.2666016v2h14.1320992l-3.3157005,3.3163986 c-0.3778992,0.377903-0.3778992,0.9902,0,1.3672028c0.1884995,0.1884995,0.4365997,0.2831993,0.6835976,0.2831993 c0.2471008,0,0.4951019-0.0946999,0.6836014-0.2831993l5-5.0010014c0.1817017-0.1816006,0.2831993-0.4277,0.2831993-0.6835995 C52.7333984,29.1946507,52.6319008,28.9495506,52.4501991,28.7678509z"></path> <path d="M40.2666016,39.4524498c-0.5527,0-1,0.4473-1,1v10.7900009c0,1.0429993-0.8310013,2.2099991-1.9433022,2.2099991 h-6.0566998V11.2394505V9.8677502L30.0191994,9.33395L14.0765009,2.56445l-0.2606955-0.112h23.507494 c1.2168007,0,1.9433022,0.9921999,1.9433022,1.9511998v15.0487995c0,0.5527,0.4473,1,1,1c0.5527992,0,1-0.4473,1-1V4.4036498 c0-2.1786997-1.7685013-3.9511998-3.9433022-3.9511998H12.2666006c-0.5215998,0-0.9358997,0.4029-0.9822998,0.9124 L11.2666006,1.35725V1.45245V55.03405l17.1855011,7.3064003l2.8144989,1.2070999v-3.0951004v-5h6.0566998 c2.3584023,0,3.9433022-2.1767998,3.9433022-4.2099991V40.4524498 C41.2666016,39.8997498,40.8194008,39.4524498,40.2666016,39.4524498z M29.2665997,11.2394505v49.2129974l-15.999999-6.7766991 V4.4524498l15.9906988,6.7728004l0.0093002,0.0038996V11.2394505z"></path> </g> </g></svg>
-                        </span>
-                        خروج
-                    </button>
+                        <div v-if="!logo_dark" class="h-full w-[67px]"></div>
+                    </NuxtLink>
+                </li>
+                <li class="w-14 whitespace-nowrap">
+                    <NuxtLink :style="{ color: route.fullPath=='/weblog' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/weblog">وبلاگ</NuxtLink>
+                </li>
+                <li class="w-14 whitespace-nowrap">
+                    <NuxtLink :style="{ color: route.fullPath=='/' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/">خانه</NuxtLink>
+                </li>
+            </ul>
 
-                    <button style="background-color: var(--primaryColor)" @click="toggleModal" id="searchMelkBtn" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
-                        <span>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 5H20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 8H17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M22 22L20 20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        جستجوی کد ملکی
-                    </button>
-                </div>
+
+            <div class="flex gap-3 absolute left-5 top-4">
+                <button style="background-color: var(--primaryColor)" @click="toggleModal" id="searchMelkBtn" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 5H20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 8H17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 22L20 20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    جستجوی کد ملکی
+                </button>
+
+                <button v-if="authStore.isLogin" @click="authStore.exitUser" style="background-color: rgba(225, 10, 50, 1)" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
+                    <span>
+                        <svg fill="#fff" height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Exit_1_"> <path d="M52.4501991,28.7678509l-5-4.9990005c-0.3768997-0.3770008-0.9902-0.3770008-1.3671989,0 c-0.3778992,0.3778992-0.3778992,0.9902,0,1.3671989l3.3171997,3.3164005H35.2666016v2h14.1320992l-3.3157005,3.3163986 c-0.3778992,0.377903-0.3778992,0.9902,0,1.3672028c0.1884995,0.1884995,0.4365997,0.2831993,0.6835976,0.2831993 c0.2471008,0,0.4951019-0.0946999,0.6836014-0.2831993l5-5.0010014c0.1817017-0.1816006,0.2831993-0.4277,0.2831993-0.6835995 C52.7333984,29.1946507,52.6319008,28.9495506,52.4501991,28.7678509z"></path> <path d="M40.2666016,39.4524498c-0.5527,0-1,0.4473-1,1v10.7900009c0,1.0429993-0.8310013,2.2099991-1.9433022,2.2099991 h-6.0566998V11.2394505V9.8677502L30.0191994,9.33395L14.0765009,2.56445l-0.2606955-0.112h23.507494 c1.2168007,0,1.9433022,0.9921999,1.9433022,1.9511998v15.0487995c0,0.5527,0.4473,1,1,1c0.5527992,0,1-0.4473,1-1V4.4036498 c0-2.1786997-1.7685013-3.9511998-3.9433022-3.9511998H12.2666006c-0.5215998,0-0.9358997,0.4029-0.9822998,0.9124 L11.2666006,1.35725V1.45245V55.03405l17.1855011,7.3064003l2.8144989,1.2070999v-3.0951004v-5h6.0566998 c2.3584023,0,3.9433022-2.1767998,3.9433022-4.2099991V40.4524498 C41.2666016,39.8997498,40.8194008,39.4524498,40.2666016,39.4524498z M29.2665997,11.2394505v49.2129974l-15.999999-6.7766991 V4.4524498l15.9906988,6.7728004l0.0093002,0.0038996V11.2394505z"></path> </g> </g></svg>
+                    </span>
+                    خروج
+                </button>
             </div>
         </nav>
     </div>
-
-    <Suspense>
-        <template #default>
-            <slot></slot>
-        </template>
-        <template #fallback>
-			<div class="backdrop-brightness-[.2] w-full flex justify-center items-center" style="height: 90vh">
-				<div class="lds-spinner">
-					<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-				</div>
-			</div>
-        </template>
-    </Suspense>
+    
+    <slot></slot>
 
     <Footer />
 
@@ -227,7 +181,7 @@
                         <p class="text-xs md:text-lg pb-8">کد ملکی موردنظر خود را برای جستجوی سریع تر وارد کنید .</p>
                     </div>
     
-                    <NuxtLink @click="closeModal" v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
+                    <NuxtLink @click="closeModal" v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`/propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
                     <p v-if="isNaN(Number(estateType)) || estateType.length == 0" style="background-color: var(--primaryColor)" class="opacity-70 btn dark:bg-bluePrimary/80 bg-primaryOrange/80 md:text-2xl !cursor-not-allowed md:p-5">جستجو</p>
                 </div>
             </div>
@@ -284,6 +238,22 @@ onMounted(() => {
         menuMobile.classList.remove("w-full");
         menuMobile.classList.add("w-0");
     });
+
+    document.addEventListener('scroll', function () {
+        const navMenu = document.getElementById('navMain')
+        
+        if(navMenu) {
+            if(document.documentElement.scrollTop > 100) {
+                if(navMenu.classList.contains('navMain')) {
+                    navMenu.classList.remove('navMain')
+                }
+            } else {
+                if(!navMenu.classList.contains('navMain')) {
+                    navMenu.classList.add('navMain')
+                } 
+            }
+        }
+    })
 });
 
 const closeMenuMobile = (menuElem) => {

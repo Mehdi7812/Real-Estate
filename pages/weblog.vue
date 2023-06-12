@@ -7,7 +7,8 @@
             <div class="container m-auto px-2">
                 <div class="flex flex-col lg:flex-row relative -top-20" :class="route.params.slug ? '' : 'gap-6'">
                     <!-- Right Section -->
-                    <NuxtPage />
+                    <!-- <NuxtPage /> -->
+                    <WeblogRightSection />
                     
                     <!-- Left Section -->
                     <WeblogLeftSection />
@@ -40,6 +41,6 @@
 const route = useRoute();
 
 useHead({
-    titleTemplate: '%s-وبلاگ',
+    titleTemplate: "وبلاگ-%s"
 });
 </script>

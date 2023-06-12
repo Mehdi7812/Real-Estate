@@ -29,8 +29,8 @@ onMounted(async () => {
 		document.documentElement.classList.add("dark");
 	}
 	
-	let firstTheme = "orange";
-	let secondTheme = "blue";
+	let firstTheme = "#d94a23";
+	let secondTheme = "#2f3bc2";
 
 	const response = await fetch(`${apiRootStore.api}/real/HomePage`);
 	const data = await response.json();
@@ -49,8 +49,8 @@ onMounted(async () => {
 	themeStatus.value = data[0].theme_status;
 	setWithApi(data[0].theme_status)
 
-	firstTheme = data[0].theme_white;
-	secondTheme = data[0].theme_dark;
+	firstTheme = data[0].theme_white ? data[0].theme_white : firstTheme;
+	secondTheme = data[0].theme_dark ? data[0].theme_dark : secondTheme;
 
 	let rootEl = document.querySelector(":root");
 	
