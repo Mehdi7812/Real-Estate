@@ -89,6 +89,8 @@ const homePagePic = ref("");
 const homePage_header = ref("");
 const estateCode = ref("");
 
+// const { data: data } = await useAsyncData('res', () => $fetch(`${apiRootStore.api}/real/HomePage`))
+
 const response = await fetch(`${apiRootStore.api}/real/HomePage`);
 const data = await response.json();
 logo_dark.value = data[0].logo_dark;
@@ -108,6 +110,52 @@ onMounted(async () => {
 });
 
 useHead({
-    titleTemplate: '%s'
+    titleTemplate: '%s',
+    links:[
+        { rel: 'canonical', href: '/' }
+    ],
+    script: [
+        {
+            type: 'application/ld+json', innerHTML: `
+                {
+                "@context": "https://schema.org",
+                "@type": "Corporation",
+                "name": "hyponet",
+                "alternateName": "هايپونت",
+                "description": "هايپونت - آژانس ديجيتال مارکتينگ، طراحي وبسايت، برندينگ - کسب و کارتان را آنلاين کنيد",
+                "slogan": "کسب و کارتان را برند کنيد",
+                "logo": "https://hyponet.ir/logo/hyponet-logo.png",
+                "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "Iran",
+                "addressLocality": "Amol, Mazandaran province",
+                "addressRegion": "FA",
+                "postalCode": "1517863332",
+                "streetAddress": "Mazandaran province, Amol, Shomal University IEC"
+                },
+                "email": "info@hyponet.ir",
+                "telephone": "+9811-4444-0710",
+                "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+9811-4444-0710",
+                "contactType": "customer service",
+                "areaServed": "IR",
+                "availableLanguage": "Persian"
+                },
+                "url": "https://www.hyponet.ir/",
+                "sameAs": [
+                "https://twitter.com/hyponet",
+                "https://www.facebook.com/hyponet",
+                "https://linkedin.com/company/hyponet",
+                "https://instagram.com/hyponet.ir/",
+                "https://www.youtube.com/user/hyponet",
+                "https://www.pinterest.com/hyponetIR/",
+                "https://www.dribbble.com/hyponet/"
+                ],
+                "foundingDate": "2019-09-1"
+                }
+            `
+        }
+    ]
 });
 </script>

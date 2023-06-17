@@ -22,6 +22,9 @@ const themeStatus = ref("");
 const keywords = ref("")
 const description = ref("")
 
+
+const { data: data } = await useAsyncData('res', () => $fetch(`${apiRootStore.api}/real/HomePage`))
+
 onMounted(async () => {
 	if (localStorage.getItem("darkMode") == "true") {
 		document.documentElement.classList.remove("dark");
@@ -34,17 +37,17 @@ onMounted(async () => {
 
 	const response = await fetch(`${apiRootStore.api}/real/HomePage`);
 	const data = await response.json();
-	title.value = data[0].homePage_title;
+	// title.value = data[0].homePage_title;
 
-	description.value = data[0].homePage_text
+	// description.value = data[0].homePage_text
 	// set Keyword Meta tag
-	data[0].keywords_list.forEach((key, index) =>  {
-		if(data[0].keywords_list.length == index + 1) {
-			keywords.value += `${key}`
-		} else {
-			keywords.value += `${key}, `
-		}
-	})
+	// data[0].keywords_list.forEach((key, index) =>  {
+	// 	if(data[0].keywords_list.length == index + 1) {
+	// 		keywords.value += `${key}`
+	// 	} else {
+	// 		keywords.value += `${key}, `
+	// 	}
+	// })
 
 	themeStatus.value = data[0].theme_status;
 	setWithApi(data[0].theme_status)
@@ -80,14 +83,10 @@ onMounted(async () => {
 			myFunction_set(secondTheme)
 		}
 	});
-
-	useHead({
-		title: data[0].homePage_title,
-	});
-
 });
 
 useHead({
+	title: data.value[0].homePage_title,
 	script: [
 		{ innerHTML: `
 			<!-- Crisp Chat -->
@@ -95,9 +94,28 @@ useHead({
 		` }
 	],
 	meta: [
-		{ name: "keywords", content: keywords },
-		{ name: "description", content: description },
+		// { name: "keywords", content: keywords },
+		// { name: "description", content: data.value[0].homePage_text },
 		{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" },
+		{ name: 'title', content: '' },
+        { name: 'description', hid: 'description', content: '' },
+        { property: 'og:image', content: '' },
+        { property: 'og:image:width', content: '' },
+        { property: 'og:image:height', content: '' },
+        { property: 'og:type', content: '' },
+        { property: 'og:url', content: '' },
+        { property: 'og:title', content: '' },
+        { property: 'og:description', hid:'og:description', content: '' },
+        { property: 'twitter:card', content: '' },
+        { property: 'twitter:url', content: '' },
+        { property: 'twitter:title', content: '' },
+        { property: 'twitter:description', hid: 'twitter:description', content: '' },
+        { property: 'twitter:image', content: '' },
+        { property: 'twitter:image:alt', content: '' },
+        { name: 'theme-color', content: '' },
+        { name: 'generator', content: '' },
+        { name: 'author', content: '' },
+        { 'http-equiv': 'content-language', content: '' },
 	]
 });
 </script>

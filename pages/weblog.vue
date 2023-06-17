@@ -8,7 +8,7 @@
                 <div class="flex flex-col lg:flex-row relative -top-20" :class="route.params.slug ? '' : 'gap-6'">
                     <!-- Right Section -->
                     <!-- <NuxtPage /> -->
-                    <WeblogRightSection />
+                    <WeblogRightSection @titlePost="getTitlePost" />
                     
                     <!-- Left Section -->
                     <WeblogLeftSection />
@@ -40,7 +40,14 @@
 <script setup>
 const route = useRoute();
 
+const getTitlePost = (titlePost) => {
+    console.log(titlePost);
+};
+
 useHead({
-    titleTemplate: "وبلاگ-%s"
+    titleTemplate: "وبلاگ-%s",
+    link:[
+        { rel: 'canonical', href: '/weblog' }
+    ]
 });
 </script>

@@ -120,7 +120,7 @@
 
 
             <div class="flex gap-3 absolute left-5 top-4">
-                <button style="background-color: var(--primaryColor)" @click="toggleModal" id="searchMelkBtn" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
+                <button v-if="route.fullPath != '/'" style="background-color: var(--primaryColor)" @click="toggleModal" id="searchMelkBtn" class="hover:opacity-80 btn dark:bg-bluePrimary dark:hover:bg-bluePrimary/50 gap-2 px-3">
                     <span>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 5H20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

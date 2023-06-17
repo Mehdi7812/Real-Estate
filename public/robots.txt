@@ -1,0 +1,21 @@
+# *
+User-agent: *
+Disallow: /contact
+
+# *
+User-agent: *
+Disallow: /about
+
+# *
+User-agent: *
+Disallow: https://api.hypomelk.ir
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.amlank.ir
+
+# Sitemaps
+Sitemap: https://www.amlank.ir/sitemap.xml

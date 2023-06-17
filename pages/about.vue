@@ -61,7 +61,7 @@
         <section class="-mt-8 mb-8 md:mb-28 md:-mt-0">
             <div class="container m-auto">
                 <h2 class="text-center mb-8 md:text-2xl md:font-extrabold md:mb-12">اعضاء مشاورین املاک هوم لند</h2>
-                <Swiper :direction="swiperOption.direction" :slidesPerView="swiperOption.slidesPerView" :breakpoints="swiperOption.breakpoints" :pagination="swiperOption.pagination" :spaceBetween="swiperOption.spaceBetween" :navigation="swiperOption.navigation" class="text-center lg:px-4">
+                <Swiper :modules="[SwiperNavigation, SwiperPagination]" :direction="swiperOption.direction" :slidesPerView="swiperOption.slidesPerView" :breakpoints="swiperOption.breakpoints" :pagination="swiperOption.pagination" :spaceBetween="swiperOption.spaceBetween" :navigation="swiperOption.navigation" class="text-center lg:px-4">
                     <SwiperSlide v-for="person in dataConsultants" :key="person.id">
                         <div style="background-color: var(--primaryColor-20)" class="bg-primary dark:bg-[#f0f3f7] rounded-2xl flex flex-col justify-center items-center p-5 gap-3">
                             <img style="border-color: var(--primaryColor)" class="rounded-full border-primaryOrange dark:border-bluePrimary border-2 w-11 h-11 lg:w-24 lg:h-24 lg:border-4 object-cover" :src="person.picture" :alt="person.full_name" />
@@ -107,6 +107,9 @@ dataConsultants.value = dataCon;
 
 useHead({
     titleTemplate: 'درباره ما-%s',
+    link:[
+        { rel: 'canonical', href: '/about' }
+    ]
 })
 
 const swiperOption = {

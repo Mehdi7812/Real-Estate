@@ -24,7 +24,7 @@
             </main>
             
             <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col gap-5 md:gap-7 p-4 md:p-11">
-                <h3 class="text-right font-bold md:text-[28px]">{{ weblogItem.title }}</h3>
+                <!-- <h3 class="text-right font-bold md:text-[28px]">{{ weblogItem.title }}</h3> -->
 
                 <img class="h-52 md:h-[450px] w-full rounded-[20px] object-cover" :src="`${apiRootStore.api}${weblogItem.cover}`" :alt="weblogItem.title" />
 
@@ -72,7 +72,7 @@
                 <div class="w-1/2">
                     <NuxtLink :to="`/weblog/${weblogItem.prev_post.slug}`" v-if="weblogItem.prev_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست قبلی</p>
-                        <p class="text-[10px] md:text-xl">{{ weblogItem.prev_post.title }}</p>
+                        <h3 class="text-[10px] md:text-xl">{{ weblogItem.prev_post.title }}</h3>
                     
                         <span class="hidden lg:inline-block absolute right-0 top-[42%] cursor-pointer">
                             <svg class="dark:hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
                 <div class="w-1/2">
                     <NuxtLink :to="`/weblog/${weblogItem.next_post.slug}`" v-if="weblogItem.next_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:bg-primaryOrange/20 dark:hover:bg-bluePrimary/40 hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست بعدی</p>
-                        <p class=" text-[10px] md:text-xl">{{ weblogItem.next_post.title }}</p>
+                        <h3 class=" text-[10px] md:text-xl">{{ weblogItem.next_post.title }}</h3>
                     
                         <span class="hidden lg:inline-block absolute left-0 top-[42%] cursor-pointer">
                             <svg class="dark:hidden" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
             <div class="flex flex-col lg:flex-col-reverse">
                 <!-- Comments -->
                 <div class="flex flex-col">
-                    <h4 class="text-center text-lg font-semibold md:text-xl mt-20">کامنت ها</h4>
+                    <p class="text-center text-lg font-semibold md:text-xl mt-20">کامنت ها</p>
                     
                     <div class="flex flex-col gap-4">
                         <div v-if="reviews.length == 0" class="flex gap-5 items-center justify-center py-14 mt-8 lg:mt-10 lg:text-lg rounded-xl bg-primary dark:bg-[#eaeaea]">
@@ -177,7 +177,7 @@
                         </div>
                     </div>
 
-                    <h4 class="text-center text-lg font-semibold md:text-2xl my-20">کامنت بگذارید</h4>
+                    <p class="text-center text-lg font-semibold md:text-2xl my-20">کامنت بگذارید</p>
 
                     <form @submit.prevent="sendComment" id="recaptcha-form" class="flex flex-col gap-3">
                         <div class="flex flex-col lg:flex-row gap-3 lg:justify-between">
@@ -208,7 +208,7 @@
 
                 <!-- similar Posts -->
                 <div v-if="weblogItem && weblogItem.detail == undefined" class="flex flex-col">
-                    <h4 class="text-center text-lg font-semibold md:text-xl my-20">پست های مرتبط</h4>
+                    <p class="text-center text-lg font-semibold md:text-xl my-20">پست های مرتبط</p>
 
                     <div class="flex flex-col md:flex-row gap-2">
 
@@ -378,19 +378,19 @@ const sendComment = () => {
 }
 // Review _ Comment //
 
-onMounted(async () => {
-    const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
-    const data = await response.json()
-    weblogItem.value = data
-    
-    const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
-    const dataReview = await resReview.json()
-    reviews.value = dataReview
-    
-    const resSimilarPosts = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/similarposts/`)
-    const dataSimilar = await resSimilarPosts.json()
-    similarPosts.value = dataSimilar
-});
+const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}`)
+const data = await response.json()
+weblogItem.value = data
+const emit = defineEmits(['titlePost'])
+emit('titlePost', weblogItem.title);
+
+const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
+const dataReview = await resReview.json()
+reviews.value = dataReview
+
+const resSimilarPosts = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/similarposts/`)
+const dataSimilar = await resSimilarPosts.json()
+similarPosts.value = dataSimilar
 
 useHead({
     titleTemplate: `${route.params.slug}-%s`,
@@ -411,10 +411,51 @@ useHead({
 			defer: true,
             body: true
 		},
-        { src: '/recaptcha.js', body: true }
+        
+        { src: '/recaptcha.js', body: true },
+
+        {
+            type: 'application/ld+json', innerHTML: `
+            {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "url": "{full-blog-url}",
+            "wordCount": "",
+            "mainEntityOfPage": {
+                "@type": "Webpage",
+                "@id": "https://google.com/article"
+            },
+            "headline": "{blog-title}",
+            "image": {
+                "@type": "ImageObject",
+                "url": "{full-img-url}",
+                "width": "885px",
+                "height": "375px"
+            },
+            "datePublished": "",
+            "dateModified": "",
+            "description": "",
+            "identifier": "programming/{slug}",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Hyponet",
+                "logo": {
+            "@type": "ImageObject",
+            "url": "{full-logo-url}",
+            "width": "700",
+            "height": "700"
+                }
+            },
+            "author": {
+                "@type": "Organization",
+                "name": "Hyponet"
+            },
+            "genre": "{Blog-Topic}"
+            }
+            `
+        }
     ]
 });
-
 
 // validate Name 
 function validateName (name) {

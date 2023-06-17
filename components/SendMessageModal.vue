@@ -171,7 +171,7 @@ const closeModal = () => {
                             </div>
                         
                             <!-- send Btn -->
-                            <a @click.prevent="fetchSendMessage" class="bg-[#0DA049] dark:bg-bluePrimary dark:text-white dark:hover:bg-bluePrimary/80 p-3 md:p-5 w-full rounded-md lg:rounded-lg text-center text-sm lg:text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</a>
+                            <button @click="fetchSendMessage" class="bg-[#0DA049] dark:bg-bluePrimary dark:text-white dark:hover:bg-bluePrimary/80 p-3 md:p-5 w-full rounded-md lg:rounded-lg text-center text-sm lg:text-[17px] font-bold cursor-pointer transition-all duration-300 hover:bg-[#0DA049]/50">ارسال پیام</button>
                         </div>
                     </div>
                 </div>

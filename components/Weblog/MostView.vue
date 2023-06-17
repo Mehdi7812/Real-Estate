@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-7 md:p-8">
-        <h4 class="mb-2 md:text-xl">جستجوهای اخیر</h4>
+        <h5 class="mb-2 md:text-xl">جستجوهای اخیر</h5>
 
         <main v-if="!dataRes" class="mostSearch">
             <ul class="o-vertical-spacing o-vertical-spacing--l">

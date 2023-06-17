@@ -1,6 +1,6 @@
 <template>
     <div class="md:p-8 md:bg-secondary md:dark:bg-[#fcfcfc] rounded-[31px]" :class="route.params.slug ? 'rounded-r-none' : ''">
-        <h4 class="mb-4 md:text-xl">جستجوی پست</h4>
+        <h5 class="mb-4 md:text-xl">جستجوی پست</h5>
 
         <form @submit.prevent="fetchSearch" class="flex">
             <input style="border-color: var(--primaryColor)" v-model="slug" type="text" class="w-full outline-none border-l-0 rounded-l-none bg-primary dark:bg-graytext/10 rounded-r-lg p-4 h-12 border-primaryOrange dark:border-bluePrimary border-[1px] placeholder:text-graytext" placeholder="جستجو">

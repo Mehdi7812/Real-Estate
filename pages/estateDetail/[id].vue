@@ -290,7 +290,7 @@
                     <div class="flex flex-col lg:flex-row justify-between gap-[33px]">
                         <!-- Title -->
                         <div class="flex flex-col gap-6 lg:gap-4 mt-10">
-                            <h3 class="text-lg lg:text-2xl truncate">{{ PN.convertEnToPe(postItem.title) }}</h3>
+                            <h1 class="text-lg lg:text-2xl truncate">{{ PN.convertEnToPe(postItem.title) }}</h1>
 
                             <div class="flex justify-between">
                                 <p style="color: var(--primaryColor)" class="flex items-center whitespace-nowrap gap-1 text-primaryOrange dark:text-bluePrimary text-xs lg:text-base">
@@ -410,10 +410,10 @@
 
                     <!-- توضیحات ملک -->
                     <div class="my-8 lg:my-10">
-                        <h4 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">توضیحات ملک</h4>
+                        <h3 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">توضیحات ملک</h3>
                         
                         <div class="lg:w-3/5 flex flex-col gap-3 text-graytext text-sm lg:text-lg">
-                            <p style="white-space: break-spaces">{{ PN.convertEnToPe(postItem.description) }}</p>
+                            <div class="whitespace-break-spaces" v-html="postItem.description"></div>
                         </div>
 
                         <p class="text-graytext hidden lg:block text-[17px] pt-11">جهت جغرافیایی : <span class="text-white dark:text-black ml-5">{{ postItem.location }}</span>  نوع سند : <span class="text-white dark:text-black">{{ documentTypeChange(postItem.document_type) }}</span></p>
@@ -426,9 +426,9 @@
                         <div class="w-full h-[1.5px] bg-graytext/30"></div>
 
                         <div class="my-8 lg:my-10 flex flex-col gap-[24px]">
-                            <h4 class="lg:text-xl mb-2 text-center lg:text-right">جزئیات پنهان</h4>
+                            <h3 class="lg:text-xl mb-2 text-center lg:text-right">جزئیات پنهان</h3>
 
-                            <a target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${postItem.lat},${postItem.lng}`" class="rounded-[21px] block h-28 md:h-40 overflow-hidden relative">
+                            <a v-if="postItem.lat && postItem.lng" target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${postItem.lat},${postItem.lng}`" class="rounded-[21px] block h-28 md:h-40 overflow-hidden relative">
                                 <ClientOnly>
                                     <VMap :zoom="15" :center="[36.457464, 52.363243]" class="h-full z-0">
                                         <VMapGoogleTileLayer title="Google Hybrid" type="hybrid" />
@@ -480,7 +480,7 @@
 
                     <!-- اطلاعات اصلی -->
                     <div class="my-8 lg:my-10">
-                        <h4 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">اطلاعات اصلی</h4>
+                        <h3 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">اطلاعات اصلی</h3>
 
                         <ul class="flex flex-wrap w-full">
                             <li v-if="postItem.land_size" class="w-1/2 lg:w-1/3 flex gap-2 text-graytext lg:text-lg mb-4">متراژ زمین : <span class="text-white dark:text-black"> <span>{{postItem.land_size.toLocaleString('fa-ir')}}</span> متر مربع</span></li>
@@ -510,7 +510,7 @@
 
                     <!-- تجهیزات و امکانات -->
                     <div class="my-8 lg:my-10">
-                        <h4 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">تجهیزات و امکانات</h4>
+                        <h3 class="lg:text-xl mb-7 lg:mb-9 text-center lg:text-right">تجهیزات و امکانات</h3>
 
                         <ul class="flex flex-wrap w-full">
                             <!-- آسانسور -->
@@ -1018,7 +1018,7 @@
                     <div v-if="casePlan && casePlan.length >=1" class="my-8 lg:my-10">
                         <!-- خط افقی -->
                         <div class="w-full h-[1.5px] bg-graytext/30"></div>
-                        <h4 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">پلان ملک</h4>
+                        <h3 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">پلان ملک</h3>
 
                         <div v-for="plans in casePlan" class="w-full bg-[#525050] dark:bg-[#f8f8f8] rounded-2xl overflow-hidden mb-4">
                             <div @click="selectItem(plans.id)" class="flex rounded-2xl w-full gap-4 items-center p-6 cursor-pointer">
@@ -1042,7 +1042,7 @@
                     <div v-if="postItem.vr" class="my-8 lg:my-10">
                         <!-- خط افقی -->
                         <div class="w-full h-[1.5px] bg-graytext/30"></div>
-                        <h4 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">تور مجازی</h4>
+                        <h3 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right">تور مجازی</h3>
                         
                         <div class="w-full bg-primary rounded-[21px] overflow-hidden">
                             <iframe :src="postItem.vr" class="w-full h-full aspect-video rounded-[21px] overflow-hidden" frameborder="0"></iframe>
@@ -1053,7 +1053,7 @@
                     <div v-if="postItem.video" class="my-8 lg:my-10">
                         <!-- خط افقی -->
                         <div class="w-full h-[1.5px] bg-graytext/30"></div>
-                        <h4 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right p-4">ویدیو ملک</h4>
+                        <h3 class="lg:text-xl mb-7 mt-7 lg:mb-9 text-center lg:text-right p-4">ویدیو ملک</h3>
                         
                         <div class="w-full bg-primary rounded-[21px] overflow-hidden">
                             <div v-html="postItem.video" class="w-full h-full aspect-video"></div>
@@ -1155,7 +1155,7 @@
             <div class="py-4 lg:py-5 px-5 lg:px-16">
                 <div class="flex justify-between">
                     <div>
-                        <h2 class="text-2xl font-bold mt-2 mb-8 text-center lg:text-right lg:text-3xl">ملک های مشابه</h2>
+                        <h4 class="text-2xl font-bold mt-2 mb-8 text-center lg:text-right lg:text-3xl">ملک های مشابه</h4>
                     </div>
     
                     <div class="hidden lg:flex gap-2">
@@ -1280,7 +1280,7 @@
                             </div>
         
                             <NuxtLink :to="`/estateDetail/${post.id}`" class="py-3 flex gap-4 flex-col">
-                                <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ post.title }}</h3>
+                                <h4 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ post.title }}</h4>
         
                                 <!-- Types -->
                                 <div class="flex gap-8 overflow-hidden">
@@ -1473,21 +1473,21 @@
         <!-- Contact Elem in Responsive Size -->
         <div class="block lg:hidden bg-primary dark:bg-whiteSecondary dark:text-white py-4 px-8 fixed bottom-0 left-0 right-0 z-10">
             <div class="container flex justify-between m-auto">
-                <a id="modalCallBtn" @click="showCallModal(postItem.id, postItem.user_id, postItem.username, postItem.user_activity, postItem.user_number, postItem.userPicture)" class="flex gap-2 items-center bg-[#0DA049] hover:bg-[#0DA049]/80 rounded-xl py-3 px-8 sm:px-10 text-[15px] whitespace-nowrap font-bold cursor-pointer transition-all duration-300">
+                <button id="modalCallBtn" @click="showCallModal(postItem.id, postItem.user_id, postItem.username, postItem.user_activity, postItem.user_number, postItem.userPicture)" class="flex gap-2 items-center bg-[#0DA049] hover:bg-[#0DA049]/80 rounded-xl py-3 px-8 sm:px-10 text-[15px] whitespace-nowrap font-bold cursor-pointer transition-all duration-300">
                     درخواست تماس
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.1398 16.8028C20.1398 17.1328 20.0665 17.472 19.9106 17.802C19.7548 18.132 19.5532 18.4437 19.2873 18.737C18.8382 19.232 18.3431 19.5895 17.784 19.8187C17.234 20.0478 16.6382 20.167 15.9965 20.167C15.0615 20.167 14.0623 19.947 13.0082 19.4978C11.954 19.0487 10.8998 18.4437 9.85482 17.6828C8.80065 16.9128 7.80148 16.0603 6.84815 15.1162C5.90398 14.1628 5.05148 13.1637 4.29065 12.1187C3.53898 11.0737 2.93398 10.0287 2.49398 8.99285C2.05398 7.94785 1.83398 6.94868 1.83398 5.99535C1.83398 5.37201 1.94398 4.77618 2.16398 4.22618C2.38398 3.66701 2.73232 3.15368 3.21815 2.69535C3.80482 2.11785 4.44648 1.83368 5.12482 1.83368C5.38148 1.83368 5.63815 1.88868 5.86732 1.99868C6.10565 2.10868 6.31648 2.27368 6.48148 2.51201L8.60815 5.50951C8.77315 5.73868 8.89232 5.94951 8.97482 6.15118C9.05732 6.34368 9.10315 6.53618 9.10315 6.71035C9.10315 6.93035 9.03898 7.15035 8.91065 7.36118C8.79148 7.57201 8.61732 7.79201 8.39732 8.01201L7.70065 8.73618C7.59982 8.83701 7.55398 8.95618 7.55398 9.10285C7.55398 9.17618 7.56315 9.24035 7.58148 9.31368C7.60898 9.38701 7.63648 9.44201 7.65482 9.49701C7.81982 9.79951 8.10398 10.1937 8.50732 10.6703C8.91982 11.147 9.35982 11.6328 9.83648 12.1187C10.3315 12.6045 10.8082 13.0537 11.294 13.4662C11.7707 13.8695 12.1648 14.1445 12.4765 14.3095C12.5223 14.3278 12.5773 14.3553 12.6415 14.3828C12.7148 14.4103 12.7882 14.4195 12.8707 14.4195C13.0265 14.4195 13.1457 14.3645 13.2465 14.2637L13.9432 13.5762C14.1723 13.347 14.3923 13.1728 14.6032 13.0628C14.814 12.9345 15.0248 12.8703 15.254 12.8703C15.4281 12.8703 15.6115 12.907 15.8132 12.9895C16.0148 13.072 16.2257 13.1912 16.4548 13.347L19.489 15.5012C19.7273 15.6662 19.8923 15.8587 19.9931 16.0878C20.0848 16.317 20.1398 16.5462 20.1398 16.8028Z" fill="white" stroke-miterlimit="10"/>
                         <path d="M16.9583 8.25033C16.9583 7.70033 16.5275 6.85699 15.8858 6.16949C15.2992 5.53699 14.52 5.04199 13.75 5.04199" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M20.1667 8.25035C20.1667 4.70285 17.2975 1.83368 13.75 1.83368" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>                           
-                </a>
+                </button>
 
-                <a id="modalMessageBtn" @click="showMessageModal(postItem.id)" class="flex gap-2 items-center bg-[#FFA80A] hover:bg-[#FFA80A]/80 rounded-xl py-3 px-[22px] sm:px-10 text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
+                <button id="modalMessageBtn" @click="showMessageModal(postItem.id)" class="flex gap-2 items-center bg-[#FFA80A] hover:bg-[#FFA80A]/80 rounded-xl py-3 px-[22px] sm:px-10 text-[15px] whitespace-nowrap font-semibold cursor-pointer transition-all duration-300">
                     ارسال پیام
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13.4677 0.836708L4.81398 3.71171C-1.0031 5.65712 -1.0031 8.82921 4.81398 10.765L7.38232 11.618L8.23524 14.1863C10.1711 20.0034 13.3527 20.0034 15.2886 14.1863L18.1732 5.54212C19.4573 1.66087 17.349 -0.457042 13.4677 0.836708ZM13.7744 5.99254L10.1327 9.65337C9.98898 9.79712 9.8069 9.86421 9.62482 9.86421C9.44273 9.86421 9.26065 9.79712 9.1169 9.65337C8.83899 9.37546 8.83899 8.91546 9.1169 8.63754L12.7586 4.97671C13.0365 4.69879 13.4965 4.69879 13.7744 4.97671C14.0523 5.25462 14.0523 5.71462 13.7744 5.99254Z" fill="white"/>
                     </svg>                           
-                </a>
+                </button>
             </div>
         </div>
 
@@ -1574,7 +1574,6 @@
 
         <!-- Send Message Modal -->
         <SendMessageModal />
-
     </section>
 </template>
 
@@ -1607,7 +1606,6 @@ import PN from "persian-number";
 const route = useRoute();
 
 const postItem = ref("");
-const titleHead = ref("")
 const activeItem = ref(null);
 const casePlan = ref();
 const postsSimilar = ref(null);
@@ -1674,11 +1672,9 @@ const setRating = (newRate) => {
         })
 }
 
-
 const response = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}`)
 const data = await response.json()
 postItem.value = data
-titleHead.value = postItem.value.title
 
 const planMelkRes = await fetch(`${apiRootStore.api}/real/cases/${route.params.id}/caseplan`)
 const dataPlanMelk = await planMelkRes.json()
@@ -1747,7 +1743,16 @@ const swiperOption = {
 // });
 
 useHead({
-    titleTemplate: `${titleHead.value}-%s`,
+    titleTemplate: `${postItem.value.title}-%s`,
+    
+    meta: [
+        { name: 'title', content: postItem.value.title },
+        { name: 'description', hid: 'description', content: postItem.value.description },
+        { property: 'og:title', content: postItem.value.title },
+        { property: 'og:description', hid:'og:description', content: postItem.value.description },
+        { property: 'twitter:title', content: postItem.value.title },
+        { property: 'twitter:description', hid: 'twitter:description', content: postItem.value.description },
+    ],
     
     script: [
         {
@@ -1768,6 +1773,7 @@ useHead({
         },
         { src: '/recaptcha.js', body: true }
     ],
+
     link: [
         { href: "/crispStyle.css" }
     ]

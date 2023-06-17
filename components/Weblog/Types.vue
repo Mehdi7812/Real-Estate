@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-5 mt-7 md:p-8">
-        <h4 class="md:text-xl">دسته بندی های محبوب</h4>
+        <h5 class="md:text-xl">دسته بندی های محبوب</h5>
 
         <NuxtLink :to="`/weblog?search=&weblog_type=${item.id}`" v-for="item in dataRes" class="flex flex-col shadow-md gap-2 md:gap-3">
             <div :class="weblog_type == item.id ? 'bg-primaryOrange dark:bg-bluePrimary' : 'bg-primary dark:bg-[#f0f3f7]'" class="flex justify-between items-center py-3 px-8 rounded-lg cursor-pointer transition-all duration-300 hover:opacity-80" onmouseover="this.style.backgroundColor ? this.style.opacity = '.9' : this.style.backgroundColor = 'var(--primaryColor)'" onmouseout="this.style.opacity ? this.style.backgroundColor = 'var(--primaryColor)' : this.style.backgroundColor = ''">
