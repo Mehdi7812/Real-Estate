@@ -6,8 +6,14 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         'nuxt-vue-map-ui',
-        'nuxt-swiper'
+        'nuxt-swiper',
+        '@nuxt/content'
     ],
+    nitro: {
+        prerender: {
+          routes: ['/sitemap.xml']
+        }
+      },
 	css: ["~/assets/css/main.css"],
 	postcss: {
 		plugins: {
@@ -31,5 +37,4 @@ export default defineNuxtConfig({
             ],
         }
     },
-    // ssr: false
 });

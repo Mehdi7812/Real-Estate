@@ -101,7 +101,9 @@ homePagePic.value = data[0].homePage_pic;
 homePage_header.value = data[0].homePage_header;
 
 const searchEstateCode = () => {
-    navigateTo(`/propertyCode?estate_code=${estateCode.value}`)
+    if(estateCode.value) {
+        navigateTo(`/propertyCode?estate_code=${estateCode.value}`)
+    }
 }
 
 onMounted(async () => {
