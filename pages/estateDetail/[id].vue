@@ -63,7 +63,7 @@
                     <!-- Big Picture -->
                     <div data-fancybox="gallery" :data-src="`${postItem.cover}`" class="row-span-3 col-span-full">
                         <div class="overflow-hidden col-span-full row-span-full w-full h-[300px] rounded-[10px]">
-                            <img class="object-cover w-full h-full bg-red-700" :src="postItem.cover" :alt="postItem.title" />
+                            <img class="object-cover w-full h-full bg-red-700" :src="postItem.cover" :alt="postItem.cover_alt" />
                         </div>
                     </div>
 
@@ -71,16 +71,16 @@
                     <div class="grid grid-cols-3 col-span-full gap-3">
                         <div v-for="(img, index) in postItem.media" :class="index >= 3 ? 'hidden' : ''">
                             <div v-if="index <= 1" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                             </div>
 
                             <div v-if="index == 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
-                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                                 <p dir="rtl" class="text-xs flex justify-center items-center text-white flex-col backdrop-blur-[2px] rounded-[10px] overflow-hidden backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
 
                             <div v-if="index > 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                                 <p dir="rtl" class="text-xs flex justify-center text-white items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
                         </div>
@@ -93,17 +93,17 @@
                         <div v-for="(img, index) in postItem.media" :class="index >= 4 ? 'hidden' : ''">
                             <div v-if="index < 4" class="h-full">
                                 <div v-if="index <= 2" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] cursor-pointer">
-                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                                 </div>
 
                                 <div v-if="index == 3" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="group overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
-                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                                     <p v-if="postItem.media.length - 4 > 0" dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                                 </div>
                             </div>
 
                             <div v-if="index >= 4" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.title" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${img.image}`" :alt="postItem.cover_alt" />
                                 <!-- <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p> -->
                             </div>
                         </div>
@@ -366,16 +366,16 @@
                                     </div>
 
                                     <!-- Takhfif Vizhe -->
-                                    <div class="flex flex-nowrap items-center text-base">
+                                    <div v-if="postItem.percent_discount" class="flex flex-nowrap items-center text-base">
                                         <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe("230میلیارد") }}</p>
-                                        <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe("40") }}٪</span>
+                                        <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(postItem.percent_discount) }}٪</span>
                                     </div>
                                 </div>
                             </div>
                         
                             <!-- پیش پرداخت -->
-                            <div v-if="postItem.pre_payment_status" class="flex flex-col items-center gap-[5px] lg:gap-[13px] lg:w-full">
-                                <div class="flex flex-col lg:flex-row gap-[5px] items-center">
+                            <div class="flex flex-col items-center gap-[5px] lg:gap-[13px] lg:w-full">
+                                <div v-if="postItem.pre_payment_status" class="flex flex-col lg:flex-row gap-[5px] items-center">
                                     <p class="text-sm text-[#BEBEBE] px-1">پـیــش‌ پـرداخــت:</p>
                                     
                                     <div class="flex flex-nowrap items-center whitespace-nowrap gap-2">
@@ -403,7 +403,7 @@
                                     </div>
                                 </div>
 
-                                <p class="bg-[#519FFF] text-[12px] rounded-[16px] text-white whitespace-nowrap w-full text-center">شرایط اقساطی <span>{{ PN.convertEnToPe(12) }}</span> ماهه</p>
+                                <p v-if="postItem.Installment" class="bg-[#519FFF] text-[12px] rounded-[16px] text-white whitespace-nowrap w-full text-center">شرایط اقساطی <span>{{ PN.convertEnToPe(postItem.Installment) }}</span> ماهه</p>
                             </div>
                         </div>
                     </div>
@@ -1155,7 +1155,7 @@
             <div class="py-4 lg:py-5 px-5 lg:px-16">
                 <div class="flex justify-between">
                     <div>
-                        <h4 class="text-2xl font-bold mt-2 mb-8 text-center lg:text-right lg:text-3xl">ملک های مشابه</h4>
+                        <p class="text-2xl font-bold mt-2 mb-8 text-center lg:text-right lg:text-3xl">ملک های مشابه</p>
                     </div>
     
                     <div class="hidden lg:flex gap-2">
@@ -1395,20 +1395,20 @@
                                             </NuxtLink>
             
                                             <div class="flex px-7 gap-5">
-                                                <NuxtLink :to="route.fullPath" @click="showMessageModal(person.id)">
+                                                <button @click.prevent="showMessageModal(person.id)">
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M14.1401 0.959997L5.11012 3.96C-0.959883 5.99 -0.959883 9.3 5.11012 11.32L7.79012 12.21L8.68012 14.89C10.7001 20.96 14.0201 20.96 16.0401 14.89L19.0501 5.87C20.3901 1.82 18.1901 -0.390003 14.1401 0.959997ZM14.4601 6.34L10.6601 10.16C10.5101 10.31 10.3201 10.38 10.1301 10.38C9.94012 10.38 9.75012 10.31 9.60012 10.16C9.31012 9.87 9.31012 9.39 9.60012 9.1L13.4001 5.28C13.6901 4.99 14.1701 4.99 14.4601 5.28C14.7501 5.57 14.7501 6.05 14.4601 6.34Z" fill="#FFA80A"/>
                                                     </svg>
-                                                </NuxtLink>
+                                                </button>
             
-                                                <NuxtLink :to="route.fullPath" @click="showCallModal(post.id, person.id, person.username, person.activity, person.id, person.picture)">
+                                                <button @click.prevent="showCallModal(post.id, person.id, person.username, person.activity, person.id, person.picture)">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
                                                         <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>
                                                         <path d="M11.05 14.95L9.2 16.8C8.81 17.19 8.19 17.19 7.79 16.81C7.68 16.7 7.57 16.6 7.46 16.49C6.43 15.45 5.5 14.36 4.67 13.22C3.85 12.08 3.19 10.94 2.71 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C10.83 13.32 10.94 13.42 11.04 13.52C11.44 13.91 11.45 14.55 11.05 14.95Z" fill="#0DA049"/>
                                                         <path d="M21.97 18.33C21.97 18.61 21.92 18.9 21.82 19.18C21.79 19.26 21.76 19.34 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C19.39 21.62 19.38 21.63 19.37 21.63C18.78 21.87 18.14 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C10.36 19 8.09999 17.08 7.72999 16.77L11 13.5C11.28 13.71 13.4 15.5 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" fill="#0DA049"/>
                                                     </svg>     
-                                                </NuxtLink>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

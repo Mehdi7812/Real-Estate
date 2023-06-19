@@ -110,7 +110,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="relative h-full rounded-2xl overflow-hidden">
-                                        <img :src="data.cover" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.title" />
+                                        <img :src="data.cover" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                     </div>
                                 </div>
                             </div>
@@ -315,15 +315,15 @@
                                 </div>
                             </div>
                             
-                            <NuxtLink :to="route.fullPath" class="flex gap-3 items-center">
-                                <span>
-                                    <img @click="showMessageModal(data.id)" class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" alt="ارسال پیام" />
-                                </span>
+                            <div class="flex gap-3 items-center">
+                                <button @click.prevent="showMessageModal(data.id)">
+                                    <img class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" alt="ارسال پیام" />
+                                </button>
                                 
-                                <span @click="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
+                                <button @click.prevent="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
                                     <img class="md:w-11 md:h-11 cursor-pointer" src="/Group33.svg" alt="درخواست تماس" />
-                                </span>
-                            </NuxtLink>
+                                </button>
+                            </div>
                         </NuxtLink>
                     </div>
                     
