@@ -41,7 +41,7 @@
             </div>
 
             <Swiper :modules="[SwiperNavigation]" :navigation="swiperOption.navigation" :breakpoints="swiperOption.breakpoints" :spaceBetween="swiperOption.spaceBetween" :slidesPerView="swiperOption.slidesPerView" :direction="swiperOption.direction">
-                <SwiperSlide v-for="_ in Array.from({ length: 4 })">
+                <SwiperSlide v-if="!dataRes" v-for="_ in Array.from({ length: 4 })">
                     <div class="loadingCard">
                         <a class="card w-full" style="flex-direction: row; justify-content: flex-start; height: 16rem;" id="card-link" target="_blank">
                             <div class="card__body h-full w-1/2">
@@ -74,13 +74,13 @@
                         <Swiper :modules="[SwiperNavigation]" :navigation="swiperImgOption.navigation" :breakpoints="swiperImgOption.breakpoints" :direction="swiperImgOption.direction" class="rounded-2xl overflow-hidden xl:w-1/2">
                             <SwiperSlide>
                                 <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
-                                    <img :src="data.cover" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
+                                    <img :src="convertDatas.changeToOptimizedImg(data.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                 </div>
                             </SwiperSlide>
 
                             <SwiperSlide v-if="data.media.length >= 1" v-for="media in data.media">
                                 <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
-                                    <img :src="`${apiRootStore.api}/${media.image}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
+                                    <img :src="`${apiRootStore.api}/${convertDatas.changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                 </div>
                             </SwiperSlide>
                             
@@ -273,9 +273,9 @@
                                         </p>
 
                                         <!-- Takhfif Vizhe -->
-                                        <div v-if="postItem.percent_discount" class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal ml-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe("230میلیارد") }}</p>
-                                            <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(postItem.percent_discount) }}٪</span>
+                                        <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
+                                            <p class="whitespace-nowrap font-normal ml-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(convertDatas.getNumber(data.price_after_discount)) }}</p>
+                                            <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>
                                 </div>

@@ -44,7 +44,9 @@ export const useConvertDatas = defineStore("convertDatas", () => {
         } else {
             return `${Math.round(days/31).toLocaleString('fa-ir')} ماه پیش`
         }
-    }
+    };
 
-    return { estateTypeRender, getNumber, dateCalc }
+    const changeToOptimizedImg = (imgUrl) => imgUrl.replace("realSize", "optimized");
+
+    return { estateTypeRender, getNumber, dateCalc, changeToOptimizedImg }
 })

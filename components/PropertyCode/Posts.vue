@@ -110,7 +110,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="relative h-full rounded-2xl overflow-hidden">
-                                        <img :src="data.cover" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
+                                        <img :src="convertDatas.changeToOptimizedImg(data.cover)" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                     </div>
                                 </div>
                             </div>
@@ -264,18 +264,18 @@
                                         </p>
 
                                         <!-- Takhfif Vizhe -->
-                                        <div class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal mx-3 text-graytext line-through">230میلیارد</p>
-                                            <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">40%</span>
+                                        <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
+                                            <p class="whitespace-nowrap font-normal mx-3 text-graytext line-through">{{ PN.convertEnToPe(convertDatas.getNumber(data.price_after_discount)) }}</p>
+                                            <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>
                                 </div>
                     
                                 <!-- پیش پرداخت -->
-                                <div v-if="data.pre_payment_status" class="flex flex-col items-center">
-                                    <p class="text-xs lg:text-base text-graytext">پـیــش‌ پـرداخــت:</p>
+                                <div class="flex flex-col items-center">
+                                    <p v-if="data.pre_payment_status" class="text-xs lg:text-base text-graytext">پـیــش‌ پـرداخــت:</p>
                                     
-                                    <div class="flex flex-nowrap gap-2">
+                                    <div v-if="data.pre_payment_status" class="flex flex-nowrap gap-2">
                                         <span v-html="convertDatas.getNumber(data.pre_payment)" class="text-white dark:text-black lg:text-lg font-bold"></span>
                                         <svg class="dark:hidden" width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.60427 7.94561C2.05741 7.94561 2.43853 7.91045 2.74762 7.84014C3.05672 7.76984 3.3013 7.66132 3.48135 7.51459C3.6374 7.3862 3.75144 7.22265 3.82346 7.02396C3.89848 6.82526 3.93599 6.57765 3.93599 6.28113H3.10774C2.89767 6.28113 2.6846 6.24904 2.46854 6.18484C2.25247 6.12065 2.05591 6.01518 1.87885 5.86845C1.7048 5.72172 1.56225 5.53067 1.45122 5.29529C1.34018 5.05685 1.28467 4.76645 1.28467 4.42408C1.28467 4.22232 1.30117 4.04044 1.33418 3.87842C1.37019 3.71335 1.41371 3.56662 1.46472 3.43823C1.51874 3.30984 1.57726 3.19827 1.64028 3.1035C1.7033 3.00874 1.76482 2.92773 1.82484 2.86048C1.98989 2.69235 2.17895 2.56243 2.39201 2.47073C2.60508 2.37902 2.83315 2.33317 3.07623 2.33317C3.28929 2.33317 3.48885 2.36679 3.67491 2.43404C3.86097 2.5013 4.02752 2.60217 4.17457 2.73668C4.57969 3.12184 4.78226 3.72558 4.78226 4.54788V5.41451H5.45747V6.28113H4.78226C4.78226 6.71521 4.71924 7.08815 4.5932 7.39995C4.47016 7.71481 4.2781 7.9777 4.01702 8.18863C3.75294 8.39955 3.42433 8.55546 3.03121 8.65633C2.64109 8.76027 2.16544 8.81223 1.60427 8.81223V7.94561ZM3.07623 3.19979C2.77913 3.19979 2.54806 3.30679 2.38301 3.52077C2.21796 3.73475 2.13543 4.03585 2.13543 4.42408C2.13543 4.81841 2.25247 5.09201 2.48654 5.24485C2.54356 5.28153 2.60208 5.3121 2.6621 5.33656C2.72211 5.35795 2.78063 5.37477 2.83765 5.387C2.89467 5.39617 2.94568 5.40381 2.9907 5.40992C3.03871 5.41298 3.07773 5.41451 3.10774 5.41451H3.93599V4.54788C3.93599 4.32473 3.91949 4.13673 3.88648 3.98388C3.85347 3.82798 3.81145 3.69959 3.76044 3.59872C3.70942 3.49784 3.6509 3.42142 3.58488 3.36945C3.52186 3.31443 3.45884 3.27469 3.39582 3.25023C3.33281 3.22578 3.27279 3.21202 3.21577 3.20896C3.15875 3.20285 3.11224 3.19979 3.07623 3.19979Z" fill="white"/>
@@ -299,7 +299,7 @@
                                         </svg>
                                     </div>
 
-                                    <p class="bg-[#519FFF] text-[12px] rounded-[16px] text-white px-2 whitespace-nowrap">شرایط اقساطی <span>12</span> ماهه</p>
+                                    <p v-if="data.Installment" class="bg-[#519FFF] text-[12px] rounded-[16px] text-white px-2 whitespace-nowrap">شرایط اقساطی <span>{{ PN.convertEnToPe(data.Installment) }}</span> ماهه</p>
                                 </div>
                             </div>
     
