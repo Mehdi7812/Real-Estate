@@ -1584,8 +1584,10 @@ import { toast } from 'vue3-toastify';
 // Import fancyBox
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-Fancybox.bind("[data-fancybox='gallery']", {});
-Fancybox.bind("[data-fancybox='galleryLG']", {});
+onMounted(() => {
+    Fancybox.bind("[data-fancybox='gallery']", {});
+    Fancybox.bind("[data-fancybox='galleryLG']", {});
+});
 
 // Map.vue
 import { VMap, VMapGoogleTileLayer } from 'vue-map-ui';
