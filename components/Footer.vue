@@ -90,6 +90,7 @@
 <script setup>
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
+
 import { toast } from 'vue3-toastify';
 
 const route = useRoute()
@@ -137,17 +138,7 @@ const sendPhoneNumber = () => {
     }
 }
 
-const title = ref()
-const logo_dark = ref()
-const logo_white = ref()
-const pageDescription = ref()
-
-const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
-const data = await response.json()
-logo_dark.value = data[0].logo_dark
-logo_white.value = data[0].logo_white
-title.value = data[0].homePage_title
-pageDescription.value = data[0].homePage_text;
+const { title, logo_dark, logo_white, pageDescription } = defineProps({ title: String, logo_dark: String, logo_white: String, pageDescription: String })
 
 // Validate Footer Phone Number
 function validateFooterPhoneNumber (phone) {

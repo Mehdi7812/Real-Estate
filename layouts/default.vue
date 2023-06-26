@@ -144,7 +144,7 @@
     
     <slot></slot>
 
-    <Footer />
+    <Footer :title="title" :logo_dark="logo_dark" :logo_white="logo_white" :page-description="pageDescription" />
 
     <!-- Modal search Via Estate_code -->
     <div id="modal" class="opacity-0 transition-all duration-300">

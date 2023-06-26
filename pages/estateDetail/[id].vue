@@ -1724,42 +1724,6 @@ const swiperOption = {
     }
 }
 
-// onMounted(async () => {
-//     const swiper2 = new Swiper(".swiper1", {
-//         direction: "horizontal",
-//         spaceBetween:15,
-//         slidesPerView: 1,
-
-//         breakpoints: {
-//             768: {slidesPerView: 2, spaceBetween: 10},
-//             1024: {slidesPerView: 3, spaceBetween: 10}
-//         },
-//         navigation: {
-//             nextEl: ".swiperNewst-next",
-//             prevEl: ".swiperNewst-prev",
-//         }
-//     });
-
-//     watch(postsSimilar => {
-//         setTimeout(() => {
-//             const swiper1 = new Swiper(".swiper1", {
-//                 direction: "horizontal",
-//                 spaceBetween:15,
-//                 slidesPerView: 1,
-        
-//                 breakpoints: {
-//                     768: {slidesPerView: 2, spaceBetween: 10},
-//                     1024: {slidesPerView: 3, spaceBetween: 10}
-//                 },
-//                 navigation: {
-//                     nextEl: ".swiperNewst-next",
-//                     prevEl: ".swiperNewst-prev",
-//                 }
-//             });
-//         }, 200);
-//     })
-// });
-
 useHead({
     titleTemplate: `${postItem.value.title}-%s`,
     

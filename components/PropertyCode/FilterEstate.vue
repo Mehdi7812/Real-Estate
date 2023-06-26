@@ -393,6 +393,12 @@
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="L" class="hover:text-primaryOrange transition-all duration-300 py-2">سرقفلی</li>
                             <hr class="border-[#c5c5c5]" />
                             <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="C" class="hover:text-primaryOrange transition-all duration-300 py-2 pb-0">مشاع</li>
+                            <hr class="border-[#c5c5c5]" />
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="AR" class="hover:text-primaryOrange transition-all duration-300 py-2 pb-0">تک برگ عرصه</li>
+                            <hr class="border-[#c5c5c5]" />
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="AG" class="hover:text-primaryOrange transition-all duration-300 py-2 pb-0">تک برگ عرصه و اعیان</li>
+                            <hr class="border-[#c5c5c5]" />
+                            <li onmouseover="this.style.color = 'var(--primaryColor)'" onmouseout="this.style.color = ''" @click="selectdocument_type" valueItem="CO" class="hover:text-primaryOrange transition-all duration-300 py-2 pb-0">نک برگ شورایی</li>
                         </ul>
                     </div>
                 </div>
@@ -481,7 +487,7 @@
                     <div class="flex flex-col justify-around">
                         <h5 class="text-xs md:text-base">{{ item.title }}</h5>
 
-                        <p class="text-[9px] text-graytext md:text-xs"><span class="md:text-xl text-lg text-white dark:text-black ml-2" v-html="convertDatas.getNumber(item.unit_price)"></span> تومان </p>
+                        <p class="text-[9px] text-graytext md:text-xs"><span class="md:text-xl text-lg text-white dark:text-black ml-2" v-html="PN.convertEnToPe(convertDatas.getNumber(item.unit_price))"></span> تومان </p>
                     </div>
                 </NuxtLink>
             </div>
@@ -497,6 +503,8 @@ const apiRootStore = useApiRoot()
 // Convert diigits func Store
 import { useConvertDatas } from "~/stores/ConvertDatas"
 const convertDatas = useConvertDatas()
+
+import PN from 'persian-number'
 
 import iranStates from '~/assets/iranStates/iranstates.json';
 
@@ -586,6 +594,12 @@ const documentTypeChange = (document_type) => {
         return 'سرقفلی'
     } else if (document_type == 'C') {
         return 'مشاع'
+    } else if (document_type == 'AR') {
+        return 'تک برگ عرصه'
+    } else if (document_type == 'AG') {
+        return 'تک برگ عرصه و اعیان'
+    } else if (document_type == 'CO') {
+        return 'نک برگ شورایی'
     } else if (document_type == 'A') {
         return 'وکالتی'
     } else{

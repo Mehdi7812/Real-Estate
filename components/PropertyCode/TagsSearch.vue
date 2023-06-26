@@ -73,7 +73,7 @@
         </p>
 
         <p v-if="route.query.unit_price__gte" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>قیمت از <span v-html="convertDatas.getNumber(route.query.unit_price__gte)"></span></span>
+            <span>قیمت از <span v-html="PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__gte))"></span></span>
 
             <svg @click="removeTag('unit_price__gte', route.query.unit_price__gte)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
@@ -82,7 +82,7 @@
         </p>
 
         <p v-if="route.query.unit_price__lte" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>قیمت تا <span v-html="convertDatas.getNumber(route.query.unit_price__lte)"></span></span>
+            <span>قیمت تا <span v-html="PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__lte))"></span></span>
 
             <svg @click="removeTag('unit_price__lte', route.query.unit_price__lte)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
@@ -166,12 +166,18 @@ const documentTypeChange = (document_type) => {
         return 'سرقفلی'
     } else if (document_type == 'C') {
         return 'مشاع'
+    } else if (document_type == 'AR') {
+        return 'تک برگ عرصه'
+    } else if (document_type == 'AG') {
+        return 'تک برگ عرصه و اعیان'
+    } else if (document_type == 'CO') {
+        return 'نک برگ شورایی'
     } else if (document_type == 'A') {
         return 'وکالتی'
     } else{
         return 'انتخاب کنید'
     }
-};
+}
 
 const removeTag = (item, value) => {
     let url = route.fullPath
