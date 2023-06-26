@@ -12,6 +12,9 @@ export default defineNuxtConfig({
 	],
 	sitemap: {
 		siteUrl: "https://amlank.ir",
+		exclude: [
+			'/user',
+		],
 	},
 	css: ["~/assets/css/main.css"],
 	postcss: {

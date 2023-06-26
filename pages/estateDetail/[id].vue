@@ -430,7 +430,7 @@
 
                             <a v-if="postItem.lat && postItem.lng" target="_blank" :href="`https://www.google.com/maps/dir/?api=1&origin=&destination=${postItem.lat},${postItem.lng}`" class="rounded-[21px] block h-28 md:h-40 overflow-hidden relative">
                                 <ClientOnly>
-                                    <VMap :zoom="15" :center="[36.457464, 52.363243]" class="h-full z-0">
+                                    <VMap :zoom="15" :center="[postItem.lat, postItem.lng]" class="h-full z-0">
                                         <VMapGoogleTileLayer title="Google Hybrid" type="hybrid" />
                                     </VMap>
                                 </ClientOnly>
@@ -1584,9 +1584,18 @@ import { toast } from 'vue3-toastify';
 // Import fancyBox
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+const crispStyles = ref("")
 onMounted(() => {
     Fancybox.bind("[data-fancybox='gallery']", {});
     Fancybox.bind("[data-fancybox='galleryLG']", {});
+
+    crispStyles.value = document.querySelector('head > link[href="https://client.crisp.chat/static/stylesheets/client_default.css?1f94bd5"]')
+    crispStyles.value.setAttribute('href', '')
+});
+
+onBeforeUnmount(() => {
+    crispStyles.value.setAttribute('href', 'https://client.crisp.chat/static/stylesheets/client_default.css?1f94bd5')
 });
 
 // Map.vue

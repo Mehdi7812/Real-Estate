@@ -23,11 +23,14 @@ export const useAuth = defineStore("auth", () => {
                     isLogin.value = false
                 }
                 return res.json()
-                }) 
+            }) 
             .then(data => {
                 if(isLogin.value){
                     userInfo.value = data
                 }
+            })
+            .catch(err => {
+                console.log(err)
             })
         }
     };

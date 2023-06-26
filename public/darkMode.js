@@ -52,7 +52,7 @@ function setDark() {
 }
 
 function setWithApi (theme) {
-  console.log(theme);
+  // console.log(theme);
   if(theme == 'سفید') {
     document.documentElement.classList.add('dark')
     setLight()

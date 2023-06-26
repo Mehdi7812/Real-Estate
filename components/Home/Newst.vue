@@ -81,7 +81,7 @@
 
                             <SwiperSlide v-if="data.media.length" v-for="media in data.media" class="h-64">
                                 <div class="relative rounded-2xl overflow-hidden h-full">
-                                    <img :src="`${apiRootStore.api}/${convertDatas.changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
+                                    <img :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                 </div>
                             </SwiperSlide>
 

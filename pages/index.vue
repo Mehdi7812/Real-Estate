@@ -89,8 +89,6 @@ const homePagePic = ref("");
 const homePage_header = ref("");
 const estateCode = ref("");
 
-// const { data: data } = await useAsyncData('res', () => $fetch(`${apiRootStore.api}/real/HomePage`))
-
 const response = await fetch(`${apiRootStore.api}/real/HomePage`);
 const data = await response.json();
 logo_dark.value = data[0].logo_dark;

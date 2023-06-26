@@ -8,6 +8,10 @@ Disallow: /about
 
 # *
 User-agent: *
+Disallow: /user
+
+# *
+User-agent: *
 Disallow: https://api.hypomelk.ir
 
 # *
