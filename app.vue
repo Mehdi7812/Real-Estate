@@ -22,7 +22,6 @@ const themeStatus = ref("");
 const keywords = ref("")
 const description = ref("")
 
-
 const { data: data } = await useAsyncData('res', () => $fetch(`${apiRootStore.api}/real/HomePage`))
 
 onMounted(async () => {

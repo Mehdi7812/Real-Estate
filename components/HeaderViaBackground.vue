@@ -98,7 +98,6 @@ const userDatas = ref()
 
 const { pageName, customImage } = defineProps({ pageName: String, customImage: {default: null} })
 
-
 const response = await fetch(`${apiRootStore.api}/real/HomePage/`)
 const dataHomePage = await response.json()
 homePage_header.value = dataHomePage[0].homePage_header

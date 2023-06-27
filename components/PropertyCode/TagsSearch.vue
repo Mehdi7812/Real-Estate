@@ -117,6 +117,15 @@
             </svg>                                    
         </p>
 
+        <p v-if="route.query.town" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
+            <span>شهری</span>
+
+            <svg @click="removeTag('town', route.query.town)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.389 9.47452L1.61133 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>                                    
+        </p>
+
         <p v-if="route.query.province" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
             <span>{{ route.query.province }}</span>
 
@@ -180,8 +189,10 @@ const documentTypeChange = (document_type) => {
 }
 
 const removeTag = (item, value) => {
+    console.log(item, value);
     let url = route.fullPath
-    let newUrl = url.replace(`${item}=${value}`, '')
+    let newUrl = url.replace(`&${item}=${value}`, '')
+    console.log(newUrl);
     navigateTo(newUrl)
 };
 </script>

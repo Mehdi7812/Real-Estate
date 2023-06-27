@@ -2,7 +2,7 @@
     <section class="mb-12 dark:text-white md:py-10 lg:px-12 lg:mb-0 lg:pb-0">
         <div class="container m-auto p-5">
             <!-- خرید ویلاهای جنگلی -->
-            <NuxtLink to="propertyCode?jungle=true" class="relative my-28 rounded-xl overflow-hidden hidden sm:block lg:mt-10">
+            <NuxtLink to="propertyCode?&jungle=true" class="relative my-28 rounded-xl overflow-hidden hidden sm:block lg:mt-10">
                 <div class=" w-full h-[117px] lg:h-[223px]">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="bg-cover bg-right h-full w-3/5" style="background-image: url(/favImg1.webp);"></div>
@@ -18,7 +18,7 @@
 
             <!-- خرید ویلاهای ساحلی sm -->
             <div class="relative my-20 rounded-xl overflow-hidden sm:hidden">
-                <NuxtLink to="propertyCode?beach=true" class="block w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg2.webp);">
+                <NuxtLink to="propertyCode?&beach=true" class="block w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg2.webp);">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="flex items-center absolute left-[10%] top-0 bottom-0 z-20 cursor-pointer">
                         <h3 class="w-20 text-center text-sm font-extrabold">خرید ویلاهای ساحلی</h3>
@@ -39,32 +39,32 @@
             </div>
 
             <div class="hidden lg:grid grid-cols-4 grid-rows-2 gap-5" style="direction: ltr;">
-                <NuxtLink to="propertyCode?city=چمستان" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/chamestan.webp);">
+                <NuxtLink to="propertyCode?&city=چمستان" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/chamestan.webp);">
                     <span class="backdrop-brightness-50 w-full h-full text-center leading-[256px] text-2xl font-bold hover:backdrop-brightness-100 transition-all duration-300">چمستان</span>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode?city=سرخ رود" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/sorkhRood.webp);">
+                <NuxtLink to="propertyCode?&city=سرخ رود" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/sorkhRood.webp);">
                     <span class="backdrop-brightness-50 w-full h-full text-center leading-[256px] text-2xl font-bold hover:backdrop-brightness-100 transition-all duration-300">سرخ رود</span>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode?city=نوشهر" class="col-span-2 row-span-2 relative cursor-pointer rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/noshahr.webp);">
+                <NuxtLink to="propertyCode?&city=نوشهر" class="col-span-2 row-span-2 relative cursor-pointer rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/noshahr.webp);">
                     <div class="flex flex-col justify-end h-full items-end p-6 after:transition-all after:duration-300 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-36 after:rounded-b-[12px] hover:after:h-0">
                         <span class="text-3xl font-bold z-10">نوشهر</span>
                         <p class="text-lg z-10"><span>{{ PN.convertEnToPe(countLargeImg) }}</span> ملک ثبت شده </p>
                     </div>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode?city=نور" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/noor.webp);">
+                <NuxtLink to="propertyCode?&city=نور" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/noor.webp);">
                     <span class="backdrop-brightness-50 w-full h-full text-center leading-[256px] text-2xl font-bold hover:backdrop-brightness-100 transition-all duration-300">نور</span>
                 </NuxtLink>
 
-                <NuxtLink to="propertyCode?city=متل قو" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/motelGhoo.webp);">
+                <NuxtLink to="propertyCode?&city=متل قو" class="relative cursor-pointer flex justify-center items-center h-64 rounded-xl overflow-hidden bg-cover bg-no-repeat" style="background-image: url(/motelGhoo.webp);">
                     <span class="backdrop-brightness-50 w-full h-full text-center leading-[256px] text-2xl font-bold hover:backdrop-brightness-100 transition-all duration-300">متل قو</span>
                 </NuxtLink>
             </div>
 
             <!-- خرید ویلاهای ساحلی lg -->
-            <NuxtLink to="/propertyCode?beach=true" class="hidden relative my-24 rounded-xl overflow-hidden lg:block">
+            <NuxtLink to="/propertyCode?&&beach=true" class="hidden relative my-24 rounded-xl overflow-hidden lg:block">
                 <div class=" w-full h-[223px]">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="bg-right bg-cover h-full w-3/5" style="background-image: url(favImg2.webp);"></div>
@@ -81,35 +81,35 @@
 
             <Swiper :modules="[SwiperNavigation]" :navigation="swiperOption.navigation" :breakpoints="swiperOption.breakpoints" :spaceBetween="swiperOption.spaceBetween" :direction="swiperOption.direction" class="lg:!hidden">
                     <SwiperSlide> 
-                        <NuxtLink to="/propertyCode?city=متل قو" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(motelGhoo.webp);">
+                        <NuxtLink to="/propertyCode?&city=متل قو" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(motelGhoo.webp);">
                             <p class="font-extrabold text-[15px] z-10">متل قو</p>
                             <p class="text-lg z-10"><span>{{ PN.convertEnToPe(count1) }}</span> ملک ثبت شده </p>
                         </NuxtLink>
                     </SwiperSlide>
                     
                     <SwiperSlide> 
-                        <NuxtLink to="/propertyCode?city=نور" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/noor.webp);">
+                        <NuxtLink to="/propertyCode?&city=نور" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/noor.webp);">
                             <p class="font-extrabold text-[15px] z-10">نور</p>
                             <p class="text-lg z-10"><span>{{ PN.convertEnToPe(count2) }}</span> ملک ثبت شده </p>
                         </NuxtLink>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <NuxtLink to="/propertyCode?city=چمستان" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/chamestan.webp);">
+                        <NuxtLink to="/propertyCode?&city=چمستان" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/chamestan.webp);">
                             <p class="font-extrabold text-[15px] z-10">چمستان</p>
                             <p class="text-lg z-10"><span>{{ PN.convertEnToPe(count3) }}</span> ملک ثبت شده </p>
                         </NuxtLink>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <NuxtLink to="/propertyCode?city=سرخ رود" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/sorkhRood.webp);">
+                        <NuxtLink to="/propertyCode?&city=سرخ رود" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/sorkhRood.webp);">
                             <p class="font-extrabold text-[15px] z-10">سرخ رود</p>
                             <p class="text-lg z-10"><span>{{ PN.convertEnToPe(count4) }}</span> ملک ثبت شده </p>
                         </NuxtLink>
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <NuxtLink to="/propertyCode?city=نوشهر" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/noshahr.webp);">
+                        <NuxtLink to="/propertyCode?&city=نوشهر" class="h-72 bg-no-repeat bg-cover bg-center rounded-xl overflow-hidden flex flex-col justify-end pr-5 pb-3 after:bg-gradient-to-t after:from-black50 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-16 after:rounded-b-[12px]" style="background-image: url(/noshahr.webp);">
                             <p class="font-extrabold text-[15px] z-10">نوشهر</p>
                             <p class="text-lg z-10"><span>{{ PN.convertEnToPe(count5) }}</span> ملک ثبت شده </p>
                         </NuxtLink>

@@ -1,7 +1,7 @@
 <template>
     <section class="lg:px-12">
         <div class="container m-auto p-5 lg:py-12">
-            <NuxtLink to="propertyCode?jungle=true" class="relative rounded-xl flex my-8 overflow-hidden lg:hidden">
+            <NuxtLink to="propertyCode?&jungle=true" class="relative rounded-xl flex my-8 overflow-hidden lg:hidden">
                 <div class=" w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg1.webp);">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="flex items-center absolute left-[10%] top-0 bottom-0 z-20 cursor-pointer">

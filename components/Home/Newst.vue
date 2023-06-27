@@ -87,7 +87,7 @@
 
                             <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
                                 <div class="flex gap-2 items-center">
-                                    <span class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
+                                    <span v-if="data.discount_status" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
                                     <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px]">پیش فروش</span>
                                         
                                     <div v-if="data.special" class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
@@ -217,7 +217,7 @@
                             <!-- types -->
                             <div class="flex gap-8 gap-y-3 flex-nowrap">
                                 <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
-                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.region }}</span>
+                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.city }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.location }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
                             </div>

@@ -181,7 +181,7 @@
                         <p class="text-xs md:text-lg pb-8">کد ملکی موردنظر خود را برای جستجوی سریع تر وارد کنید .</p>
                     </div>
     
-                    <NuxtLink @click="closeModal" v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`/propertyCode?estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
+                    <NuxtLink @click="closeModal" v-if="!isNaN(Number(estateType)) && estateType.length >= 1" style="background-color: var(--primaryColor)" :to="`/propertyCode?&estate_code=${estateType}`" class="hover:opacity-80 btn md:text-2xl md:p-5">جستجو</NuxtLink>
                     <p v-if="isNaN(Number(estateType)) || estateType.length == 0" style="background-color: var(--primaryColor)" class="opacity-70 btn dark:bg-bluePrimary/80 bg-primaryOrange/80 md:text-2xl !cursor-not-allowed md:p-5">جستجو</p>
                 </div>
             </div>

@@ -15,6 +15,8 @@ export default defineNuxtConfig({
 		exclude: [
 			'/user',
 		],
+		defaults: { priority: 1.0 },
+		discoverImages: false,
 	},
 	css: ["~/assets/css/main.css"],
 	postcss: {

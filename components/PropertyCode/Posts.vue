@@ -117,7 +117,7 @@
                                         
                             <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
                                 <div class="flex gap-2 items-center flex-wrap">
-                                    <span class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
+                                    <span v-if="data.discount_status" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
                                     <!-- Transaction -->
                                     <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">پیش فروش</span> 
                                     <!-- special -->
@@ -205,7 +205,7 @@
                             <!-- Types -->
                             <div class="flex gap-8 flex-wrap gap-y-2">
                                 <p class="text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
-                                <span class="relative text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-3">{{ data.region  }}</span>
+                                <span class="relative text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-3">{{ data.city  }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-3">{{ data.location  }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] dark:text-black whitespace-nowrap after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-3">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
                             </div>
@@ -223,6 +223,7 @@
                                         <path d="M6.375 11C5.82833 11 5.375 11.4533 5.375 12V16C5.375 16.5467 5.82833 17 6.375 17C6.92167 17 7.375 16.5467 7.375 16V12C7.375 11.4533 6.935 11 6.375 11Z" fill="#237E48"/>
                                         <path d="M21.6133 11C21.0666 11 20.6133 11.4533 20.6133 12V16C20.6133 16.5467 21.0666 17 21.6133 17C22.1599 17 22.6133 16.5467 22.6133 16V12C22.6133 11.4533 22.1733 11 21.6133 11Z" fill="#237E48"/>
                                     </svg>
+
                                     <svg class="dark:inline-block hidden" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path opacity="0.4" d="M25.7346 10.56V17.4267C25.7346 21.5333 23.3879 23.2933 19.8679 23.2933H8.14791C7.54791 23.2933 6.97458 23.24 6.44124 23.12C6.10791 23.0667 5.78792 22.9734 5.49459 22.8667C3.49459 22.12 2.28125 20.3867 2.28125 17.4267V10.56C2.28125 6.45331 4.62791 4.69336 8.14791 4.69336H19.8679C22.8546 4.69336 25.0012 5.96002 25.5746 8.85335C25.6679 9.38669 25.7346 9.93331 25.7346 10.56Z" fill="#237E48"/>
                                         <path d="M29.7347 14.56V21.4267C29.7347 25.5334 27.3881 27.2933 23.8681 27.2933H12.1481C11.1614 27.2933 10.2681 27.1601 9.49475 26.8667C7.90808 26.2801 6.82807 25.0667 6.44141 23.1201C6.97474 23.2401 7.54807 23.2933 8.14807 23.2933H19.8681C23.3881 23.2933 25.7347 21.5334 25.7347 17.4267V10.56C25.7347 9.93335 25.6814 9.37339 25.5747 8.85339C28.1081 9.38673 29.7347 11.1734 29.7347 14.56Z" fill="#237E48"/>
@@ -230,7 +231,6 @@
                                         <path d="M6.375 11C5.82833 11 5.375 11.4533 5.375 12V16C5.375 16.5467 5.82833 17 6.375 17C6.92167 17 7.375 16.5467 7.375 16V12C7.375 11.4533 6.935 11 6.375 11Z" fill="#237E48"/>
                                         <path d="M21.6133 11C21.0666 11 20.6133 11.4533 20.6133 12V16C20.6133 16.5467 21.0666 17 21.6133 17C22.1599 17 22.6133 16.5467 22.6133 16V12C22.6133 11.4533 22.1733 11 21.6133 11Z" fill="#237E48"/>
                                     </svg>
-
 
                                     <div class="flex flex-col gap-[5px]">
                                         <!-- Real Price -->

@@ -241,11 +241,11 @@
                                         </div>
                                         <div class="flex p-2 md:p-3 justify-between items-center bg-primary dark:bg-[#DFDFDF] border-2 border-graytext w-full rounded-2xl md:rounded-[21px]">
                                             <div @click="copyShareLink($refs.postLink, $refs.copyLink)" ref="copyLink" style="background-color: var(--primaryColor)" class="hover:opacity-80 btn !p-2 !md:p-3 cursor-pointer whitespace-nowrap">کپی لینک</div>
-                                            <input type="text" :value="route.fullPath" ref="postLink" class="text-base md:text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
+                                            <input type="text" :value="`amlank.ir${route.fullPath}`" ref="postLink" class="text-base md:text-[19px] font-semibold bg-transparent w-4/5 text-left outline-none" readonly />
                                         </div>
     
                                         <div class="flex justify-around items-center text-center w-full">
-                                            <a target="_blank" :href="`https://telegram.me/share/?url=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                            <a target="_blank" :href="`https://telegram.me/share/?url=amlank.ir${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
                                                 <svg class="w-12 md:w-14" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M54.5 28C54.5 42.6355 42.6355 54.5 28 54.5C13.3645 54.5 1.5 42.6355 1.5 28C1.5 13.3645 13.3645 1.5 28 1.5C42.6355 1.5 54.5 13.3645 54.5 28Z" stroke="url(#paint0_linear_954_3705)" stroke-width="3"/>
                                                     <path d="M11.6516 27.7571L30.5071 19.9883C32.3684 19.1791 38.6805 16.5895 38.6805 16.5895C38.6805 16.5895 41.5938 15.4565 41.351 18.208C41.2701 19.3409 40.6227 23.3062 39.9753 27.5952L37.9522 40.3004C37.9522 40.3004 37.7903 42.1617 36.4146 42.4854C35.0389 42.8091 32.773 41.3525 32.3684 41.0288C32.0447 40.786 26.299 37.1444 24.1949 35.364C23.6285 34.8785 22.9811 33.9074 24.2759 32.7744C27.1892 30.1039 30.6689 26.786 32.773 24.682C33.7441 23.7109 34.7152 21.445 30.6689 24.1964L19.2585 31.8843C19.2585 31.8843 17.9637 32.6935 15.536 31.9652C13.1082 31.2369 10.2759 30.2658 10.2759 30.2658C10.2759 30.2658 8.33367 29.0519 11.6516 27.7571Z" fill="url(#paint1_linear_954_3705)"/>
@@ -263,7 +263,7 @@
     
                                                 <span>تلگرام</span>
                                             </a>
-                                            <a target="_blank" :href="`https://wa.me/?text=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                            <a target="_blank" :href="`https://wa.me/?text=amlank.ir${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
                                                 <svg class="w-[58px] md:w-[65px]" width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M18.6868 55.7916C22.7494 58.2291 27.6244 59.5833 32.4994 59.5833C47.3952 59.5833 59.5827 47.3958 59.5827 32.5C59.5827 17.6041 47.3952 5.41663 32.4994 5.41663C17.6035 5.41663 5.41602 17.6041 5.41602 32.5C5.41602 37.375 6.77018 41.9791 8.93685 46.0416L6.60888 54.9953C6.08151 57.0237 7.95894 58.8567 9.9741 58.281L18.6868 55.7916Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                                     <path d="M44.6875 40.2147C44.6875 40.6534 44.5899 41.1044 44.3824 41.5431C44.1749 41.9819 43.9063 42.3963 43.5524 42.7863C42.9543 43.4444 42.2952 43.9197 41.5506 44.2244C40.8183 44.5291 40.0249 44.6875 39.1705 44.6875C37.9255 44.6875 36.595 44.395 35.1914 43.7978C33.7877 43.2006 32.384 42.3963 30.9926 41.3847C29.5889 40.3609 28.2585 39.2275 26.9891 37.9722C25.7319 36.7047 24.5967 35.3763 23.5837 33.9869C22.5828 32.5975 21.7772 31.2081 21.1913 29.8309C20.6054 28.4416 20.3125 27.1131 20.3125 25.8456C20.3125 25.0169 20.459 24.2247 20.7519 23.4934C21.0448 22.75 21.5087 22.0675 22.1556 21.4581C22.9367 20.6903 23.7912 20.3125 24.6944 20.3125C25.0361 20.3125 25.3779 20.3856 25.6831 20.5319C26.0004 20.6781 26.2811 20.8975 26.5008 21.2144L29.3326 25.1997C29.5523 25.5044 29.711 25.7847 29.8208 26.0528C29.9307 26.3088 29.9917 26.5647 29.9917 26.7963C29.9917 27.0888 29.9063 27.3812 29.7354 27.6616C29.5767 27.9419 29.3448 28.2344 29.0519 28.5269L28.1242 29.4897C27.99 29.6237 27.9289 29.7822 27.9289 29.9772C27.9289 30.0747 27.9411 30.16 27.9655 30.2575C28.0022 30.355 28.0388 30.4281 28.0632 30.5012C28.2829 30.9034 28.6613 31.4275 29.1983 32.0613C29.7476 32.695 30.3335 33.3409 30.9682 33.9869C31.6273 34.6328 32.262 35.23 32.9089 35.7784C33.5436 36.3147 34.0684 36.6803 34.4834 36.8997C34.5445 36.9241 34.6177 36.9606 34.7031 36.9972C34.8008 37.0337 34.8984 37.0459 35.0083 37.0459C35.2158 37.0459 35.3745 36.9728 35.5087 36.8388L36.4364 35.9247C36.7415 35.62 37.0345 35.3884 37.3152 35.2422C37.5959 35.0716 37.8767 34.9862 38.1818 34.9862C38.4137 34.9862 38.6578 35.035 38.9264 35.1447C39.1949 35.2544 39.4756 35.4128 39.7808 35.62L43.8209 38.4841C44.1382 38.7034 44.3579 38.9594 44.4922 39.2641C44.6143 39.5687 44.6875 39.8734 44.6875 40.2147Z" stroke="#12A412" stroke-width="3" stroke-miterlimit="10"/>
@@ -271,7 +271,7 @@
                                                 
                                                 <span>واتساپ</span>
                                             </a>
-                                            <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
+                                            <a target="_blank" :href="`https://pinterst.com/pin/create/button/?url=amlank.ir${route.fullPath}`" class="flex flex-col gap-2 md:gap-3">
                                                 <svg class="w-12 md:w-14" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M20.8694 38.9401C20.4443 40.7672 20.965 43.4033 21.1497 45.0769V47L22.2408 45.5201C23.1025 44.1151 24.3909 41.8119 24.8682 39.9746C25.1252 38.9848 26.1851 34.9459 26.1851 34.9459C26.8745 36.2614 28.8882 37.3749 31.0304 37.3749C37.4063 37.3749 42 31.5077 42 24.2174C42 17.2291 36.3011 12 28.9678 12C19.8451 12 15 18.1282 15 24.801C15 27.9036 16.6507 31.7663 19.2909 32.996C19.6916 33.1826 19.9058 33.1004 19.9979 32.7132C20.0679 32.4191 20.4246 30.9823 20.585 30.3142C20.6365 30.1004 20.6112 29.9169 20.4384 29.7075C19.5651 28.6476 18.8652 26.6981 18.8652 24.8799C18.8652 20.2144 22.3957 15.6999 28.4107 15.6999C33.6039 15.6999 37.2408 19.2411 37.2408 24.306C37.2408 30.0284 34.3527 33.9927 30.5955 33.9927C28.5202 33.9927 26.967 32.2757 27.465 30.1703C28.061 27.6556 29.2158 24.942 29.2158 23.127C29.2158 21.5023 28.3446 20.1473 26.5411 20.1473C24.4197 20.1473 22.7159 22.3433 22.7159 25.2847C22.7159 27.1581 23.3483 28.4253 23.3483 28.4253C23.3483 28.4253 21.2536 37.2891 20.8694 38.9401Z" fill="#E60023"/>
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M28 53C41.8071 53 53 41.8071 53 28C53 14.1929 41.8071 3 28 3C14.1929 3 3 14.1929 3 28C3 41.8071 14.1929 53 28 53ZM28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z" fill="#E60023"/>
@@ -1495,7 +1495,7 @@
         <!-- Modal Report -->
         <Transition>
             <div id="reportModal" v-show="reportModal" class="fixed flex justify-center items-center left-0 top-0 bottom-0 right-0 z-30 bg-white/30 dark:bg-black/30 backdrop-blur-sm transition-all duration-300 overflow-y-auto">
-                <div v-click-out-side="closeReportModal" class="w-[450px] py-7 md:py-10 pb-0 px-3 md:px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
+                <div v-click-out-side="closeReportModal" class="w-[450px] p-6 !pb-0 px-3 md:px-6 bg-secondary dark:bg-whiteSecondary rounded-2xl flex flex-col gap-2">
                     <div class="flex justify-between">
                         <div class="h-4 px-3"></div>
                         <p class="text-2xl md:text-[26px] font-semibold">گزارش مشکل</p>
@@ -1538,7 +1538,7 @@
                         <form id="recaptcha-form" class="flex flex-col my-3 items-center relative">
                             <div class="g-recaptcha" id="html_element" data-callback="onRecaptchaSuccess" data-error-callback="onRecaptchaError" data-expired-callback="onRecaptchaResponseExpiry"></div>
                         
-                            <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3 md:mb-8" value="ارسال گزارش" />
+                            <input style="background-color: var(--primaryColor)" @click.prevent="sendReport(postItem.id)" type="submit" class="btn cursor-pointer w-full my-3" value="ارسال گزارش" />
                         </form>
                     </div>
                 </div>    
@@ -1925,6 +1925,7 @@ const copyShareLink = (text, btn) => {
     text.select();
     document.execCommand('copy');
     btn.innerHTML='کپی شد';
+    
     setTimeout(() => {
         btn.innerHTML='کپی لینک'
     }, 3000);

@@ -1,5 +1,5 @@
 <template>
-    <HeaderViaBackground pageName="جستجوی ملک" />
+    <HeaderViaBackground :pageName="pageName" />
 
     <section>
         <div class="container m-auto">
@@ -25,7 +25,23 @@
 </template>
 
 <script setup>
+// Convert diigits func Store
+import { useConvertDatas } from "~/stores/ConvertDatas"
+const convertDatas = useConvertDatas()
+
+const route = useRoute();
+
+const comp = computed(() => {
+    if(route.query.estate_type || route.query.city) {
+        return `جستجوی ${route.query.estate_type ? convertDatas.estateTypeRender(route.query.estate_type) : 'ملک'} ${route.query.city ? 'در ' + route.query.city : ''}`
+    } else {
+        return "جستجوی ملک"
+    }
+});
+
+const pageName = ref(comp)
+
 useHead({
     titleTemplate: 'فیلتر ملک ها-%s',
-})
+});
 </script>

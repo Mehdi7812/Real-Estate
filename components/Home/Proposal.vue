@@ -9,7 +9,7 @@
 
                 <div class="flex gap-2">
                     <div>
-                        <NuxtLink to="propertyCode?special=true" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg hover:bg-hoverPrimaryOrange transition-all duration-300">
+                        <NuxtLink to="propertyCode?&special=true" style="background-color: var(--primaryColor);" class="group hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg hover:bg-hoverPrimaryOrange transition-all duration-300">
                             <span class="w-0 max-h-5 dark:text-white lg:group-hover:w-[90px] overflow-hidden whitespace-nowrap transition-all duration-300">مشاهده همه</span>
                             <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.84317 2.16666H5.78484C3.41234 2.16666 2.1665 3.41249 2.1665 5.77416V7.83249C2.1665 10.1942 3.41234 11.44 5.774 11.44H7.83234C10.194 11.44 11.4398 10.1942 11.4398 7.83249V5.77416C11.4507 3.41249 10.2048 2.16666 7.84317 2.16666Z" fill="white"/>
@@ -71,7 +71,7 @@
 
                 <SwiperSlide v-for="data in dataRes" :key="data.id">
                     <NuxtLink :to="`/estateDetail/${data.id}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group lg:flex xl:h-full cursor-pointer">
-                        <Swiper :modules="[SwiperNavigation]" :navigation="swiperImgOption.navigation" :breakpoints="swiperImgOption.breakpoints" :direction="swiperImgOption.direction" class="rounded-2xl overflow-hidden xl:w-1/2">
+                        <Swiper :modules="[SwiperNavigation]" :navigation="swiperImgOption.navigation" :breakpoints="swiperImgOption.breakpoints" :direction="swiperImgOption.direction" class="rounded-2xl overflow-hidden xl:w-1/2 xl:h-64">
                             <SwiperSlide>
                                 <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
                                     <img :src="convertDatas.changeToOptimizedImg(data.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
@@ -86,7 +86,7 @@
                             
                             <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
                                 <div class="flex gap-2 items-center flex-wrap">
-                                    <span class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
+                                    <span v-if="data.discount_status" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
                                     <!-- Transaction -->
                                     <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px]">پیش فروش</span> 
                                     <!-- Special -->
@@ -216,9 +216,9 @@
                         <div class="py-3 flex gap-4 flex-col lg:min-w-[270px] lg:pr-3 lg:justify-center xl:w-1/2">
                             <h3 class="text-[15px] font-bold lg:text-xl truncate group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
     
-                            <div class="flex gap-8 flex-wrap gap-y-3">
+                            <div class="flex gap-8 flex-wrap gap-y-1 h-6">
                                 <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
-                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.region }}</span>
+                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.city }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.location }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
                             </div>

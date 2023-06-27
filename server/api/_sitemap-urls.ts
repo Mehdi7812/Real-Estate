@@ -2,7 +2,7 @@ export default cachedEventHandler(async () => {
 	let datas = await $fetch('/api/posts')
 
 	return datas.map((p: { id: any; placed_at: any; }) => {
-		return { loc: `/estateDetail/${p.id}`, lastmod: p.placed_at };
+		return { loc: `/estateDetail/${p.id}`, lastmod: p.placed_at, priority: 1.0, discoverImages: false };
 	});
 
 	// const [
