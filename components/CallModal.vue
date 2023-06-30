@@ -17,11 +17,11 @@
                     <div class="w-full h-auto overflow-hidden transition-all duration-300">
                         <div class="flex flex-col items-center gap-3 lg:gap-5 p-1 lg:p-2">
                             <!-- person info(image name ...) -->
-                            <a :href="`/propertyUser?user=${modalCallStore.userId}`" class="flex flex-col items-center p-2 lg:p-4 gap-2">
+                            <NuxtLink :to="`/propertyCode?user=${modalCallStore.userId}`" class="flex flex-col items-center p-2 lg:p-4 gap-2">
                                 <img v-if="modalCallStore.userImg" class="w-16 h-16 rounded-xl object-cover" :src="`${apiRootStore.api}/${modalCallStore.userImg}`" :alt="modalCallStore.userName" />
                                 <p class="text-xl font-bold">{{ modalCallStore.userName }}</p>
                                 <p class="text-graytext">{{ modalCallStore.userActivity }}</p>
-                            </a>
+                            </NuxtLink>
         
                             <!-- Call Btn -->
                             <a :href="`tel:${modalCallStore.userNumber}`" class="flex justify-center items-center gap-3 bg-[#0DA049] dark:text-white tracking-widest text-lg lg:text-xl dark:bg-bluePrimary dark:hover:bg-bluePrimary/80 p-2 lg:p-4 rounded-xl lg:rounded-2xl w-full transition-all duration-300 hover:bg-[#0DA049]/50" href="tel:+989111111111">

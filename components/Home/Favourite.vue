@@ -18,7 +18,7 @@
 
             <!-- خرید ویلاهای ساحلی sm -->
             <div class="relative my-20 rounded-xl overflow-hidden sm:hidden">
-                <NuxtLink to="propertyCode?&beach=true" class="block w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg2.webp);">
+                <NuxtLink to="/propertyCode?&beach=true" class="block w-full h-[117px] bg-no-repeat bg-right" style="background-image: url(/favImg2.webp);">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="flex items-center absolute left-[10%] top-0 bottom-0 z-20 cursor-pointer">
                         <h3 class="w-20 text-center text-sm font-extrabold">خرید ویلاهای ساحلی</h3>
@@ -64,7 +64,7 @@
             </div>
 
             <!-- خرید ویلاهای ساحلی lg -->
-            <NuxtLink to="/propertyCode?&&beach=true" class="hidden relative my-24 rounded-xl overflow-hidden lg:block">
+            <NuxtLink to="/propertyCode?&beach=true" class="hidden relative my-24 rounded-xl overflow-hidden lg:block">
                 <div class=" w-full h-[223px]">
                     <div style="background: linear-gradient(to right, var(--primaryColor) 55%, transparent)" class="absolute left-0 top-0 bottom-0 w-5/6 bg-gradient-to-r from-primaryOrange via-primaryOrange after:from-bluePrimary after:via-bluePrimary z-10"></div>
                     <div class="bg-right bg-cover h-full w-3/5" style="background-image: url(favImg2.webp);"></div>

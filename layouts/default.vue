@@ -92,12 +92,12 @@
             </div>
         </div>
 
-        <nav dir="ltr" id="navMain" class="hidden sm:block fixed top-0 left-0 right-0 w-full m-auto transition-all duration-300 navMain p-2 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
+        <nav dir="ltr" id="navMain" class="hidden md:block fixed top-0 left-0 right-0 w-full m-auto transition-all duration-300 navMain p-2 z-30 bg-primary dark:bg-white shadow-[0_0_17px_rgba(0,0,0,0.16)]">
             <ul class="flex justify-center items-center gap-14">
-                <li class="w-14 whitespace-nowrap">
+                <li class="w-5 lg:w-14 whitespace-nowrap">
                     <NuxtLink :style="{ color: route.fullPath=='/about' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/about">درباره ما</NuxtLink>
                 </li>
-                <li class="w-14 whitespace-nowrap">
+                <li class="w-5 lg:w-14 whitespace-nowrap">
                     <NuxtLink :style="{ color: route.fullPath=='/contact' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/contact">ارتباط با ما</NuxtLink>
                 </li>
                 <li class="w-14 whitespace-nowrap">
@@ -110,10 +110,10 @@
                         <div v-if="!logo_dark" class="h-full w-[67px]"></div>
                     </NuxtLink>
                 </li>
-                <li class="w-14 whitespace-nowrap">
+                <li class="w-5 lg:w-14 whitespace-nowrap">
                     <NuxtLink :style="{ color: route.fullPath=='/weblog' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/weblog">وبلاگ</NuxtLink>
                 </li>
-                <li class="w-14 whitespace-nowrap">
+                <li class="w-5 lg:w-14 whitespace-nowrap">
                     <NuxtLink :style="{ color: route.fullPath=='/' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/">خانه</NuxtLink>
                 </li>
             </ul>

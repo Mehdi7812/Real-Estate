@@ -532,10 +532,10 @@ const province = ref(route.query.province ? route.query.province : "")
 const city = ref(route.query.city ? route.query.city : "")
 const region = ref(route.query.region ? route.query.region : "")
 const pre_payment_status = ref(route.query.pre_payment_status == true ? route.query.pre_payment_status : "")
-const special = ref(route.query.special ? route.query.special : false)
-const jungle = ref(route.query.jungle ? route.query.jungle : false)
-const town = ref(route.query.town ? route.query.town : false)
-const beach = ref(route.query.beach ? route.query.beach : false)
+const special = ref(route.query.special ? route.query.special : false);
+const jungle = ref(route.query.jungle ? route.query.jungle : false);
+const town = ref(route.query.town ? route.query.town : false);
+const beach = ref(route.query.beach ? route.query.beach : false);
 const image_status = ref(route.query.image_status == true ? route.query.image_status : "");
 
 const filterUrl = ref(`propertyCode?${estate_code.value ? '&estate_code=' + estate_code.value : ""}${estate_type.value ? '&estate_type=' + estate_type.value : ''}${unit_types.value ? '&unit_types=' + unit_types.value : ''}${document_type.value ? '&document_type=' + document_type.value : ''}${rooms__lte.value ? '&rooms__lte=' + rooms__lte.value : ''}${unit_price__gte.value ? '&unit_price__gte=' + unit_price__gte.value : ''}${unit_price__lte.value ? '&unit_price__lte=' + unit_price__lte.value : ''}${land_size__gte.value ? '&land_size__gte=' + land_size__gte.value : ''}${land_size__lte.value ? '&land_size__lte=' + land_size__lte.value : ''}${building_size__gte.value ? '&building_size__gte=' + building_size__gte.value : ''}${building_size__lte.value ? '&building_size__lte=' + building_size__lte.value : ''}${building_age.value ? '&building_age=' + building_age.value : ''}${province.value ? '&province=' + province.value : ''}${city.value ? '&city=' + city.value : ''}${region.value ? '&region=' + region.value : ''}${pre_payment_status.value ? '&pre_payment_status=' + pre_payment_status.value : ''}${special.value ? '&special=' + special.value : ''}${route.query.jungle ? '&jungle=' + route.query.jungle : ''}${route.query.town ? '&town=' + route.query.town : ''}${image_status.value ? '&image_status=' + image_status.value : ''}${route.query.beach ? '&beach=' + route.query.beach : ''}${route.query.user ? '&user=' + route.query.user : ''}`);
