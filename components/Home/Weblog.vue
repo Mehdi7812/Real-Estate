@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
     
-                                <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(data.placed_at) }}</p>
+                                <p class="bg-white text-[10px] text-[#535353] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
                             </div>
     
                             <div class="absolute dark:text-white bottom-3 z-10 right-3 left-3 flex justify-end items-end gap-2">
@@ -173,8 +173,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { dateCalc } = useConvertDatas()
 
 const dataRes = ref()
 

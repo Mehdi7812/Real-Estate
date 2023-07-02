@@ -88,7 +88,7 @@
                     </svg>
 
                     <div>
-                        <span>{{ convertDatas.dateCalc(item.placed_at) }}</span>
+                        <span>{{ dateCalc(item.placed_at) }}</span>
                     </div>
                 </p>
             </div>
@@ -102,8 +102,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { dateCalc } = useConvertDatas()
 
 const dataRes = ref()
 

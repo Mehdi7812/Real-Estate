@@ -34,7 +34,7 @@
                     <span id="selectName">نوع ملک</span>
 
                     <div class="flex gap-2 items-center">
-                        <span dir="ltr" class="whitespace-nowrap w-5">{{ convertDatas.estateTypeRender(estate_type) }}</span>
+                        <span dir="ltr" class="whitespace-nowrap w-5">{{ estateTypeRender(estate_type) }}</span>
 
                         <span class="searchListSvg w-6 relative after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                     </div>
@@ -64,7 +64,7 @@
 
                         <div class="flex gap-2 items-center">
                             <span v-if="unit_price__gte == '' && unit_price__lte == ''" class="whitespace-nowrap">انتخاب کنید</span>
-                            <p v-if="unit_price__gte !== '' || unit_price__lte !== ''" class="whitespace-nowrap"><span v-html="unit_price__gte == '' ? 'انتخاب کنید' : convertDatas.getNumber(unit_price__gte)"></span>~<span v-html="unit_price__lte == '' ? 'انتخاب کنید' : convertDatas.getNumber(unit_price__lte)"></span></p>
+                            <p v-if="unit_price__gte !== '' || unit_price__lte !== ''" class="whitespace-nowrap"><span v-html="unit_price__gte == '' ? 'انتخاب کنید' : getNumber(unit_price__gte)"></span>~<span v-html="unit_price__lte == '' ? 'انتخاب کنید' : getNumber(unit_price__lte)"></span></p>
 
                             <span class="relative w-6 after:absolute after:w-3 after:bg-white dark:after:bg-graytext after:h-[2px] after:right-[10px] before:right-0 before:absolute before:w-3 before:origin-left after:origin-right before:bg-white dark:before:bg-graytext before:h-[2px] after:rounded-full before:rounded-full before:transition-all after:transition-all before:duration-300 after:duration-300 group-hover:before:-rotate-[35deg] group-hover:after:rotate-[35deg]"></span>
                         </div>
@@ -325,8 +325,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { estateTypeRender, getNumber } = useConvertDatas()
 
 import PN from "persian-number";
 import { clickOutSide as vClickOutSide } from '@mahdikhashan/vue3-click-outside';

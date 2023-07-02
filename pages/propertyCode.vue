@@ -26,15 +26,15 @@
 
 <script setup>
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { estateTypeRender, getNumber } = useConvertDatas();
+
 import PN from "persian-number";
 
 const route = useRoute();
 
 const compPageName = computed(() => {
     if(route.query.estate_type || route.query.city || route.query.region || route.query.unit_price__gte || route.query.unit_price__lte) {
-        return `جستجوی ${route.query.estate_type ? convertDatas.estateTypeRender(route.query.estate_type) : 'ملک'} ${(route.query.city || route.query.region) ? 'در ' + (route.query.region ? route.query.region : '') + ' ' + (route.query.city ? route.query.city : '') : ''}  ${(route.query.unit_price__gte || route.query.unit_price__lte) ? ', قیمت' + ((route.query.unit_price__gte && route.query.unit_price__lte) ? ' از ' + PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__gte)) + ' تا ' + PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__lte)) + ' تومان' : ((route.query.unit_price__gte && !route.query.unit_price__lte) ? ' از ' + PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__gte)) + ' تومان' : ' تا ' + PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__lte) + ' تومان'))): ''}`
+        return `جستجوی ${route.query.estate_type ? estateTypeRender(route.query.estate_type) : 'ملک'} ${(route.query.city || route.query.region) ? 'در ' + (route.query.region ? route.query.region : '') + ' ' + (route.query.city ? route.query.city : '') : ''}  ${(route.query.unit_price__gte || route.query.unit_price__lte) ? ', قیمت' + ((route.query.unit_price__gte && route.query.unit_price__lte) ? ' از ' + PN.convertEnToPe(getNumber(route.query.unit_price__gte)) + ' تا ' + PN.convertEnToPe(getNumber(route.query.unit_price__lte)) + ' تومان' : ((route.query.unit_price__gte && !route.query.unit_price__lte) ? ' از ' + PN.convertEnToPe(getNumber(route.query.unit_price__gte)) + ' تومان' : ' تا ' + PN.convertEnToPe(getNumber(route.query.unit_price__lte) + ' تومان'))): ''}`
     } else {
         return "جستجوی ملک"
     }

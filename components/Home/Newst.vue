@@ -75,13 +75,13 @@
                         <Swiper :modules="[SwiperNavigation]" :direction="swiperNewstImg.direction" :navigation="swiperNewstImg.navigation" class="h-64 rounded-2xl overflow-hidden">
                             <SwiperSlide>
                                 <div class="relative rounded-2xl overflow-hidden h-full">
-                                    <img :src="convertDatas.changeToOptimizedImg(data.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
+                                    <img :src="changeToOptimizedImg(data.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                 </div>
                             </SwiperSlide>
 
                             <SwiperSlide v-if="data.media.length" v-for="media in data.media" class="h-64">
                                 <div class="relative rounded-2xl overflow-hidden h-full">
-                                    <img :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
+                                    <img :src="`${apiRootStore.api}${changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
                                 </div>
                             </SwiperSlide>
 
@@ -100,7 +100,7 @@
     
                                 <div>
                                     <div class="bg-primary flex gap-2 rounded-md p-1 items-center whitespace-nowrap">
-                                        <span class="text-[10px] relative top-[2px]">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
+                                        <span class="text-[10px] relative top-[2px]">{{ estateTypeRender(data.estate_type) }}</span>
     
                                         <span>
                                             <svg v-if="data.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,7 +167,7 @@
                                     </span>
                                 </div>
     
-                                <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(data.placed_at) }}</p>
+                                <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
                             </div>
 
                             <div class="swiperNewsImg1-next absolute top-[38%] z-10 -right-3">
@@ -219,7 +219,7 @@
                                 <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black"><span>{{ Number(data.land_size).toLocaleString('fa-ir') }}</span> متر </p>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.city }}</span>
                                 <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ data.location }}</span>
-                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ convertDatas.estateTypeRender(data.estate_type) }}</span>
+                                <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-right-4 after:top-2">{{ estateTypeRender(data.estate_type) }}</span>
                             </div>
     
                             <!-- line -->
@@ -247,7 +247,7 @@
                                     <div class="flex flex-col gap-[5px]">
                                         <!-- Real Price -->
                                         <p class="whitespace-nowrap text-sm flex flex-nowrap items-center">
-                                            <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(convertDatas.getNumber(data.unit_price)) }}</p>
+                                            <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(getNumber(data.unit_price)) }}</p>
                                         
                                             <!-- SVG Toman -->
                                             <span>
@@ -277,7 +277,7 @@
 
                                         <!-- Takhfif Vizhe -->
                                         <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(convertDatas.getNumber(data.price_after_discount)) }}</p>
+                                            <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
                                             <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>
@@ -288,7 +288,7 @@
                                     <p v-if="data.pre_payment_status" class="text-sm text-[#BEBEBE]">پـیــش‌ پـرداخــت:</p>
                                     
                                     <div v-if="data.pre_payment_status" class="flex flex-nowrap items-center whitespace-nowrap gap-2">
-                                        <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(convertDatas.getNumber(data.pre_payment)) }}</p>
+                                        <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(getNumber(data.pre_payment)) }}</p>
                                         <svg class="dark:hidden" width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.60427 7.94561C2.05741 7.94561 2.43853 7.91045 2.74762 7.84014C3.05672 7.76984 3.3013 7.66132 3.48135 7.51459C3.6374 7.3862 3.75144 7.22265 3.82346 7.02396C3.89848 6.82526 3.93599 6.57765 3.93599 6.28113H3.10774C2.89767 6.28113 2.6846 6.24904 2.46854 6.18484C2.25247 6.12065 2.05591 6.01518 1.87885 5.86845C1.7048 5.72172 1.56225 5.53067 1.45122 5.29529C1.34018 5.05685 1.28467 4.76645 1.28467 4.42408C1.28467 4.22232 1.30117 4.04044 1.33418 3.87842C1.37019 3.71335 1.41371 3.56662 1.46472 3.43823C1.51874 3.30984 1.57726 3.19827 1.64028 3.1035C1.7033 3.00874 1.76482 2.92773 1.82484 2.86048C1.98989 2.69235 2.17895 2.56243 2.39201 2.47073C2.60508 2.37902 2.83315 2.33317 3.07623 2.33317C3.28929 2.33317 3.48885 2.36679 3.67491 2.43404C3.86097 2.5013 4.02752 2.60217 4.17457 2.73668C4.57969 3.12184 4.78226 3.72558 4.78226 4.54788V5.41451H5.45747V6.28113H4.78226C4.78226 6.71521 4.71924 7.08815 4.5932 7.39995C4.47016 7.71481 4.2781 7.9777 4.01702 8.18863C3.75294 8.39955 3.42433 8.55546 3.03121 8.65633C2.64109 8.76027 2.16544 8.81223 1.60427 8.81223V7.94561ZM3.07623 3.19979C2.77913 3.19979 2.54806 3.30679 2.38301 3.52077C2.21796 3.73475 2.13543 4.03585 2.13543 4.42408C2.13543 4.81841 2.25247 5.09201 2.48654 5.24485C2.54356 5.28153 2.60208 5.3121 2.6621 5.33656C2.72211 5.35795 2.78063 5.37477 2.83765 5.387C2.89467 5.39617 2.94568 5.40381 2.9907 5.40992C3.03871 5.41298 3.07773 5.41451 3.10774 5.41451H3.93599V4.54788C3.93599 4.32473 3.91949 4.13673 3.88648 3.98388C3.85347 3.82798 3.81145 3.69959 3.76044 3.59872C3.70942 3.49784 3.6509 3.42142 3.58488 3.36945C3.52186 3.31443 3.45884 3.27469 3.39582 3.25023C3.33281 3.22578 3.27279 3.21202 3.21577 3.20896C3.15875 3.20285 3.11224 3.19979 3.07623 3.19979Z" fill="white"/>
                                             <path d="M7.15423 5.41451C7.18724 5.41451 7.20374 5.42673 7.20374 5.45119V6.23528C7.20374 6.26585 7.18724 6.28113 7.15423 6.28113H5.22763C5.19762 6.28113 5.18261 6.26585 5.18261 6.23528V5.45119C5.18261 5.42673 5.19762 5.41451 5.22763 5.41451H7.15423Z" fill="white"/>
@@ -380,9 +380,8 @@ import PN from "persian-number";
 import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
-// Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+// Convert digits func Store
+const { estateTypeRender, getNumber, dateCalc, changeToOptimizedImg } = useConvertDatas()
 
 const dataRes = ref()
 

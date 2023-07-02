@@ -22,6 +22,7 @@ export const useAuth = defineStore("auth", () => {
                 } else {
                     isLogin.value = false
                 }
+                
                 return res.json()
             }) 
             .then(data => {
@@ -29,9 +30,9 @@ export const useAuth = defineStore("auth", () => {
                     userInfo.value = data
                 }
             })
-            .catch(err => {
-                console.log(err)
-            })
+            // .catch(err => {
+            //     console.log(err)
+            // })
         }
     };
 

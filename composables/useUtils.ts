@@ -1,7 +1,5 @@
-import { defineStore } from "pinia"
-
-export const useConvertDatas = defineStore("convertDatas", () => {
-    const estateTypeRender = (type) => {
+export const useConvertDatas = () => {
+    const estateTypeRender = (type: any) => {
         if(type== 'G') {
             return 'باغ'
         } else if (type == "A") {
@@ -19,7 +17,7 @@ export const useConvertDatas = defineStore("convertDatas", () => {
         }
     }
     
-    const getNumber = (num) => {
+    const getNumber = (num: any) => {
         if (num >= 1000000000) {
             return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + " میلیارد";
         }
@@ -32,7 +30,7 @@ export const useConvertDatas = defineStore("convertDatas", () => {
         return num;
     }
     
-    const dateCalc = (prevDate) => {
+    const dateCalc = (prevDate: any) => {
         let now = new Date().toJSON()
         let seconds = (Date.parse(now) - Date.parse(prevDate)) / 1000
         let days = Math.floor(seconds / (3600*24))
@@ -46,7 +44,7 @@ export const useConvertDatas = defineStore("convertDatas", () => {
         }
     };
 
-    const changeToOptimizedImg = (imgUrl) => imgUrl.replace("realSize", "optimized");
+    const changeToOptimizedImg = (imgUrl: any) => imgUrl.replace("realSize", "optimized");
 
     return { estateTypeRender, getNumber, dateCalc, changeToOptimizedImg }
-})
+}

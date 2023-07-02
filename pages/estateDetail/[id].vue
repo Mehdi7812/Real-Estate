@@ -63,7 +63,7 @@
                     <!-- Big Picture -->
                     <div data-fancybox="gallery" :data-src="`${postItem.cover}`" class="row-span-3 col-span-full">
                         <div class="overflow-hidden col-span-full row-span-full w-full h-[300px] rounded-[10px]">
-                            <img class="object-cover w-full h-full bg-red-700" :src="convertDatas.changeToOptimizedImg(postItem.cover)" :alt="postItem.cover_alt" />
+                            <img class="object-cover w-full h-full bg-red-700" :src="changeToOptimizedImg(postItem.cover)" :alt="postItem.cover_alt" />
                         </div>
                     </div>
 
@@ -71,16 +71,16 @@
                     <div class="grid grid-cols-3 col-span-full gap-3">
                         <div v-for="(img, index) in postItem.media" :class="index >= 3 ? 'hidden' : ''">
                             <div v-if="index <= 1" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                             </div>
 
                             <div v-if="index == 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
-                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                                 <p dir="rtl" class="text-xs flex justify-center items-center text-white flex-col backdrop-blur-[2px] rounded-[10px] overflow-hidden backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
 
                             <div v-if="index > 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                                 <p dir="rtl" class="text-xs flex justify-center text-white items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
                         </div>
@@ -93,17 +93,17 @@
                         <div v-for="(img, index) in postItem.media" :class="index >= 4 ? 'hidden' : ''">
                             <div v-if="index < 4" class="h-full">
                                 <div v-if="index <= 2" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] cursor-pointer">
-                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                                 </div>
 
                                 <div v-if="index == 3" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="group overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
-                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                                     <p v-if="postItem.media.length - 4 > 0" dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                                 </div>
                             </div>
 
                             <div v-if="index >= 4" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${convertDatas.changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
                                 <!-- <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p> -->
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                     <!-- Big Picture -->
                     <div data-fancybox="galleryLG" :data-src="`${postItem.cover}`" class="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] cursor-pointer">
                         <div class="overflow-hidden col-span-2 row-span-2 w-full rounded-[10px]">
-                            <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="convertDatas.changeToOptimizedImg(postItem.cover)" :alt="postItem.title" />
+                            <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="changeToOptimizedImg(postItem.cover)" :alt="postItem.title" />
                         </div>
                     </div>
                     
@@ -165,7 +165,7 @@
                                             <path d="M17.4173 9.50004C17.4173 13.87 13.8707 17.4167 9.50065 17.4167C5.13065 17.4167 1.58398 13.87 1.58398 9.50004C1.58398 5.13004 5.13065 1.58337 9.50065 1.58337C13.8707 1.58337 17.4173 5.13004 17.4173 9.50004Z" stroke="gray" stroke-opacity="0.39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M12.437 12.0175L9.98286 10.5529C9.55536 10.2996 9.20703 9.69002 9.20703 9.19127V5.94543" stroke="gray" stroke-opacity="0.39" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        {{ PN.convertEnToPe(convertDatas.dateCalc(postItem.placed_at)) }}
+                                        {{ PN.convertEnToPe(dateCalc(postItem.placed_at)) }}
                                     </p>
     
                                     <!-- view -->
@@ -337,7 +337,7 @@
                                 <div class="flex flex-col gap-[5px]">
                                     <!-- Real Price -->
                                     <div class="whitespace-nowrap text-sm flex flex-nowrap items-center">
-                                        <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(convertDatas.getNumber(postItem.unit_price)) }}</p>
+                                        <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(getNumber(postItem.unit_price)) }}</p>
                                     
                                         <!-- SVG Toman -->
                                         <span>
@@ -367,7 +367,7 @@
 
                                     <!-- Takhfif Vizhe -->
                                     <div v-if="postItem.percent_discount" class="flex flex-nowrap items-center text-base">
-                                        <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(convertDatas.getNumber(postItem.price_after_discount)) }}</p>
+                                        <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(getNumber(postItem.price_after_discount)) }}</p>
                                         <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(postItem.percent_discount) }}٪</span>
                                     </div>
                                 </div>
@@ -379,7 +379,7 @@
                                     <p class="text-sm text-[#BEBEBE] px-1">پـیــش‌ پـرداخــت:</p>
                                     
                                     <div class="flex flex-nowrap items-center whitespace-nowrap gap-2">
-                                        <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(convertDatas.getNumber(data.pre_payment)) }}</p>
+                                        <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(getNumber(data.pre_payment)) }}</p>
                                         <svg class="dark:hidden" width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.60427 7.94561C2.05741 7.94561 2.43853 7.91045 2.74762 7.84014C3.05672 7.76984 3.3013 7.66132 3.48135 7.51459C3.6374 7.3862 3.75144 7.22265 3.82346 7.02396C3.89848 6.82526 3.93599 6.57765 3.93599 6.28113H3.10774C2.89767 6.28113 2.6846 6.24904 2.46854 6.18484C2.25247 6.12065 2.05591 6.01518 1.87885 5.86845C1.7048 5.72172 1.56225 5.53067 1.45122 5.29529C1.34018 5.05685 1.28467 4.76645 1.28467 4.42408C1.28467 4.22232 1.30117 4.04044 1.33418 3.87842C1.37019 3.71335 1.41371 3.56662 1.46472 3.43823C1.51874 3.30984 1.57726 3.19827 1.64028 3.1035C1.7033 3.00874 1.76482 2.92773 1.82484 2.86048C1.98989 2.69235 2.17895 2.56243 2.39201 2.47073C2.60508 2.37902 2.83315 2.33317 3.07623 2.33317C3.28929 2.33317 3.48885 2.36679 3.67491 2.43404C3.86097 2.5013 4.02752 2.60217 4.17457 2.73668C4.57969 3.12184 4.78226 3.72558 4.78226 4.54788V5.41451H5.45747V6.28113H4.78226C4.78226 6.71521 4.71924 7.08815 4.5932 7.39995C4.47016 7.71481 4.2781 7.9777 4.01702 8.18863C3.75294 8.39955 3.42433 8.55546 3.03121 8.65633C2.64109 8.76027 2.16544 8.81223 1.60427 8.81223V7.94561ZM3.07623 3.19979C2.77913 3.19979 2.54806 3.30679 2.38301 3.52077C2.21796 3.73475 2.13543 4.03585 2.13543 4.42408C2.13543 4.81841 2.25247 5.09201 2.48654 5.24485C2.54356 5.28153 2.60208 5.3121 2.6621 5.33656C2.72211 5.35795 2.78063 5.37477 2.83765 5.387C2.89467 5.39617 2.94568 5.40381 2.9907 5.40992C3.03871 5.41298 3.07773 5.41451 3.10774 5.41451H3.93599V4.54788C3.93599 4.32473 3.91949 4.13673 3.88648 3.98388C3.85347 3.82798 3.81145 3.69959 3.76044 3.59872C3.70942 3.49784 3.6509 3.42142 3.58488 3.36945C3.52186 3.31443 3.45884 3.27469 3.39582 3.25023C3.33281 3.22578 3.27279 3.21202 3.21577 3.20896C3.15875 3.20285 3.11224 3.19979 3.07623 3.19979Z" fill="white"/>
                                             <path d="M7.15423 5.41451C7.18724 5.41451 7.20374 5.42673 7.20374 5.45119V6.23528C7.20374 6.26585 7.18724 6.28113 7.15423 6.28113H5.22763C5.19762 6.28113 5.18261 6.26585 5.18261 6.23528V5.45119C5.18261 5.42673 5.19762 5.41451 5.22763 5.41451H7.15423Z" fill="white"/>
@@ -454,7 +454,7 @@
                                 </li>
                                 <li v-if="postItem.real_price" class="flex gap-2 text-graytext lg:text-lg mb-4 whitespace-nowrap">
                                     قیمت واقعی : 
-                                    <span class="text-white dark:text-black flex items-center whitespace-nowrap gap-1 font-bold">{{ PN.convertEnToPe(convertDatas.getNumber(postItem.real_price)) }}
+                                    <span class="text-white dark:text-black flex items-center whitespace-nowrap gap-1 font-bold">{{ PN.convertEnToPe(getNumber(postItem.real_price)) }}
                                          <svg width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.60427 7.85467C2.05741 7.85467 2.43853 7.81951 2.74762 7.7492C3.05672 7.67889 3.3013 7.57037 3.48135 7.42364C3.6374 7.29525 3.75144 7.13171 3.82346 6.93301C3.89848 6.73432 3.93599 6.48671 3.93599 6.19019H3.10774C2.89767 6.19019 2.6846 6.15809 2.46854 6.0939C2.25247 6.02971 2.05591 5.92424 1.87885 5.77751C1.7048 5.63078 1.56225 5.43973 1.45122 5.20435C1.34018 4.96591 1.28467 4.6755 1.28467 4.33313C1.28467 4.13138 1.30117 3.94949 1.33418 3.78748C1.37019 3.62241 1.41371 3.47568 1.46472 3.34729C1.51874 3.2189 1.57726 3.10732 1.64028 3.01256C1.7033 2.9178 1.76482 2.83679 1.82484 2.76954C1.98989 2.60141 2.17895 2.47149 2.39201 2.37978C2.60508 2.28808 2.83315 2.24222 3.07623 2.24222C3.28929 2.24222 3.48885 2.27585 3.67491 2.3431C3.86097 2.41035 4.02752 2.51123 4.17457 2.64573C4.57969 3.0309 4.78226 3.63464 4.78226 4.45694V5.32356H5.45747V6.19019H4.78226C4.78226 6.62427 4.71924 6.99721 4.5932 7.30901C4.47016 7.62387 4.2781 7.88676 4.01702 8.09769C3.75294 8.30861 3.42433 8.46451 3.03121 8.56539C2.64109 8.66932 2.16544 8.72129 1.60427 8.72129V7.85467ZM3.07623 3.10885C2.77913 3.10885 2.54806 3.21584 2.38301 3.42982C2.21796 3.64381 2.13543 3.94491 2.13543 4.33313C2.13543 4.72747 2.25247 5.00106 2.48654 5.15391C2.54356 5.19059 2.60208 5.22116 2.6621 5.24561C2.72212 5.26701 2.78063 5.28383 2.83765 5.29605C2.89467 5.30522 2.94568 5.31287 2.9907 5.31898C3.03871 5.32204 3.07773 5.32356 3.10774 5.32356H3.93599V4.45694C3.93599 4.23379 3.91949 4.04579 3.88648 3.89294C3.85347 3.73704 3.81145 3.60865 3.76044 3.50778C3.70942 3.4069 3.6509 3.33048 3.58488 3.27851C3.52186 3.22348 3.45884 3.18375 3.39582 3.15929C3.33281 3.13484 3.27279 3.12108 3.21577 3.11802C3.15875 3.11191 3.11224 3.10885 3.07623 3.10885Z" fill="white"/>
                                             <path d="M7.15423 5.32356C7.18724 5.32356 7.20374 5.33579 7.20374 5.36025V6.14434C7.20374 6.17491 7.18724 6.19019 7.15423 6.19019H5.22763C5.19762 6.19019 5.18261 6.17491 5.18261 6.14434V5.36025C5.18261 5.33579 5.19762 5.32356 5.22763 5.32356H7.15423Z" fill="white"/>
@@ -1198,7 +1198,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide !h-64">
                                             <div class="relative rounded-2xl overflow-hidden h-full">
-                                                <img :src="convertDatas.changeToOptimizedImg(post.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="post.title" />
+                                                <img :src="changeToOptimizedImg(post.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="post.title" />
                                             </div>
                                         </div>
                                     </div>
@@ -1216,7 +1216,7 @@
                                         </div>
             
                                         <div class="bg-primary flex gap-2 rounded-md p-1 items-center">
-                                            <span class="text-[10px]">{{ convertDatas.estateTypeRender(post.estate_type) }}</span>
+                                            <span class="text-[10px]">{{ estateTypeRender(post.estate_type) }}</span>
         
                                             <span>
                                                 <svg v-if="post.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1273,7 +1273,7 @@
             
                                     <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
                                         <!--عکسها-->
-                                        <p class="bg-primary text-[10px] py-2 px-3 rounded-md opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(post.placed_at) }}</p>
+                                        <p class="bg-primary text-[10px] py-2 px-3 rounded-md opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
                                     </div>
                                 </div>
         
@@ -1288,7 +1288,7 @@
                                     <p class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3"><span>{{ Number(post.land_size).toLocaleString('fa-ir') }}</span> متر </p>
                                     <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3">{{ post.region }}</span>
                                     <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black after:absolute after:w-1 after:h-1 after:rounded-full after:bg-[#f6e9e9] dark:after:bg-black after:-left-4 after:top-3">{{ post.location }}</span>
-                                    <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black">{{ convertDatas.estateTypeRender(post.estate_type) }}</span>
+                                    <span class="relative text-[15px] font-normal text-[#f6e9e9] whitespace-nowrap dark:text-black">{{ estateTypeRender(post.estate_type) }}</span>
                                 </div>
         
                                 <!-- line -->
@@ -1316,7 +1316,7 @@
                                         <div class="flex flex-col gap-[5px]">
                                             <!-- Real Price -->
                                             <p class="whitespace-nowrap text-sm flex flex-nowrap items-center">
-                                                <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(convertDatas.getNumber(post.unit_price)) }}</p>
+                                                <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(getNumber(post.unit_price)) }}</p>
                                             
                                                 <!-- SVG Toman -->
                                                 <span>
@@ -1346,7 +1346,7 @@
 
                                             <!-- Takhfif Vizhe -->
                                             <div v-if="post.discount_status" class="flex flex-nowrap items-center text-base">
-                                                <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(convertDatas.getNumber(post.price_after_discount)) }}</p>
+                                                <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(getNumber(post.price_after_discount)) }}</p>
                                                 <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(post.percent_discount) }}٪</span>
                                             </div>
                                         </div>
@@ -1357,7 +1357,7 @@
                                         <p v-if="post.pre_payment_status" class="text-sm text-[#BEBEBE]">پـیــش‌ پـرداخــت:</p>
                                         
                                         <div v-if="post.pre_payment_status" class="flex flex-nowrap items-center whitespace-nowrap gap-2">
-                                            <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(convertDatas.getNumber(post.pre_payment)) }}</p>
+                                            <p class="text-white dark:text-black text-sm">{{ PN.convertEnToPe(getNumber(post.pre_payment)) }}</p>
                                             <svg class="dark:hidden" width="14" height="19" viewBox="0 0 14 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1.60427 7.94561C2.05741 7.94561 2.43853 7.91045 2.74762 7.84014C3.05672 7.76984 3.3013 7.66132 3.48135 7.51459C3.6374 7.3862 3.75144 7.22265 3.82346 7.02396C3.89848 6.82526 3.93599 6.57765 3.93599 6.28113H3.10774C2.89767 6.28113 2.6846 6.24904 2.46854 6.18484C2.25247 6.12065 2.05591 6.01518 1.87885 5.86845C1.7048 5.72172 1.56225 5.53067 1.45122 5.29529C1.34018 5.05685 1.28467 4.76645 1.28467 4.42408C1.28467 4.22232 1.30117 4.04044 1.33418 3.87842C1.37019 3.71335 1.41371 3.56662 1.46472 3.43823C1.51874 3.30984 1.57726 3.19827 1.64028 3.1035C1.7033 3.00874 1.76482 2.92773 1.82484 2.86048C1.98989 2.69235 2.17895 2.56243 2.39201 2.47073C2.60508 2.37902 2.83315 2.33317 3.07623 2.33317C3.28929 2.33317 3.48885 2.36679 3.67491 2.43404C3.86097 2.5013 4.02752 2.60217 4.17457 2.73668C4.57969 3.12184 4.78226 3.72558 4.78226 4.54788V5.41451H5.45747V6.28113H4.78226C4.78226 6.71521 4.71924 7.08815 4.5932 7.39995C4.47016 7.71481 4.2781 7.9777 4.01702 8.18863C3.75294 8.39955 3.42433 8.55546 3.03121 8.65633C2.64109 8.76027 2.16544 8.81223 1.60427 8.81223V7.94561ZM3.07623 3.19979C2.77913 3.19979 2.54806 3.30679 2.38301 3.52077C2.21796 3.73475 2.13543 4.03585 2.13543 4.42408C2.13543 4.81841 2.25247 5.09201 2.48654 5.24485C2.54356 5.28153 2.60208 5.3121 2.6621 5.33656C2.72211 5.35795 2.78063 5.37477 2.83765 5.387C2.89467 5.39617 2.94568 5.40381 2.9907 5.40992C3.03871 5.41298 3.07773 5.41451 3.10774 5.41451H3.93599V4.54788C3.93599 4.32473 3.91949 4.13673 3.88648 3.98388C3.85347 3.82798 3.81145 3.69959 3.76044 3.59872C3.70942 3.49784 3.6509 3.42142 3.58488 3.36945C3.52186 3.31443 3.45884 3.27469 3.39582 3.25023C3.33281 3.22578 3.27279 3.21202 3.21577 3.20896C3.15875 3.20285 3.11224 3.19979 3.07623 3.19979Z" fill="white"/>
                                                 <path d="M7.15423 5.41451C7.18724 5.41451 7.20374 5.42673 7.20374 5.45119V6.23528C7.20374 6.26585 7.18724 6.28113 7.15423 6.28113H5.22763C5.19762 6.28113 5.18261 6.26585 5.18261 6.23528V5.45119C5.18261 5.42673 5.19762 5.41451 5.22763 5.41451H7.15423Z" fill="white"/>
@@ -1610,8 +1610,7 @@ import { useAuth } from "~/stores/Auth"
 const authStore = useAuth()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { estateTypeRender, getNumber, dateCalc, changeToOptimizedImg } = useConvertDatas()
 
 import PN from "persian-number";
 

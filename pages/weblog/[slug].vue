@@ -60,7 +60,7 @@
                                 </span>
                                 <span class="text-graytext ">نوشته شده در: </span>
                             
-                                <p class="text-[9px] md:text-base">{{ convertDatas.dateCalc(weblogItem.placed_at) }}</p>
+                                <p class="text-[9px] md:text-base">{{ dateCalc(weblogItem.placed_at) }}</p>
                             </p>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                     <div class="flex justify-between items-center">
                                         <span class="text-xs">{{ comment.name }}</span>
                                         <p class="text-[10px] text-graytext">
-                                                <span>{{ convertDatas.dateCalc(comment.review_date) }}</span>
+                                                <span>{{ dateCalc(comment.review_date) }}</span>
                                             نوشته شده
                                         </p>
                                     </div>
@@ -163,7 +163,7 @@
                                         <div class="flex justify-between items-center">
                                             <p class="flex gap-2 text-xs text-graytext">پاسخ<span class="text-white dark:text-black">{{ comment.user }} </span>به <span class="text-white dark:text-black">{{ comment.name }}</span></p>
                                             <p class="text-[10px] text-graytext">
-                                                    <span>{{ convertDatas.dateCalc(comment.answer_date) }}</span>
+                                                    <span>{{ dateCalc(comment.answer_date) }}</span>
                                                 نوشته شده
                                             </p>
                                         </div>
@@ -241,7 +241,7 @@
                                         </div>
                                     </div>
         
-                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ convertDatas.dateCalc(post.placed_at) }}</p>
+                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md md:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(post.placed_at) }}</p>
                                 </div>
         
                                 <div class="absolute bottom-3 right-3 left-3 flex justify-end items-end gap-2">
@@ -303,8 +303,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { dateCalc } = useConvertDatas()
 
 const route = useRoute()
 

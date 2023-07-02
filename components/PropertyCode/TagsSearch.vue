@@ -37,7 +37,7 @@
         </p>
 
         <p v-if="route.query.estate_type" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>{{ convertDatas.estateTypeRender(route.query.estate_type) }}</span>
+            <span>{{ estateTypeRender(route.query.estate_type) }}</span>
 
             <svg @click="removeTag('estate_type', route.query.estate_type)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
@@ -73,7 +73,7 @@
         </p>
 
         <p v-if="route.query.unit_price__gte" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>قیمت از <span v-html="PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__gte))"></span></span>
+            <span>قیمت از <span v-html="PN.convertEnToPe(getNumber(route.query.unit_price__gte))"></span></span>
 
             <svg @click="removeTag('unit_price__gte', route.query.unit_price__gte)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
@@ -82,7 +82,7 @@
         </p>
 
         <p v-if="route.query.unit_price__lte" class="flex items-center justify-around bg-secondary dark:bg-[#BEBEBE] rounded-lg px-4 gap-3">
-            <span>قیمت تا <span v-html="PN.convertEnToPe(convertDatas.getNumber(route.query.unit_price__lte))"></span></span>
+            <span>قیمت تا <span v-html="PN.convertEnToPe(getNumber(route.query.unit_price__lte))"></span></span>
 
             <svg @click="removeTag('unit_price__lte', route.query.unit_price__lte)" class="cursor-pointer" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.61133 9.47452L8.389 1.59149" stroke="white" stroke-width="1.45236" stroke-linecap="round" stroke-linejoin="round"/>
@@ -159,8 +159,7 @@
 import PN from "persian-number";
 
 // Convert digits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { estateTypeRender, getNumber } = useConvertDatas()
 
 const route = useRoute()
 

@@ -108,7 +108,7 @@
                         <p class="text-sm">نوع ملک</p>
 
                         <p class="flex items-center gap-3">
-                            <span class="text-sm text-graytext">{{ convertDatas.estateTypeRender(estate_type) }}</span>
+                            <span class="text-sm text-graytext">{{ estateTypeRender(estate_type) }}</span>
                             <svg class="transition-all duration-300 -rotate-90 svgElemsList text-[#3f3f3f]" width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path class="stroke-white dark:stroke-graytext" d="M9.46818 1.5144L5.9745 5.00808C5.5619 5.42068 4.88675 5.42068 4.47415 5.00808L0.980469 1.5144" stroke-width="1.28602" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>                                                                           
@@ -487,7 +487,7 @@
                     <div class="flex flex-col justify-around">
                         <h5 class="text-xs md:text-base">{{ item.title }}</h5>
 
-                        <p class="text-[9px] text-graytext md:text-xs"><span class="md:text-xl text-lg text-white dark:text-black ml-2" v-html="PN.convertEnToPe(convertDatas.getNumber(item.unit_price))"></span> تومان </p>
+                        <p class="text-[9px] text-graytext md:text-xs"><span class="md:text-xl text-lg text-white dark:text-black ml-2" v-html="PN.convertEnToPe(getNumber(item.unit_price))"></span> تومان </p>
                     </div>
                 </NuxtLink>
             </div>
@@ -501,8 +501,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-import { useConvertDatas } from "~/stores/ConvertDatas"
-const convertDatas = useConvertDatas()
+const { estateTypeRender, getNumber } = useConvertDatas()
 
 import PN from 'persian-number'
 
