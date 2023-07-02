@@ -93,8 +93,7 @@ useHead({
 		` }
 	],
 	meta: [
-		// { name: "keywords", content: keywords },
-		// { name: "description", content: data.value[0].homePage_text },
+		{ name: "keywords", content: data.value[0].keywords_list.join(',') },
 		{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1" },
 		{ name: 'title', content: '' },
         { name: 'description', hid: 'description', content: '' },

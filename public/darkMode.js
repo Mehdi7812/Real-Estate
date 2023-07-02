@@ -33,26 +33,25 @@ if(localStorage.getItem('darkMode') == 'true') {
 
 function setLight() {
   container.classList.remove("shadow-dark");
+  themeIcon.classList.add("change");
+  themeIcon.src = sun;
   setTimeout(() => {
     container.classList.add("shadow-light");
     themeIcon.classList.remove("change");
   }, 100);
-  themeIcon.classList.add("change");
-  themeIcon.src = sun;
 }
 function setDark() {
   // root.style.setProperty("--bs-dark", "#212529");
   container.classList.remove("shadow-light");
+  themeIcon.classList.add("change");
+  themeIcon.src = moon;
   setTimeout(() => {
     container.classList.add("shadow-dark");
     themeIcon.classList.remove("change");
   }, 100);
-  themeIcon.classList.add("change");
-  themeIcon.src = moon;
 }
 
 function setWithApi (theme) {
-  // console.log(theme);
   if(theme == 'سفید') {
     document.documentElement.classList.add('dark')
     setLight()

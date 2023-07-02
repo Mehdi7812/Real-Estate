@@ -188,10 +188,12 @@ const documentTypeChange = (document_type) => {
 }
 
 const removeTag = (item, value) => {
-    console.log(item, value);
-    let url = route.fullPath
-    let newUrl = url.replace(`&${item}=${value}`, '')
-    console.log(newUrl);
-    navigateTo(newUrl)
+    let querys = route.fullPath.split("?")[1].split("&")
+    querys.forEach((query, index) => {
+        if(query.includes(item)) {
+            querys.splice(index, 1)
+        }
+    })
+    navigateTo(`/${route.name}?${querys.join("&")}`)
 };
 </script>
