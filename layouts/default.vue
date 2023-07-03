@@ -80,7 +80,7 @@
                 <ul class="text-righ">
                     <li class="text-graytext cursor-default mb-6 text-lg">منو</li>
                     <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/">خانه</NuxtLink></li>
-                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/weblog">وبلاگ</NuxtLink></li>
+                    <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/blog">وبلاگ</NuxtLink></li>
                     <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/contact">تماس باما</NuxtLink></li>
                     <li class="mb-5 text-xl hover:text-primaryOrange dark:hover:text-bluePrimary transition duration-300"><NuxtLink @click="closeMenuMobile($refs.menuMobileElem)" to="/about">درباره ما</NuxtLink></li>
                 </ul>
@@ -111,7 +111,7 @@
                     </NuxtLink>
                 </li>
                 <li class="w-5 lg:w-14 whitespace-nowrap">
-                    <NuxtLink :style="{ color: route.fullPath=='/weblog' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/weblog">وبلاگ</NuxtLink>
+                    <NuxtLink :style="{ color: route.fullPath=='/blog' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/blog">وبلاگ</NuxtLink>
                 </li>
                 <li class="w-5 lg:w-14 whitespace-nowrap">
                     <NuxtLink :style="{ color: route.fullPath=='/' ? 'var(--primaryColor);' : '' }" onmouseenter="this.style.color='var(--primaryColor)'" onmouseout="this.style.color=''" class="transition-all duration-300" to="/">خانه</NuxtLink>

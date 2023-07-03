@@ -3,7 +3,7 @@
         <h5 class="md:text-xl">برچسب های محبوب</h5>
 
         <div class="flex gap-1 flex-wrap pl-12">
-            <NuxtLink :to="`/weblog?search=${item.title}&weblog_type=`" v-for="item in dataRes" :key="item.id" class="bg-primary dark:bg-[#f0f3f7] shadow-md bg-opacity-80 text-[10px] md:text-sm py-2 px-4 rounded-md hover:bg-primaryOrange dark:hover:bg-bluePrimary transition-all duration-300" onmouseover="this.style.backgroundColor = 'var(--primaryColor)'" onmouseout="this.style.backgroundColor = ''"><h4>{{ item.title }}</h4></NuxtLink>
+            <NuxtLink :to="`/blog?search=${item.title}&weblog_type=`" v-for="item in dataRes" :key="item.id" class="bg-primary dark:bg-[#f0f3f7] shadow-md bg-opacity-80 text-[10px] md:text-sm py-2 px-4 rounded-md hover:bg-primaryOrange dark:hover:bg-bluePrimary transition-all duration-300" onmouseover="this.style.backgroundColor = 'var(--primaryColor)'" onmouseout="this.style.backgroundColor = ''"><h4>{{ item.title }}</h4></NuxtLink>
         </div>
     </div>
 </template>

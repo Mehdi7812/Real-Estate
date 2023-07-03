@@ -13,7 +13,7 @@
                     <path d="M31.9964 31.177L29.1631 28.3436" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>   
             </a>
-            <NuxtLink v-if="slug" style="background-color: var(--primaryColor)" :to="`/weblog?search=${slug}&weblog_type=`" :class="slug ? 'cursor-pointer' : 'cursor-not-allowed'" class="hover:opacity-80 bg-primaryOrange dark:bg-bluePrimary hover:bg-hoverPrimaryOrange dark:hover:bg-bluePrimary/30 rounded-l-lg h-12 px-4 lg:px-6 rounded-r-none transition-all duration-300 flex justify-center items-center">
+            <NuxtLink v-if="slug" style="background-color: var(--primaryColor)" :to="`/blog?search=${slug}&weblog_type=`" :class="slug ? 'cursor-pointer' : 'cursor-not-allowed'" class="hover:opacity-80 bg-primaryOrange dark:bg-bluePrimary hover:bg-hoverPrimaryOrange dark:hover:bg-bluePrimary/30 rounded-l-lg h-12 px-4 lg:px-6 rounded-r-none transition-all duration-300 flex justify-center items-center">
                 <svg class="w-6 md:w-8" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.6631 7.09363H29.1631" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M20.6631 11.3436H24.9131" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

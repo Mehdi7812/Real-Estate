@@ -47,7 +47,7 @@ const getTitlePost = (titlePost) => {
 useHead({
     titleTemplate: "وبلاگ-%s",
     link:[
-        { rel: 'canonical', href: '/weblog' }
+        { rel: 'canonical', href: '/blog' }
     ]
 });
 </script>

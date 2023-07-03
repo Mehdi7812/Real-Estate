@@ -9,7 +9,7 @@
 
                 <div class="flex gap-2">
                     <div>
-                        <NuxtLink style="background-color: var(--primaryColor)" :to="`/weblog`" class="group dark:text-white hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg hover:bg-hoverPrimaryOrange transition-all duration-300">
+                        <NuxtLink style="background-color: var(--primaryColor)" :to="`/blog`" class="group dark:text-white hover:opacity-80 p-3 lg:p-5 justify-center flex items-center rounded-lg hover:bg-hoverPrimaryOrange transition-all duration-300">
                             <span class="w-0 max-h-5 lg:group-hover:w-[90px] whitespace-nowrap overflow-hidden transition-all duration-300">مشاهده همه</span>
                             <svg width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.84317 2.16666H5.78484C3.41234 2.16666 2.1665 3.41249 2.1665 5.77416V7.83249C2.1665 10.1942 3.41234 11.44 5.774 11.44H7.83234C10.194 11.44 11.4398 10.1942 11.4398 7.83249V5.77416C11.4507 3.41249 10.2048 2.16666 7.84317 2.16666Z" fill="white"/>
@@ -70,7 +70,7 @@
                 </SwiperSlide>
 
                 <SwiperSlide v-for="data in dataRes">
-                    <NuxtLink :to="`/weblog/${data.slug}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer">
+                    <NuxtLink :to="`/blog/${data.slug}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer">
                         <div class="swiper swiperWeblogImg1">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">

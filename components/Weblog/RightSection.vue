@@ -71,7 +71,7 @@
         <Transition>
             <div class="flex flex-col gap-6" v-if="posts">
                 <div v-if="!pending" v-for="data in posts.results" :key="data.id" class="postCard bg-secondary dark:bg-[#fcfcfc] rounded-2xl shadow-lg md:rounded-[31px] p-3 group cursor-pointer md:flex md:gap-8">
-                    <NuxtLink :to="`/weblog/${data.slug}`" class="block relative md:w-5/12">
+                    <NuxtLink :to="`/blog/${data.slug}`" class="block relative md:w-5/12">
                         <img :src="`${apiRootStore.api}/${data.cover}`" class="w-full h-48 object-cover rounded-2xl md:rounded-[31px] overflow-hidden" :alt="data.title" />
     
                         <div class="absolute top-3 left-3 right-3 flex justify-between">
@@ -121,7 +121,7 @@
                     </NuxtLink>
     
                     <div class="flex gap-4 flex-col md:w-7/12 md:justify-between">
-                        <NuxtLink :to="`/weblog/${data.slug}`" class="py-3">
+                        <NuxtLink :to="`/blog/${data.slug}`" class="py-3">
                             <h2 class="text-[15px] font-bold md:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h2>
         
                             <p class="text-[10px] text-right md:text-[14px] text-[#9EA1AC]">{{ data.introduction }}</p>

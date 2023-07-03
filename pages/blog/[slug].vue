@@ -70,7 +70,7 @@
             <!-- Next And Prev Post-->
             <div class="mt-16 flex justify-between gap-3 lg:px-8 relative">
                 <div class="w-1/2">
-                    <NuxtLink :to="`/weblog/${weblogItem.prev_post.slug}`" v-if="weblogItem.prev_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
+                    <NuxtLink :to="`/blog/${weblogItem.prev_post.slug}`" v-if="weblogItem.prev_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست قبلی</p>
                         <h3 class="text-[10px] md:text-xl">{{ weblogItem.prev_post.title }}</h3>
                     
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="w-1/2">
-                    <NuxtLink :to="`/weblog/${weblogItem.next_post.slug}`" v-if="weblogItem.next_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:bg-primaryOrange/20 dark:hover:bg-bluePrimary/40 hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
+                    <NuxtLink :to="`/blog/${weblogItem.next_post.slug}`" v-if="weblogItem.next_post" style="color: var(--primaryColor)" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="nextAndPrevPostWeblog bg-primary dark:bg-[#dfdfdf] block py-5 px-3 hover:text-primaryOrange dark:hover:text-bluePrimary transition-all duration-300 rounded-2xl border-[1px] border-[#DAD6D6] hover:bg-primaryOrange/20 dark:hover:bg-bluePrimary/40 hover:border-primaryOrange/20 md:py-9 md:px-6 md:rounded-[28px]">
                         <p class="text-[9px] md:text-base mb-2">پست بعدی</p>
                         <h3 class=" text-[10px] md:text-xl">{{ weblogItem.next_post.title }}</h3>
                     
@@ -223,7 +223,7 @@
                             <p class="text-2xl text-center">پست مشابهی یافت نشد!</p>
                         </div>
                         
-                        <NuxtLink :to="`/weblog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" :key="post.id" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
+                        <NuxtLink :to="`/blog/${post.slug}`" v-if="similarPosts.length >= 1" v-for="post in similarPosts" :key="post.id" class="postCard w-full lg:w-1/2 bg-primary dark:bg-whiteSecondary shadow-md dark:text-white rounded-2xl md:rounded-[15px] p-3 group cursor-pointer flex flex-col md:gap-4">
                             <div class="relative h-60">
                                 <img :src="`${apiRootStore.api}${post.cover}`" class="w-full h-full rounded-2xl object-cover md:rounded-[15px] overflow-hidden" :alt="post.title" />
         
