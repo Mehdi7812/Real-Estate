@@ -82,6 +82,15 @@ onMounted(async () => {
 			myFunction_set(secondTheme)
 		}
 	});
+
+	const style = document.createElement('style');
+    style.style.opacity = '0'
+    style.setAttribute('type', 'text/css');
+    style.setAttribute('id', 'cristStyle');
+    style.innerHTML = '.crisp-client .cc-tlyw .cc-qfnu {background-color: var(--primaryColor)!important;};';
+	if(document.querySelector('.crisp-client')) {
+		document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style);
+	}
 });
 
 useHead({

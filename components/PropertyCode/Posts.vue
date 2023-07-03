@@ -107,97 +107,143 @@
                 <div v-if="!pending" class="flex flex-wrap gap-4 w-full">
                     <div v-for="data in posts.results" :key="data.id" class="postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group cursor-pointer relative w-full md:w-[48%]">
                         <NuxtLink :to="`/estateDetail/${data.id}`" class="block swiper swiperNewst relative h-64">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
+                            <Swiper :modules="[SwiperNavigation]" :direction="swiperNewstImg.direction" :navigation="swiperNewstImg.navigation" class="h-64 rounded-2xl overflow-hidden">
+                                <SwiperSlide>
                                     <div class="relative h-full rounded-2xl overflow-hidden">
                                         <img :src="changeToOptimizedImg(data.cover)" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" :alt="data.cover_alt" />
                                     </div>
-                                </div>
-                            </div>
-                                        
-                            <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
-                                <div class="flex gap-2 items-center flex-wrap">
-                                    <span v-if="data.discount_status" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
-                                    <!-- Transaction -->
-                                    <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">پیش فروش</span> 
-                                    <!-- special -->
-                                    <div v-if="data.special" class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
+                                </SwiperSlide>
+
+                                <SwiperSlide v-if="data.media.length" v-for="media in data.media">
+                                    <div class="relative rounded-2xl overflow-hidden h-full">
+                                        <img :src="`${apiRootStore.api}${changeToOptimizedImg(media.image)}`" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="media.alt" />
+                                    </div>
+                                </SwiperSlide>
+                                            
+                                <div class="absolute dark:text-white z-10 top-3 left-3 right-3 flex justify-between">
+                                    <div class="flex gap-2 items-center flex-wrap">
+                                        <span v-if="data.discount_status" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">تخفیف ویژه</span> 
+                                        <!-- Transaction -->
+                                        <span v-if="data.Transaction == 'P'" class="bg-[#55499B] py-[6px] px-2 rounded-md text-[10px] whitespace-nowrap">پیش فروش</span> 
+                                        <!-- special -->
+                                        <div v-if="data.special" class="bg-[#FF4764] p-1 rounded-md flex items-center relative w-20 md:w-5 overflow-hidden group-hover:w-[75px] whitespace-nowrap transition-all duration-300">
+                                            <span>
+                                                <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1771 7.48667H8.73086V1.78667C8.73086 0.456667 8.01045 0.1875 7.1317 1.185L6.49836 1.90542L1.13878 8.00125C0.402528 8.8325 0.711278 9.51333 1.81961 9.51333H4.26586V15.2133C4.26586 16.5433 4.98628 16.8125 5.86503 15.815L6.49836 15.0946L11.8579 8.99875C12.5942 8.1675 12.2854 7.48667 11.1771 7.48667Z" fill="white"/></svg>
+                                                </span>
+                                            <span class="text-[10px] absolute right-6">فروش فوری</span>
+                                        </div>
+                                    </div>
+        
+                                    <div class="bg-primary flex gap-2 rounded-md p-1 items-center whitespace-nowrap">
+                                        <span class="text-[10px] relative top-[2px]">{{ estateTypeRender(data.estate_type) }}</span>
+        
                                         <span>
-                                            <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.1771 7.48667H8.73086V1.78667C8.73086 0.456667 8.01045 0.1875 7.1317 1.185L6.49836 1.90542L1.13878 8.00125C0.402528 8.8325 0.711278 9.51333 1.81961 9.51333H4.26586V15.2133C4.26586 16.5433 4.98628 16.8125 5.86503 15.815L6.49836 15.0946L11.8579 8.99875C12.5942 8.1675 12.2854 7.48667 11.1771 7.48667Z" fill="white"/></svg>
-                                            </span>
-                                        <span class="text-[10px] absolute right-6">فروش فوری</span>
+                                            <svg v-if="data.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2.25 24.75H24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.31836 24.75L3.37461 11.2163C3.37461 10.53 3.70086 9.87758 4.24086 9.45008L12.1159 3.31881C12.9259 2.68881 14.0621 2.68881 14.8834 3.31881L22.7584 9.43882C23.3096 9.86632 23.6246 10.5188 23.6246 11.2163V24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
+                                                <path d="M17.4375 12.375H9.5625C8.62875 12.375 7.875 13.1288 7.875 14.0625V24.75H19.125V14.0625C19.125 13.1288 18.3712 12.375 17.4375 12.375Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M11.25 18.2812V19.9688" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M11.8125 8.4375H15.1875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg v-if="data.estate_type == 'A'" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10.8332 18.3333H4.1665C2.49984 18.3333 1.6665 17.5 1.6665 15.8333V9.16667C1.6665 7.50001 2.49984 6.66667 4.1665 6.66667H8.33317V15.8333C8.33317 17.5 9.1665 18.3333 10.8332 18.3333Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8.42483 3.33333C8.35816 3.58333 8.33317 3.85833 8.33317 4.16666V6.66666H4.1665V4.99999C4.1665 4.08333 4.9165 3.33333 5.83317 3.33333H8.42483Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M11.6665 6.66667V10.8333" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15 6.66667V10.8333" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M14.1665 14.1667H12.4998C12.0415 14.1667 11.6665 14.5417 11.6665 15V18.3333H14.9998V15C14.9998 14.5417 14.6248 14.1667 14.1665 14.1667Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M5 10.8333V14.1667" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8.3335 15.8333V4.16667C8.3335 2.50001 9.16683 1.66667 10.8335 1.66667H15.8335C17.5002 1.66667 18.3335 2.50001 18.3335 4.16667V15.8333C18.3335 17.5 17.5002 18.3333 15.8335 18.3333H10.8335C9.16683 18.3333 8.3335 17.5 8.3335 15.8333Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg> 
+                                            <svg v-if="data.estate_type == 'H'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2.25 24.75H24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M16.8863 24.7387L3.38626 24.7612L3.375 7.95375C3.375 7.2 3.75752 6.50246 4.37627 6.08621L8.87627 3.08248C9.63002 2.57623 10.62 2.57623 11.3737 3.08248L15.8737 6.08621C16.5037 6.50246 16.875 7.2 16.875 7.95375L16.8863 24.7387Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.4766 24.7613V20.25" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.5 13.5C21.2625 13.5 20.25 14.5125 20.25 15.75V18C20.25 19.2375 21.2625 20.25 22.5 20.25C23.7375 20.25 24.75 19.2375 24.75 18V15.75C24.75 14.5125 23.7375 13.5 22.5 13.5Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M3.375 15.75H16.875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M10.125 24.75V20.5312" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M10.125 11.8125C11.057 11.8125 11.8125 11.057 11.8125 10.125C11.8125 9.19302 11.057 8.4375 10.125 8.4375C9.19302 8.4375 8.4375 9.19302 8.4375 10.125C8.4375 11.057 9.19302 11.8125 10.125 11.8125Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg v-if="data.estate_type == 'L'" width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2.16602 9.74999V7.04166C2.16602 4.34416 4.34352 2.16666 7.04102 2.16666H9.74935" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M16.25 2.16666H18.9583C21.6558 2.16666 23.8333 4.34416 23.8333 7.04166V9.74999" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M23.834 17.3333V18.9583C23.834 21.6558 21.6565 23.8333 18.959 23.8333H17.334" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.74935 23.8333H7.04102C4.34352 23.8333 2.16602 21.6558 2.16602 18.9583V16.25" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg v-if="data.estate_type == 'B'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.063 24.7501H4.59055C3.28555 24.7501 2.2168 23.7039 2.2168 22.4214V5.72637C2.2168 2.77887 4.41055 1.44012 7.0993 2.75637L12.0943 5.20887C13.1743 5.73762 14.063 7.14387 14.063 8.33637V24.7501Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M24.7162 16.9426V21.1951C24.7162 23.6251 23.5912 24.7501 21.1612 24.7501H14.0625V11.7226L14.5913 11.8351L19.6537 12.9714L21.9375 13.4776C23.4225 13.8039 24.6375 14.5689 24.705 16.7289C24.7162 16.7964 24.7162 16.8639 24.7162 16.9426Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6.1875 10.1251H10.0913" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6.1875 14.6251H10.0913" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M19.6543 12.9714V16.5939C19.6543 17.9889 18.518 19.1251 17.123 19.1251C15.728 19.1251 14.5918 17.9889 14.5918 16.5939V11.8351L19.6543 12.9714Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M24.7055 16.7289C24.638 18.0564 23.5355 19.1251 22.1855 19.1251C20.7905 19.1251 19.6543 17.9889 19.6543 16.5939V12.9714L21.938 13.4776C23.423 13.8039 24.638 14.5689 24.7055 16.7289Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg v-if="data.estate_type == 'V'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.125 24.75H25.875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.252 24.7612V19.7437" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.2758 12.2513C20.9033 12.2513 19.8008 13.3538 19.8008 14.7263V17.28C19.8008 18.6525 20.9033 19.755 22.2758 19.755C23.6483 19.755 24.7508 18.6525 24.7508 17.28V14.7263C24.7508 13.3538 23.6483 12.2513 22.2758 12.2513Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M2.36328 24.75V6.78381C2.36328 4.52256 3.48834 3.38629 5.72709 3.38629H12.7358C14.9746 3.38629 16.0883 4.52256 16.0883 6.78381V24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6.52539 9.28125H12.0942" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6.52539 13.5H12.0942" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.28125 24.75V20.5312" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
                                     </div>
                                 </div>
-    
-                                <div class="bg-primary flex gap-2 rounded-md p-1 items-center whitespace-nowrap">
-                                    <span class="text-[10px] relative top-[2px]">{{ estateTypeRender(data.estate_type) }}</span>
-    
-                                    <span>
-                                        <svg v-if="data.estate_type == 'G'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.25 24.75H24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M3.31836 24.75L3.37461 11.2163C3.37461 10.53 3.70086 9.87758 4.24086 9.45008L12.1159 3.31881C12.9259 2.68881 14.0621 2.68881 14.8834 3.31881L22.7584 9.43882C23.3096 9.86632 23.6246 10.5188 23.6246 11.2163V24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"/>
-                                            <path d="M17.4375 12.375H9.5625C8.62875 12.375 7.875 13.1288 7.875 14.0625V24.75H19.125V14.0625C19.125 13.1288 18.3712 12.375 17.4375 12.375Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.25 18.2812V19.9688" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.8125 8.4375H15.1875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        <svg v-if="data.estate_type == 'A'" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M10.8332 18.3333H4.1665C2.49984 18.3333 1.6665 17.5 1.6665 15.8333V9.16667C1.6665 7.50001 2.49984 6.66667 4.1665 6.66667H8.33317V15.8333C8.33317 17.5 9.1665 18.3333 10.8332 18.3333Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.42483 3.33333C8.35816 3.58333 8.33317 3.85833 8.33317 4.16666V6.66666H4.1665V4.99999C4.1665 4.08333 4.9165 3.33333 5.83317 3.33333H8.42483Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M11.6665 6.66667V10.8333" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M15 6.66667V10.8333" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M14.1665 14.1667H12.4998C12.0415 14.1667 11.6665 14.5417 11.6665 15V18.3333H14.9998V15C14.9998 14.5417 14.6248 14.1667 14.1665 14.1667Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M5 10.8333V14.1667" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.3335 15.8333V4.16667C8.3335 2.50001 9.16683 1.66667 10.8335 1.66667H15.8335C17.5002 1.66667 18.3335 2.50001 18.3335 4.16667V15.8333C18.3335 17.5 17.5002 18.3333 15.8335 18.3333H10.8335C9.16683 18.3333 8.3335 17.5 8.3335 15.8333Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg> 
-                                        <svg v-if="data.estate_type == 'H'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.25 24.75H24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M16.8863 24.7387L3.38626 24.7612L3.375 7.95375C3.375 7.2 3.75752 6.50246 4.37627 6.08621L8.87627 3.08248C9.63002 2.57623 10.62 2.57623 11.3737 3.08248L15.8737 6.08621C16.5037 6.50246 16.875 7.2 16.875 7.95375L16.8863 24.7387Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M22.4766 24.7613V20.25" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M22.5 13.5C21.2625 13.5 20.25 14.5125 20.25 15.75V18C20.25 19.2375 21.2625 20.25 22.5 20.25C23.7375 20.25 24.75 19.2375 24.75 18V15.75C24.75 14.5125 23.7375 13.5 22.5 13.5Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M3.375 15.75H16.875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M10.125 24.75V20.5312" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M10.125 11.8125C11.057 11.8125 11.8125 11.057 11.8125 10.125C11.8125 9.19302 11.057 8.4375 10.125 8.4375C9.19302 8.4375 8.4375 9.19302 8.4375 10.125C8.4375 11.057 9.19302 11.8125 10.125 11.8125Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        <svg v-if="data.estate_type == 'L'" width="20" height="20" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.16602 9.74999V7.04166C2.16602 4.34416 4.34352 2.16666 7.04102 2.16666H9.74935" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M16.25 2.16666H18.9583C21.6558 2.16666 23.8333 4.34416 23.8333 7.04166V9.74999" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M23.834 17.3333V18.9583C23.834 21.6558 21.6565 23.8333 18.959 23.8333H17.334" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M9.74935 23.8333H7.04102C4.34352 23.8333 2.16602 21.6558 2.16602 18.9583V16.25" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        <svg v-if="data.estate_type == 'B'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M14.063 24.7501H4.59055C3.28555 24.7501 2.2168 23.7039 2.2168 22.4214V5.72637C2.2168 2.77887 4.41055 1.44012 7.0993 2.75637L12.0943 5.20887C13.1743 5.73762 14.063 7.14387 14.063 8.33637V24.7501Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M24.7162 16.9426V21.1951C24.7162 23.6251 23.5912 24.7501 21.1612 24.7501H14.0625V11.7226L14.5913 11.8351L19.6537 12.9714L21.9375 13.4776C23.4225 13.8039 24.6375 14.5689 24.705 16.7289C24.7162 16.7964 24.7162 16.8639 24.7162 16.9426Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M6.1875 10.1251H10.0913" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M6.1875 14.6251H10.0913" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M19.6543 12.9714V16.5939C19.6543 17.9889 18.518 19.1251 17.123 19.1251C15.728 19.1251 14.5918 17.9889 14.5918 16.5939V11.8351L19.6543 12.9714Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M24.7055 16.7289C24.638 18.0564 23.5355 19.1251 22.1855 19.1251C20.7905 19.1251 19.6543 17.9889 19.6543 16.5939V12.9714L21.938 13.4776C23.423 13.8039 24.638 14.5689 24.7055 16.7289Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        <svg v-if="data.estate_type == 'V'" width="20" height="20" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1.125 24.75H25.875" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M22.252 24.7612V19.7437" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M22.2758 12.2513C20.9033 12.2513 19.8008 13.3538 19.8008 14.7263V17.28C19.8008 18.6525 20.9033 19.755 22.2758 19.755C23.6483 19.755 24.7508 18.6525 24.7508 17.28V14.7263C24.7508 13.3538 23.6483 12.2513 22.2758 12.2513Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M2.36328 24.75V6.78381C2.36328 4.52256 3.48834 3.38629 5.72709 3.38629H12.7358C14.9746 3.38629 16.0883 4.52256 16.0883 6.78381V24.75" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M6.52539 9.28125H12.0942" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M6.52539 13.5H12.0942" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M9.28125 24.75V20.5312" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
+        
+                                <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
+                                    <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 lg:h-7 relative group-hover:h-11 overflow-hidden transition-all duration-300">
+                                        <span class="absolute bottom-5">{{ Number(data.media.length).toLocaleString('fa-ir') }}</span>
+                                        <span>
+                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M4.82349 17.4167H14.1762C16.6393 17.4167 17.621 16.0788 17.737 14.4479L18.201 7.90875C18.326 6.19875 16.791 4.75 14.8544 4.75C14.31 4.75 13.8103 4.47292 13.5604 4.04542L12.9179 2.8975C12.5073 2.17708 11.4364 1.58333 10.5261 1.58333H8.48246C7.56326 1.58333 6.49234 2.17708 6.08182 2.8975L5.43927 4.04542C5.18939 4.47292 4.68963 4.75 4.14525 4.75C2.20867 4.75 0.673685 6.19875 0.798626 7.90875L1.26269 14.4479C1.36978 16.0788 2.36038 17.4167 4.82349 17.4167Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.50016 14.25C11.2443 14.25 12.6668 12.8274 12.6668 11.0833C12.6668 9.33923 11.2443 7.91667 9.50016 7.91667C7.75606 7.91667 6.3335 9.33923 6.3335 11.0833C6.3335 12.8274 7.75606 14.25 9.50016 14.25Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>                                        
+                                        </span>
+                                    </div>
+        
+                                    <p class="bg-primary text-[10px] py-2 px-3 rounded-md lg:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
                                 </div>
-                            </div>
-    
-                            <div class="absolute dark:text-white z-10 bottom-3 right-3 left-3 flex justify-between items-end">
-                                <div class="bg-[#101737] py-1 px-2 rounded-md flex flex-col justify-end items-center h-11 lg:h-7 relative group-hover:h-11 overflow-hidden transition-all duration-300">
-                                    <span class="absolute bottom-5">{{ Number(data.media.length).toLocaleString('fa-ir') }}</span>
-                                    <span>
-                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M4.82349 17.4167H14.1762C16.6393 17.4167 17.621 16.0788 17.737 14.4479L18.201 7.90875C18.326 6.19875 16.791 4.75 14.8544 4.75C14.31 4.75 13.8103 4.47292 13.5604 4.04542L12.9179 2.8975C12.5073 2.17708 11.4364 1.58333 10.5261 1.58333H8.48246C7.56326 1.58333 6.49234 2.17708 6.08182 2.8975L5.43927 4.04542C5.18939 4.47292 4.68963 4.75 4.14525 4.75C2.20867 4.75 0.673685 6.19875 0.798626 7.90875L1.26269 14.4479C1.36978 16.0788 2.36038 17.4167 4.82349 17.4167Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M9.50016 14.25C11.2443 14.25 12.6668 12.8274 12.6668 11.0833C12.6668 9.33923 11.2443 7.91667 9.50016 7.91667C7.75606 7.91667 6.3335 9.33923 6.3335 11.0833C6.3335 12.8274 7.75606 14.25 9.50016 14.25Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>                                        
-                                    </span>
+
+                                <div class="swiperNewsImg1-next absolute top-[38%] z-10 -right-3">
+                                    <svg width="50" height="50" viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                        <g filter="url(#filter0_d_411_3053)">
+                                        <path d="M25 15C19.49 15 15 19.49 15 25C15 30.51 19.49 35 25 35C30.51 35 35 30.51 35 25C35 19.49 30.51 15 25 15ZM27.79 25.53L24.26 29.06C24.11 29.21 23.92 29.28 23.73 29.28C23.54 29.28 23.35 29.21 23.2 29.06C22.91 28.77 22.91 28.29 23.2 28L26.2 25L23.2 22C22.91 21.71 22.91 21.23 23.2 20.94C23.49 20.65 23.97 20.65 24.26 20.94L27.79 24.47C28.09 24.76 28.09 25.24 27.79 25.53Z" fill="white"/>
+                                        </g>
+                                        <defs>
+                                        <filter id="filter0_d_411_3053" x="-2" y="-2" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                        <feOffset/>
+                                        <feGaussianBlur stdDeviation="7.5"/>
+                                        <feComposite in2="hardAlpha" operator="out"/>
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_411_3053"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_411_3053" result="shape"/>
+                                        </filter>
+                                        </defs>
+                                    </svg>                                
                                 </div>
-    
-                                <p class="bg-primary text-[10px] py-2 px-3 rounded-md lg:opacity-0 group-hover:opacity-100 transition-all duration-300">{{ dateCalc(data.placed_at) }}</p>
-                            </div>
+
+                                <div class="swiperNewsImg1-prev absolute top-[38%] z-10 -left-3">
+                                    <svg width="50" height="50" viewBox="0 0 50 50" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                                        <g filter="url(#filter0_d_411_3052)">
+                                        <path d="M25 15C19.49 15 15 19.49 15 25C15 30.51 19.49 35 25 35C30.51 35 35 30.51 35 25C35 19.49 30.51 15 25 15ZM26.79 28C27.08 28.29 27.08 28.77 26.79 29.06C26.64 29.21 26.45 29.28 26.26 29.28C26.07 29.28 25.88 29.21 25.73 29.06L22.2 25.53C21.91 25.24 21.91 24.76 22.2 24.47L25.73 20.94C26.02 20.65 26.5 20.65 26.79 20.94C27.08 21.23 27.08 21.71 26.79 22L23.79 25L26.79 28Z" fill="white"/>
+                                        </g>
+                                        <defs>
+                                        <filter id="filter0_d_411_3052" x="-2" y="-2" width="54" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                        <feOffset/>
+                                        <feGaussianBlur stdDeviation="7.5"/>
+                                        <feComposite in2="hardAlpha" operator="out"/>
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_411_3052"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_411_3052" result="shape"/>
+                                        </filter>
+                                        </defs>
+                                    </svg>                                
+                                </div>
+                            </Swiper>    
                         </NuxtLink>
                         <NuxtLink :to="`/estateDetail/${data.id}`" class="py-3 flex gap-4 flex-col overflow-hidden relative">
                             <h3 class="text-[15px] font-bold lg:text-xl group-hover:text-primaryOrange dark:group-hover:text-bluePrimary transition-all duration-300">{{ data.title }}</h3>
@@ -424,4 +470,12 @@ const showMessageModal = (idCase) => {
 };
 // Modal Message And Call Store
 
+const swiperNewstImg = {
+    direction: "horizontal",
+        // loop: true,
+    navigation: {
+        nextEl: ".swiperNewsImg1-next",
+        prevEl: ".swiperNewsImg1-prev",
+    },
+};
 </script>

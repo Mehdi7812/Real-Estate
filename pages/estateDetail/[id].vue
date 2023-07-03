@@ -1585,17 +1585,33 @@ import { toast } from 'vue3-toastify';
 import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
-const crispStyles = ref("")
 onMounted(() => {
     Fancybox.bind("[data-fancybox='gallery']", {});
     Fancybox.bind("[data-fancybox='galleryLG']", {});
 
-    crispStyles.value = document.querySelector('head > link[href="https://client.crisp.chat/static/stylesheets/client_default.css?1f94bd5"]')
-    crispStyles.value.setAttribute('href', '')
+    const style2 = document.createElement('style');
+    const style3 = document.createElement('style');
+    style2.style.opacity = '0'
+    style3.style.opacity = '0'
+    style2.setAttribute('type', 'text/css');
+    style3.setAttribute('type', 'text/css');
+
+    style2.setAttribute('id', 'cristStyle2');
+    style3.setAttribute('id', 'cristStyle3');
+    style2.innerHTML = '.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {bottom: 90px !important;};';
+    style3.innerHTML = '@media (min-width: 1024px) {.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {bottom: 16px !important;}};';
+
+    if(document.querySelector('.crisp-client')) {
+        document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style2);
+        document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style3);
+    }
 });
 
-onBeforeUnmount(() => {
-    crispStyles.value.setAttribute('href', 'https://client.crisp.chat/static/stylesheets/client_default.css?1f94bd5')
+onBeforeRouteUpdate(() => {
+    const style2 = document.getElementById('cristStyle2');
+    const style3 = document.getElementById('cristStyle3');
+    style2.innerHTML = ''
+    style3.innerHTML = ''
 });
 
 // Map.vue
@@ -1754,10 +1770,6 @@ useHead({
         },
         { src: '/recaptcha.js', body: true }
     ],
-
-    link: [
-        { href: "/crispStyle.css" }
-    ]
 });
 
 // Send Message
