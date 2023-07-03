@@ -35,7 +35,7 @@
 
                     <div v-if="data" class="z-[1] flex flex-col lg:flex-row items-center lg:items-stretch w-full gap-4 lg:gap-14">
                         <div class="w-full lg:w-1/2 rounded-[20px] lg:rounded-l-none">
-                            <img class="w-full h-full rounded-[20px] lg:rounded-l-none object-cover" :src="homePagePic" :alt="data.manager_name" />
+                            <img class="w-full h-full rounded-[20px] lg:rounded-l-none object-cover" :src="data.estate_picture" :alt="data.estate_alt" />
                         </div>
                         
                         <div class="flex flex-col gap-3 lg:mt-9 xl:mt-12 text-center lg:text-right lg:w-1/2">

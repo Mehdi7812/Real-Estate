@@ -71,16 +71,16 @@
                     <div class="grid grid-cols-3 col-span-full gap-3">
                         <div v-for="(img, index) in postItem.media" :class="index >= 3 ? 'hidden' : ''">
                             <div v-if="index <= 1" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden col-span-1 w-full h-32 rounded-[10px]">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                             </div>
 
                             <div v-if="index == 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-32 rounded-[10px] relative cursor-pointer">
-                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full rounded-[10px] overflow-hidden" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                                 <p dir="rtl" class="text-xs flex justify-center items-center text-white flex-col backdrop-blur-[2px] rounded-[10px] overflow-hidden backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
 
                             <div v-if="index > 2" data-fancybox="gallery" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                                 <p dir="rtl" class="text-xs flex justify-center text-white items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span x-text="convertToPersianNumber(postItem.media.length - 2)"></span>+</span><span>مشاهده بیشتر</span></p>
                             </div>
                         </div>
@@ -93,17 +93,17 @@
                         <div v-for="(img, index) in postItem.media" :class="index >= 4 ? 'hidden' : ''">
                             <div v-if="index < 4" class="h-full">
                                 <div v-if="index <= 2" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden w-full h-[240px] rounded-[10px] cursor-pointer">
-                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                    <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                                 </div>
 
                                 <div v-if="index == 3" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="group overflow-hidden w-full h-[240px] rounded-[10px] relative cursor-pointer">
-                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-300" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                                     <p v-if="postItem.media.length - 4 > 0" dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p>
                                 </div>
                             </div>
 
                             <div v-if="index >= 4" data-fancybox="galleryLG" :data-src="`${apiRootStore.api}${img.image}`" class="overflow-hidden hidden absolute w-0 h-0">
-                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="postItem.cover_alt" />
+                                <img class="object-cover w-full h-full" :src="`${apiRootStore.api}${changeToOptimizedImg(img.image)}`" :alt="img.alt" />
                                 <!-- <p dir="rtl" class="text-white text-xs flex justify-center items-center flex-col backdrop-blur-[2px] backdrop-brightness-50 absolute top-0 left-0 right-0 bottom-0 hover:backdrop-blur-[.5px] transition-all duration-300"><span class="text-lg font-bold"><span>{{ Number(postItem.media.length - 4).toLocaleString('fa-ir') }}</span>+</span><span>مشاهده بیشتر</span></p> -->
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                     <!-- Big Picture -->
                     <div data-fancybox="galleryLG" :data-src="`${postItem.cover}`" class="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] cursor-pointer">
                         <div class="overflow-hidden col-span-2 row-span-2 w-full rounded-[10px]">
-                            <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="changeToOptimizedImg(postItem.cover)" :alt="postItem.title" />
+                            <img class="object-cover w-full h-full hover:scale-110 transition-all duration-300" :src="changeToOptimizedImg(postItem.cover)" :alt="postItem.cover_alt" />
                         </div>
                     </div>
                     
@@ -1198,7 +1198,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide !h-64">
                                             <div class="relative rounded-2xl overflow-hidden h-full">
-                                                <img :src="changeToOptimizedImg(post.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="post.title" />
+                                                <img :src="changeToOptimizedImg(post.cover)" class="w-full object-cover h-full group-hover:scale-110 transition-all duration-300" :alt="post.cover_alt" />
                                             </div>
                                         </div>
                                     </div>
