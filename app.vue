@@ -88,9 +88,13 @@ onMounted(async () => {
     style.setAttribute('type', 'text/css');
     style.setAttribute('id', 'cristStyle');
     style.innerHTML = '.crisp-client .cc-tlyw .cc-qfnu {background-color: var(--primaryColor)!important;};';
-	if(document.querySelector('.crisp-client')) {
-		document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style);
-	}
+
+	setInterval(() => {
+		if(document.querySelector('.crisp-client')) {
+			document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style);
+			clearInterval()
+		}
+	}, 2000);
 });
 
 useHead({
@@ -98,7 +102,7 @@ useHead({
 	script: [
 		{ innerHTML: `
 			<!-- Crisp Chat -->
-			window.$crisp=[];window.CRISP_WEBSITE_ID="23f3cfed-8c0f-49d4-9708-dfafe3f3eb3f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+			window.$crisp=[];window.CRISP_WEBSITE_ID="729f5b54-9ca6-433d-ae6d-ab4619e94359";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
 		` }
 	],
 	meta: [

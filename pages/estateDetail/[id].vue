@@ -1601,10 +1601,13 @@ onMounted(() => {
     style2.innerHTML = '.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {bottom: 90px !important;};';
     style3.innerHTML = '@media (min-width: 1024px) {.crisp-client .cc-tlyw[data-full-view=true] .cc-kxkl .cc-nsge {bottom: 16px !important;}};';
 
-    if(document.querySelector('.crisp-client')) {
-        document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style2);
-        document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style3);
-    }
+    setInterval(() => {
+        if(document.querySelector('.crisp-client')) {
+            document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style2);
+            document.querySelector('.crisp-client .cc-tlyw .cc-qfnu').appendChild(style3);
+            clearInterval()
+        }
+    }, 2000);
 });
 
 onBeforeRouteUpdate(() => {
