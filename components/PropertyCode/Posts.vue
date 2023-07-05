@@ -362,7 +362,7 @@
                             </div>
                             
                             <div class="flex gap-3 items-center">
-                                <button @click.prevent="showMessageModal(data.id)">
+                                <button @click.prevent="showMessageModal(data.id, data.username)">
                                     <img class="md:w-11 md:h-11 cursor-pointer" src="/Group34.svg" alt="ارسال پیام" />
                                 </button>
                                 
@@ -445,7 +445,7 @@ const { data: posts, pending, refresh, error } = await useFetch(() => `${apiRoot
 import { useModalMessage } from "~/stores/SendMessage";
 import { storeToRefs } from "pinia";
 const modalMessageStore = useModalMessage();
-let {isOpenModalMessage, idPost} = storeToRefs(modalMessageStore);
+let {isOpenModalMessage, idPost, userNameMessage} = storeToRefs(modalMessageStore);
 
 import { useModalCall } from "~/stores/CallModal"
 const modalCallStore = useModalCall();
@@ -462,8 +462,9 @@ const showCallModal = (idPost, idUser, user_name, activity, user_number, userPic
         isOpenModalCall.value = true
     }, 5);
 }
-const showMessageModal = (idCase) => {
+const showMessageModal = (idCase, userName) => {
     idPost.value = idCase
+    userNameMessage.value = userName
     setTimeout(() => {
         isOpenModalMessage.value = true
     }, 5);

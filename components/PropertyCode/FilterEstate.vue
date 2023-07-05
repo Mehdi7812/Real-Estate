@@ -483,7 +483,7 @@
                 <h4 class="mb-2 md:text-xl">جستجوهای اخیر</h4>
 
                 <NuxtLink v-for="item in dataRes" :to="`/estateDetail/${item.id}`" onmouseover="this.style.backgroundColor = 'var(--primaryColor-20)'" onmouseout="this.style.backgroundColor = ''" class="flex gap-2 overflow-hidden rounded-xl md:rounded-[21px] hover:bg-secondary shadow-md dark:hover:bg-[#BEBEBE] transition-all duration-300 cursor-pointer">
-                    <img class="rounded-xl h-32 w-40 object-cover overflow-hidden md:rounded-[21px] lg:w-4/5 lg:max-w-[200px]" :src="item.cover" :alt="item.title" />
+                    <img class="rounded-xl h-32 w-40 object-cover overflow-hidden md:rounded-[21px] lg:w-4/5 lg:max-w-[200px]" :src="changeToOptimizedImg(item.cover)" :alt="item.title" />
                     <div class="flex flex-col justify-around">
                         <h5 class="text-xs md:text-base">{{ item.title }}</h5>
 
@@ -501,7 +501,7 @@ import { useApiRoot } from "~/stores/ApiRoot"
 const apiRootStore = useApiRoot()
 
 // Convert diigits func Store
-const { estateTypeRender, getNumber } = useConvertDatas()
+const { estateTypeRender, getNumber, changeToOptimizedImg } = useConvertDatas()
 
 import PN from 'persian-number'
 

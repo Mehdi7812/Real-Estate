@@ -140,7 +140,7 @@ const closeModal = () => {
             <div class="fixed top-0 left-0 right-0 bottom-0 overflow-y-auto flex justify-center z-40 items-center bg-graytext/[.5] backdrop-blur-sm transition-all duration-300">
                 <div v-click-out-side="closeModal" class="flex flex-col gap-3 w-[550px] bg-secondary dark:bg-white rounded-2xl lg:rounded-[26px] p-2 md:p-5 pt-0">
                     <div class="flex justify-between items-center p-2">
-                        <span class="text-[17px] font-bold">ارسال پیام</span>
+                        <span class="text-[17px] font-bold">ارسال پیام <span>به {{ modalMessageStore.userNameMessage }}</span></span>
 
                         <span @click="closeModal" class="cursor-pointer transition-all duration-300 hover:bg-graytext/[.2] rounded-md p-4">
                             <svg id="modallMessageExitBtn" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">

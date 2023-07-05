@@ -16,7 +16,7 @@ body {
 }
 
 .btn {
-  color: white;
+  color: white!important;
   display: flex;
   justify-content: center;
   align-items: center;

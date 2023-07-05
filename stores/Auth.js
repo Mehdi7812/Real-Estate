@@ -30,16 +30,13 @@ export const useAuth = defineStore("auth", () => {
                     userInfo.value = data
                 }
             })
-            // .catch(err => {
-            //     console.log(err)
-            // })
         }
     };
 
     const exitUser = () => {
         isLogin.value = false;
         localStorage.removeItem('token')
-        toast.warning('شما خارج شدید.', {position: toast.POSITION.BOTTOM_CENTER,autoClose: 4000,});
+        toast.warning('شما خارج شدید.');
     };
     
     return { isLogin, userInfo, checkLogin, exitUser };
