@@ -281,7 +281,7 @@
                                     <div class="flex flex-col gap-[5px]">
                                         <!-- Real Price -->
                                         <p class="text-sm flex flex-nowrap items-center">
-                                            <p v-html="PN.convertEnToPe(getNumber(data.unit_price))" class="whitespace-nowrap text-2xl font-bold mx-3"></p>
+                                            <p :class="data.percent_discount ? ' line-through' : ''" v-html="PN.convertEnToPe(getNumber(data.unit_price))" class="whitespace-nowrap text-2xl font-bold mx-3"></p>
                                         
                                             <!-- SVG Toman -->
                                             <span>
@@ -311,7 +311,7 @@
 
                                         <!-- Takhfif Vizhe -->
                                         <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal mx-3 text-graytext line-through">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
+                                            <p class="whitespace-nowrap font-normal mx-3 text-graytext">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
                                             <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>

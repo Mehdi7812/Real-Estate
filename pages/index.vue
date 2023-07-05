@@ -64,7 +64,7 @@
         <HomeWeblog />
 
         <!-- Persons Section -->
-        <HomePersons />
+        <HomePersons class="hidden"/>
 
         <!-- Call Modal -->
         <CallModal />

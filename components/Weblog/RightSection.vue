@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col lg:w-4/6">
+    <div class="flex flex-col">
         <main v-if="!posts || pending" class="mostSearch" style="margin-top: 0;">
             <ul class="o-vertical-spacing o-vertical-spacing--l">
             <li class="blog-post o-media bg-primary md:rounded-[31px] dark:bg-[#f0f3f7] rounded-2xl p-3">
@@ -127,11 +127,11 @@
                             <p class="text-[10px] text-right md:text-[14px] text-[#9EA1AC]">{{ data.introduction }}</p>
                         </NuxtLink>
 
-                        <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex gap-3">
-                            <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`" :alt="data.username" />
+                        <NuxtLink :to="`/propertyCode?user=${data.user_info.id}`" class="flex gap-3">
+                            <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_info.picture}`" :alt="data.user_info.name" />
                             <div class="flex flex-col justify-around">
-                                <span class="text-[10px] md:text-base">{{ data.username }}</span>
-                                <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
+                                <span class="text-[10px] md:text-base">{{ data.user_info.name }}</span>
+                                <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_info.activity }}</span>
                             </div>
                         </NuxtLink>
                     </div>
@@ -165,7 +165,6 @@
             <p>همچین پستی یافت نشد !</p>
         </div>
     </div>
-    
 </template>
 
 <script setup>

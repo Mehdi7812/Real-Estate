@@ -70,7 +70,7 @@
                 </SwiperSlide>
 
                 <SwiperSlide v-for="data in dataRes" :key="data.id">
-                    <NuxtLink :to="`/estateDetail/${data.id}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group lg:flex xl:h-full cursor-pointer">
+                    <NuxtLink :to="`/estateDetail/${data.slug}`" class="block postCard bg-secondary dark:bg-white rounded-2xl py-2 px-3 group lg:flex xl:h-full cursor-pointer">
                         <Swiper :modules="[SwiperNavigation]" :navigation="swiperImgOption.navigation" :breakpoints="swiperImgOption.breakpoints" :direction="swiperImgOption.direction" class="rounded-2xl overflow-hidden xl:w-1/2 xl:h-64">
                             <SwiperSlide>
                                 <div class="relative rounded-2xl overflow-hidden h-72 lg:h-full">
@@ -244,7 +244,7 @@
                                     <div class="flex flex-col">
                                         <!-- Real Price -->
                                         <p class="text-sm flex flex-nowrap whitespace-nowrap items-center">
-                                            <p class="text-xl font-normal ml-1">{{ PN.convertEnToPe(getNumber(data.unit_price)) }}</p>
+                                            <p :class="data.percent_discount ? ' line-through' : ''" class="text-xl font-normal ml-1">{{ PN.convertEnToPe(getNumber(data.unit_price)) }}</p>
                                         
                                             <!-- SVG Toman -->
                                             <span>
@@ -274,7 +274,7 @@
 
                                         <!-- Takhfif Vizhe -->
                                         <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal ml-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
+                                            <p class="whitespace-nowrap font-normal ml-3 text-[#BEBEBE]">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
                                             <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>

@@ -31,6 +31,6 @@ const route = useRoute()
 const slug = ref("");
 
 const fetchSearch = () => {
-    navigateTo(`/weblog?search=${slug}&weblog_type=`)
+    navigateTo(`/blog?search=${slug}&weblog_type=`)
 }
 </script>

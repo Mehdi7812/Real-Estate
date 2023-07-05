@@ -71,7 +71,7 @@
                 </SwiperSlide>
 
                 <SwiperSlide v-if="dataRes" v-for="data in dataRes" :key="data.id">
-                    <NuxtLink :to="`/estateDetail/${data.id}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
+                    <NuxtLink :to="`/estateDetail/${data.slug}`" style="background-color: var(--primaryColor-20)" class="block postCard bg-primary dark:bg-whiteSecondary rounded-2xl py-2 px-3 group cursor-pointer">
                         <Swiper :modules="[SwiperNavigation]" :direction="swiperNewstImg.direction" :navigation="swiperNewstImg.navigation" class="h-64 rounded-2xl overflow-hidden">
                             <SwiperSlide>
                                 <div class="relative rounded-2xl overflow-hidden h-full">
@@ -247,7 +247,7 @@
                                     <div class="flex flex-col gap-[5px]">
                                         <!-- Real Price -->
                                         <p class="whitespace-nowrap text-sm flex flex-nowrap items-center">
-                                            <p class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(getNumber(data.unit_price)) }}</p>
+                                            <p :class="data.percent_discount ? ' line-through' : ''" class="text-xl font-normal mr-2 ml-1">{{ PN.convertEnToPe(getNumber(data.unit_price)) }}</p>
                                         
                                             <!-- SVG Toman -->
                                             <span>
@@ -277,7 +277,7 @@
 
                                         <!-- Takhfif Vizhe -->
                                         <div v-if="data.percent_discount" class="flex flex-nowrap items-center text-base">
-                                            <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE] line-through">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
+                                            <p class="whitespace-nowrap font-normal mx-3 text-[#BEBEBE]">{{ PN.convertEnToPe(getNumber(data.price_after_discount)) }}</p>
                                             <span class="bg-[#D7102F] text-white rounded-[19px] font-black px-2 h-5">{{ PN.convertEnToPe(data.percent_discount) }}٪</span>
                                         </div>
                                     </div>
@@ -328,13 +328,13 @@
                                 </NuxtLink>
 
                                 <div class="flex px-7 gap-5">
-                                    <button @click.prevent="showMessageModal(data.id, data.username)">
+                                    <button @click.prevent="showMessageModal(data.slug, data.username)">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.1401 0.959997L5.11012 3.96C-0.959883 5.99 -0.959883 9.3 5.11012 11.32L7.79012 12.21L8.68012 14.89C10.7001 20.96 14.0201 20.96 16.0401 14.89L19.0501 5.87C20.3901 1.82 18.1901 -0.390003 14.1401 0.959997ZM14.4601 6.34L10.6601 10.16C10.5101 10.31 10.3201 10.38 10.1301 10.38C9.94012 10.38 9.75012 10.31 9.60012 10.16C9.31012 9.87 9.31012 9.39 9.60012 9.1L13.4001 5.28C13.6901 4.99 14.1701 4.99 14.4601 5.28C14.7501 5.57 14.7501 6.05 14.4601 6.34Z" fill="#FFA80A"/>
                                         </svg>
                                     </button>
 
-                                    <button @click.prevent="showCallModal(data.id, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
+                                    <button @click.prevent="showCallModal(data.slug, data.user_id, data.username, data.user_activity, data.user_number, data.userPicture)">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M17.62 10.75C17.19 10.75 16.85 10.4 16.85 9.98001C16.85 9.61001 16.48 8.84001 15.86 8.17001C15.25 7.52001 14.58 7.14001 14.02 7.14001C13.59 7.14001 13.25 6.79001 13.25 6.37001C13.25 5.95001 13.6 5.60001 14.02 5.60001C15.02 5.60001 16.07 6.14001 16.99 7.11001C17.85 8.02001 18.4 9.15001 18.4 9.97001C18.4 10.4 18.05 10.75 17.62 10.75Z" fill="#0DA049"/>
                                             <path d="M21.2298 10.75C20.7998 10.75 20.4598 10.4 20.4598 9.98C20.4598 6.43 17.5698 3.55 14.0298 3.55C13.5998 3.55 13.2598 3.2 13.2598 2.78C13.2598 2.36 13.5998 2 14.0198 2C18.4198 2 21.9998 5.58 21.9998 9.98C21.9998 10.4 21.6498 10.75 21.2298 10.75Z" fill="#0DA049"/>

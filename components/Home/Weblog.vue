@@ -131,11 +131,11 @@
                             <p class="text-right h-12 overflow-hidden text-[#F6E9E9] dark:text-graytext">{{ data.introduction }}</p>
                             
                             <div class="flex-row-reverse justify-between">
-                                <NuxtLink :to="`/propertyCode?user=${data.user_id}`" class="flex gap-3">
-                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_picture}`" :alt="data.username" />
+                                <NuxtLink :to="`/propertyCode?user=${data.user_info.id}`" class="flex gap-3">
+                                    <img class="object-cover w-[35px] h-[35px] md:w-11 md:h-11 cursor-pointer rounded-lg" :src="`${apiRootStore.api}/${data.user_info.picture}`" :alt="data.user_info.name" />
                                     <div class="flex flex-col justify-around">
-                                        <span class="text-[10px] md:text-base">{{ data.username }}</span>
-                                        <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_activity }}</span>
+                                        <span class="text-[10px] md:text-base">{{ data.user_info.name }}</span>
+                                        <span class="text-[8px] text-[#B1B1B1] md:text-[11px]">{{ data.user_info.activity }}</span>
                                     </div>
                                 </NuxtLink>
                             </div>
