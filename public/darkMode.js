@@ -2,12 +2,12 @@
 const sun = "/sun.svg";
 const moon = "/moon.svg";
 
-
-var theme = "dark";
+let theme = "dark";
 // const root = document.querySelector(":root");
 const container = document.getElementsByClassName("theme-container")[0];
 const themeIcon = document.getElementById("theme-icon");
 container.addEventListener("click", setTheme);
+
 function setTheme() {
   switch (theme) {
     case "dark":
@@ -33,22 +33,24 @@ if(localStorage.getItem('darkMode') == 'true') {
 
 function setLight() {
   container.classList.remove("shadow-dark");
-  themeIcon.classList.add("change");
-  themeIcon.src = sun;
-  setTimeout(() => {
+  // themeIcon.classList.add("change");
+  themeIcon.setAttribute('src', sun)
+  // themeIcon.src = sun;
+  // setTimeout(() => {
     container.classList.add("shadow-light");
-    themeIcon.classList.remove("change");
-  }, 100);
+    // themeIcon.classList.remove("change");
+  // }, 100);
 }
 function setDark() {
   // root.style.setProperty("--bs-dark", "#212529");
   container.classList.remove("shadow-light");
-  themeIcon.classList.add("change");
-  themeIcon.src = moon;
-  setTimeout(() => {
+  // themeIcon.classList.add("change");
+  themeIcon.setAttribute('src', moon)
+  // themeIcon.src = moon;
+  // setTimeout(() => {
     container.classList.add("shadow-dark");
-    themeIcon.classList.remove("change");
-  }, 100);
+    // themeIcon.classList.remove("change");
+  // }, 100);
 }
 
 function setWithApi (theme) {
@@ -64,5 +66,3 @@ function setWithApi (theme) {
     localStorage.setItem('darkMode', 'true')
   }
 }
-
-  

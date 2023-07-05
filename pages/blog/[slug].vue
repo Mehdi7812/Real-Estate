@@ -381,7 +381,7 @@ const response = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slu
 const data = await response.json()
 weblogItem.value = data
 const emit = defineEmits(['titlePost'])
-emit('titlePost', 'weblogItem.title');
+emit('titlePost', route.params.slug);
 
 const resReview = await fetch(`${apiRootStore.api}/real/weblog/${route.params.slug}/review/`)
 const dataReview = await resReview.json()

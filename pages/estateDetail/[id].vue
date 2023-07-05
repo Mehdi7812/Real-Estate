@@ -1682,11 +1682,11 @@ useHead({
     
     meta: [
         { name: 'title', content: postItem.value.title },
-        { name: 'description', hid: 'description', content: postItem.value.description },
+        { name: 'description', hid: 'description', content: postItem.value.meta_description },
         { property: 'og:title', content: postItem.value.title },
-        { property: 'og:description', hid:'og:description', content: postItem.value.description },
+        { property: 'og:description', hid:'og:description', content: postItem.value.meta_description },
         { property: 'twitter:title', content: postItem.value.title },
-        { property: 'twitter:description', hid: 'twitter:description', content: postItem.value.description },
+        { property: 'twitter:description', hid: 'twitter:description', content: postItem.value.meta_description },
     ],
     
     script: [
@@ -1797,7 +1797,6 @@ const showMessageModal = (idCase, userName) => {
         isOpenModalMessage.value = true
     }, 5);
 };
-
 // validate Name 
 function validateName (name) {
 	const re = /^[آ-ی]{2,30}$/;
